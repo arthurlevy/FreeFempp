@@ -1,0 +1,599 @@
+/* A Bison parser, made by GNU Bison 2.1.  */
+
+/* Skeleton parser for Yacc-like parsing with Bison,
+   Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005 Free Software Foundation, Inc.
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2, or (at your option)
+   any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor,
+   Boston, MA 02110-1301, USA.  */
+
+/* As a special exception, when this file is copied by Bison into a
+   Bison output file, you may use that output file without restriction.
+   This special exception was added by the Free Software Foundation
+   in version 1.24 of Bison.  */
+
+/* Tokens.  */
+#ifndef YYTOKENTYPE
+# define YYTOKENTYPE
+   /* Put the tokens into the symbol table, so that GDB and other debuggers
+      know about them.  */
+   enum yytokentype {
+     ABS = 258,
+     R3 = 259,
+     APPEND = 260,
+     ABSERROR = 261,
+     ACOS = 262,
+     ACOSH = 263,
+     ADAPTMESH = 264,
+     ANDAND = 265,
+     ANISOMAX = 266,
+     RESIZE = 267,
+     AREA = 268,
+     ARG = 269,
+     ASIN = 270,
+     ASINH = 271,
+     ASPECTRATIO = 272,
+     ASSERT = 273,
+     ATAN = 274,
+     ATAN2 = 275,
+     ATANH = 276,
+     AVERAGE = 277,
+     BB = 278,
+     BFGS = 279,
+     BIG_N = 280,
+     BINSIDE = 281,
+     BMAT = 282,
+     BOOL = 283,
+     BORDER = 284,
+     BOUNDARYPROBLEM = 285,
+     BREAK = 286,
+     BROADCAST = 287,
+     BUILDMESH = 288,
+     BUILDMESHBORDER = 289,
+     BW = 290,
+     CADNA = 291,
+     CG = 292,
+     CHECKMOVEMESH = 293,
+     CHOLESKY = 294,
+     CIN = 295,
+     CLEAN = 296,
+     CLOCK = 297,
+     CMM = 298,
+     COEF = 299,
+     COMPLEX = 300,
+     CONJ = 301,
+     CONSTANT_STRING = 302,
+     CONTINUE = 303,
+     CONVECT = 304,
+     COS = 305,
+     COSH = 306,
+     COUT = 307,
+     CROUT = 308,
+     CUTOFF = 309,
+     DIMKRYLOV = 310,
+     DN = 311,
+     DOTSLASH = 312,
+     DOTSTAR = 313,
+     DIAG = 314,
+     DUMPTABLE = 315,
+     DX = 316,
+     DXX = 317,
+     DXY = 318,
+     DY = 319,
+     DYX = 320,
+     DYY = 321,
+     DZ = 322,
+     ELSE = 323,
+     EMPTYMESH = 324,
+     END = 325,
+     ENDL = 326,
+     EPS = 327,
+     EQEQ = 328,
+     ERR = 329,
+     ERRG = 330,
+     EXEC = 331,
+     EXIT = 332,
+     EXP = 333,
+     FACTORIZE = 334,
+     FESPACE = 335,
+     FF_FALSE = 336,
+     FF_TRUE = 337,
+     FILL = 338,
+     FOR = 339,
+     FUNC = 340,
+     GE = 341,
+     GMRES = 342,
+     GREY = 343,
+     GTGT = 344,
+     HAVEUMFPACK = 345,
+     HMAX = 346,
+     HMIN = 347,
+     HTRIANGLE = 348,
+     I = 349,
+     IF = 350,
+     IFSTREAM = 351,
+     IMAG = 352,
+     INCLUDE = 353,
+     INIT = 354,
+     INQUIRE = 355,
+     INSIDE = 356,
+     INT = 357,
+     INT1D = 358,
+     INT2D = 359,
+     INTALLEDGES = 360,
+     INTERPOLATE = 361,
+     ISMETRIC = 362,
+     HSV = 363,
+     ISO = 364,
+     IVALUE = 365,
+     JUMP = 366,
+     KEEPBACKVERTICES = 367,
+     LABEL = 368,
+     LE = 369,
+     LENEDGE = 370,
+     LINEARCG = 371,
+     EIGENVALUE = 372,
+     LINEARGMRES = 373,
+     LOAD = 374,
+     LOG = 375,
+     LOG10 = 376,
+     LTLT = 377,
+     LU = 378,
+     M = 379,
+     MATRIX = 380,
+     MAX = 381,
+     MAXIT = 382,
+     MAXSUBDIV = 383,
+     MEAN = 384,
+     MESH = 385,
+     METRIC = 386,
+     MIN = 387,
+     MINUSEQ = 388,
+     MINUSMINUS = 389,
+     MOVEMESH = 390,
+     MPIRANK = 391,
+     MPISIZE = 392,
+     NAME = 393,
+     NBARROW = 394,
+     NBEV = 395,
+     NBISO = 396,
+     NBITER = 397,
+     NBITERLINE = 398,
+     NBJACOBY = 399,
+     NBSMOOTH = 400,
+     NBVX = 401,
+     NCV = 402,
+     NDOF = 403,
+     NDOFK = 404,
+     NE = 405,
+     NEWTON = 406,
+     NLCG = 407,
+     NOMESHGENERATION = 408,
+     NORM = 409,
+     NOUSEOFWAIT = 410,
+     NT = 411,
+     NTONEDGE = 412,
+     NUEDGE = 413,
+     NUMBER = 414,
+     NUTRIANGLE = 415,
+     NV = 416,
+     OFSTREAM = 417,
+     OMEGA = 418,
+     ON = 419,
+     OP = 420,
+     OPTIMIZE = 421,
+     OROR = 422,
+     OTHERSIDE = 423,
+     P = 424,
+     P0 = 425,
+     P0edge = 426,
+     P1 = 427,
+     P1B = 428,
+     P1DC = 429,
+     P1NC = 430,
+     P2 = 431,
+     P2DC = 432,
+     P2H = 433,
+     PERIODIC = 434,
+     PI = 435,
+     PLOT = 436,
+     PLUSEQ = 437,
+     PLUSPLUS = 438,
+     POLAR = 439,
+     POW = 440,
+     POWER = 441,
+     PRECISION = 442,
+     PRECON = 443,
+     PROBLEM = 444,
+     PROCESSOR = 445,
+     PS = 446,
+     QFE = 447,
+     QFNBPE = 448,
+     QFNBPT = 449,
+     QFORDER = 450,
+     QFT = 451,
+     QF1PE = 452,
+     QF1PELUMP = 453,
+     QF1PT = 454,
+     QF1PTLUMP = 455,
+     QF2PE = 456,
+     QF2PT = 457,
+     QF2PT4P1 = 458,
+     QF3PE = 459,
+     QF5PT = 460,
+     QF7PT = 461,
+     QF9PT = 462,
+     RATIO = 463,
+     READMESH = 464,
+     REAL = 465,
+     REGION = 466,
+     RESCALING = 467,
+     RETURN = 468,
+     RT0 = 469,
+     RT0ORTHO = 470,
+     SAVE = 471,
+     SAVEMESH = 472,
+     SET = 473,
+     SIGMA = 474,
+     SIN = 475,
+     SINH = 476,
+     SLASHEQ = 477,
+     SMALL_N = 478,
+     SOLVE = 479,
+     SOLVER = 480,
+     SPLIT = 481,
+     SPLITIN2 = 482,
+     SPLITMESH = 483,
+     SPLITPBEDGE = 484,
+     SQRT = 485,
+     SQUARE = 486,
+     STAREQ = 487,
+     STRATEGY = 488,
+     STRING = 489,
+     SUM = 490,
+     SYM = 491,
+     T = 492,
+     TAN = 493,
+     TANH = 494,
+     TGV = 495,
+     THETAMAX = 496,
+     TOL = 497,
+     TRIANGULATE = 498,
+     TRUNC = 499,
+     UMFPACK = 500,
+     USER_BORDER = 501,
+     USER_FUNCTION = 502,
+     USER_PROBLEM = 503,
+     USER_TYPE = 504,
+     USER_VARF = 505,
+     USER_VARIABLE = 506,
+     VALUE = 507,
+     VARF = 508,
+     VARROW = 509,
+     VECTOR = 510,
+     VEPS = 511,
+     VERBOSITY = 512,
+     VERSION = 513,
+     VISO = 514,
+     WAIT = 515,
+     WHILE = 516,
+     X = 517,
+     Y = 518,
+     Z = 519,
+     NBCOEF = 520,
+     TOLPIVOT = 521,
+     TOLPIVOTSYM = 522,
+     L1 = 523,
+     L2 = 524,
+     LINFTY = 525
+   };
+#endif
+/* Tokens.  */
+#define ABS 258
+#define R3 259
+#define APPEND 260
+#define ABSERROR 261
+#define ACOS 262
+#define ACOSH 263
+#define ADAPTMESH 264
+#define ANDAND 265
+#define ANISOMAX 266
+#define RESIZE 267
+#define AREA 268
+#define ARG 269
+#define ASIN 270
+#define ASINH 271
+#define ASPECTRATIO 272
+#define ASSERT 273
+#define ATAN 274
+#define ATAN2 275
+#define ATANH 276
+#define AVERAGE 277
+#define BB 278
+#define BFGS 279
+#define BIG_N 280
+#define BINSIDE 281
+#define BMAT 282
+#define BOOL 283
+#define BORDER 284
+#define BOUNDARYPROBLEM 285
+#define BREAK 286
+#define BROADCAST 287
+#define BUILDMESH 288
+#define BUILDMESHBORDER 289
+#define BW 290
+#define CADNA 291
+#define CG 292
+#define CHECKMOVEMESH 293
+#define CHOLESKY 294
+#define CIN 295
+#define CLEAN 296
+#define CLOCK 297
+#define CMM 298
+#define COEF 299
+#define COMPLEX 300
+#define CONJ 301
+#define CONSTANT_STRING 302
+#define CONTINUE 303
+#define CONVECT 304
+#define COS 305
+#define COSH 306
+#define COUT 307
+#define CROUT 308
+#define CUTOFF 309
+#define DIMKRYLOV 310
+#define DN 311
+#define DOTSLASH 312
+#define DOTSTAR 313
+#define DIAG 314
+#define DUMPTABLE 315
+#define DX 316
+#define DXX 317
+#define DXY 318
+#define DY 319
+#define DYX 320
+#define DYY 321
+#define DZ 322
+#define ELSE 323
+#define EMPTYMESH 324
+#define END 325
+#define ENDL 326
+#define EPS 327
+#define EQEQ 328
+#define ERR 329
+#define ERRG 330
+#define EXEC 331
+#define EXIT 332
+#define EXP 333
+#define FACTORIZE 334
+#define FESPACE 335
+#define FF_FALSE 336
+#define FF_TRUE 337
+#define FILL 338
+#define FOR 339
+#define FUNC 340
+#define GE 341
+#define GMRES 342
+#define GREY 343
+#define GTGT 344
+#define HAVEUMFPACK 345
+#define HMAX 346
+#define HMIN 347
+#define HTRIANGLE 348
+#define I 349
+#define IF 350
+#define IFSTREAM 351
+#define IMAG 352
+#define INCLUDE 353
+#define INIT 354
+#define INQUIRE 355
+#define INSIDE 356
+#define INT 357
+#define INT1D 358
+#define INT2D 359
+#define INTALLEDGES 360
+#define INTERPOLATE 361
+#define ISMETRIC 362
+#define HSV 363
+#define ISO 364
+#define IVALUE 365
+#define JUMP 366
+#define KEEPBACKVERTICES 367
+#define LABEL 368
+#define LE 369
+#define LENEDGE 370
+#define LINEARCG 371
+#define EIGENVALUE 372
+#define LINEARGMRES 373
+#define LOAD 374
+#define LOG 375
+#define LOG10 376
+#define LTLT 377
+#define LU 378
+#define M 379
+#define MATRIX 380
+#define MAX 381
+#define MAXIT 382
+#define MAXSUBDIV 383
+#define MEAN 384
+#define MESH 385
+#define METRIC 386
+#define MIN 387
+#define MINUSEQ 388
+#define MINUSMINUS 389
+#define MOVEMESH 390
+#define MPIRANK 391
+#define MPISIZE 392
+#define NAME 393
+#define NBARROW 394
+#define NBEV 395
+#define NBISO 396
+#define NBITER 397
+#define NBITERLINE 398
+#define NBJACOBY 399
+#define NBSMOOTH 400
+#define NBVX 401
+#define NCV 402
+#define NDOF 403
+#define NDOFK 404
+#define NE 405
+#define NEWTON 406
+#define NLCG 407
+#define NOMESHGENERATION 408
+#define NORM 409
+#define NOUSEOFWAIT 410
+#define NT 411
+#define NTONEDGE 412
+#define NUEDGE 413
+#define NUMBER 414
+#define NUTRIANGLE 415
+#define NV 416
+#define OFSTREAM 417
+#define OMEGA 418
+#define ON 419
+#define OP 420
+#define OPTIMIZE 421
+#define OROR 422
+#define OTHERSIDE 423
+#define P 424
+#define P0 425
+#define P0edge 426
+#define P1 427
+#define P1B 428
+#define P1DC 429
+#define P1NC 430
+#define P2 431
+#define P2DC 432
+#define P2H 433
+#define PERIODIC 434
+#define PI 435
+#define PLOT 436
+#define PLUSEQ 437
+#define PLUSPLUS 438
+#define POLAR 439
+#define POW 440
+#define POWER 441
+#define PRECISION 442
+#define PRECON 443
+#define PROBLEM 444
+#define PROCESSOR 445
+#define PS 446
+#define QFE 447
+#define QFNBPE 448
+#define QFNBPT 449
+#define QFORDER 450
+#define QFT 451
+#define QF1PE 452
+#define QF1PELUMP 453
+#define QF1PT 454
+#define QF1PTLUMP 455
+#define QF2PE 456
+#define QF2PT 457
+#define QF2PT4P1 458
+#define QF3PE 459
+#define QF5PT 460
+#define QF7PT 461
+#define QF9PT 462
+#define RATIO 463
+#define READMESH 464
+#define REAL 465
+#define REGION 466
+#define RESCALING 467
+#define RETURN 468
+#define RT0 469
+#define RT0ORTHO 470
+#define SAVE 471
+#define SAVEMESH 472
+#define SET 473
+#define SIGMA 474
+#define SIN 475
+#define SINH 476
+#define SLASHEQ 477
+#define SMALL_N 478
+#define SOLVE 479
+#define SOLVER 480
+#define SPLIT 481
+#define SPLITIN2 482
+#define SPLITMESH 483
+#define SPLITPBEDGE 484
+#define SQRT 485
+#define SQUARE 486
+#define STAREQ 487
+#define STRATEGY 488
+#define STRING 489
+#define SUM 490
+#define SYM 491
+#define T 492
+#define TAN 493
+#define TANH 494
+#define TGV 495
+#define THETAMAX 496
+#define TOL 497
+#define TRIANGULATE 498
+#define TRUNC 499
+#define UMFPACK 500
+#define USER_BORDER 501
+#define USER_FUNCTION 502
+#define USER_PROBLEM 503
+#define USER_TYPE 504
+#define USER_VARF 505
+#define USER_VARIABLE 506
+#define VALUE 507
+#define VARF 508
+#define VARROW 509
+#define VECTOR 510
+#define VEPS 511
+#define VERBOSITY 512
+#define VERSION 513
+#define VISO 514
+#define WAIT 515
+#define WHILE 516
+#define X 517
+#define Y 518
+#define Z 519
+#define NBCOEF 520
+#define TOLPIVOT 521
+#define TOLPIVOTSYM 522
+#define L1 523
+#define L2 524
+#define LINFTY 525
+
+
+
+
+#if ! defined (YYSTYPE) && ! defined (YYSTYPE_IS_DECLARED)
+typedef int YYSTYPE;
+# define yystype YYSTYPE /* obsolescent; will be withdrawn */
+# define YYSTYPE_IS_DECLARED 1
+# define YYSTYPE_IS_TRIVIAL 1
+#endif
+
+extern YYSTYPE yylval;
+
+#if ! defined (YYLTYPE) && ! defined (YYLTYPE_IS_DECLARED)
+typedef struct YYLTYPE
+{
+  int first_line;
+  int first_column;
+  int last_line;
+  int last_column;
+} YYLTYPE;
+# define yyltype YYLTYPE /* obsolescent; will be withdrawn */
+# define YYLTYPE_IS_DECLARED 1
+# define YYLTYPE_IS_TRIVIAL 1
+#endif
+
+extern YYLTYPE yylloc;
+
+

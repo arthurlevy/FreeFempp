@@ -1,0 +1,250 @@
+bool wait=1; 
+
+//% The  Scordelis-Lo     shell  : validation du code  
+ 
+ real err=0.001;
+ real lb = 0.45359237; // une livre google
+real g= -90/(12.*12.); // 1 pied = 12 inch, 1 inch= 2.53 cm
+cout << " g= " << g << endl;
+real penal= 1;
+real nu=0.0;
+real E=3.e6;
+real nnu=2*nu/(1-nu);
+real ee= E/(2*(1+nu));
+real epsilon=3.;
+real epsilon12 = epsilon*epsilon*epsilon/12.;
+real mu= E/(2*(1+nu));
+real epsmu= 2*epsilon*mu;
+
+
+
+// cas <<simple>>  :  $a^{\alpha\beta} = Id $
+// $$ aa^{\alpha\beta\rho\sigma} = 2 \mu ( $a^{\alpha\rho} $a^{\beta\sigma} + $a^{\alpha\sigma} a^{\beta\rho} $$
+// $$   +  4\lamda\mo / (\lambda+2*mu) $a^{\alpha\beta} a^{\rho\sigma} $$
+// real mmu=2*mu;
+//real llambda=4*lambda*mu/(lambda+mmu);
+
+real[int] Atenseur(16) ;
+{
+  int k=0;
+  for (int a=0;a<2;a++)
+    for (int b=0;b<2;b++)
+      for (int c=0;c<2;c++)
+	for (int d=0;d<2;d++)
+	  Atenseur[k++] = ee*( (a==c)*(b==d) + (a==d)*(b==c) + nnu*(a==b)*(c==d));
+  cout << " Atenseur = " << Atenseur << endl;
+}
+
+real Atenseurxxxx=Atenseur[0];
+real Atenseurxxxy=Atenseur[1];
+real Atenseurxxyx=Atenseur[2];
+real Atenseurxxyy=Atenseur[3];
+
+real Atenseurxyxx=Atenseur[4];
+real Atenseurxyxy=Atenseur[5];
+real Atenseurxyyx=Atenseur[6];
+real Atenseurxyyy=Atenseur[7];
+
+real Atenseuryxxx=Atenseur[8+0];
+real Atenseuryxxy=Atenseur[8+1];
+real Atenseuryxyx=Atenseur[8+2];
+real Atenseuryxyy=Atenseur[8+3];
+
+real Atenseuryyxx=Atenseur[8+4];
+real Atenseuryyxy=Atenseur[8+5];
+real Atenseuryyyx=Atenseur[8+6];
+real Atenseuryyyy=Atenseur[8+7];
+
+real Atenseurxx=1.;
+real Atenseuryy=1.;
+real Atenseurxy=0.;
+real Atenseuryx=0.;
+ 
+					  
+//% Toiture de Scordelis/Maillage  
+verbosity=1;
+
+ 
+// La carte
+real R=300; //  theta = 
+real Ld= 300; //Ltheta*1.5;
+real Ltheta=R*2*pi/9; // x
+real coefL=300./Ld;
+
+mesh Th= square(10,10,[x*Ltheta,y*Ld]);					  
+plot(Th,wait=0);
+
+
+// femp2 est un element fini P2 sur le maillage Th
+fespace femp2(Th,P2);   
+
+  femp2 	 A1=R*sin(x/R); 
+  femp2 	 A2=coefL*y; 
+  femp2 	 A3=R*cos(x/R); 
+ 
+// La base covariante    
+  femp2   Ax1=cos(x/R); 
+  real    Ax2=0;
+  femp2   Ax3=-sin(x/R);
+  real    Ay1=0; 
+  real    Ay2 = coefL;
+  real    Ay3=0; 
+  femp2   Az1=sin(x/R);
+  real    Az2=0; 
+  femp2   Az3=cos(x/R);
+
+ //les   derivees   de  a3
+  femp2   Az1x=cos(x/R)/R;
+  real    Az2x=0;
+  femp2   Az3x=-sin(x/R)/R;
+  real    Az1y=0;
+  real    Az2y =0;
+  real    Az3y=0; 
+
+//le jacobien 
+ real    sqrta=coefL;
+
+ 
+int nn=51;
+real x0 = 0.0, dx0 =Ltheta/(nn-1);
+real y0 = 0, dy0 =0;
+
+real[int] xx(nn),yy(nn);
+
+  for (int i=0;i<nn;i++)
+    { xx[i]=x0+i*dx0;
+      yy[i]=y0+i*dy0;
+    }  	
+
+
+ 						  
+  //real error=0.01; 
+ //savemesh(Th,"mm",[v,y,w]); 
+//exec("medit mm");
+if(0) 
+ { Th = adaptmesh(Th,[A1,A2,A3],nbjacoby=2, inquire=1,err=0.01, nbvx=5000, 
+	   	 omega=1.8,ratio=1.8, nbsmooth=3,splitpbedge=1,
+		    maxsubdiv=5,rescaling=1,keepbackvertices=0);   
+     plot(Th,wait=wait);
+   }
+savemesh(Th,"Scordelis",[A1,A2,A3]); 
+exec("medit  Scordelis");
+	  
+					  
+					   
+  include "bb.edp"
+//  include "Nagdhi-3.edp"
+  fespace Vh(Th,P2);
+  fespace Wh(Th,P1);
+
+  Vh u1,u2,u3;
+  Vh r1,r2,r3;
+  Vh v1,v2,v3;
+  Vh s1,s2,s3;
+  Wh mumu,lambda;
+
+  //Vh  nu, SM;
+  
+//for (int i=0;i<nu.n;i++)
+//{
+// nu[][i]=i;
+ //}
+ //int i01=nu(0,1)+0.5;
+ //SM[]=0.;
+ //SM[][i01]=g; //second membre
+
+//plot(SM,coef=0.1,wait=wait,ps="3-rotation.eps",value=true);
+real cerr=0.01;
+for(int iter=0;iter<5;iter++)
+{		
+solve  Nagdhi([u1,u2,u3,r1,r2,r3,lambda],[v1,v2,v3,s1,s2,s3,mumu],solver=UMFPACK) = aNagdhi+int1d(Th,3)(7*1e6* (u1*Az1+u2*Az2+u3*Az3)*(v1*Az1+v2*Az2+v3*Az3) )-int2d(Th)(sqrta*g*v3)
+     +on(3,u2=0) // haut  
+     +on(1,r2=0,u2=0) // bas x=0  
+     +on(4,r1=0,u1=0)// gauche y=0
+    // +on(3,2,lambda=0)
+    //+on(1,u2=0,r1=0) // bas x=0  
+   //+on(4,u1=0,r2=0)// gauche y=0;
+		;
+femp2  w = u3*cos(x/R)+u1*sin(x/R); 	//le dŽplacement normal en coordonnŽes covariantes	
+femp2  Z = r3*cos(x/R)+r1*sin(x/R); 	//la rotation, composante suivant a3,  de la  normale  en  coordonnŽes covariantes	
+			  			  
+  cout << "\n\n ----  u3(B) = " << u3(Ltheta,0) 	<< " ref value = " << -3.703 
+  << " B= (" << Ltheta <<",0) \n\n" <<  endl;	
+
+cout << "\n\n ----  w(B) = " << w(Ltheta,0) 	<< " ref value = " << -3.703 
+  << " B= (" << Ltheta <<",0) \n\n" <<  endl;				  			
+
+  cout << "\n\n ----  r3(B) = " << r3(Ltheta,0) 	<< " ref value = " << -0.010  
+  << " B= (" << Ltheta <<",0) \n\n" <<  endl;	
+
+cout << "\n\n ----  Z(B) = " << Z(Ltheta,0) 	<< " ref value = " << 0.0 
+  << " B= (" << Ltheta <<",0) \n\n" <<  endl;				  			
+	  
+					  
+{
+   ofstream gnu("3-plot"+iter+".gp");
+   for (int i=0;i<nn;i++)
+  {
+     gnu  
+     << u1(xx[i],yy[i]) << " " 
+     << u2(xx[i],yy[i]) << " " 
+     << u3(xx[i],yy[i]) << " " 
+     << r1(xx[i],yy[i]) << " " 
+     << r2(xx[i],yy[i]) << " " 
+     << r3(xx[i],yy[i]) << " " 
+     <<  xx[i] << " " << yy[i] << " "
+     << " " << endl;
+ }
+
+}  					  
+					  
+
+
+plot(u1,coef=0.1,wait=wait,ps="3-membrane1-"+iter+".eps",value=true,cmm="u1");
+plot(u2,coef=0.1,wait=wait,ps="3-membrane2-"+iter+".eps",value=true,cmm="u2");
+plot(u3,coef=0.1,wait=wait,ps="3-flexion-"+iter+".eps",value=true,cmm="Flexion"); 
+plot(w,coef=0.1,wait=wait,ps="3-Flexion covariante-"+iter+".eps",value=true,cmm="Normal covariant  compenent of u");
+plot(r1,coef=0.1,wait=wait,ps="3-rotation1-"+iter+".eps",value=true,cmm="r1");
+plot(r2,coef=0.1,wait=wait,ps="3-rotation2-"+iter+".eps",value=true,cmm="r2");
+plot(r3,coef=0.1,wait=wait,ps="3-rotation3-"+iter+".eps",value=true,cmm="r3"); 
+plot(lambda,coef=0.1,wait=wait,ps="3-lambda3-"+iter+".eps",value=true,cmm="lambda"); 
+plot(Z,coef=0.1,wait=wait,ps="3-rotation covariante-"+iter+".eps",value=true,cmm="Normal covariant     compenent of r"); 	
+  
+ real coef=20; //  coef d'amplification 
+
+ 
+ savemesh(Th,"ScordelisDeformee"+iter,[A1+coef*u1,A2+coef*u2,A3+coef*u3]);   //save *.points and *.faces file for medit
+
+
+
+ exec("medit  ScordelisDeformee"+iter+" Scordelis"+iter+" &"); //call medit command 
+    //exec("rm    mm.faces   mm.points"); clean *.faces and *.point  
+ 
+    femp2 rotationscordelis=r1*Az1+r2*Az2+r3*Az3;
+   plot(rotationscordelis,coef=0.1,wait=wait,ps="3-rotation.eps",value=true,cmm="termePenalise");   
+
+
+ //  to call gnuplot command and wait 5 second (tanks to unix command)
+//  and make postscipt plot 
+exec("echo 'plot \"3-plot"+iter+".gp\" u 7:3 w l \
+pause 0 \
+set term postscript \
+set output \"gnuplot.eps\" \
+replot \
+quit' | gnuplot "); 
+
+Th = adaptmesh(Th,[A1,A2,A3],[u1,u2,u3]/*,[r1,r2,r3]*/,nbjacoby=2, inquire=0,err=cerr, nbvx=5000, 
+	   	 omega=1.8,ratio=1.8, nbsmooth=3,splitpbedge=1,
+		    maxsubdiv=5,rescaling=1,keepbackvertices=0);
+ cerr *= 1./sqrt(2.);
+//plot(Th,wait=0);
+ 
+  cout << "\n\n ----  u3(B) = " << u3(Ltheta,0) 	<< " ref value = " << -3.703 
+  << " B= (" << Ltheta <<",0) \n\n" <<  endl;	
+ 
+ cout << "\n\n ----  w(B) = " << w(Ltheta,0) 	<< " ref value = " << -3.703 
+  << " B= (" << Ltheta <<",0) \n\n" <<  endl;				  				  
+}
+
+
+

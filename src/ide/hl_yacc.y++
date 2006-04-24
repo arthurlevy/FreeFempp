@@ -1,0 +1,889 @@
+/* Color-coding for FreeFem++-cs editor window */
+/* Antoine Le Hyaric - LJLL Paris  - lehyaric@ann.jussieu.fr */
+
+/* no CVS keyword, to avoid recalling lex&yacc after each cvs commit */
+
+%{
+#include <cstdio>
+#include <cstring>
+#include <cassert>
+#include <string>
+#include <iostream>
+using namespace std;
+#include "highlight.hpp"
+#include "hl_lexyacc.hpp"
+#include "tostring.hpp"
+
+// YYSTYPE represents an index in the words[] array
+// (see hl_lexyacc.hpp).
+
+#define YYSTYPE int
+
+// Standard lex/yacc defines
+extern char *yytext;
+extern "C" int yywrap(){return 1;}
+extern int yydebug;
+#define YYLEX_PARAM &yylval,&yylloc
+extern int yylex (YYSTYPE * yylval_param,YYLTYPE * yylloc_param);
+
+// Just gives a special color to any erroneous token.
+void yyerror(const char *str){
+	colorize(yylloc,highlight_error);
+}
+
+%}
+
+%locations
+
+%token ABS
+%token R3
+%token APPEND
+%token ABSERROR
+%token ACOS
+%token ACOSH
+%token ADAPTMESH
+%token ANDAND
+%token ANISOMAX
+%token RESIZE
+%token AREA
+%token ARG
+%token ASIN
+%token ASINH
+%token ASPECTRATIO
+%token ASSERT
+%token ATAN
+%token ATAN2
+%token ATANH
+%token AVERAGE
+%token BB
+%token BFGS
+%token BIG_N
+%token BINSIDE
+%token BMAT
+%token BOOL
+%token BORDER
+%token BOUNDARYPROBLEM
+%token BREAK
+%token BROADCAST
+%token BUILDMESH
+%token BUILDMESHBORDER
+%token BW
+%token CADNA
+%token CG
+%token CHECKMOVEMESH
+%token CHOLESKY
+%token CIN
+%token CLEAN
+%token CLOCK
+%token CMM
+%token COEF
+%token COMPLEX
+%token CONJ
+%token CONSTANT_STRING
+%token CONTINUE
+%token CONVECT
+%token COS
+%token COSH
+%token COUT
+%token CROUT
+%token CUTOFF
+%token DIMKRYLOV
+%token DN
+%token DOTSLASH
+%token DOTSTAR
+%token DIAG
+%token DUMPTABLE
+%token DX
+%token DXX
+%token DXY
+%token DY
+%token DYX
+%token DYY
+%token DZ
+%token ELSE
+%token EMPTYMESH
+%token END
+%token ENDL
+%token EPS
+%token EQEQ
+%token ERR
+%token ERRG
+%token EXEC
+%token EXIT
+%token EXP
+%token FACTORIZE
+%token FESPACE
+%token FF_FALSE
+%token FF_TRUE
+%token FILL
+%token FOR
+%token FUNC
+%token GE
+%token GMRES
+%token GREY
+%token GTGT
+%token HAVEUMFPACK
+%token HMAX
+%token HMIN
+%token HTRIANGLE
+%token I
+%token IF
+%token IFSTREAM
+%token IMAG
+%token INCLUDE
+%token INIT
+%token INQUIRE
+%token INSIDE
+%token INT
+%token INT1D
+%token INT2D
+%token INTALLEDGES
+%token INTERPOLATE
+%token ISMETRIC
+%token HSV
+%token ISO
+%token IVALUE
+%token JUMP
+%token KEEPBACKVERTICES
+%token LABEL
+%token LE
+%token LENEDGE
+%token LINEARCG
+%token EIGENVALUE
+%token LINEARGMRES
+%token LOAD
+%token LOG
+%token LOG10
+%token LTLT
+%token LU
+%token M
+%token MATRIX
+%token MAX
+%token MAXIT
+%token MAXSUBDIV
+%token MEAN
+%token MESH
+%token METRIC
+%token MIN
+%token MINUSEQ
+%token MINUSMINUS
+%token MOVEMESH
+%token MPIRANK
+%token MPISIZE
+%token NAME
+%token NBARROW
+%token NBEV
+%token NBISO
+%token NBITER
+%token NBITERLINE
+%token NBJACOBY
+%token NBSMOOTH
+%token NBVX
+%token NCV
+%token NDOF
+%token NDOFK
+%token NE
+%token NEWTON
+%token NLCG
+%token NOMESHGENERATION
+%token NORM
+%token NOUSEOFWAIT
+%token NT
+%token NTONEDGE
+%token NUEDGE
+%token NUMBER
+%token NUTRIANGLE
+%token NV
+%token OFSTREAM
+%token OMEGA
+%token ON
+%token OP
+%token OPTIMIZE
+%token OROR
+%token OTHERSIDE
+%token P
+%token P0
+%token P0edge
+%token P1
+%token P1B
+%token P1DC
+%token P1NC
+%token P2
+%token P2DC
+%token P2H
+%token PERIODIC
+%token PI
+%token PLOT
+%token PLUSEQ
+%token PLUSPLUS
+%token POLAR
+%token POW
+%token POWER
+%token PRECISION
+%token PRECON
+%token PROBLEM
+%token PROCESSOR
+%token PS
+%token QFE
+%token QFNBPE
+%token QFNBPT
+%token QFORDER
+%token QFT
+%token QF1PE
+%token QF1PELUMP
+%token QF1PT
+%token QF1PTLUMP
+%token QF2PE
+%token QF2PT
+%token QF2PT4P1
+%token QF3PE
+%token QF5PT
+%token QF7PT
+%token QF9PT
+%token RATIO
+%token READMESH
+%token REAL
+%token REGION
+%token RESCALING
+%token RETURN
+%token RT0
+%token RT0ORTHO
+%token SAVE
+%token SAVEMESH
+%token SET
+%token SIGMA
+%token SIN
+%token SINH
+%token SLASHEQ
+%token SMALL_N
+%token SOLVE
+%token SOLVER
+%token SPLIT
+%token SPLITIN2
+%token SPLITMESH
+%token SPLITPBEDGE
+%token SQRT
+%token SQUARE
+%token STAREQ
+%token STRATEGY
+%token STRING
+%token SUM
+%token SYM
+%token T
+%token TAN
+%token TANH
+%token TGV
+%token THETAMAX
+%token TOL
+%token TRIANGULATE
+%token TRUNC
+%token UMFPACK
+%token USER_BORDER
+%token USER_FUNCTION
+%token USER_PROBLEM
+%token USER_TYPE
+%token USER_VARF
+%token USER_VARIABLE
+%token VALUE
+%token VARF
+%token VARROW
+%token VECTOR
+%token VEPS
+%token VERBOSITY
+%token VERSION
+%token VISO
+%token WAIT
+%token WHILE
+%token X
+%token Y
+%token Z
+%token DIAG
+%token COEF
+%token NBCOEF
+%token TOLPIVOT
+%token TOLPIVOTSYM
+%token L1
+%token L2
+%token LINFTY
+
+%start program
+
+%%
+
+program:
+	/* nothing */
+	| instructions
+	;
+
+solverchoice:
+	CG		{$$=$1;}
+	| CHOLESKY	{$$=$1;}
+	| CROUT		{$$=$1;}
+	| GMRES		{$$=$1;}
+	| LU		{$$=$1;}
+	| LINEARCG	{$$=$1;}
+	| LINEARGMRES	{$$=$1;}
+	| NLCG		{$$=$1;}
+	| UMFPACK	{$$=$1;}
+	| BFGS		{$$=$1;}
+	;
+
+keyword:
+	ADAPTMESH
+	| EIGENVALUE
+	| BOUNDARYPROBLEM
+	| SQUARE
+	| HAVEUMFPACK
+	| ABS
+	| ACOS
+	| ACOSH
+	| ARG
+	| ASIN
+	| ASINH
+	| ASSERT
+	| ATAN
+	| ATAN2
+	| ATANH
+	| AVERAGE
+	| BROADCAST
+	| BUILDMESHBORDER
+	| CHECKMOVEMESH
+	| CLOCK
+	| CONJ
+	| CONVECT
+	| COS
+	| COSH
+	| DUMPTABLE
+	| DN
+	| DX
+	| DXX
+	| DXY
+	| DY
+	| DYX
+	| DYY
+	| DZ
+	| EMPTYMESH
+	| END
+	| EXEC
+	| EXIT
+	| EXP
+	| IMAG
+	| MEAN
+	| JUMP
+	| LOAD
+	| LOG
+	| LOG10
+	| MOVEMESH
+	| MPIRANK
+	| MPISIZE
+	| NORM
+	| OTHERSIDE
+	| PLOT
+	| POLAR
+	| POW
+	| PROCESSOR
+	| READMESH
+	| REGION
+	| SAVEMESH
+	| SET
+	| SIN
+	| SINH
+	| SPLITMESH
+	| SQRT
+	| TAN
+	| TANH
+	| TRIANGULATE
+	| TRUNC
+	;
+
+global:
+	NEWTON		{$$=$1;}
+	| AREA		{$$=$1;}
+	| CIN		{$$=$1;}
+	| COUT		{$$=$1;}
+	| ENDL		{$$=$1;}
+	| FF_FALSE	{$$=$1;}
+	| HTRIANGLE	{$$=$1;}
+	| LENEDGE	{$$=$1;}
+	| NTONEDGE	{$$=$1;}
+	| NUEDGE	{$$=$1;}
+	| NUTRIANGLE	{$$=$1;}
+	| DIAG          {$$=$1;}
+	| PRECISION	{$$=$1;}
+	| SUM		{$$=$1;}
+	| NDOF		{$$=$1;}
+	| NDOFK		{$$=$1;}
+	| PI		{$$=$1;}
+	| FF_TRUE	{$$=$1;}
+	| M		{$$=$1;}
+	| SMALL_N	{$$=$1;}
+	| BIG_N		{$$=$1;}
+	| NV		{$$=$1;}
+	| NT		{$$=$1;}
+	| MIN		{$$=$1;}
+	| MAX		{$$=$1;}
+	| RESIZE	{$$=$1;}
+        | L2            {$$=$1;}
+        | NBCOEF        {$$=$1;}
+        | L1            {$$=$1;}
+        | LINFTY        {$$=$1;}
+        | QF1PE         {$$=$1;} 
+        | QF1PELUMP     {$$=$1;} 
+        | QF1PT        {$$=$1;} 
+        | QF1PTLUMP    {$$=$1;} 
+        | QF2PE        {$$=$1;} 
+        | QF2PT        {$$=$1;} 
+        | QF2PT4P1     {$$=$1;} 
+        | QF3PE        {$$=$1;} 
+        | QF5PT        {$$=$1;} 
+        | QF7PT        {$$=$1;} 
+        | QF9PT        {$$=$1;} 
+
+
+	;
+
+builtinparameter:
+	ISMETRIC	{$$=$1;}
+	| HSV		{$$=$1;}
+	| APPEND	{$$=$1;}
+	| ABSERROR	{$$=$1;}
+	| ANISOMAX	{$$=$1;}
+	| ASPECTRATIO	{$$=$1;}
+	| BB		{$$=$1;}
+	| BINSIDE	{$$=$1;}
+	| BMAT		{$$=$1;}
+	| BW		{$$=$1;}
+	| CADNA		{$$=$1;}
+	| CLEAN		{$$=$1;}
+	| CMM		{$$=$1;}
+	| COEF		{$$=$1;}
+	| CUTOFF	{$$=$1;}
+	| DIMKRYLOV	{$$=$1;}
+	| EPS		{$$=$1;}
+	| ERR		{$$=$1;}
+	| ERRG		{$$=$1;}
+	| FACTORIZE	{$$=$1;}
+	| FILL		{$$=$1;}
+	| GREY		{$$=$1;}
+	| HMAX		{$$=$1;}
+	| HMIN		{$$=$1;}
+	| INIT		{$$=$1;}
+	| INQUIRE	{$$=$1;}
+	| INSIDE	{$$=$1;}
+	| ISO		{$$=$1;}
+	| IVALUE	{$$=$1;}
+	| KEEPBACKVERTICES	{$$=$1;}
+	| MAXIT		{$$=$1;}
+	| MAXSUBDIV	{$$=$1;}
+	| METRIC	{$$=$1;}
+	| NBARROW	{$$=$1;}
+	| NBEV		{$$=$1;}
+	| NBISO		{$$=$1;}
+	| NBITER	{$$=$1;}
+	| NBITERLINE	{$$=$1;}
+	| NBJACOBY	{$$=$1;}
+	| NBSMOOTH	{$$=$1;}
+	| NBVX		{$$=$1;}
+	| NCV		{$$=$1;}
+	| NOMESHGENERATION	{$$=$1;}
+	| OMEGA		{$$=$1;}
+	| OP		{$$=$1;}
+	| OPTIMIZE	{$$=$1;}
+	| PERIODIC	{$$=$1;}
+	| POWER		{$$=$1;}
+	| PRECON	{$$=$1;}
+	| PS		{$$=$1;}
+	| QFE		{$$=$1;}
+	| QFNBPE	{$$=$1;}
+	| QFNBPT	{$$=$1;}
+	| QFORDER	{$$=$1;}
+	| QFT		{$$=$1;}
+	| RATIO		{$$=$1;}
+	| RESCALING	{$$=$1;}
+	| SAVE		{$$=$1;}
+	| SIGMA		{$$=$1;}
+	| SOLVER	{$$=$1;}
+	| SPLIT		{$$=$1;}
+	| SPLITIN2	{$$=$1;}
+	| SPLITPBEDGE	{$$=$1;}
+	| STRATEGY	{$$=$1;}
+	| SYM		{$$=$1;}
+	| T		{$$=$1;}
+	| TGV		{$$=$1;}
+	| THETAMAX	{$$=$1;}
+	| TOL		{$$=$1;}
+	| VALUE		{$$=$1;}
+	| VARROW	{$$=$1;}
+	| VECTOR	{$$=$1;}
+	| VEPS		{$$=$1;}
+	| VISO		{$$=$1;}
+	| WAIT		{$$=$1;}
+	| TOLPIVOT      {$$=$1;}
+	| TOLPIVOTSYM   {$$=$1;}
+
+	;
+
+builtintype:
+	P0
+	| P0edge
+	| R3
+	| P1
+	| P1B
+	| P1DC
+	| P1NC
+	| P2
+	| P2DC
+	| P2H
+	| RT0
+	| RT0ORTHO
+	| BOOL
+	| COMPLEX
+	| IFSTREAM
+	| INT
+	| MATRIX
+	| MESH
+	| OFSTREAM
+	| REAL
+	| STRING
+	;
+
+instructions:
+	instruction
+	| instructions instruction
+	| error	{
+			// Just leave the corresponding text alone
+			// yyerror() will mark it as erroneous.
+			yyclearin;
+			yyerrok;
+		}
+	;
+
+instruction:
+	block
+	| statement ';'
+	| FOR '(' statement ';' statement ';'
+			 statement ')' instruction
+	| WHILE '(' operation ')' instruction
+	| IF '(' operation ')' instruction ELSE instruction
+	| IF '(' operation ')' instruction
+	| BREAK
+	| CONTINUE
+	| INCLUDE CONSTANT_STRING
+	| functiondefinition
+	| BORDER newborder '(' parametert '=' operation ','
+			operation ')'
+		block
+	;
+
+parametert:
+	object	{if(words[$1]=="t") colorize(@1,highlight_parameter);
+			else colorize(@1,highlight_error);}
+	;
+
+block:
+	'{' instructions '}'
+	;
+
+statement:
+	/* nothing */
+	| declaration
+	| operation
+	| USER_PROBLEM
+	| RETURN operation
+	;
+
+declaration:
+	FESPACE newfespaces
+	| PROBLEM newproblem '(' commalist ')' '=' operation
+	| SOLVE newproblem '(' commalist ')' '=' operation
+	| type '[' type ']' newvariables
+	| type '[' type ',' type ']' newvariables
+	| type '<' type '>' newvariables
+	| type '<' type '>' '[' type ']' newvariables
+	| type newvariables
+	;
+
+newfespaces:
+	newfespace
+	| newfespaces ',' newfespace
+	;
+
+newfespace:
+	newtype '(' operation ')'
+	| newtype '(' operation ',' type commalistend ')'
+	| newtype '(' operation ',' enumeratedtypevector commalistend ')'
+	;
+
+functiondefinition:
+	FUNC functiontype newfunction '(' parameterdefinitions ')' block
+	| FUNC newfunction '=' operation /* "formulae" */
+	| VARF newvarf '(' newvariable ',' newvariable commalistend ')'
+		'=' operation
+	;
+
+functiontype:
+	type
+	| type '[' type ']'
+	;
+
+parameterdefinitions:
+	/* nothing */
+	| parameterdefinition
+	| parameterdefinitions ',' parameterdefinition
+	;
+
+parameterdefinition:
+	parametertype newvariable
+	| parametertype '&' newvariable
+	;
+
+parametertype:
+	type
+	| type '[' type ']'
+	;
+
+newvariables:
+	newvariable
+	| newvariables ',' newvariables
+	;
+
+newvariable:
+	newvariablename '=' operation
+	| '[' newvariableslist ']' '=' operation /* vector of variables */
+	| '[' newvariableslist ']'
+	| '[' newvariableslist ']' '(' commalist ')'
+	| newvariablename
+	| newvariablename '[' operation ']'
+	| newvariablename '(' commalist ')'
+	;
+
+newvariableslist:
+	newvariablename
+	| newvariableslist ',' newvariablename
+	;
+
+newvariablename:
+	newname		{newsymbol(words[$1],"variable");}
+	;
+
+/* Reserved words can be reused as user-defined objects */
+object:
+	global			{$$=$1;}
+	| keyword		{$$=$1;}
+	| builtinparameter	{$$=$1;}
+	| solverchoice		{$$=$1;}
+	| USER_VARIABLE		{$$=$1;}
+	| USER_FUNCTION		{$$=$1;}
+	| USER_PROBLEM		{$$=$1;}
+	| USER_VARF		{$$=$1;}
+	| USER_BORDER		{$$=$1;}
+	| VERBOSITY		{$$=$1;}
+	| VERSION		{$$=$1;}
+	| NOUSEOFWAIT		{$$=$1;}
+	| LABEL			{$$=$1;}
+	| I			{$$=$1;}
+	| P			{$$=$1;}
+	| X			{$$=$1;}
+	| Y			{$$=$1;}
+	| Z			{$$=$1;}
+	;
+
+newname:
+	NAME		{$$=$1;}
+	| object	{
+				$$=$1;
+
+				// Recolorize the word as plain (it
+				// was previously colorized as a known
+				// reserved word).
+
+				colorize(@1,highlight_plain);
+			}
+	;
+
+/* newname should not contain types to avoid ambiguities in processing
+operations */
+
+newtype:
+	newname		{newsymbol(words[$1],"type");
+			colorize(@1,highlight_type);}
+	| type		{newsymbol(words[$1],"type");
+			colorize(@1,highlight_type);}
+	;
+
+type:
+	USER_TYPE		{$$=$1;}
+	| builtintype		{$$=$1;}
+	;
+
+newproblem:
+	newname		{newsymbol(words[$1],"problem");
+			colorize(@1,highlight_type);}
+	;
+
+newfunction:
+	newname		{newsymbol(words[$1],"function");}
+	;
+
+newvarf:
+	newname		{newsymbol(words[$1],"varf");
+			colorize(@1,highlight_type);}
+	;
+
+newborder:
+	newname		{newsymbol(words[$1],"border");
+			colorize(@1,highlight_type);}
+	;
+
+operation:
+	'(' operation ')'
+	| prefixoperator operation
+	| operation postfixoperator
+	| operation binaryoperator operation
+	| enumeratedvector
+	| specialfunction
+	| CONSTANT_STRING
+	| number
+	| object
+	| type '.' object
+	;
+
+enumeratedvector:
+	'[' enumeratedvectorelements ']'
+	;
+
+enumeratedvectorelements:
+	operation
+	| enumeratedvectorelements ',' operation
+	;
+
+enumeratedtypevector:
+	'[' enumeratedtypevectorelements ']'
+	;
+
+enumeratedtypevectorelements:
+	type
+	| enumeratedtypevectorelements ',' type
+	;
+
+assignmentoperator:
+	'='
+	| PLUSEQ
+	| MINUSEQ
+	| STAREQ
+	| SLASHEQ
+	;
+
+specialfunction:
+	integralsign '(' commalist ')' '(' operation ')'
+	| USER_VARF '(' operation ',' type commalistend ')'
+	| USER_VARF '(' type ',' type commalistend ')'
+	| BUILDMESH '(' buildmeshborderlist commalistend ')'
+	| BUILDMESH '(' operation ')'
+	| ON '(' borderslist ',' borderassignments ')'
+	| INTERPOLATE '(' type ',' type commalistend ')'
+	| type '(' commalist ')'
+	| operation '?' operation ':' operation
+	;
+
+buildmeshborderlist:
+	buildmeshborder
+	| buildmeshborderlist '+' buildmeshborder
+	;
+
+buildmeshborder:
+	USER_BORDER '(' operation ')'
+	;
+
+integralsign:
+	INT1D
+	| INT2D
+	| INTALLEDGES
+	;
+
+commalist:
+	/* nothing */
+	| operation
+	| commalist ',' operation
+	;
+
+commalistend:
+	/* nothing */
+	| commalistend ',' operation
+	;
+
+prefixoperator:
+	'-'
+        | '+'
+        | '!'
+        | PLUSPLUS
+        | MINUSMINUS
+	;  
+
+postfixoperator:
+	'_'
+	| '\''
+        | PLUSPLUS
+        | MINUSMINUS
+	| '[' ']'
+	| '[' operation ']'
+	| '(' ')'
+	| '(' commalist ')'
+	;
+
+binaryoperator:
+        '*'
+	| ':'
+	| '.'
+	| '^'
+        | DOTSTAR
+        | DOTSLASH
+        | '/'
+        | '%'
+        | '+'
+        | '-'
+        | LTLT
+        | GTGT
+        | '&'
+        | ANDAND
+        | '|'
+        | OROR
+        | '<'
+        | LE
+        | '>'
+        | GE
+        | EQEQ
+        | NE
+	| assignmentoperator
+	;
+
+number:
+	imaginary
+	| NUMBER imaginary /* imaginary part of a complex number */
+	| NUMBER
+	;
+
+/* "i" can be redefined as a user variable! */
+imaginary:
+	object	{if(words[$1]!="i") colorize(@1,highlight_error);}
+	;
+
+borderslist:
+	bordertag
+	| borderslist ',' bordertag
+	;
+
+bordertag:
+	NUMBER
+	| USER_BORDER
+	| USER_VARIABLE
+	;
+
+borderassignments:
+	borderassignment
+	| borderassignments ',' borderassignment
+	;
+
+borderassignment:
+	object '=' operation
+	;

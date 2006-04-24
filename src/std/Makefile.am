@@ -1,0 +1,15 @@
+# Makefile using Automake + Autoconf
+# ----------------------------------
+# $Id: Makefile.am,v 1.7 2004/12/02 10:40:45 lehyaric Exp $
+
+# To create statically linked executables (see configure.ac)
+CXXLD=$(STATICTOOL) $(CXX)
+
+bin_PROGRAMS=FreeFem++
+FreeFem___SOURCES=
+EXTRA_FreeFem___SOURCES=../Graphics/Xrgraph.cpp ../Graphics/Pcrgraph.cpp
+FreeFem___DEPENDENCIES=../fflib/libff.a ../lglib/liblg.a @STD_GRAPH_OBJ@
+LDADD=@STD_GRAPH_OBJ@ ../lglib/liblg.a ../fflib/libff.a \
+	@UMFPACKLIB@ @ARPACKLIB@ @BLASLIB@ @STD_LIBS@
+INCLUDES=-I../fflib
+AM_LDFLAGS=@STD_LDFLAGS@

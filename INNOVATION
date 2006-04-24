@@ -1,0 +1,122 @@
+V2.7
+  * correct mpi Makefile
+  * correct bug in construction of recursive composite finite element (see HISTORY)
+    remark: the finite elemnt struct, so all dynamic library must be recompile. 
+V2.6-1
+ * add the examples-bamg  directory  in freefem++ and  correct bamg graphic
+V2.6
+ * Huge work (more than a full week) to improve the windows version 
+   change all the .dll construction
+   remove lots of trap. All example run without graphics
+V2.5.1
+ *  change nbve= to nev= in EigenValue function  (to be compatible with the doc)
+ *  newtow to newton    (to correct misspelling)
+ *  change in AnyType to remove da randow bug on windows.
+ *  vim color syntax from Richard MICHEL (vim_highlighting_for_FF++.tar.gz)
+
+V2.5-0 
+  *  add C++ string operator :  int i; string s = "....";
+       i=s.length ; i=s.size; 
+       i=s.find("qsdqs");i=s.rfind("sqs"); i=s.find("qsq",2); 
+       s(3:4)="sdfffsf";  // replace from char 3 to 4 by 
+       // s[3] not alloued to day (char type is not well type in freefem++).
+       getline(cin,s); 
+  *  Correct bug when passing parameter string in function
+  *  add freefem++  mode for mi editor on macos http://www.mimikaki.net/en/
+    store in  mode-mi-edp.zip archive (unzip and put in the Folder  openned with the 
+    mi "Option->Open Mode Folder" menu and set "mi" is the Default application 
+    for all the .edp file). 
+    
+V2.4-2
+  * add lot missing vectorial operation with sub array 
+  * if u is a complex array (i.e. complex[int u] ..;) 
+     then  u.re (resp u.im) are  the real array of the real (resp. imag ) 
+     part of the vector u
+  * in block matrix add utilisation of array to build the block matrix
+    see new Laplace-lagrange-mult.edp file to have an example
+V2.3-3
+ * add outer  product to set matrix or full real or complex 2D array
+    A = 2*a*b'; // where A is a "real[int,int]", b and c a "real[int]".
+    A += 2*a*b'; or  A = 2*a*b';
+   add matrix and array renumbering (see sec. 4.8 of freefem++.doc for all details)
+    
+V2.3-0
+ * add three key word for future use try,catch throw 
+   a exception handling (no memory management.) 
+   try {   code ; }
+   catch (...) { code ; }
+ * use tolpivot= to set the pivottol in LU, crout, cholesky factorization 
+V2.2-1
+ * Add init file to set verbosity, includepath  , loadpath and 
+   add preload (dynamic link file)
+   the file are under unix and MacOs
+	 /etc/freefem++.pref
+         /Users/hecht/.freefem++.pref
+         freefem++.pref
+   under windows
+         freefem++.pref
+   and the syntaxe of the files is
+
+     verbosity= 5
+     loadpath += "/Library/FreeFem++/lib"
+     loadpath += "/Users/hecht/Library/FreeFem++/lib"
+     includepath  += "/Library/FreeFem++/edp"
+     includepath  += "/Users/hecht/Library/FreeFem++/edp"
+     #  comment 
+     load += "funcTemplate" 
+     load += "myfunction" 
+
+ * Add search directory for include, and load  under Unix and Windows
+   Just on the shell sh  set environment variable
+    export FF_VERBOSITY=50 
+    export FF_INCLUDEPATH="dir;;dir2"
+    export FF_LOADPATH="dir;;dir3""
+   remark the separtor of directory  is ";" and not ":" because ":" is use under Windows.
+ * Examples of Add new Finite element with dynamic link/load,  Morley and Bernardi Raugel   
+   see examples++-load 
+V2.1-2
+ * add more example of dynamic load example (thank to F. Dortu)
+ * correct mistake in simple integral computation (not in variationnal 
+   form)  before we alway use a quadrature formula of order 3, 
+   now we can change the quadrature formula and the defaut is of order 5. 
+V2.0-4
+ * change in mshptg the size of the small possible edge from
+   1/32000 to 1/1 000 000 000, this mesher is use in trunc, 
+  splitmesh, and triangulate functions.
+
+V2.0-3
+ * correct operator x =/,  it does  nothing before. (v2.0-3)
+   see end  examples++-tutorial/array.edp for all array operator
+   =  +  -  *  /  .*  ./ += -= /= *=  : .l1 .l2 .linfty .sum .max .min ' 
+   
+ * correct bug when solving complex linear system with UMFPACK
+   before we solve the system when the conjugate matrix
+
+
+Major Change previous version
+-----------------------------
+ * add ternary C expression
+     Symbol       Example      Explanation
+       ?:          a?b:c     ternary operation
+ 
+ * add 
+   sparse matrix computation,
+   block matrix construction 
+   interpolation construction
+   see 
+     examples++-tutorial/sparse-cmatrix.edp  
+     examples++-tutorial/sparse-matrix.edp
+     examples++-tutorial/mat_interpol.edp
+   not so well tested, but could be worse. 
+   
+ * add example to solve vartionnal inequation. VI.edp
+
+ * add  possibility to build matrix where the 3 meshes 
+   the integrale mesh, unkwon FE mesh, test FE function 
+   can be different.  You must use varf to build the matrix 
+   is not a standard porblem.
+  
+ * Improvement of  dynamic loading facility under the 3 systems
+   add a fast fourier transform with dynamic loading
+   see examples++-load/dfft.edp
+

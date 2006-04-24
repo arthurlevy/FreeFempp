@@ -1,0 +1,20 @@
+real x0=2.2,r=2.1, err0=5e-3;
+
+border aa(t=0, 2*pi) {    x = 5*cos(t);    y = 5*sin(t);  };
+border dd(t=-r+0.1,r-0.1){ x=x0+t/sqrt(2.0); y=t/sqrt(2.0);};
+int n=7; mesh th = buildmesh(aa(5*n)+dd(6*n));
+
+ plot(th);
+fespace Vh(th,P1);
+Vh    u,uh,p, f=1;
+
+problem A(u,uh) =int2d(th)(dx(u)*dx(uh)+dy(u)*dy(uh))
+        -int2d(th)(f*uh) + on(aa,u=0);
+
+
+for(n=2;n<5;n++){
+ A;
+ th = adaptmesh(th,u,err=err0/n); plot(th,wait=1);
+ u=u;
+ plot(u,value=1,wait=1);
+}

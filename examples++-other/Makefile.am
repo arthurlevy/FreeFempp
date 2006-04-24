@@ -1,0 +1,7 @@
+# $Id: Makefile.am,v 1.4 2004/12/02 11:34:13 lehyaric Exp $
+
+TESTS=speedtest.sh
+TESTS_ENVIRONMENT=PROGLOC=$(top_srcdir)/src CXXFLAGS="@CXXFLAGS@"	\
+	EXEEXT=$(EXEEXT) X11PROG=$(X11PROG) GLXPROG=$(GLXPROG)		\
+	AGLPROG=$(AGLPROG) MPIPROG=$(MPIPROG) IDEPROG="$(IDEPROG)"
+EXTRA_DIST=*.edp speedtest.sh

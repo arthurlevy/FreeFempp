@@ -1,0 +1,117 @@
+
+//macro concat55(a,i,j,k,l) a#i#j#k#l //
+//macro concat33(a,i,j) a#i#j //
+macro mpsd(a,b,u,v,i)  (D#a(u#i)*D#b(v#i)) //
+macro mpsd2(a,b,u,v,i)  (D#a(u#i)*(v#i#b)) //
+macro mpena(a,r,A,i)   ( D#a(r#i)*A#z#i + r#i*A#z#i#a )  //
+macro ppenal(a,r,A)  
+        (  mpena(a,r,A,1) 
+         + mpena(a,r,A,2) 
+         + mpena(a,r,A,3) 
+         ) 
+//
+
+macro mgamma(a,b,u,A,i)  (D#a(u#i)*A#b#i + D#b(u#i)*A#a#i ) //
+macro gammaab(a,b,u,A) 
+     ( 
+        0.5*(   mgamma(a,b,u,A,1) 
+              + mgamma(a,b,u,A,2) 
+              + mgamma(a,b,u,A,3) ) 
+      ) 
+//
+
+
+macro chiab(a,b,u,r,A)  
+         ( 
+             0.5*(   pscd2(a,b,u,Az) 
+                    +pscd2(b,a,u,Az)  ) 
+          + gammaab(a,b,r,A) 
+          ) 
+//
+
+macro mggg(a,b,u,A,i)  (D#a(u#i)*A#b#i ) //
+macro gggab(a,b,u,A)  
+        (   mggg(a,b,u,A,1) 
+          + mggg(a,b,u,A,2) 
+          + mggg(a,b,u,A,3) ) 
+//
+macro deltaa3(a,u,r,A) 
+        ( 0.5*( 
+            gggab(a,z,u,A)
+          + psc(r,A#a) ) )
+//
+
+macro pscd(a,b,u,v) (mpsd(a,b,u,v,1)+mpsd(a,b,u,v,2)+mpsd(a,b,u,v,3)) //
+macro pscd2(a,b,u,v) (mpsd2(a,b,u,v,1)+mpsd2(a,b,u,v,2)+mpsd2(a,b,u,v,3))//
+macro psc(u,v) (u#1*v#1 + u#2*v#2 + u#2*v#2 ) //
+macro Dx dx //
+macro Dy dy //
+
+macro aabb(pa,pb,pc,pd,pu,pr,pv,ps,pA) ( Atenseur#pa#pb#pc#pd *gammaab(pa,pb,pu,pA)*gammaab(pc,pd,pv,pA)) 
+ //
+macro aabbchi(a,b,c,d,u,r,v,s,A) (  Atenseur#a#b#c#d * chiab(a,b,u,r,A) * chiab(c,d,v,s,A) ) 
+ //
+macro aabbdelta(a,b,u,r,v,s,A) ( Atenseur#a#b * deltaa3(a,u,r,A)*deltaa3(b,v,s,A)) 
+ //
+//  warning don't use d 
+macro aabbtttt(a,b,c,d,u,r,v,s,A) 
+   (   epsilon   *  aabb(a,b,c,d,u,r,v,s,A) 
+     + epsilon12 *  aabbchi(a,b,c,d,u,r,v,s,A) 
+) //
+
+
+macro p4(a,u,r,v,s,A) 
+  ( 
+      a(x,x,u,r,v,s,A)   
+  +   a(x,y,u,r,v,s,A)   
+  +   a(y,x,u,r,v,s,A)   
+  +   a(y,y,u,r,v,s,A)   
+  ) //
+
+macro  p16(a,u,r,v,s,A) 
+   ( 
+        a(x,x,x,x,u,r,v,s,A) 
+     +  a(x,x,x,y,u,r,v,s,A) 
+     +  a(x,x,y,x,u,r,v,s,A) 
+     +  a(x,x,y,y,u,r,v,s,A) 
+     +  a(x,y,x,x,u,r,v,s,A) 
+     +  a(x,y,x,y,u,r,v,s,A) 
+     +  a(x,y,y,x,u,r,v,s,A) 
+     +  a(x,y,y,y,u,r,v,s,A) 
+                   
+     +  a(y,x,x,x,u,r,v,s,A) 
+     +  a(y,x,x,y,u,r,v,s,A) 
+     +  a(y,x,y,x,u,r,v,s,A) 
+     +  a(y,x,y,y,u,r,v,s,A) 
+     +  a(y,y,x,x,u,r,v,s,A) 
+     +  a(y,y,x,y,u,r,v,s,A) 
+     +  a(y,y,y,x,u,r,v,s,A) 
+     +  a(y,y,y,y,u,r,v,s,A) 
+   )  
+//
+
+varf aNagdhi(u1,u2,u3,r1,r2,r3,lambda,v1,v2,v3,s1,s2,s3,mumu) = 
+int2d(Th)( 
+	  ( 
+	   p16(aabbtttt,u,r,v,s,A)  
+	   +
+	   epsmu*p4(aabbdelta,u,r,v,s,A)
+	   ) *
+	  sqrta  
+	  + (
+		   
+		   ppenal(x,r,A)*ppenal(x,s,A)  
+	       +   ppenal(y,r,A)*ppenal(y,s,A)  
+
+		   + ppenal(x,r,A)*dx(mumu)
+		   + ppenal(y,r,A)*dy(mumu)
+		   + ppenal(x,s,A)*dx(lambda)
+		   + ppenal(y,s,A)*dy(lambda)
+		   + psc(s,Az)*lambda
+		   + psc(r,Az)*mumu
+                   + psc(r,Az)*psc(s,Az)		   
+		   )
+	  ) ;
+     
+
+

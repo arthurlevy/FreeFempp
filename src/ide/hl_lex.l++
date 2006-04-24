@@ -1,0 +1,72 @@
+/* Color-coding for FreeFem++-cs editor window */
+/* Antoine Le Hyaric - LJLL Paris  - lehyaric@ann.jussieu.fr */
+
+/* no CVS keyword, to avoid recalling lex&yacc after each cvs commit */
+
+%{
+#include "hl_yacc.h"
+#include "highlight.hpp"
+#include "hl_lexyacc.hpp"
+
+/* Read from a string rather than from a file */
+#undef YY_INPUT
+#define YY_INPUT(b,r,ms) (r=my_yyinput(b,ms))
+int my_yyinput(char *buf,int maxsize);
+
+/* Tracks at what point of the input string we are, to be able to set
+highlights at the corresponding location in the highlight string */
+
+#define YY_USER_ACTION recordlocation(yylloc,yytext);
+
+%}
+
+/* bison-locations work with flex 2.5.31 but not with 2.5.4 (which is
+an older version). Machines which only provide flex 2.5.4 should not
+try and run flex and just use the provided hl_lex.c++ from CVS */
+
+%option bison-locations
+
+%%
+
+			/* We need to detect macros before line
+			comments because macros contain a line comment */
+
+macro[ \t\n]([^/]|\/[^/])*\/\/.*\n	colorize(*yylloc,highlight_macro);
+
+				/* comments */
+\/\/.*\n			colorize(*yylloc,highlight_comment);
+\/\*([^*]|\*+[^/*]|\n)*\*+\/	colorize(*yylloc,highlight_comment);
+
+			/* strings */
+\"([^"\n]|\\\"|\\\n)*\"	colorize(*yylloc,highlight_string);return CONSTANT_STRING;
+
+			/* Dynamic type for user-defined names */
+[a-zA-Z][a-zA-Z0-9]*	return nametoken(yytext,yylval,*yylloc);
+
+([0-9]+(\.[0-9]*)?|\.[0-9]+)([eE][+-]?[0-9]+)?	return NUMBER;
+
+		/* symbols */
+".*"		return DOTSTAR;
+"./"		return DOTSLASH;
+"<<"		return LTLT;
+">>"		return GTGT;
+"&&"		return ANDAND;
+"||"		return OROR;
+"<="		return LE;
+">="		return GE;
+"=="		return EQEQ;
+"!="		return NE;
+"+="		return PLUSEQ;
+"-="		return MINUSEQ;
+"*="		return STAREQ;
+"/="		return SLASHEQ;
+"++"		return PLUSPLUS;
+"--"		return MINUSMINUS;
+
+		/* spaces do not need highlighting */
+[ \t\n]+	;
+
+		/* for all single-character tokens */
+.		return (int) yytext[0];
+
+%%
