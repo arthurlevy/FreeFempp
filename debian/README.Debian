@@ -1,0 +1,8 @@
+freefem++ for Debian
+--------------------
+
+The Debian packaging was done originally by Alexis Darrasse
+<darrasse@ortsa.com>, then it was maintained by Antoine Le Hyaric
+<lehyaric@ann.jussieu.fr>. 
+
+ -- Christophe Prud'homme <prudhomm@debian.org>, Wed, 26 Apr 2006 11:23:06 +0200
