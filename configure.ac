@@ -29,14 +29,14 @@ AM_MAINTAINER_MODE
 AC_PROG_CXX
 
 AC_ARG_ENABLE(fortran,[  --disable-fortran	No Fortran compiler available ( ARPACK need it)])
-     ff_g2c_lib="";	 
+     ff_g2c_lib="";
 if test "$enable_fortran" != no
 then
 	AC_PROG_F77
 #	AC_F77_LIBRARY_LDFLAGS   modif FH
 	AC_ARG_WITH(flib,[  --with-flib= the fortran library ])
 	if test "$with_flib" != no -o -n  "$with_flib"
-	then 
+	then
 	  ff_g2c_lib=$with_flib
 	fi
 fi
@@ -75,7 +75,7 @@ echo $ac_configure_args > configure.param
 # by default the suffix of the  .so lib file is .so
 #      it is .dll   under windows
 #      it is .dylib under macos X
-ff_suffix_dylib="so";	
+ff_suffix_dylib="so";
 # Checking wether we can produce a MacIntosh-specific version
 # -----------------------------------------------------------
 
@@ -112,7 +112,7 @@ fi
 
 AC_MSG_CHECKING(wether we are on Microsoft Windows)
 ff_uname=`uname`
-#  flag to build window 32   version   ff_mingw = yes 
+#  flag to build window 32   version   ff_mingw = yes
 ff_mingw=no
 case $ff_uname in
 CYGWIN*)
@@ -121,7 +121,7 @@ CYGWIN*)
 	# We need Mingw to avoid Cygwin's extra DLLs
 	if test "$enable_cygwindll" != yes
 	then
-                ff_mingw=yes 
+                ff_mingw=yes
                 enable_cygwindll=no;
 		CXXFLAGS="$CXXFLAGS -mno-cygwin -mwindows -mthreads -I/usr/include/mingw"
 		FFLAGS="$FFLAGS -mno-cygwin"
@@ -191,13 +191,13 @@ m4_include(acmacros.m4)
 m4_include(acoptim.m4)
 
 # ------------------------------
-# compilation flags of FreeFem++ 
+# compilation flags of FreeFem++
 # ------------------------------
 #  -DDRAWING  bamg active some drawing facility in bamg (inquire mesh)
 #  -DBAMG_LONG_LONG active the use of  long long in bamg
-#  -DDEBUG active the  checking in bamg  
-#  -DNCHECKPTR remove check pointer facility 
-#  -DCHECK_KN active subscripting of some array  
+#  -DDEBUG active the  checking in bamg
+#  -DNCHECKPTR remove check pointer facility
+#  -DCHECK_KN active subscripting of some array
 #  -DWITHCHECK of the dynamic type ckecking of the langague (very slow)
 #  -DEIGENVALUE  to compile the eigen value part
 #  ------------------------------------------------
@@ -223,7 +223,7 @@ fi
 
 AC_ARG_WITH(suffix,[  --with-suffix=[G3/G4/G4,P4,..] or --without-suffix (default no suffix to package name)])
 
-AC_MSG_CHECKING(suffix to add to package name)	
+AC_MSG_CHECKING(suffix to add to package name)
 ff_suffix=
 if test "$with_suffix" = yes -o "$with_suffix" = no -o "$with_suffix" = ""
 then
@@ -243,7 +243,7 @@ ff_x11=no
 # At the moment, we cannot compile for X11 on Mingw because /usr/X11R6
 # is part of Cygwin, not Mingw.
 
-if test "$ff_mingw" = no 
+if test "$ff_mingw" = no
 then
 	if test -d /usr/X11R6
 	then
@@ -328,13 +328,13 @@ AC_ARG_WITH(suffix,[  --with-suffix=[G3/G4/G4,P4,..] or --without-suffix (defaul
 if test "$with_suffix" = yes
 then
   with_suffix=""
-elif test "$with_suffix" = no -o -z "$with_suffix" 
+elif test "$with_suffix" = no -o -z "$with_suffix"
 then
   with_suffix=""
 else
   with_suffix="-$with_suffix"
 fi
-  AC_MSG_CHECKING(add suffix $with_suffix )	
+  AC_MSG_CHECKING(add suffix $with_suffix )
   AC_SUBST(ADD_PACKAGE_NAME,$with_suffix)
   AC_MSG_RESULT(yes)
 
@@ -362,7 +362,7 @@ then
 int main(int argc,char **argv){
   char name[[BUFSIZ]];
   int length;
-  
+
   MPI_Init(&argc, &argv);
   MPI_Get_processor_name(name, &length);
   printf("%s: hello world\n", name);
@@ -420,7 +420,7 @@ then
 	enable_download=yes
 fi
 
-# if enabling downloads find wget or curl to do download 
+# if enabling downloads find wget or curl to do download
 # ------------------------------------------------------
 
 if test  "$ff_wget" = no -a "$enable_download" = yes
@@ -432,7 +432,7 @@ if test  "$ff_wget" = no -a "$enable_download" = yes
 then
 	ff_wget=""
 	AC_CHECK_PROG(ff_wget,curl,yes,no)
-	if test "$ff_wget" = "yes" 
+	if test "$ff_wget" = "yes"
 	then
 	ff_wget_command="curl -O"
 	fi
@@ -441,8 +441,8 @@ fi
 AC_SUBST(WGET,$ff_wget_command)
 
 #  modif FH -----
-#  -- looking for cadna  
-#  the round-off error propagation 
+#  -- looking for cadna
+#  the round-off error propagation
 # the web site http://www-anp.lip6.fr/cadna/
 #  --------------------
 ff_cadna_ok=no
@@ -456,9 +456,9 @@ ff_cadna_dir="${curdir}/download/cadna"
        ff_cadna_h=yes, ff_cadna_h=no)
 
    LIBS="$ff_libs_old"
-   LDFLAGS="$ff_ldflags_old"    
+   LDFLAGS="$ff_ldflags_old"
 
-   if test "$ff_cadna_ok" = yes  -a "$ff_cadna_h" = yes 
+   if test "$ff_cadna_ok" = yes  -a "$ff_cadna_h" = yes
     then
       AC_DEFINE(HAVE_CADNA,1, freecadna is use to evalute the round-off error propagation )
       CPPFLAGS="$CPPFLAGS -I$ff_cadna_dir"
@@ -487,13 +487,13 @@ do
   AC_CHECK_HEADERS(fftw3.h,
              ff_fftw_h=yes, ff_fftw_h=no)
 
-   if test "$ff_fftw_ok" = yes  -a "$ff_fftw_h" = yes 
+   if test "$ff_fftw_ok" = yes  -a "$ff_fftw_h" = yes
     then
       AC_DEFINE(HAVE_FFTW,1, fftw is compute fft)
    else
        LIBS="$ff_libs_old"
        LDFLAGS="$ff_ldflags_old"
-       CPPFLAGS="$ff_cppflags_old"    
+       CPPFLAGS="$ff_cppflags_old"
    fi
 fi
 done
@@ -518,9 +518,9 @@ for iblas in \
 "-lblas" "-framework vecLib" "-L/usr/lib/atlas -lblas" \
 $ff_freebsd_blas
 do
-#   
+#
 #"-L${curdir}/download/blas -lcblas -lf77blas" \
-#"-L${curdir}/download/blas/ATLAS/lib/ff++ -lcblas -lf77blas -latlas" \ 
+#"-L${curdir}/download/blas/ATLAS/lib/ff++ -lcblas -lf77blas -latlas" \
 #"-L${curdir}/download/blas/WinNT_PPRO256 -lcblas -lf77blas -latlas" \
 #
 if test "$ff_blas_ok" = no;
@@ -553,7 +553,7 @@ then
 	# When compiling a generic version, we do not need an
 	# optimized version of the BLAS.
 
-	if test "$enable_generic" = yes -o "$enable_generic_blas" = yes 
+	if test "$enable_generic" = yes -o "$enable_generic_blas" = yes
 	then
 		ff_download_blas=generic
 		ff_blas_lib="-L${curdir}/download/blas -lcblas -lf77blas"
@@ -591,7 +591,7 @@ fi
 AC_MSG_RESULT($ff_blas_inc)
 AC_SUBST(BLASLIB,$ff_blas_lib)
 AC_SUBST(BLASINC,$ff_blas_inc)
-#looking for cblas.h  FH 
+#looking for cblas.h  FH
 if test "$ff_blas_ok" = yes;
 then
   AC_CHECK_HEADERS(cblas.h,
@@ -615,8 +615,8 @@ if test "$ff_blas_ok" = yes;
 then
        if test  -n "$ff_g2c_lib"
        then
-           LIBS="$LIBS $ff_g2c_lib"       
-       else 
+           LIBS="$LIBS $ff_g2c_lib"
+       else
 	  ff_g2c_ok=no
 	  AC_CHECK_LIB(g2c,G77_second_0,
 		LIBS="$LIBS -lg2c"
@@ -643,7 +643,7 @@ fi
 
 AC_SUBST(G2CLIB,$ff_g2c_lib)
 #looking of  lapack
-# warning $$ because the make eat one 
+# warning $$ because the make eat one
 ff_lapackdir='$$(LAPACKdir)'
 if test `uname` = Darwin;
 then
@@ -651,7 +651,7 @@ ff_lapackdir=
 fi
 # Arpack itself
 
-ff_arpack_ok=no   
+ff_arpack_ok=no
 ff_save_libs="$LIBS"
 ff_arpack_libs=
 if test "$ff_blas_ok" = yes;
@@ -700,7 +700,7 @@ then
 
 	fi
 fi
-if test  "$ff_arpack_ok" != yes 
+if test  "$ff_arpack_ok" != yes
  then
 	    AC_MSG_NOTICE(-- NO ARPACK --  wget: $ff_wget)
 fi
@@ -743,7 +743,7 @@ then
 
 	# Trying default locations
 
-	AC_CHECK_HEADERS(umfpack.h umfpack/umfpack.h,ff_umfpack_header=yes)
+	AC_CHECK_HEADERS(umfpack.h umfpack/umfpack.h ufsparse/umfpack.h,ff_umfpack_header=yes)
 
 	# Somes systems like FreeBSD hide umfpack.h in a directory
 	# called UMFPACK (all capitals). This breaks the standard
@@ -766,14 +766,14 @@ then
 	if test "$ff_umfpack_ok" = no -a "$ff_amd_ok" = yes;
 	then
 		AC_CHECK_LIB(umfpack,umf_i_malloc,
-			AC_DEFINE(HAVE_LIBUMFPACK,1,UMFPACK)	
+			AC_DEFINE(HAVE_LIBUMFPACK,1,UMFPACK)
 			ff_umfpack_lib="$ff_umfpack_lib -lumfpack"
 			ff_umfpack_ok=yes,,$ff_umfpack_lib)
 	fi
 fi
 
 # If all else fails, download!
-if test "$ff_umfpack_ok" = no -a "$ff_wget" = yes 
+if test "$ff_umfpack_ok" = no -a "$ff_wget" = yes
    then
 	AC_MSG_NOTICE(using downloaded UMFPACK)
 	AC_SUBST(DOWNLOAD_UMFPACK,umfpack)
@@ -869,7 +869,7 @@ int main(int argc,char **argv){
 	AC_MSG_RESULT($ff_dynload)
 fi
 
-#  the -rdynamic don't exist on macos 
+#  the -rdynamic don't exist on macos
 if test "$ff_dynload" = yes
 then
 	AC_DEFINE(HAVE_DLFCN_H,1,Dynamic loading - not mandatory)
@@ -892,7 +892,7 @@ fi
 AC_CHECK_PROG(ff_latex,latex,yes,no)
 AC_CHECK_PROG(ff_makeindex,makeindex,yes,no)
 AC_CHECK_PROG(ff_dvips,dvips,yes,no)
-# to translate the figure 
+# to translate the figure
 AC_CHECK_PROG(ff_pdf2ps,pdf2ps,yes,no)
 AC_CHECK_PROG(ff_epstopdf,epstopdf,yes,no)
 AC_CHECK_PROG(ff_convert,convert,yes,no)
@@ -911,7 +911,7 @@ fi
 # pdfsync.sty. So we need to be able to disable it.
 enable_pdf=yes
 AC_ARG_ENABLE(pdf,[  --disable-pdf	Disable PDF documentation building])
-if test "$enable_pdf" = yes 
+if test "$enable_pdf" = yes
 then
    AC_CHECK_PROG(ff_pdflatex,pdflatex,yes,no)
    if test "$ff_pdflatex" = yes -a $ff_epstopdf = yes -a $ff_convert = yes;
@@ -935,7 +935,7 @@ fi
 
 # The "standard" configured version can use win32 (mingw) or x11
 
-if test "$ff_mingw" = yes 
+if test "$ff_mingw" = yes
 then
 	ff_std_graph_obj=Pcrgraph.$OBJEXT
 	ff_std_ldflags=-mwindows
@@ -962,16 +962,16 @@ AC_SUBST(STD_LIBS,$ff_std_libs)
 AC_ARG_WITH(fltk,[  --without-fltk	(to suppress explicity    --enable-download imply --with-fltk ) ])
 AC_ARG_WITH(xfltk,[  --with-xfltk	When recompiling FLTK, use X libraries instead of native Win32 or MacOS])
 
-if test "$with_fltk" = no 
-then 
+if test "$with_fltk" = no
+then
      ff_fltk=no
 	AC_MSG_NOTICE(without FLTK)
 else
 # under mingw use download fltk version
-if test "$ff_mingw" = yes 
+if test "$ff_mingw" = yes
 then
 	AC_MSG_NOTICE(under mingw not using default FLTK)
- enable_default_fltk=no 
+ enable_default_fltk=no
 fi
 
 # Default FLTK (in the machine's default PATH)
@@ -1000,7 +1000,7 @@ main(){
 	then
 		ff_fltk=no
 		AC_MSG_NOTICE(not using default FLTK because it does not know threads)
-	fi	
+	fi
 fi
 
 # Downloading and compiling FLTK
@@ -1019,13 +1019,13 @@ then
 	# For the moment, FreeFem++-ide${EXEEXT} is not built
 	# because it first needs FreeFEM++ to accept several
 	# successive runs without restart.
-        
+
 	ff_ideprog="FreeFem++-ide${EXEEXT} FreeFem++-cs${EXEEXT} FreeFem++-client${EXEEXT} FreeFem++-server${EXEEXT}"
 	ff_idetest="./testhighlight.sh"
-	if test "$enable_cygwindll" = yes 
+	if test "$enable_cygwindll" = yes
 	 then
            AC_SUBST(FLTK_CONFIG_PARAM,"--enable-localzlib --enable-cygwin")
-        elif test "$ff_mingw" = yes 
+        elif test "$ff_mingw" = yes
 	 then
            AC_SUBST(FLTK_CONFIG_PARAM,"--enable-localzlib --disable-cygwin")
 	else
@@ -1037,7 +1037,7 @@ then
 	# Only links X11 libraries into FreeFem++-cs if we are not on
 	# Windows (Mingw) or Macintosh (these do not need X11)
 
-	if test "$ff_mac" != yes -a "$ff_mingw" != yes 
+	if test "$ff_mac" != yes -a "$ff_mingw" != yes
 	then
 		AC_SUBST(IDE_LIBS,$ff_x11_libs)
 	fi
@@ -1080,7 +1080,7 @@ then
 	AC_MSG_RESULT($ff_libc_version)
 	AC_SUBST(LIBC_VERSION,$ff_libc_version)
 fi
-#  def variable pour les makefiles 
+#  def variable pour les makefiles
 
 # creating all makefiles
 # ----------------------

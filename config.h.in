@@ -78,6 +78,9 @@
 /* Define to 1 if you have the `times' function. */
 #undef HAVE_TIMES
 
+/* Define to 1 if you have the <ufsparse/umfpack.h> header file. */
+#undef HAVE_UFSPARSE_UMFPACK_H
+
 /* Define to 1 if you have the <umfpack.h> header file. */
 #undef HAVE_UMFPACK_H
 

@@ -6,7 +6,7 @@ DEB_AUTO_CLEANUP_RCS            := yes
 
 DEB_MAKE_CLEAN_TARGET    := clean
 #DEB_MAKE_BUILD_TARGET    := default
-DEB_COMPRESS_EXCLUDE     := .pdf
+DEB_COMPRESS_EXCLUDE     := .pdf .svn
 
 include /usr/share/cdbs/1/class/autotools.mk
 include /usr/share/cdbs/1/rules/debhelper.mk
@@ -21,6 +21,7 @@ DEB_CONFIGURE_SCRIPT		:= $(DEB_SRCDIR)/configure
 #DEB_MAKE_ENVVARS    := -j2
 
 DEB_CONFIGURE_EXTRA_FLAGS := \
+  --enable-optim \
   --enable-generic\
   --disable-pdf\
   --with-mpi=mpich
@@ -39,3 +40,13 @@ pre-build::
 build/freefem++::
 	make documentation
 
+install/freefem++:: 
+	(cd debian/freefem++/usr/bin/ && mv FreeFem++ freefem++)
+	(cd debian/freefem++/usr/bin/ && mv FreeFem++-nw  freefem++-nw)
+	(cd debian/freefem++/usr/bin/ && mv FreeFem++-glx freefem++-glx)
+	(cd debian/freefem++/usr/bin/ && mv FreeFem++-ide freefem++-ide)
+	(cd debian/freefem++/usr/bin/ && mv FreeFem++-cs  freefem++-cs)
+	(cd debian/freefem++/usr/bin/ && mv FreeFem++-mpi freefem++-mpi)
+	(cd debian/freefem++/usr/bin/ && mv FreeFem++-client freefem++-client)
+	(cd debian/freefem++/usr/bin/ && mv FreeFem++-server freefem++-server)
+#	find debian/freefem++ -name ".svn" -type d  | xargs rm -rf
