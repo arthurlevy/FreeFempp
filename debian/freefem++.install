@@ -10,3 +10,4 @@ examples++-mpi/*.edp      /usr/share/doc/freefem++/examples/mpi
 examples++-tutorial/*.edp /usr/share/doc/freefem++/examples/tutorial
 
 
+examples++-load/include*.h* /usr/include/freefem++
