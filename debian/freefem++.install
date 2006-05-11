@@ -2,7 +2,6 @@ examples++/*.edp          /usr/share/doc/freefem++/examples/
 examples++-chapt3/*.edp   /usr/share/doc/freefem++/examples/
 examples++-load/*.edp     /usr/share/doc/freefem++/examples/load
 examples++-load/*.cpp     /usr/share/doc/freefem++/examples/load
-examples++-load/*.so      /usr/share/doc/freefem++/examples/load
 examples++-other/*.edp    /usr/share/doc/freefem++/examples/other
 examples++-bug/*.edp      /usr/share/doc/freefem++/examples/bug
 examples++-eigen/*.edp    /usr/share/doc/freefem++/examples/eigen

@@ -31,11 +31,11 @@ clean::
 	-rm examples++-load/*.so examples++-load/*.o examples++-load/include/*
 
 pre-build::
-	-(cd examples++-load/include && for i in ../../src/fflib/*.h*; do ln -sf $$i; done)
-	-(cd examples++-load/include && for i in ../../src/femlib/*.h*; do ln -sf $$i; done)
-	-(cd examples++-load/include && for i in ../../src/Graphics/*.h*; do ln -sf $$i; done)
+	-(cd examples++-load/include && for i in ../../src/fflib/*.h*; do cp $$i .; done)
+	-(cd examples++-load/include && for i in ../../src/femlib/*.h*; do cp $$i .; done)
+	-(cd examples++-load/include && for i in ../../src/Graphics/*.h*; do cp $$i .; done)
 	-(cd examples++-load/include && for i in ../../*.h; do ln -sf $$i; done)
-	-(cd examples++-load/include && ln -sf ../../config.h)
+	-(cd examples++-load/include && cp ../../config.h .)
 
 build/freefem++::
 	make documentation
