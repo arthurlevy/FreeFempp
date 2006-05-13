@@ -23,7 +23,7 @@ load_compile:include  $(LIST_COMPILE)
 	./load.link $< 
 
 include: include.tar.gz
-#	tar zxvf include.tar.gz
+	tar zxvf include.tar.gz
 
 Ref: makeref.edp
 	../src/nw/FreeFem++-nw makeref.edp
