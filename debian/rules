@@ -34,7 +34,7 @@ pre-build::
 	-(cd examples++-load/include && for i in ../../src/fflib/*.h*; do cp $$i .; done)
 	-(cd examples++-load/include && for i in ../../src/femlib/*.h*; do cp $$i .; done)
 	-(cd examples++-load/include && for i in ../../src/Graphics/*.h*; do cp $$i .; done)
-	-(cd examples++-load/include && for i in ../../*.h; do ln -sf $$i; done)
+	-(cd examples++-load/include && for i in ../../*.h; do cp $$i .; done)
 	-(cd examples++-load/include && cp ../../config.h .)
 
 build/freefem++::
