@@ -4,10 +4,11 @@ Priority: optional
 Maintainer: Debian Scientific Computing Team <pkg-scicomp-devel@lists.alioth.debian.org>
 Uploaders: Christophe Prud'homme <prudhomm@debian.org>
 Build-Depends: cdbs, debhelper (>= 5.0.0), blas-dev | refblas3-dev, libarpack++2-dev (>= 2.1), libufsparse-dev, libfltk1.1-dev (>= 1.1.5-1), mpich-bin, libxxf86vm-dev, libxpm-dev, libgl1-mesa-dev
-Standards-Version: 3.6.2
+Standards-Version: 3.7.2
 
 Package: freefem++
 Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: A PDE oriented language using the Finite Element Method
  FreeFem++ is an implementation of a language dedicated to the finite
  element method. It enables you to solve Partial Differential
