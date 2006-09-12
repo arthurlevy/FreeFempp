@@ -1,6 +1,6 @@
 // Example C++ function "myfunction", dynamically loaded into "load.edp"
 // ---------------------------------------------------------------------
-// $Id: dfft.cpp,v 1.1 2005/06/19 19:09:11 hecht Exp $
+// $Id: mat_psi.cpp,v 1.1 2006-06-28 15:49:40 hecht Exp $
 
 #include  <iostream>
 #include  <cfloat>

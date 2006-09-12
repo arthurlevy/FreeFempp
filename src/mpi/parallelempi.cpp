@@ -5,7 +5,18 @@
 #include "Operator.hpp"
 #include "fem.hpp"
 
+#ifdef HAVE_MPICXX_H
+#include <mpicxx.h>
+#elif HAVE_MPI_CXX_MPICXX_H
+#include <mpi/cxx/mpicxx.h>
+#elif HAVE_OMPI_MPI_CXX_MPICXX_H
+#include <ompi/mpi/cxx/mpicxx.h>
+#elif  HAVE_MPICPP_H
 #include <mpi++.h>
+#else
+#error "no mpixx.h or mpi++.h file" 
+#endif 
+
 
   void initparallele(int &, char **&);
   void init_lgparallele();  

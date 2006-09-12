@@ -1,7 +1,7 @@
 # Downloading and compiling extra libraries
 # -----------------------------------------
 
-# $Id: Makefile.am,v 1.19 2006-02-09 14:11:49 hecht Exp $
+# $Id: Makefile.am,v 1.20 2006-05-18 11:51:16 hecht Exp $
 
 ATLASSRCLIB=ATLAS/lib/ff++/libatlas.a ATLAS/lib/ff++/libcblas.a	\
 	ATLAS/lib/ff++/libf77blas.a
@@ -158,7 +158,7 @@ nodist_libf77blas_a_SOURCES=$(F77BLAS_SOURCES)
 nodist_libcblas_a_SOURCES=$(CBLAS_SOURCES)
 BUILT_SOURCES=@GENERIC_BLAS_BUILT_SOURCES@
 
-libcblas_a_CPPFLAGS=-DADD_
+libcblas_a_CFLAGS=-DADD_
 
 # "xerbla" exists in both BLAS and CBLAS. So we need to rename it to
 # obtain two different object files.

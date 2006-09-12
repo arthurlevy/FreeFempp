@@ -1,5 +1,5 @@
 # ARPACK ARmake.inc modified for FreeFem++
-# $Id: ARmake.m4,v 1.2 2006-01-11 20:13:08 hecht Exp $
+# $Id: ARmake.m4,v 1.3 2006-04-13 16:36:41 hecht Exp $
 
 ###########################################################################
 #
@@ -107,7 +107,7 @@ ALIBS =  $(ARPACKLIB) $(LAPACKLIB) $(BLASLIB)
 FC      = FF_FC
 FFLAGS	= FF_FFLAGS
 LDFLAGS = FF_LDFLAGS
-
+SECOND_O = FF_SECOND
 CD      = cd
 
 ECHO    = echo

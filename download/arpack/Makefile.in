@@ -17,7 +17,7 @@
 # Downloading and compiling extra libraries
 # -----------------------------------------
 
-# $Id: Makefile.am,v 1.10 2006-02-03 15:18:46 hecht Exp $
+# $Id: Makefile.am,v 1.11 2006-04-13 16:36:41 hecht Exp $
 srcdir = @srcdir@
 top_srcdir = @top_srcdir@
 VPATH = @srcdir@
@@ -96,7 +96,9 @@ EXEEXT = @EXEEXT@
 F77 = @F77@
 FFLAGS = @FFLAGS@
 FF_LAPACKdir = @FF_LAPACKdir@
+FF_SECOND = @FF_SECOND@
 FF_UMFPACK_CONFIG = @FF_UMFPACK_CONFIG@
+FLIBS = @FLIBS@
 FLTK_CONFIG = @FLTK_CONFIG@
 FLTK_CONFIG_PARAM = @FLTK_CONFIG_PARAM@
 FLTK_VERSION = @FLTK_VERSION@
@@ -105,6 +107,7 @@ G2CLIB = @G2CLIB@
 GENERIC_BLAS = @GENERIC_BLAS@
 GENERIC_BLAS_BUILT_SOURCES = @GENERIC_BLAS_BUILT_SOURCES@
 GLXPROG = @GLXPROG@
+GREP = @GREP@
 HISTORY = @HISTORY@
 IDEPROG = @IDEPROG@
 IDE_LIBS = @IDE_LIBS@
@@ -128,6 +131,7 @@ MAINT = @MAINT@
 MAINTAINER_MODE_FALSE = @MAINTAINER_MODE_FALSE@
 MAINTAINER_MODE_TRUE = @MAINTAINER_MODE_TRUE@
 MAKEINFO = @MAKEINFO@
+MPICXX = @MPICXX@
 MPIPROG = @MPIPROG@
 OBJEXT = @OBJEXT@
 OPTIM_TYPE = @OPTIM_TYPE@
@@ -153,12 +157,16 @@ WIN32DLLTARGET = @WIN32DLLTARGET@
 WINDRESOBJ = @WINDRESOBJ@
 X11PROG = @X11PROG@
 X11_LIBS = @X11_LIBS@
+XMKMF = @XMKMF@
+X_CFLAGS = @X_CFLAGS@
+X_EXTRA_LIBS = @X_EXTRA_LIBS@
+X_LIBS = @X_LIBS@
+X_PRE_LIBS = @X_PRE_LIBS@
 YACC = @YACC@
+YFLAGS = @YFLAGS@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_F77 = @ac_ct_F77@
-ac_ct_RANLIB = @ac_ct_RANLIB@
-ac_ct_STRIP = @ac_ct_STRIP@
 am__fastdepCC_FALSE = @am__fastdepCC_FALSE@
 am__fastdepCC_TRUE = @am__fastdepCC_TRUE@
 am__fastdepCXX_FALSE = @am__fastdepCXX_FALSE@
@@ -171,8 +179,12 @@ am__untar = @am__untar@
 bindir = @bindir@
 build_alias = @build_alias@
 datadir = @datadir@
+datarootdir = @datarootdir@
+docdir = @docdir@
+dvidir = @dvidir@
 exec_prefix = @exec_prefix@
 ff_convert = @ff_convert@
+ff_curl = @ff_curl@
 ff_dvips = @ff_dvips@
 ff_epstopdf = @ff_epstopdf@
 ff_fltk = @ff_fltk@
@@ -187,17 +199,21 @@ ff_pdflatex = @ff_pdflatex@
 ff_unzip = @ff_unzip@
 ff_wget = @ff_wget@
 host_alias = @host_alias@
+htmldir = @htmldir@
 includedir = @includedir@
 infodir = @infodir@
 install_sh = @install_sh@
 libdir = @libdir@
 libexecdir = @libexecdir@
+localedir = @localedir@
 localstatedir = @localstatedir@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
+pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
+psdir = @psdir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
@@ -373,7 +389,10 @@ ARPACK/fait: arpack96.tar.gz patch.tar.gz ARmake.m4 Makefile
 	   -DFF_LAPACKdir='@FF_LAPACKdir@' \
            -DFF_LDFLAGS="@LDFLAGS@" \
            -DFF_HOME=`pwd`/ARPACK \
+	   -DFF_SECOND="@FF_SECOND@" \
 	    ARmake.m4 >ARPACK/ARmake.inc
+	cp ARPACK/UTIL/Makefile ARPACK/Makefile_UTIL
+	sed  -e '1,$$s/second.o/$$(SECOND_O)/' <ARPACK/Makefile_UTIL  >ARPACK/UTIL/Makefile  
 	touch ARPACK/fait
 	cd ARPACK/LAPACK;
 

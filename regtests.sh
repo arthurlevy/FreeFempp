@@ -3,7 +3,7 @@
 # ------------------------------------------------------------
 
 # Antoine Le Hyaric - LJLL Paris 6 - lehyaric@ann.jussieu.fr - 19/5/04
-# $Id: regtests.sh,v 1.13 2004/12/02 09:12:21 lehyaric Exp $
+# $Id: regtests.sh,v 1.14 2006-05-18 12:04:09 hecht Exp $
 
 # To run one set of tests on one executable
 # $1=program to run
@@ -69,11 +69,16 @@ fi
 
 if test "${MPIPROG}" != ""
     then
+    mpich=`mpirun -h 2>&1 |grep mpich  |wc  -l`
     host=`hostname`
     echo $host>machinefile
     echo $host>>machinefile
-
+    if [ $mpich -ne 0 ] ; then
     dotest "mpirun -np $nprocs -machinefile machinefile ${PROGLOC}/mpi/FreeFem++-mpi${EXEEXT}" mpi $script
+    else
+    lamboot 
+     dotest "mpirun -np $nprocs ${PROGLOC}/mpi/FreeFem++-mpi${EXEEXT}" mpi $script
+    fi
 fi
 
 if test "${IDEPROG}" != "" -a "${VISUALCHECK}" = "yes"

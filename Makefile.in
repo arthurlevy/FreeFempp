@@ -20,7 +20,7 @@
 # Adaptation to Automake: Antoine Le Hyaric - LJLL Paris 6 -
 # lehyaric@ann.jussieu.fr - 13/5/04
 
-# $Id: Makefile.am,v 1.78 2006-04-12 09:31:01 hecht Exp $
+# $Id: Makefile.am,v 1.84 2006-06-28 16:01:27 hecht Exp $
 srcdir = @srcdir@
 top_srcdir = @top_srcdir@
 VPATH = @srcdir@
@@ -121,7 +121,9 @@ EXEEXT = @EXEEXT@
 F77 = @F77@
 FFLAGS = @FFLAGS@
 FF_LAPACKdir = @FF_LAPACKdir@
+FF_SECOND = @FF_SECOND@
 FF_UMFPACK_CONFIG = @FF_UMFPACK_CONFIG@
+FLIBS = @FLIBS@
 FLTK_CONFIG = @FLTK_CONFIG@
 FLTK_CONFIG_PARAM = @FLTK_CONFIG_PARAM@
 FLTK_VERSION = @FLTK_VERSION@
@@ -130,6 +132,7 @@ G2CLIB = @G2CLIB@
 GENERIC_BLAS = @GENERIC_BLAS@
 GENERIC_BLAS_BUILT_SOURCES = @GENERIC_BLAS_BUILT_SOURCES@
 GLXPROG = @GLXPROG@
+GREP = @GREP@
 HISTORY = @HISTORY@
 IDEPROG = @IDEPROG@
 IDE_LIBS = @IDE_LIBS@
@@ -153,6 +156,7 @@ MAINT = @MAINT@
 MAINTAINER_MODE_FALSE = @MAINTAINER_MODE_FALSE@
 MAINTAINER_MODE_TRUE = @MAINTAINER_MODE_TRUE@
 MAKEINFO = @MAKEINFO@
+MPICXX = @MPICXX@
 MPIPROG = @MPIPROG@
 OBJEXT = @OBJEXT@
 OPTIM_TYPE = @OPTIM_TYPE@
@@ -183,12 +187,16 @@ WIN32DLLTARGET = @WIN32DLLTARGET@
 WINDRESOBJ = @WINDRESOBJ@
 X11PROG = @X11PROG@
 X11_LIBS = @X11_LIBS@
+XMKMF = @XMKMF@
+X_CFLAGS = @X_CFLAGS@
+X_EXTRA_LIBS = @X_EXTRA_LIBS@
+X_LIBS = @X_LIBS@
+X_PRE_LIBS = @X_PRE_LIBS@
 YACC = @YACC@
+YFLAGS = @YFLAGS@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_F77 = @ac_ct_F77@
-ac_ct_RANLIB = @ac_ct_RANLIB@
-ac_ct_STRIP = @ac_ct_STRIP@
 am__fastdepCC_FALSE = @am__fastdepCC_FALSE@
 am__fastdepCC_TRUE = @am__fastdepCC_TRUE@
 am__fastdepCXX_FALSE = @am__fastdepCXX_FALSE@
@@ -201,8 +209,12 @@ am__untar = @am__untar@
 bindir = @bindir@
 build_alias = @build_alias@
 datadir = @datadir@
+datarootdir = @datarootdir@
+docdir = @docdir@
+dvidir = @dvidir@
 exec_prefix = @exec_prefix@
 ff_convert = @ff_convert@
+ff_curl = @ff_curl@
 ff_dvips = @ff_dvips@
 ff_epstopdf = @ff_epstopdf@
 ff_fltk = @ff_fltk@
@@ -217,17 +229,21 @@ ff_pdflatex = @ff_pdflatex@
 ff_unzip = @ff_unzip@
 ff_wget = @ff_wget@
 host_alias = @host_alias@
+htmldir = @htmldir@
 includedir = @includedir@
 infodir = @infodir@
 install_sh = @install_sh@
 libdir = @libdir@
 libexecdir = @libexecdir@
+localedir = @localedir@
 localstatedir = @localstatedir@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
+pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
+psdir = @psdir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
@@ -240,10 +256,11 @@ EXTRA_DIST = regtests.sh config-wrapper.h arpack/arpack++/include/*.h \
 FreeFem++.*mcp HISTORY HISTORY_BEFORE_2005  BUGS TODO regtests.m4 \
 WindowsPackage.m4 README README_ARPACK  README_CVS README_CW  README_WINDOWS \
 logo.ico copysharedlibs.sh COPYRIGHT edp.nedit INNOVATION reconfigure \
-mode-mi-edp.zip \
+mode-mi-edp.zip aclocal.m4              acmacros.m4             acoptim.m4    \
 examples-bamg/square/*_g.* examples-bamg/square/do*  \
 examples-bamg/NACA012/[adp]* examples-bamg/NACA012/naca.awk \
- examples-bamg/quadloop/dotest.pl examples-bamg/test/dotest*.pl
+ examples-bamg/quadloop/dotest.pl examples-bamg/test/dotest*.pl \
+freefem++.spec
 
 FF_MAC_PREFIX = FreeFem++v$(VERSION)$(ADD_PACKAGE_NAME)
 all: config.h
@@ -789,12 +806,15 @@ clean-local::
 # Native MacOS packaging
 # ----------------------
 ListFiles-natives: .FORCE 
-	echo COPYRIGHT HISTORY HISTORY_BEFORE_2005 README BUGS TODO INSTALL INSTALL-MacOSX INNOVATION >$@
+	echo COPYRIGHT HISTORY HISTORY_BEFORE_2005 README BUGS TODO INSTALL INSTALL-MacOSX INNOVATION >$@	
+	echo mode-mi-edp.zip >> $@
 	echo examples++-tutorial/aile.msh examples++-tutorial/xyf >> $@
 	echo examples++-load/load.link >> $@
 	echo ./examples++-mpi/regtests.sh ./examples++-other/speedtest.sh >> $@
 	echo ./download/fftw/Makefile ./download/fftw/Makefile.am  >>$@
 	find .  -name '*.edp' -o -name '*.h*' -o -name '*.cpp'  |egrep  '[.]/examples++' >>$@
+List-agl-dylib: src/agl/FreeFem++-agl
+	otool -L src/agl/FreeFem++-agl|egrep -v '/System/Library/|/usr/lib/'|awk '/.dylib/ {print $$1}' >$@
 .FORCE:
 
 $(FF_MAC_PREFIX)_Macos:documentation ListFiles-natives
@@ -803,7 +823,7 @@ $(FF_MAC_PREFIX)_Macos:documentation ListFiles-natives
 	/Developer/Tools/CpMac "FreeFem++(Carbon)" $@/FreeFem++ 
 	cp   DOC/freefem++-doc.pdf $@
 
-$(FF_MAC_PREFIX)_MacOsX: all documentation  ListFiles-natives
+$(FF_MAC_PREFIX)_MacOsX: all documentation  ListFiles-natives List-agl-dylib
 	-mkdir $@ 
 	cp   DOC/freefem++doc.pdf $@
 	cat ListFiles-natives|xargs tar cf - | (cd $@ ; tar xf - )  
@@ -815,6 +835,8 @@ $(FF_MAC_PREFIX)_MacOsX: all documentation  ListFiles-natives
 	cp $@/FreeFem++.app/Contents/Info.plist $@/FreeFem++.app/Contents/FreeFem++.app/Contents/Info.plist
 	cp src/agl/FreeFem++-agl $@/FreeFem++.app/Contents/FreeFem++.app/FreeFem++
 	cp src/FreeFem++-CoCoa $@
+	-if [ -s List-agl-dylib ]; then tar zchvf $@/OtherMacOsLib.tgz `cat List-agl-dylib`; fi; 
+	cp -p Install-MacOS.command $@
 
 $(FF_MAC_PREFIX)_MacOsX.tgz: $(FF_MAC_PREFIX)_MacOsX
 	tar zcvf $(FF_MAC_PREFIX)_MacOsX.tgz  $(FF_MAC_PREFIX)_MacOsX

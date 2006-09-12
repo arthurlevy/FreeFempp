@@ -1,0 +1,63 @@
+//  laplace with matrix  
+verbosity=1;
+mesh Th=square(2,2);
+fespace Vh(Th,P1);
+Vh u1,u2;
+int n=u1.n;
+real[int] Bu1(n),Bu2(n);
+real[int] Au1(n),Au2(n);
+
+real[int,int] Af(n,n),Bf(n,n),OPf(n,n);
+Af=0;
+Bf=0;
+
+for(int i=0;i<n;++i)
+  Bf(i,i)=1;
+
+for(int i=0;i<n;++i)
+  Af(i,i)=i;
+
+OPf= Af;
+
+real sigma = 0;                     
+
+
+matrix OP= OPf;
+matrix A=Af;
+matrix B=  Bf;
+int nev=n-2;
+
+real[int] ev(nev); // to store 10 eigein value real part
+real[int] evi(nev); // to store 10 eigein value imag part
+Vh[int] eV(nev);   // to store 10 eigen vector  
+/*
+ For real nonsymmetric problems, complex eigenvectors are
+ given as two consecutive vectors, so if Eigenvalue $k$ and $k+1$ 
+ are complex conjugate eigenvalues, 
+the vector eV[K] will contain the real part and 
+the vector eV[K] the imaginary part of the corresponding 
+complex conjugate eigenvectors. 
+*/
+
+
+int k=EigenValue(OP,B,sym=false,sigma=sigma,value=ev,vector=eV,
+	         tol=1e-10,maxit=0,ncv=0,ivalue=evi);
+k=min(k,nev); //  some time the number of converged eigen value 
+              // can be greater than nev;
+for (int kk=0;kk<k;kk++)
+{ 
+  int i=kk;
+  u1=eV[i];
+  u2=0;
+  real er=ev[i],ei=evi[i];
+  complex v= er+ei*1i;
+  if(ei) { // complex case
+    int j=++kk;
+    if (j>=k) break; 
+    u2 = eV[j];
+  }
+  cout << " ---- " <<  i<< " "  <<" eigenvalue= " << v  << endl;
+  cout << " real  part " <<  u1[]  << endl;
+  cout << " imag  part " <<  u2[]  << endl;
+
+}

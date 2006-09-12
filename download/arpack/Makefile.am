@@ -1,7 +1,7 @@
 # Downloading and compiling extra libraries
 # -----------------------------------------
 
-# $Id: Makefile.am,v 1.10 2006-02-03 15:18:46 hecht Exp $
+# $Id: Makefile.am,v 1.11 2006-04-13 16:36:41 hecht Exp $
 
 all-local: $(DOWNLOAD_ARPACK)
 EXTRA_DIST=ARmake.m4
@@ -28,7 +28,10 @@ ARPACK/fait: arpack96.tar.gz patch.tar.gz ARmake.m4 Makefile
 	   -DFF_LAPACKdir='@FF_LAPACKdir@' \
            -DFF_LDFLAGS="@LDFLAGS@" \
            -DFF_HOME=`pwd`/ARPACK \
+	   -DFF_SECOND="@FF_SECOND@" \
 	    ARmake.m4 >ARPACK/ARmake.inc
+	cp ARPACK/UTIL/Makefile ARPACK/Makefile_UTIL
+	sed  -e '1,$$s/second.o/$$(SECOND_O)/' <ARPACK/Makefile_UTIL  >ARPACK/UTIL/Makefile  
 	touch ARPACK/fait
 	cd ARPACK/LAPACK;
 

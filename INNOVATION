@@ -1,3 +1,17 @@
+
+V 2.8-2 
+   (july)
+   use f2c as a fortran compiler on  MacIntel architecture,
+    correct mistake in mpi. 
+   (june 2006)
+   add nint, and correct mistake in ceil function
+   add configure flag to remove cadna --without-cadna
+V2.8
+   Correct mistake in OtherMacOsLib.tgz store file and not link (after 1 june)
+ * Correct bug in vectorial problem with same approximation, some time
+   we do a renumbering of the previous  approximation space (a pointer mistake).
+V2.7-1
+  * change size of data in 64 bits architecture (in file AnyType.hpp)
 V2.7
   * correct mpi Makefile
   * correct bug in construction of recursive composite finite element (see HISTORY)

@@ -1,8 +1,8 @@
 # Makefile using Automake + Autoconf
 # ----------------------------------
-# $Id: Makefile.am,v 1.6 2004/11/22 13:11:11 lehyaric Exp $
-
-CXX=mpiCC -CC=@CXX@
+# $Id: Makefile.am,v 1.8 2006-04-13 16:36:42 hecht Exp $
+# change FH 
+CXX=@MPICXX@
 
 # To create statically linked executables (see configure.ac)
 CXXLD=$(STATICTOOL) $(CXX)
