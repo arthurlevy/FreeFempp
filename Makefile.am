@@ -4,7 +4,7 @@
 # Adaptation to Automake: Antoine Le Hyaric - LJLL Paris 6 -
 # lehyaric@ann.jussieu.fr - 13/5/04
 
-# $Id: Makefile.am,v 1.84 2006-06-28 16:01:27 hecht Exp $
+# $Id: Makefile.am,v 1.86 2006-09-19 15:07:07 hecht Exp $
 
 SUBDIRS=download src DOC examples++-tutorial examples++	\
 	examples++-eigen examples++-load examples++-mpi	\
@@ -18,7 +18,7 @@ mode-mi-edp.zip aclocal.m4              acmacros.m4             acoptim.m4    \
 examples-bamg/square/*_g.* examples-bamg/square/do*  \
 examples-bamg/NACA012/[adp]* examples-bamg/NACA012/naca.awk \
  examples-bamg/quadloop/dotest.pl examples-bamg/test/dotest*.pl \
-freefem++.spec
+freefem++.spec crimon-freefem++.zip
 
 FF_MAC_PREFIX=FreeFem++v$(VERSION)$(ADD_PACKAGE_NAME)
 
@@ -109,7 +109,7 @@ speedtest: all
 # information from the Debian Changelog to get the package release
 # number as well.
 win32:WindowsPackage.iss
-	cd examples++-load;tar zxvf include.tar.gz;cp -rL include include-tmp 
+	cd examples++-load;tar zxvf include.tar.gz;cp -L include/* include-tmp
 WindowsPackage.iss: WindowsPackage.m4 configure.ac Makefile.am
 	m4 -DVERSION=$(VERSION)$(ADD_PACKAGE_NAME) \
 		WindowsPackage.m4 > WindowsPackage.iss

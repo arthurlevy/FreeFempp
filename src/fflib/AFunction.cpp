@@ -363,6 +363,24 @@ long get_precis( ostream_precis  pf) { return pf.f->precision();}
   inline long get_good( istream_good  pf) { return pf.f->good();}
   inline bool get_eof(istream ** p){ return (**p).eof();}
  
+typedef ios_base& ( * ostream_manipulateur )(ios_base&);
+
+ios_base&  default1(ios_base& f)
+{
+    f.flags( (ios_base::fmtflags) 0 ) ; // (/*ios_base::scientific | */ios_base::fixed) );
+    return f;
+}
+
+template< ostream_manipulateur pf> 
+inline ostream **set_os(ostream **f)
+{ 
+    **f << pf  ; return f;
+}
+template< ostream_manipulateur pf> 
+inline ostream *set_os1(ostream *f)
+{ 
+    *f << pf  ; return f;
+}
 
 
 template<class R>
@@ -796,7 +814,23 @@ void Init_map_type()
      Add<istream_good>("(","",new OneOperator1<long,istream_good>(get_good));
 
      Add<istream**>("eof",".",new OneOperator1<bool,istream**>(get_eof));
-   
+// add v 2.8 
+     Add<ostream**>("scientific",".",new OneOperator1<ostream**,ostream**>(set_os<scientific>));
+     Add<ostream**>("fixed",".",new OneOperator1<ostream**,ostream**>(set_os<fixed>));
+     Add<ostream**>("showbase",".",new OneOperator1<ostream**,ostream**>(set_os<showbase>));
+     Add<ostream**>("noshowbase",".",new OneOperator1<ostream**,ostream**>(set_os<noshowbase>));
+     Add<ostream**>("showpos",".",new OneOperator1<ostream**,ostream**>(set_os<showpos>));
+     Add<ostream**>("noshowpos",".",new OneOperator1<ostream**,ostream**>(set_os<noshowpos>));
+     Add<ostream**>("default",".",new OneOperator1<ostream**,ostream**>(set_os<default1>));
+     
+     Add<ostream*>("scientific",".",new OneOperator1<ostream*,ostream*>(set_os1<scientific>));
+     Add<ostream*>("fixed",".",new OneOperator1<ostream*,ostream*>(set_os1<fixed>));
+     Add<ostream*>("showbase",".",new OneOperator1<ostream*,ostream*>(set_os1<showbase>));
+     Add<ostream*>("noshowbase",".",new OneOperator1<ostream*,ostream*>(set_os1<noshowbase>));
+     Add<ostream*>("showpos",".",new OneOperator1<ostream*,ostream*>(set_os1<showpos>));
+     Add<ostream*>("noshowpos",".",new OneOperator1<ostream*,ostream*>(set_os1<noshowpos>));
+     Add<ostream*>("default",".",new OneOperator1<ostream*,ostream*>(set_os1<default1>));
+     
                                
                                 
       

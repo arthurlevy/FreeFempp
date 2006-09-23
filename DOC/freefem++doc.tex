@@ -4,7 +4,7 @@
 \usepackage{styles}
 \usepackage{txfonts}
 \usepackage{times}
-\def\VERSION{2.8-1}
+\def\VERSION{2.9}
 \def\key#1{\emph{#1}\index{#1}}
 \def\vec#1{\mbox{\boldmath $#1$}}
 \def\C{\mathbb{C}}
@@ -347,19 +347,16 @@ files.
 \item[\texttt{Crimson Editor}]
 at \url{http://www.crimsoneditor.com/} and adapt it as follows:
 
+
+
 \begin{itemize}
 \item Go to the \texttt{Tools/Preferences/File} association menu and add the .edp extension set
-
-\item In the same panel go to Filters and add  \texttt{freefem++(*.edp)} item
-
-\item In the same panel again but under \texttt{Syntax Files}
-   add two files \texttt{FREEFEM.SPC} and \texttt{FREEFEM.KEY} to define the color syntax.  To build
-   the first one simply copy paste the content of JAVA.SPC as for the second
-   copy paste the list of keywords in section \ref{keywrds}.
 
 \item In the same panel in \texttt{Tools/User} Tools, add a \texttt{FreeFem++} item (1st line) with the path
 to \texttt{freefem++.exe} on the second line and \texttt{\$(FilePath)} and \texttt{\$(FileDir)} on third and fourth lines.
 Tick the 8.3 box.
+\item for color syntax, extract file from \texttt{crimson-freefem.zip} and put files in the corresponding sub-folder of 
+ Crimson folder (\verb.C:\Program Files\Crimson Editor. ).
 \end{itemize}
 
 \item[winedt] for Windows : this is the best but it could be tricky to set up.  Download it from 
@@ -3612,7 +3609,28 @@ at the exit of the enclosing block,
 
   @cout << i << @endl;
 \eFF
+
+
 \end{example}
+
+We add  function to format the output. 
+\index{precision}\index{scientific}\index{fixed}\index{showbase}\index{noshowbase}\index{showpos}\index{noshowpos}\index{default}
+\begin{itemize}
+\item \ttCC{ int nold=f.@precision(n) } Sets the number of digits printed to the right of the decimal point. This applies to all subsequent floating point numbers written to that output stream. However, this won't make floating-point "integers" print with a decimal point. It's necessary to use fixed for that effect.
+\item     \ttCC{f.@scientific}  Formats floating-point numbers in scientific notation (  \texttt{d.dddEdd} )
+\item     \ttCC{f.@fixed}          Used fixed point notation (  \texttt{d.ddd} ) for floating-point numbers. Opposite of scientific.  
+\item     \ttCC{f.@showbase}    Converts insertions to an external form that can be read according to the C++ lexical conventions for integral constants. By default, showbase is not set.
+\item     \ttCC{f.@noshowbase}   unset \texttt{showbase} flags
+\item     \ttCC{f.@showpos}    inserts a plus sign (+) into a decimal conversion of a positive integral value.
+\item     \ttCC{f.@noshowpos}  unset \texttt{showpos} flags
+ \item   \ttCC{f.@default}     reset all  the previous  flags (\texttt{fmtflags}) to the  default expect precision.
+\end{itemize}
+Where \ttCC{f} is output stream descriptor, for example \texttt{cout}.
+
+Remark, all this method exept the first return the stream \texttt{f}, so you can write
+\bFF
+    cout.scientific.showpos << 3 << endl;
+\eFF
 \subsection{Exception handling}\index{exception}\index{catch}\index{try}
 
  In the version \texttt{2.3} of \texttt{FreeFem++}, we add exception handing like in \texttt{C++}.
@@ -11208,7 +11226,7 @@ Brochet% FreeFem++-nw load.edp
  Load: lg_fem lg_mesh eigenvalue  UMFPACK
     1 : // Example of dynamic function load
     2 : // --------------------------------
-    3 : // $Id: freefem++doc.tex,v 1.37 2006-06-16 14:04:45 hecht Exp $
+    3 : // $Id: freefem++doc.tex,v 1.39 2006-09-20 08:19:13 hecht Exp $
     4 :
     5 :  load "myfunction"
      lood: myfunction
@@ -11293,7 +11311,7 @@ To test ,
  Load: lg_fem cadna lg_mesh eigenvalue  UMFPACK
     1 : // Example of dynamic function load
     2 : // --------------------------------
-    3 : // $Id: freefem++doc.tex,v 1.37 2006-06-16 14:04:45 hecht Exp $
+    3 : // $Id: freefem++doc.tex,v 1.39 2006-09-20 08:19:13 hecht Exp $
     4 : //   Discret Fast Fourier Transform
     5 : // -------------------------------
     6 :  load "dfft" lood: init dfft
@@ -11382,7 +11400,7 @@ the associed edp file is  \texttt{examples++-load/convect\_dervieux.edp}
 \bFF
 //  Implementation of P1-P0 FVM-FEM
 // ---------------------------------------------------------------------
-// $Id: freefem++doc.tex,v 1.37 2006-06-16 14:04:45 hecht Exp $
+// $Id: freefem++doc.tex,v 1.39 2006-09-20 08:19:13 hecht Exp $
 // compile and link with ./load.link mat\_dervieux.cpp  (i.e. the file name without .cpp)
 #include  <iostream>
 #include  <cfloat>

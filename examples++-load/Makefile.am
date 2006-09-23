@@ -1,4 +1,4 @@
-# $Id: Makefile.am,v 1.24 2006-03-31 16:26:20 hecht Exp $
+# $Id: Makefile.am,v 1.25 2006-09-19 09:47:20 hecht Exp $
 
 all-local: @LOAD_COMPILE@
 TESTS=@LOAD_TESTS@
@@ -24,7 +24,7 @@ load_compile:include  $(LIST_COMPILE)
 
 include: include.tar.gz
 	tar zxvf include.tar.gz
-
+	-rm include/._*
 Ref: makeref.edp
 	../src/nw/FreeFem++-nw makeref.edp
 

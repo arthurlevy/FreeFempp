@@ -1,5 +1,5 @@
 ; Creating a FreeFem++ package for Microsoft Windows with Inno Setup
-; $Id: WindowsPackage.m4,v 1.25 2006-04-02 19:59:22 hecht Exp $
+; $Id: WindowsPackage.m4,v 1.27 2006-09-20 08:23:07 hecht Exp $
 
 ; The Inno Setup configuration file WindowsPackage.iss is built from
 ; WindowsPackage.m4 with the command "make WindowsPackage.iss".
@@ -9,8 +9,8 @@
 [Setup]
 AppName=FreeFem++-VERSION
 AppVerName=FreeFem++ version VERSION
-DefaultDirName={pf}\FreeFem++-VERSION
-DefaultGroupName=FreeFem++-VERSION
+DefaultDirName={pf}\FreeFem++
+DefaultGroupName=FreeFem++
 Compression=lzma
 SolidCompression=yes
 ChangesAssociations=yes
@@ -26,9 +26,13 @@ Source: "BUGS"; DestDir: "{app}"
 Source: "COPYRIGHT"; DestDir: "{app}"
 Source: "COPYING"; DestDir: "{app}"
 Source: "README"; DestDir: "{app}"
+Source: "crimon-freefem++.zip"; DestDir: "{app}"
+
 ; Programs
 Source: "src\bin-win32\FreeFem++.exe"; DestDir: "{app}"
-Source: "src\bin-win32\FreeFem++-cs.exe"; DestDir: "{app}"
+;  to day the dll version do not works so we use the static one (FH)
+;Source: "src\bin-win32\FreeFem++-cs.exe"; DestDir: "{app}"
+Source: "src\ide\FreeFem++-cs.exe"; DestDir: "{app}"
 Source: "src\bin-win32\FreeFem++-nw.exe"; DestDir: "{app}"
 Source: "src\bin-win32\bamg.exe"; DestDir: "{app}"
 Source: "src\bin-win32\cvmsh2.exe"; DestDir: "{app}"
