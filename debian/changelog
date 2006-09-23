@@ -1,14 +1,8 @@
-freefem++ (2.9-1) UNRELEASED; urgency=low
+freefem++ (2.9-1) unstable; urgency=low
 
-  * (NOT RELEASED YET) New upstream release
+  * New upstream release
 
- -- Christophe Prud'homme <prudhomm@debian.org> <prudhomm@mit.edu>  Sat, 23 Sep 2006 21:45:34 +0200
-
-freefem++ (2.8-2-1) UNRELEASED; urgency=low
-
-  * (NOT RELEASED YET) New upstream release
-
- -- Christophe Prud'homme <prudhomm@debian.org> <prudhomm@mit.edu>  Tue, 12 Sep 2006 19:13:01 +0200
+ -- Christophe Prud'homme <prudhomm@debian.org>  Sat, 23 Sep 2006 21:45:34 +0200
 
 freefem++ (2.7-1) unstable; urgency=low
 
