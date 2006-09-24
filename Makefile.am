@@ -40,10 +40,11 @@ history:
 		fi
 
 documentation:
-	cd DOC && make documentation
+#	cd DOC && make documentation
+	cd DOC && make freefem++doc.pdf
 
 DOC/freefem++doc.pdf:
-	cd doc && make freefem++doc.pdf
+	cd DOC && make freefem++doc.pdf
 
 clean-local::
 	-find . \( -name '*~' -or  -name ListOfUnAllocPtr.bin \) |xargs rm 

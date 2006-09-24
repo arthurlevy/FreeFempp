@@ -24,7 +24,7 @@ DEB_CONFIGURE_EXTRA_FLAGS := \
   --enable-optim \
   --enable-generic\
   --disable-pdf\
-  --with-mpi=mpich
+  --with-mpi=yes --includedir=/usr/lib/mpich/include/mpi2c++
 
 clean::
 	-rm DOC/cpfigs/*
