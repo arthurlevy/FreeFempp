@@ -1,3 +1,30 @@
+// -*- Mode : c++ -*-
+//
+// SUMMARY  :      
+// USAGE    :        
+// ORG      : 
+// AUTHOR   : Frederic Hecht
+// E-MAIL   : hecht@ann.jussieu.fr
+//
+
+/*
+ 
+ This file is part of Freefem++
+ 
+ Freefem++ is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+ 
+ Freefem++  is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License
+ along with Freefem++; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
 #include <cstdio>
 #include <cstring>
 #include <cmath>
@@ -103,12 +130,13 @@ void Triangles::Write_nop5(OFortranUnFormattedFile * f,
 {
   ndsr =0;
   Int4 * reft = new Int4[nbt];
-  Int4 nbInT =    ConsRefTriangle(reft);
+  //Int4 nbInT = ;
+  ConsRefTriangle(reft);
   Int4 no5l[20];
 
   Int4 i5 = 0;
   Int4 i,j,k=0,l5;
-  Int4 ining=0;
+  //  Int4 ining=0;
   Int4 imax,imin;
 
   lgpdn = 0;
@@ -315,7 +343,7 @@ void Triangles::Write_nopo(ostream &ff) const
 
  f << Int4(32) ;
  
- char *c=identity;
+ //char *c=identity;
  time_t timer =time(0);
  char buf[10];
  strftime(buf ,10,"%y/%m/%d",localtime(&timer));

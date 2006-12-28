@@ -1,6 +1,6 @@
 //  Implementation of P1-P0 FVM-FEM
 // ---------------------------------------------------------------------
-// $Id: mat_dervieux.cpp,v 1.1 2005/11/02 21:06:12 hecht Exp $
+// $Id: mat_dervieux.cpp,v 1.1 2005-11-02 21:06:12 hecht Exp $
 // compile and link with ./load.link  mat\_dervieux.cpp 
 #include  <iostream>
 #include  <cfloat>

@@ -1,7 +1,7 @@
 // Regression tests
 // ----------------
 
-// $Id: regtests.edp,v 1.1 2005-12-29 06:46:23 hecht Exp $
+// $Id: regtests.edp,v 1.1 2005/12/29 06:46:23 hecht Exp $
 
 // Regression tests
 // ----------------
@@ -12,7 +12,7 @@
 // "ref.edp" contains all reference values and may be rebuilt with
 // "make Ref"
 
-// $Id: regtests.edp,v 1.1 2005-12-29 06:46:23 hecht Exp $
+// $Id: regtests.edp,v 1.1 2005/12/29 06:46:23 hecht Exp $
 
 // The values tested here may not have a physical or mathematical
 // meaning. Their main property is to gather numerical values from the

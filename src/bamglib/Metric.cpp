@@ -1,17 +1,30 @@
-// ********** DO NOT REMOVE THIS BANNER **********
+// -*- Mode : c++ -*-
 //
-// SUMMARY:  Bamg: Bidimensional Anisotrope Mesh Generator
-// RELEASE: 0 
-// USAGE  : You may copy freely these files and use it for    
-//          teaching or research. These or part of these may   
-//          not be sold or used for a commercial purpose with- 
-//          out our consent : fax (33) 1 39 63 55 14       
+// SUMMARY  :      
+// USAGE    :        
+// ORG      : 
+// AUTHOR   : Frederic Hecht
+// E-MAIL   : hecht@ann.jussieu.fr
 //
-// AUTHOR:   F. Hecht,    
-// ORG    :  INRIA
-// E-MAIL :   Frederic.Hecht@Inria.fr   
-//
-// ORIG-DATE:     Dec 97
+
+/*
+ 
+ This file is part of Freefem++
+ 
+ Freefem++ is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+ 
+ Freefem++  is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License
+ along with Freefem++; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
 
 #include <stdio.h>
 #include "Meshio.h"
@@ -39,8 +52,8 @@ void ReductionSimultanee( MetricAnIso M1,  MetricAnIso M2,double & l1,double & l
   // det (M1 - l M2) = a l^2 + b l + c;
   // = (a11 - l * b11) * (a22 - l * b22) - (a21 - l * b21 ) ^2
   //  const double eps = 1.e-5;
-  const double c11 = a11*a11, c21= a21*a21;
-  const double d11 = b11*b11, d21= b21*b21;
+  const double /*c11 = a11*a11,*/ c21= a21*a21;
+  const double /*d11 = b11*b11,*/ d21= b21*b21;
   const double a=b11*b22 - d21;
   const double b=-a11*b22-a22*b11+2*a21*b21;
   const double c=-c21+a11*a22;
@@ -376,7 +389,7 @@ void Triangles::IntersectConsMetric(const double * s,const Int4 nbsol,const int 
       else
 	cout << " Absolute Err" <<endl;
     }
-  double *ss=(double*)s, *ssiii = ss;
+  double *ss=(double*)s;//, *ssiii = ss;
 
   double sA,sB,sC;
 
@@ -549,8 +562,8 @@ void Triangles::IntersectConsMetric(const double * s,const Int4 nbsol,const int 
 			taa[0][j] =  lB*lC;
 			taa[1][j] =  lC*lA;
 			taa[2][j] =  lA*lB;
-			Real8 xx = V.x-V.y;
-			Real8 yy = V.x + V.y;
+			//Real8 xx = V.x-V.y;
+			//Real8 yy = V.x + V.y;
 			//cout << " iv " << ss[iV*n] << " == " << (8*xx*xx+yy*yy)
 			//     << " l = " << lA << " " << lB << " " << lC 
 			//     << " = " << lA+lB+lC << " " <<  V << " == " << A*lA+B*lB+C*lC << endl;

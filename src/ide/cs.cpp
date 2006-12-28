@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------
 
 // Antoine Le Hyaric - LJLL Paris 6 - lehyaric@ann.jussieu.fr - 21/10/04
-// $Id: cs.cpp,v 1.77 2005/07/15 12:11:48 lehyaric Exp $
+// $Id: cs.cpp,v 1.77 2005-07-15 12:11:48 lehyaric Exp $
 
 #ifdef CLIENT
 #include <FL/x.H>

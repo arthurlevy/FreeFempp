@@ -1,15 +1,15 @@
-# Configuration script using Automake + Autoconf for FreeFem++
+g# Configuration script using Automake + Autoconf for FreeFem++
 # ------------------------------------------------------------
 
 # Antoine Le Hyaric - LJLL Paris 6 - lehyaric@ann.jussieu.fr - 13/5/04
-# $Id: configure.ac,v 1.180 2006-09-19 19:36:41 hecht Exp $
+# $Id: configure.ac,v 1.189 2006/11/30 13:45:16 hecht Exp $
 
 # Version numbering: x.xx-pp where "pp" is the package version (when
 # the same FreeFem++ version is packaged several times). For
 # coherency, this should have the same value as the top-most package
 # number in debian/changelog.
 
-AC_INIT(FreeFem++,2.9,hecht@ann.jussieu.fr,freefem++)
+AC_INIT(FreeFem++,2.11-2,hecht@ann.jussieu.fr,freefem++)
 AC_CONFIG_SRCDIR(src/FreeFem++-CoCoa)
 
 # Automake 1.4 is too old
@@ -33,7 +33,7 @@ AC_ARG_ENABLE(fortran,[  --disable-fortran	No Fortran compiler available ( ARPAC
      ff_g2c_lib="";	 
 if test "$enable_fortran" != no
 then
-	AC_PROG_F77(gfortran g77 f77 xlf f90 fort77 xlf90)
+	AC_PROG_F77(g77 f77 gfortran g77 f90 fort77 xlf xlf90)
         ff_flibs=""
         # modif FH		
 	AC_F77_LIBRARY_LDFLAGS  
@@ -231,7 +231,7 @@ m4_include(acoptim.m4)
 #  -DEIGENVALUE  to compile the eigen value part
 #  ------------------------------------------------
 
-# FreeFrem++-specific optimizations -fpascal-strings
+# FreeFrem++-specific optimizations -fpascal-strings 
 if test "$enable_debug" = yes;
 then
 	CXXFLAGS="$CXXFLAGS -DDRAWING -DBAMG_LONG_LONG -DCHECK_KN"
@@ -584,10 +584,10 @@ ff_blas_inc=""
 
 # Specific BLAS library location for FreeBSD
 ff_freebsd_blas="-lf2c -lf77blas -latlas -lgslcblas"
-
+#  zmach is in lapack 
 # Trying  blas library
 for iblas in \
-"-lblas" "-framework vecLib" "-L/usr/lib/atlas -lblas" \
+"-framework vecLib" "-lblas"  "-L/usr/lib/atlas -lblas" \
 $ff_freebsd_blas
 do
 #   
@@ -650,10 +650,12 @@ then
 			ff_download_blas=atlas-binary
 			ff_blas_lib="-L${curdir}/download/blas/WinNT_PPRO256 -lcblas -llapack -lf77blas -latlas"
 			ff_blas_inc="-I${curdir}/download/blas/WinNT_PPRO256"
+			ff_lapack_ok=ok
 		else
 			ff_download_blas=atlas-source
 			ff_blas_lib="-L${curdir}/download/blas/ATLAS/lib/ff++ -lcblas -llapack -lf77blas -latlas"
 			ff_blas_inc="-I${curdir}/download/blas/ATLAS/include"
+			ff_lapack_ok=ok
 		fi
 	fi
 
@@ -720,11 +722,29 @@ fi
 # because BLAS compilation will need it.
 
 AC_SUBST(G2CLIB,$ff_g2c_lib)
-#looking of  lapack
+#looking of  lapack if no compile the arpack lapack 
 # warning $$ because the make eat one 
+ff_lapack_ok=no;
+ff_lapack_lib=
+AC_MSG_CHECKING(for lapack in LIBS  )
+  if test "$ff_blas_ok" = yes ; then
+           AC_LINK_IFELSE( [AC_LANG_CALL(,dgeqr2_)], ff_lapack_ok=yes)
+  fi
+
+AC_MSG_RESULT($ff_lapack_ok)
+
+if test "$ff_lapack_ok" = no; then
+AC_ARG_WITH(lapack,
+	[  --with-lapack=library	Use a specific version of the Lapack],
+	ff_lapack_ok=yes
+	ff_lapack_lib="${withval}"
+	LIBS="$ff_lapack_lib $LIBS"
+)
+fi
+
 ff_lapackdir='$$(LAPACKdir)'
-if test `uname` = Darwin;
-then
+if  test "$ff_lapack_ok" = yes ; then
+# no compilation of lapack in  arpack 
 ff_lapackdir=
 fi
 # Arpack itself
@@ -773,7 +793,7 @@ then
 		# Do not update $LIBS, but create an extra LIB variable,
 		# because this lib does not exist yet, and this could make the
 		# following tests fail.
-                ff_arpack_libs="-L${curdir}/download/arpack/ARPACK -larpack_ff++"
+                ff_arpack_libs="-L${curdir}/download/arpack/ARPACK -larpack_ff++ $ff_lapack_lib"
 		ff_arpack_ok=yes
 
 	fi

@@ -1,5 +1,5 @@
 ; Creating a FreeFem++ package for Microsoft Windows with Inno Setup
-; $Id: WindowsPackage.m4,v 1.27 2006-09-20 08:23:07 hecht Exp $
+; $Id: WindowsPackage.m4,v 1.28 2006/10/18 19:28:11 hecht Exp $
 
 ; The Inno Setup configuration file WindowsPackage.iss is built from
 ; WindowsPackage.m4 with the command "make WindowsPackage.iss".

@@ -1,14 +1,30 @@
-// ********** DO NOT REMOVE THIS BANNER **********
+// -*- Mode : c++ -*-
 //
-// SUMMARY:  Bamg: Bidimensional Anisotrope Mesh Generator
-// RELEASE: 0 
-// USAGE  : You may copy freely these files and use it for    
-//          teaching or research. These or part of these may   
-//          not be sold or used for a commercial purpose with- 
-//          out our consent : fax (33) 1 39 63 55 14       
+// SUMMARY  :      
+// USAGE    :        
+// ORG      : 
+// AUTHOR   : Frederic Hecht
+// E-MAIL   : hecht@ann.jussieu.fr
 //
-// AUTHOR:   F. Hecht,    
-// ORG    :  INRIA
+
+/*
+ 
+ This file is part of Freefem++
+ 
+ Freefem++ is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+ 
+ Freefem++  is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License
+ along with Freefem++; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
 // E-MAIL :   Frederic.Hecht@Inria.fr   
 //
 // ORIG-DATE:     Dec 97
@@ -64,7 +80,7 @@ void  FQuadTree::Draw()
   QuadTreeBox * b;
   IntQuad hb =  MaxISize;
   if (!root) return ;
-  long kkk =0;
+  // long kkk =0;
   pb[0]=  root;
   pi[0]= root->n>0 ?(int)  root->n : 4  ;;
   pp[0].x=pp[0].y=0;//ii[0]=jj[0]=0;
@@ -176,7 +192,7 @@ Vertex *  FQuadTree::NearestVertex(long xi,long yj)
 	  { 
 	    NbVerticesSearch++;
 	    I2 i2 =  R2ToI2(b->v[k]);
-	    h0 = h0 = I2(i2,plus).norm();//  NORM(iplus,i2.x,jplus,i2.y);
+	    h0 = I2(i2,plus).norm();//  NORM(iplus,i2.x,jplus,i2.y);
 	    if (h0 <h) 
 	      {
 		h = h0;
@@ -340,12 +356,12 @@ void  FQuadTree::Add( Vertex & w)
 }
 
 FQuadTree::FQuadTree(Mesh * t,R2 Pmin,R2 Pmax,long nbv) : 
+ lenStorageQuadTreeBox(t->nv/8+100),
   th(t),
-  lenStorageQuadTreeBox(t->nv/8+100),
-  NbQuadTreeBox(0),
-  NbVertices(0),
   NbQuadTreeBoxSearch(0),
   NbVerticesSearch(0),
+  NbQuadTreeBox(0),
+  NbVertices(0),
   cMin(Pmin-(Pmax-Pmin)/2),
   cMax(Pmax+(Pmax-Pmin)/2),
   coef( MaxISize/Norme_infty(cMax-cMin))
@@ -364,13 +380,13 @@ FQuadTree::FQuadTree(Mesh * t,R2 Pmin,R2 Pmax,long nbv) :
 }
 
 FQuadTree::FQuadTree() : 
-  th(0),
   lenStorageQuadTreeBox(100),
-  NbQuadTreeBox(0),
-  NbVertices(0),
+  th(0),
   NbQuadTreeBoxSearch(0),
   NbVerticesSearch(0),
-  coef(0),cMin(0,0),cMax(0,0)
+  NbQuadTreeBox(0),
+  NbVertices(0),
+  cMin(0,0),cMax(0,0),coef(0)
 {
   sb =new StorageQuadTreeBox(lenStorageQuadTreeBox);
   root=NewQuadTreeBox();

@@ -1,8 +1,0 @@
-mesh Th=square(5,5);
-fespace Vh(Th,P1); 
-Vh u=x*x,v;
-Th=adaptmesh(Th,u,err=0.01 ) ;
-v=u;
-Th=adaptmesh(Th,u,err=0.1 ) ;
-cout << u[] << endl; 
-cout << v[] << endl; 

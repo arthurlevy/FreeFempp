@@ -1,17 +1,30 @@
-// ********** DO NOT REMOVE THIS BANNER **********
+// -*- Mode : c++ -*-
 //
-// SUMMARY: Bamg: Bidimensional Anisotrope Mesh Generator
-// RELEASE: 0 
-// USAGE  : You may copy freely these files and use it for    
-//          teaching or research. These or part of these may   
-//          not be sold or used for a commercial purpose with- 
-//          out our consent : fax (33) 1 39 63 55 14       
+// SUMMARY  :      
+// USAGE    :        
+// ORG      : 
+// AUTHOR   : Frederic Hecht
+// E-MAIL   : hecht@ann.jussieu.fr
 //
-// AUTHOR:   F. Hecht,    
-// ORG    :  INRIA
-// E-MAIL :   Frederic.Hecht@Inria.fr   
-//
-// ORIG-DATE:     Dec 97
+
+/*
+ 
+ This file is part of Freefem++
+ 
+ Freefem++ is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+ 
+ Freefem++  is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License
+ along with Freefem++; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
 
 // #define TRACETRIANGLE 3
 extern long verbosity ;
@@ -41,7 +54,7 @@ void Triangles::ConsGeometry(Real8 cutoffradian,int *equiedges) // construct a g
   if (nbt<=0 || nbv <=0 ) { MeshError(101);}
 
   // construction of the edges 
-  Triangles * OldCurrentTh =CurrentTh;
+  //  Triangles * OldCurrentTh =CurrentTh;
   CurrentTh=this;
   //  Int4 NbTold = nbt;
   // generation of the integer coor
@@ -833,13 +846,15 @@ void Geometry::AfterRead()
       } // end while (exch)
       
       if (ord >= 1 ) 
-	{ Int4 n = hv[i];
-        while ( n >=0) 
-          { Int4 i1 = n/2,j1 = n%2;
-	  float a = 180*(j1 ? OppositeAngle(eangle[i1]): eangle[i1])/Pi;
-	  n = ev[n];
-          }
-      } 
+	{ /*
+	  Int4 n = hv[i];
+	  while ( n >=0) 
+	    { Int4 i1 = n/2,j1 = n%2;
+	    //float a = 180*(j1 ? OppositeAngle(eangle[i1]): eangle[i1])/Pi;
+	    n = ev[n];
+	    }
+	  */
+	} 
       if(ord == 2) { // angulare test to find a corner 
         Int4 n1 = hv[i];
         Int4 n2 = ev[n1];
@@ -998,7 +1013,7 @@ void Geometry::AfterRead()
     for(int i=0;i<NbOfCurves ;i++)
      {
        GeometricalEdge * be=curves[i].be, *eqbe=be->link;
-       GeometricalEdge * ee=curves[i].ee, *eqee=be->link;
+       //GeometricalEdge * ee=curves[i].ee, *eqee=be->link;
        curves[i].master=true;
        if(be->Equi() || be->ReverseEqui() ) 
         {

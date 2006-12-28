@@ -211,6 +211,7 @@ void yyerror(const char *str){
 %token P2
 %token P2DC
 %token P2H
+%token P2B
 %token PERIODIC
 %token PI
 %token PLOT
@@ -297,15 +298,27 @@ void yyerror(const char *str){
 %token X
 %token Y
 %token Z
-%token DIAG
-%token COEF
 %token NBCOEF
 %token TOLPIVOT
 %token TOLPIVOTSYM
 %token L1
 %token L2
 %token LINFTY
-
+/*  add FH sep 2006 */ 
+%token TRY
+%token CATCH
+%token THROW
+%token FFEOF
+%token GOOD
+%token SCIENTIFIC
+%token FIXED
+%token SHOWBASE
+%token NOSHOWBASE
+%token SHOWPOS
+%token NOSHOWPOS
+%token DEFAULT
+%token IM
+%token RE
 %start program
 
 %%
@@ -438,6 +451,17 @@ global:
         | QF5PT        {$$=$1;} 
         | QF7PT        {$$=$1;} 
         | QF9PT        {$$=$1;} 
+	| IM {$$=$1;}
+	| RE {$$=$1;}
+	| SCIENTIFIC  {$$=$1;}
+	| FIXED {$$=$1;}
+	| SHOWBASE {$$=$1;}
+	| NOSHOWBASE {$$=$1;}
+	| SHOWPOS {$$=$1;}
+	| NOSHOWPOS {$$=$1;}
+	| DEFAULT {$$=$1;}
+	| FFEOF  {$$=$1;}
+	| GOOD  {$$=$1;}
 
 
 	;
@@ -534,6 +558,7 @@ builtintype:
 	| P2
 	| P2DC
 	| P2H
+	| P2B
 	| RT0
 	| RT0ORTHO
 	| BOOL
@@ -566,6 +591,7 @@ instruction:
 	| WHILE '(' operation ')' instruction
 	| IF '(' operation ')' instruction ELSE instruction
 	| IF '(' operation ')' instruction
+        |  TRY '{' instructions '}' catch
 	| BREAK
 	| CONTINUE
 	| INCLUDE CONSTANT_STRING
@@ -574,6 +600,9 @@ instruction:
 			operation ')'
 		block
 	;
+
+catch:
+	 CATCH '(' '.' '.' '.' ')'  instruction ; 
 
 parametert:
 	object	{if(words[$1]=="t") colorize(@1,highlight_parameter);
@@ -746,6 +775,7 @@ operation:
 	| number
 	| object
 	| type '.' object
+        | ':' 
 	;
 
 enumeratedvector:
@@ -804,7 +834,9 @@ integralsign:
 commalist:
 	/* nothing */
 	| operation
+	| ':'
 	| commalist ',' operation
+	| commalist ',' ':'
 	;
 
 commalistend:

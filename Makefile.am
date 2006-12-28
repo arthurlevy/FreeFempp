@@ -4,13 +4,14 @@
 # Adaptation to Automake: Antoine Le Hyaric - LJLL Paris 6 -
 # lehyaric@ann.jussieu.fr - 13/5/04
 
-# $Id: Makefile.am,v 1.86 2006-09-19 15:07:07 hecht Exp $
+# $Id: Makefile.am,v 1.88 2006/10/26 12:09:29 hecht Exp $
 
 SUBDIRS=download src DOC examples++-tutorial examples++	\
 	examples++-eigen examples++-load examples++-mpi	\
 	examples++-bug examples++-chapt3 examples++-other
 
 EXTRA_DIST=regtests.sh config-wrapper.h arpack/arpack++/include/*.h \
+arpack/arpack-patch-lapack.tar.gz \
 FreeFem++.*mcp HISTORY HISTORY_BEFORE_2005  BUGS TODO regtests.m4 \
 WindowsPackage.m4 README README_ARPACK  README_CVS README_CW  README_WINDOWS \
 logo.ico copysharedlibs.sh COPYRIGHT edp.nedit INNOVATION reconfigure \
@@ -47,8 +48,8 @@ DOC/freefem++doc.pdf:
 	cd DOC && make freefem++doc.pdf
 
 clean-local::
-	-find . \( -name '*~' -or  -name ListOfUnAllocPtr.bin \) |xargs rm 
-	-rm examples*/*.eps 
+	-find . \( -name '*~' -or  -name ListOfUnAllocPtr.bin \) |xargs rm
+	-rm examples*/*.eps
 
 # "dist" targets
 clean-local::
@@ -127,9 +128,9 @@ deb:
 
 native:$(FF_MAC_PREFIX)_MacOS $(FF_MAC_PREFIX)_MacOsX.tgz DOC/freefem++doc.pdf
 	echo "done"
-native9:$(FF_MAC_PREFIX)_MacOS 
+native9:$(FF_MAC_PREFIX)_MacOS
 	echo "done"
-nativeX: $(FF_MAC_PREFIX)_MacOsX.tgz 
+nativeX: $(FF_MAC_PREFIX)_MacOsX.tgz
 	echo "done"
 
 clean-local::
@@ -138,8 +139,8 @@ clean-local::
 
 # Native MacOS packaging
 # ----------------------
-ListFiles-natives: .FORCE 
-	echo COPYRIGHT HISTORY HISTORY_BEFORE_2005 README BUGS TODO INSTALL INSTALL-MacOSX INNOVATION >$@	
+ListFiles-natives: .FORCE
+	echo COPYRIGHT HISTORY HISTORY_BEFORE_2005 README BUGS TODO INSTALL INSTALL-MacOSX INNOVATION >$@
 	echo mode-mi-edp.zip >> $@
 	echo examples++-tutorial/aile.msh examples++-tutorial/xyf >> $@
 	echo examples++-load/load.link >> $@
@@ -151,24 +152,24 @@ List-agl-dylib: src/agl/FreeFem++-agl
 .FORCE:
 
 $(FF_MAC_PREFIX)_Macos:documentation ListFiles-natives
-	-mkdir $@ 
-	cat ListFiles-natives|xargs tar cf - | (cd $@ ; tar xf - )  
-	/Developer/Tools/CpMac "FreeFem++(Carbon)" $@/FreeFem++ 
+	-mkdir $@
+	cat ListFiles-natives|xargs tar cf - | (cd $@ ; tar xf - )
+	/Developer/Tools/CpMac "FreeFem++(Carbon)" $@/FreeFem++
 	cp   DOC/freefem++-doc.pdf $@
 
 $(FF_MAC_PREFIX)_MacOsX: all documentation  ListFiles-natives List-agl-dylib
-	-mkdir $@ 
+	-mkdir $@
 	cp   DOC/freefem++doc.pdf $@
-	cat ListFiles-natives|xargs tar cf - | (cd $@ ; tar xf - )  
+	cat ListFiles-natives|xargs tar cf - | (cd $@ ; tar xf - )
 	cd  $@ ; tar zxf ../src/agl/FreeFem++.app.tgz
 	sed <src/agl/Info-plist.am >$@/FreeFem++.app/Contents/Info.plist \
            -e "s/@VVERSION@/$(VERSION)$(ADD_PACKAGE_NAME)/g" \
-           -e "s/@DATE@/`date`/g"  
+           -e "s/@DATE@/`date`/g"
 	-mkdir -p  $@/FreeFem++.app/Contents/FreeFem++.app/Contents
 	cp $@/FreeFem++.app/Contents/Info.plist $@/FreeFem++.app/Contents/FreeFem++.app/Contents/Info.plist
 	cp src/agl/FreeFem++-agl $@/FreeFem++.app/Contents/FreeFem++.app/FreeFem++
 	cp src/FreeFem++-CoCoa $@
-	-if [ -s List-agl-dylib ]; then tar zchvf $@/OtherMacOsLib.tgz `cat List-agl-dylib`; fi; 
+	-if [ -s List-agl-dylib ]; then tar zchvf $@/OtherMacOsLib.tgz `cat List-agl-dylib`; fi;
 	cp -p Install-MacOS.command $@
 
 $(FF_MAC_PREFIX)_MacOsX.tgz: $(FF_MAC_PREFIX)_MacOsX
@@ -186,8 +187,8 @@ linux-package: $(PACKAGE_NAME).tgz
 # procedure on its own.
 
 $(PACKAGE_NAME):  ListFiles-natives
-	cat ListFiles-natives|xargs tar cf - | (cd $@ ; tar xf - )  
-	-mkdir $@ 
+	cat ListFiles-natives|xargs tar cf - | (cd $@ ; tar xf - )
+	-mkdir $@
 	cp src/std/FreeFem++ $@
 	./copysharedlibs.sh src/std/FreeFem++ $@
 	cp src/nw/FreeFem++-nw $@

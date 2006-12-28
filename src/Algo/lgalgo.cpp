@@ -1,3 +1,30 @@
+// -*- Mode : c++ -*-
+//
+// SUMMARY  :      
+// USAGE    :        
+// ORG      : 
+// AUTHOR   : Frederic Hecht
+// E-MAIL   : hecht@ann.jussieu.fr
+//
+
+/*
+ 
+ This file is part of Freefem++
+ 
+ Freefem++ is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+ 
+ Freefem++  is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License
+ along with Freefem++; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
 #include  <iostream>
 #include  <cfloat>
 using namespace std;
@@ -64,7 +91,7 @@ class OptimAlgo : public OneOperator
     class lgNRJ : public NRJ<PARAM,VECT,VMAT,REAL> {
     private:
       Stack stack;
-   Expression J,dJ,hJ,theparame;
+      Expression J,dJ,hJ,theparame;
       VECT * gg;
     protected:
       void setparam( const Param<R>& x )
@@ -76,7 +103,9 @@ class OptimAlgo : public OneOperator
     public:
 
       lgNRJ(Stack s,int n,Expression t,Expression JJ,Expression dJJ,Expression hJJ) 
-	: NRJ<PARAM,VECT,VMAT,REAL>(n), stack(s),theparame(t),J(JJ),dJ(dJJ),hJ(hJJ),gg(0)  
+	: NRJ<PARAM,VECT,VMAT,REAL>(n), stack(s),
+	  J(JJ),dJ(dJJ),hJ(hJJ),theparame(t),
+	  gg(0)  
       { 
 	if(dJ) gg=new VECT(n); 
       }
@@ -164,7 +193,8 @@ class OptimAlgo : public OneOperator
 	Kn &x = *GetAny<Kn *>((*X)(stack));
 	
 	const int n=x.N();
-	Kn * para = GetAny<KN<double>*>( inittheparam.eval(stack) ) ; // do allocation 
+	//Kn * para =
+	GetAny<KN<double>*>( inittheparam.eval(stack) ) ; // do allocation 
 	
 	Param<R> param(x);
 	lgNRJ nrj1(stack,n,theparam,J,dJ,hJ);
@@ -253,9 +283,9 @@ class OptimAlgo : public OneOperator
 //template<class R>
 
 basicAC_F0::name_and_type  OptimAlgo::E_LCG::name_param[]= {
-  "eps", &typeid(double)  ,
-  "nbiter",&typeid(long) ,
-  "nbiterline",&typeid(long)
+ {  "eps", &typeid(double)  },
+ { "nbiter",&typeid(long) },
+   { "nbiterline",&typeid(long)}
 };
 
 void init_algo()

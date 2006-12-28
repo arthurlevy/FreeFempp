@@ -1,6 +1,33 @@
+// -*- Mode : c++ -*-
+//
+// SUMMARY  :      
+// USAGE    :        
+// ORG      : 
+// AUTHOR   : Antoine Le Hyaric -
+// E-MAIL   : lehyaric@ann.jussieu.fr
+//
+
+/*
+ 
+ This file is part of Freefem++
+ 
+ Freefem++ is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+ 
+ Freefem++  is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License
+ along with Freefem++; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
 // Color-coding for FreeFem++-cs editor window
 // Antoine Le Hyaric - LJLL Paris  - lehyaric@ann.jussieu.fr
-// $Id: highlight.cpp,v 1.17 2006-04-03 20:09:30 hecht Exp $
+// $Id: highlight.cpp,v 1.19 2006-09-29 20:30:15 hecht Exp $
 
 #include <iostream>
 #include <cassert>
@@ -49,6 +76,7 @@ void inithighlightparser(){
   reserved["P1dc"]=reservedinfo(highlight_type,P1DC);
   reserved["P1nc"]=reservedinfo(highlight_type,P1NC);
   reserved["P2"]=reservedinfo(highlight_type,P2);
+  reserved["P2b"]=reservedinfo(highlight_type,P2B);
   reserved["P2dc"]=reservedinfo(highlight_type,P2DC);
   reserved["P2h"]=reservedinfo(highlight_type,P2H);
   reserved["RT0"]=reservedinfo(highlight_type,RT0);
@@ -242,7 +270,12 @@ void inithighlightparser(){
   reserved["version"]=reservedinfo(highlight_global,VERSION);
   reserved["viso"]=reservedinfo(highlight_parameter,VISO);
   reserved["wait"]=reservedinfo(highlight_parameter,WAIT);
+  // add fh sep 06
+  reserved["try"]=reservedinfo(highlight_keyword,TRY);
+  reserved["catch"]=reservedinfo(highlight_keyword,CATCH);
+  reserved["throw"]=reservedinfo(highlight_keyword,THROW);
   reserved["while"]=reservedinfo(highlight_keyword,WHILE);
+
   reserved["x"]=reservedinfo(highlight_global,X);
   reserved["y"]=reservedinfo(highlight_global,Y);
   reserved["z"]=reservedinfo(highlight_global,Z);
@@ -255,7 +288,20 @@ void inithighlightparser(){
 //  reserved["diag"]=reservedinfo(highlight_global,DIAG);
  // reserved["coef"]=reservedinfo(highlight_global,COEF);
   reserved["nbcoef"]=reservedinfo(highlight_global,NBCOEF);
-  
+  // Add set 2006
+  reserved["im"]=reservedinfo(highlight_global,IM);
+  reserved["re"]=reservedinfo(highlight_global,RE);
+  reserved["eof"]=reservedinfo(highlight_global,FFEOF);
+  reserved["good"]=reservedinfo(highlight_global,GOOD);
+  reserved["scientific"]=reservedinfo(highlight_global,SCIENTIFIC);
+  reserved["fixed"]=reservedinfo(highlight_global,FIXED);
+  reserved["showbase"]=reservedinfo(highlight_global,SHOWBASE);
+  reserved["noshowbase"]=reservedinfo(highlight_global,NOSHOWBASE);
+  reserved["showpos"]=reservedinfo(highlight_global,SHOWPOS);
+  reserved["noshowpos"]=reservedinfo(highlight_global,NOSHOWPOS);
+  reserved["default"]=reservedinfo(highlight_global,DEFAULT);
+
+
       reserved["qf1pE"]=reservedinfo(highlight_keyword,QF1PE);
       reserved["qf1pElump"]=reservedinfo(highlight_keyword,QF1PELUMP);
       reserved["qf1pT"]=reservedinfo(highlight_keyword,QF1PT);

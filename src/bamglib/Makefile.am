@@ -1,6 +1,6 @@
 # Makefile using Automake + Autoconf
 # ----------------------------------
-# $Id: Makefile.am,v 1.3 2004/06/28 17:26:56 lehyaric Exp $
+# $Id: Makefile.am,v 1.3 2004-06-28 17:26:56 lehyaric Exp $
 
 # This is not compiled as a separate library because its
 # interconnections with other libraries have not been solved.

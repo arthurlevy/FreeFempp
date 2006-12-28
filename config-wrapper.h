@@ -1,7 +1,7 @@
 // Include a platform-specific configuration file
 // ----------------------------------------------
 
-// $Id: config-wrapper.h,v 1.3 2004/06/16 12:25:41 hecht Exp $
+// $Id: config-wrapper.h,v 1.3 2004-06-16 12:25:41 hecht Exp $
 
 // This wrapper is necessary for platforms where the configure script
 // does not run.

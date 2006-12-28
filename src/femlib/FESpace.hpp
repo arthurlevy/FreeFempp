@@ -1,3 +1,31 @@
+// -*- Mode : c++ -*-
+//
+// SUMMARY  :      
+// USAGE    :        
+// ORG      : 
+// AUTHOR   : Frederic Hecht
+// E-MAIL   : hecht@ann.jussieu.fr
+//
+
+/*
+ 
+ This file is part of Freefem++
+ 
+ Freefem++ is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+ 
+ Freefem++  is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License
+ along with Freefem++; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
+
 #ifndef FESpace_h_
 #define FESpace_h_
 #include <cstdarg>
@@ -214,7 +242,7 @@ class TypeOfFE { public:
       throwassert(dim_which_sub_fem[N-1]>=0 && dim_which_sub_fem[N-1]< nb_sub_fem);
      // Warning the componant is moving first 
         for (int j=0,l=0;j<t.pij_alpha.N();j++) // for all sub DF
-          for(int i=0,i0=0; i<k; i++,l++) // for componate
+          for(int i=0; i<k; i++,l++) // for componate
           {
           pij_alpha[l].i=t.pij_alpha[j].i*k+i;   //  DoF number
           pij_alpha[l].p=t.pij_alpha[j].p;       //  point of interpolation
@@ -394,6 +422,8 @@ class TypeOfMortar {
   const int NbDfOnVertex, NbDfOnEdge , N;
   public: 
     TypeOfMortar (int i,int j): NbDfOnVertex(i),NbDfOnEdge(j),N(1){};
+   
+  virtual  ~TypeOfMortar(){}
      
 } ;
 
@@ -470,12 +500,12 @@ class aSubFMortar { public:
   int TRight() const{ return right/3;}
   int ERight()const{ return right%3;}
   
-  int  Nbmul; 
   int * DfNumberOFmul;
+  int  Nbmul; 
  // int *whatnode[2];
   R (**f)(const FESpace *,const aSubFMortar * ,R); // array of function of mul on aSubMortar 
   R lg1(){throwassert(a<b);return b-a;}  
-  aSubFMortar():f(0),DfNumberOFmul(0),Nbmul(0){}
+  aSubFMortar():DfNumberOFmul(0),Nbmul(0),f(0){}
  
   R2 operator()(const Mesh & Th,R x,int side) const
    {
@@ -557,6 +587,7 @@ extern TypeOfFE & P1ncLagrange;
 
 class FESpace : public RefCounter {
   public:
+  const Mesh &Th;
   TypeOfFE const * const ptrTFE;
   KN<const TypeOfFE *>  TFE; 
   private:
@@ -568,7 +599,6 @@ class FESpace : public RefCounter {
   const int NbOfDF;
   const int NbOfElements;
   const int NbOfNodes;
-  const Mesh &Th;
   const int nb_sub_fem; // nb de sous elements finis tensorise (independe au niveau des composantes)
   int const* const dim_which_sub_fem;// donne les dependant des composantes liee a un meme sous element fini
    //   exemple si N=5,  
@@ -591,6 +621,31 @@ class FESpace : public RefCounter {
   const TypeOfMortar * tom; 
   const int MaxNbNodePerElement;
   const int MaxNbDFPerElement;
+
+//  par defaut P1                
+  FESpace(const Mesh & TTh) 
+    :
+    Th(TTh),
+    ptrTFE(0),
+    TFE(1,0,&P1Lagrange),
+    cdef(0),
+    cmesh(TTh),
+    N(1),
+    Nproduit(1),
+    NbOfDF(TTh.nv),
+    NbOfElements(TTh.nt),
+    NbOfNodes(TTh.nv),
+    nb_sub_fem(TFE[0]->nb_sub_fem),
+    dim_which_sub_fem(TFE[0]->dim_which_sub_fem),
+    NodesOfElement(0),
+    FirstNodeOfElement(0),
+    FirstDfOfNodeData(0),
+    tom(0),
+    MaxNbNodePerElement(3),
+    MaxNbDFPerElement(3*Nproduit)
+ {}
+
+
   int FirstDFOfNode(int i) const {return FirstDfOfNodeData ? FirstDfOfNodeData[i] : i*Nproduit;}
   int LastDFOfNode(int i)  const {return FirstDfOfNodeData ? FirstDfOfNodeData[i+1] : (i+1)*Nproduit;}
   int NbDFOfNode(int i)  const {return FirstDfOfNodeData ? FirstDfOfNodeData[i+1]-FirstDfOfNodeData[i] : Nproduit;}
@@ -611,18 +666,6 @@ class FESpace : public RefCounter {
                ?  FirstNodeOfElement[k+1] - FirstNodeOfElement[k] 
                : MaxNbNodePerElement ;}
   int  esize() const { return  MaxNbDFPerElement*N*last_operatortype;}   // size to store all value of B. function        
-//  par defaut P1                
-  FESpace(const Mesh & TTh) 
-   :
-      ptrTFE(0),
-      TFE(1,0,&P1Lagrange),tom(0),
-      cmesh(TTh),cdef(0),N(1),Nproduit(1),Th(TTh),NbOfDF(TTh.nv),NbOfElements(TTh.nt),NbOfNodes(TTh.nv),
-      FirstDfOfNodeData(0),
-      MaxNbNodePerElement(3),MaxNbDFPerElement(3*Nproduit),
-      NodesOfElement(0),FirstNodeOfElement(0),
-      nb_sub_fem(TFE[0]->nb_sub_fem),
-      dim_which_sub_fem(TFE[0]->dim_which_sub_fem)
- {}
       
     FESpace(const FESpace &,int k );
     FESpace(const FESpace **,int k ); 

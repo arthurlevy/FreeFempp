@@ -38,9 +38,9 @@ pre-build::
 	-(cd examples++-load/include && cp ../../config.h .)
 
 build/freefem++::
-	make documentation
+	cd DOC && make freefem++doc.pdf
 
-install/freefem++:: 
+install/freefem++::
 	(cd debian/freefem++/usr/bin/ && mv FreeFem++ freefem++)
 	(cd debian/freefem++/usr/bin/ && mv FreeFem++-nw  freefem++-nw)
 	(cd debian/freefem++/usr/bin/ && mv FreeFem++-glx freefem++-glx)

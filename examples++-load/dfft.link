@@ -1,6 +1,6 @@
 #!/bin/sh
 # Create a loadable object from a C++ function defined in a .cpp file
-# $Id: dfft.link,v 1.1 2005/06/19 19:09:11 hecht Exp $
+# $Id: dfft.link,v 1.1 2005-06-19 19:09:11 hecht Exp $
 
 # Default compiler
 if [ "$CXX" == "" ];

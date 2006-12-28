@@ -1,9 +1,0 @@
-
-    real r0=1;
-    real h = 0.0008;
-     border a(t=0,r0){x=t;y=0;label=1;};
-     border b(t=0,h){x=r0;y=t;label=2;};
-     border c(t=0,r0){x=r0-t;y=h;label=3;};
-     border d(t=0,h){x=0;y=h-t;label=4;};
-     verbosity=100;
-     mesh Th = buildmesh (a(9000) + b(5) + c(9000) + d(5));

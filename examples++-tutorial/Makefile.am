@@ -1,4 +1,4 @@
-# $Id: Makefile.am,v 1.20 2004/12/02 11:34:13 lehyaric Exp $
+# $Id: Makefile.am,v 1.20 2004-12-02 11:34:13 lehyaric Exp $
 
 all-local: all.edp regtests.edp
 TESTS=../regtests.sh

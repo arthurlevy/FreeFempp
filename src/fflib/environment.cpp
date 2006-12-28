@@ -1,3 +1,30 @@
+// -*- Mode : c++ -*-
+//
+// SUMMARY  :      
+// USAGE    :        
+// ORG      : 
+// AUTHOR   : Frederic Hecht
+// E-MAIL   : hecht@ann.jussieu.fr
+//
+ 
+/*
+ 
+ This file is part of Freefem++
+ 
+ Freefem++ is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+ 
+ Freefem++  is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License
+ along with Freefem++; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
 #include "environment.hpp"
 #include "iostream"
 #include <iostream>
@@ -26,7 +53,7 @@ string TransDir(string dir)
 #else
   char nsep=BACKSLACH, sep=SLACH;
 #endif
-  for (int i=0; i<dir.size(); ++i)
+  for (size_t i=0; i<dir.size(); ++i)
     if(dir[i]==nsep) dir[i]=sep;
   if(dir.size()>1 && dir[dir.size()-1] != sep) 
     dir += sep;
@@ -97,10 +124,10 @@ int GetEnvironment(const string & key, string items)
 {
   if(verbosity>=100)  cout << key << " -> " << items << endl;
   bool path=key.find("path")!= string::npos;
-  int d=0, k=0,i;
+  int d=0, k=0;
   if(path)
     items+=";;";
-  for ( i=0;i<items.size();i++)
+  for (size_t  i=0;i<items.size();i++)
    if(  items[i]==';')
     { 
 

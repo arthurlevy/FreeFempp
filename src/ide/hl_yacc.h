@@ -1,7 +1,9 @@
-/* A Bison parser, made by GNU Bison 2.1.  */
+/* A Bison parser, made by GNU Bison 2.3.  */
 
-/* Skeleton parser for Yacc-like parsing with Bison,
-   Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005 Free Software Foundation, Inc.
+/* Skeleton interface for Bison's Yacc-like parsers in C
+
+   Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
+   Free Software Foundation, Inc.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -18,10 +20,18 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor,
    Boston, MA 02110-1301, USA.  */
 
-/* As a special exception, when this file is copied by Bison into a
-   Bison output file, you may use that output file without restriction.
-   This special exception was added by the Free Software Foundation
-   in version 1.24 of Bison.  */
+/* As a special exception, you may create a larger work that contains
+   part or all of the Bison parser skeleton and distribute that work
+   under terms of your choice, so long as that work isn't itself a
+   parser generator using the skeleton or a modified version thereof
+   as a parser skeleton.  Alternatively, if you modify or redistribute
+   the parser skeleton itself, you may (at your option) remove this
+   special exception, which will cause the skeleton and the resulting
+   Bison output files to be licensed under the GNU General Public
+   License without this special exception.
+
+   This special exception was added by the Free Software Foundation in
+   version 2.2 of Bison.  */
 
 /* Tokens.  */
 #ifndef YYTOKENTYPE
@@ -205,98 +215,113 @@
      P2 = 431,
      P2DC = 432,
      P2H = 433,
-     PERIODIC = 434,
-     PI = 435,
-     PLOT = 436,
-     PLUSEQ = 437,
-     PLUSPLUS = 438,
-     POLAR = 439,
-     POW = 440,
-     POWER = 441,
-     PRECISION = 442,
-     PRECON = 443,
-     PROBLEM = 444,
-     PROCESSOR = 445,
-     PS = 446,
-     QFE = 447,
-     QFNBPE = 448,
-     QFNBPT = 449,
-     QFORDER = 450,
-     QFT = 451,
-     QF1PE = 452,
-     QF1PELUMP = 453,
-     QF1PT = 454,
-     QF1PTLUMP = 455,
-     QF2PE = 456,
-     QF2PT = 457,
-     QF2PT4P1 = 458,
-     QF3PE = 459,
-     QF5PT = 460,
-     QF7PT = 461,
-     QF9PT = 462,
-     RATIO = 463,
-     READMESH = 464,
-     REAL = 465,
-     REGION = 466,
-     RESCALING = 467,
-     RETURN = 468,
-     RT0 = 469,
-     RT0ORTHO = 470,
-     SAVE = 471,
-     SAVEMESH = 472,
-     SET = 473,
-     SIGMA = 474,
-     SIN = 475,
-     SINH = 476,
-     SLASHEQ = 477,
-     SMALL_N = 478,
-     SOLVE = 479,
-     SOLVER = 480,
-     SPLIT = 481,
-     SPLITIN2 = 482,
-     SPLITMESH = 483,
-     SPLITPBEDGE = 484,
-     SQRT = 485,
-     SQUARE = 486,
-     STAREQ = 487,
-     STRATEGY = 488,
-     STRING = 489,
-     SUM = 490,
-     SYM = 491,
-     T = 492,
-     TAN = 493,
-     TANH = 494,
-     TGV = 495,
-     THETAMAX = 496,
-     TOL = 497,
-     TRIANGULATE = 498,
-     TRUNC = 499,
-     UMFPACK = 500,
-     USER_BORDER = 501,
-     USER_FUNCTION = 502,
-     USER_PROBLEM = 503,
-     USER_TYPE = 504,
-     USER_VARF = 505,
-     USER_VARIABLE = 506,
-     VALUE = 507,
-     VARF = 508,
-     VARROW = 509,
-     VECTOR = 510,
-     VEPS = 511,
-     VERBOSITY = 512,
-     VERSION = 513,
-     VISO = 514,
-     WAIT = 515,
-     WHILE = 516,
-     X = 517,
-     Y = 518,
-     Z = 519,
-     NBCOEF = 520,
-     TOLPIVOT = 521,
-     TOLPIVOTSYM = 522,
-     L1 = 523,
-     L2 = 524,
-     LINFTY = 525
+     P2B = 434,
+     PERIODIC = 435,
+     PI = 436,
+     PLOT = 437,
+     PLUSEQ = 438,
+     PLUSPLUS = 439,
+     POLAR = 440,
+     POW = 441,
+     POWER = 442,
+     PRECISION = 443,
+     PRECON = 444,
+     PROBLEM = 445,
+     PROCESSOR = 446,
+     PS = 447,
+     QFE = 448,
+     QFNBPE = 449,
+     QFNBPT = 450,
+     QFORDER = 451,
+     QFT = 452,
+     QF1PE = 453,
+     QF1PELUMP = 454,
+     QF1PT = 455,
+     QF1PTLUMP = 456,
+     QF2PE = 457,
+     QF2PT = 458,
+     QF2PT4P1 = 459,
+     QF3PE = 460,
+     QF5PT = 461,
+     QF7PT = 462,
+     QF9PT = 463,
+     RATIO = 464,
+     READMESH = 465,
+     REAL = 466,
+     REGION = 467,
+     RESCALING = 468,
+     RETURN = 469,
+     RT0 = 470,
+     RT0ORTHO = 471,
+     SAVE = 472,
+     SAVEMESH = 473,
+     SET = 474,
+     SIGMA = 475,
+     SIN = 476,
+     SINH = 477,
+     SLASHEQ = 478,
+     SMALL_N = 479,
+     SOLVE = 480,
+     SOLVER = 481,
+     SPLIT = 482,
+     SPLITIN2 = 483,
+     SPLITMESH = 484,
+     SPLITPBEDGE = 485,
+     SQRT = 486,
+     SQUARE = 487,
+     STAREQ = 488,
+     STRATEGY = 489,
+     STRING = 490,
+     SUM = 491,
+     SYM = 492,
+     T = 493,
+     TAN = 494,
+     TANH = 495,
+     TGV = 496,
+     THETAMAX = 497,
+     TOL = 498,
+     TRIANGULATE = 499,
+     TRUNC = 500,
+     UMFPACK = 501,
+     USER_BORDER = 502,
+     USER_FUNCTION = 503,
+     USER_PROBLEM = 504,
+     USER_TYPE = 505,
+     USER_VARF = 506,
+     USER_VARIABLE = 507,
+     VALUE = 508,
+     VARF = 509,
+     VARROW = 510,
+     VECTOR = 511,
+     VEPS = 512,
+     VERBOSITY = 513,
+     VERSION = 514,
+     VISO = 515,
+     WAIT = 516,
+     WHILE = 517,
+     X = 518,
+     Y = 519,
+     Z = 520,
+     NBCOEF = 521,
+     TOLPIVOT = 522,
+     TOLPIVOTSYM = 523,
+     L1 = 524,
+     L2 = 525,
+     LINFTY = 526,
+     TRY = 527,
+     CATCH = 528,
+     THROW = 529,
+     FFEOF = 530,
+     GOOD = 531,
+     SCIENTIFIC = 532,
+     FIXED = 533,
+     SHOWBASE = 534,
+     NOSHOWBASE = 535,
+     SHOWPOS = 536,
+     NOSHOWPOS = 537,
+     DEFAULT = 538,
+     IM = 539,
+     RE = 540
    };
 #endif
 /* Tokens.  */
@@ -476,103 +501,118 @@
 #define P2 431
 #define P2DC 432
 #define P2H 433
-#define PERIODIC 434
-#define PI 435
-#define PLOT 436
-#define PLUSEQ 437
-#define PLUSPLUS 438
-#define POLAR 439
-#define POW 440
-#define POWER 441
-#define PRECISION 442
-#define PRECON 443
-#define PROBLEM 444
-#define PROCESSOR 445
-#define PS 446
-#define QFE 447
-#define QFNBPE 448
-#define QFNBPT 449
-#define QFORDER 450
-#define QFT 451
-#define QF1PE 452
-#define QF1PELUMP 453
-#define QF1PT 454
-#define QF1PTLUMP 455
-#define QF2PE 456
-#define QF2PT 457
-#define QF2PT4P1 458
-#define QF3PE 459
-#define QF5PT 460
-#define QF7PT 461
-#define QF9PT 462
-#define RATIO 463
-#define READMESH 464
-#define REAL 465
-#define REGION 466
-#define RESCALING 467
-#define RETURN 468
-#define RT0 469
-#define RT0ORTHO 470
-#define SAVE 471
-#define SAVEMESH 472
-#define SET 473
-#define SIGMA 474
-#define SIN 475
-#define SINH 476
-#define SLASHEQ 477
-#define SMALL_N 478
-#define SOLVE 479
-#define SOLVER 480
-#define SPLIT 481
-#define SPLITIN2 482
-#define SPLITMESH 483
-#define SPLITPBEDGE 484
-#define SQRT 485
-#define SQUARE 486
-#define STAREQ 487
-#define STRATEGY 488
-#define STRING 489
-#define SUM 490
-#define SYM 491
-#define T 492
-#define TAN 493
-#define TANH 494
-#define TGV 495
-#define THETAMAX 496
-#define TOL 497
-#define TRIANGULATE 498
-#define TRUNC 499
-#define UMFPACK 500
-#define USER_BORDER 501
-#define USER_FUNCTION 502
-#define USER_PROBLEM 503
-#define USER_TYPE 504
-#define USER_VARF 505
-#define USER_VARIABLE 506
-#define VALUE 507
-#define VARF 508
-#define VARROW 509
-#define VECTOR 510
-#define VEPS 511
-#define VERBOSITY 512
-#define VERSION 513
-#define VISO 514
-#define WAIT 515
-#define WHILE 516
-#define X 517
-#define Y 518
-#define Z 519
-#define NBCOEF 520
-#define TOLPIVOT 521
-#define TOLPIVOTSYM 522
-#define L1 523
-#define L2 524
-#define LINFTY 525
+#define P2B 434
+#define PERIODIC 435
+#define PI 436
+#define PLOT 437
+#define PLUSEQ 438
+#define PLUSPLUS 439
+#define POLAR 440
+#define POW 441
+#define POWER 442
+#define PRECISION 443
+#define PRECON 444
+#define PROBLEM 445
+#define PROCESSOR 446
+#define PS 447
+#define QFE 448
+#define QFNBPE 449
+#define QFNBPT 450
+#define QFORDER 451
+#define QFT 452
+#define QF1PE 453
+#define QF1PELUMP 454
+#define QF1PT 455
+#define QF1PTLUMP 456
+#define QF2PE 457
+#define QF2PT 458
+#define QF2PT4P1 459
+#define QF3PE 460
+#define QF5PT 461
+#define QF7PT 462
+#define QF9PT 463
+#define RATIO 464
+#define READMESH 465
+#define REAL 466
+#define REGION 467
+#define RESCALING 468
+#define RETURN 469
+#define RT0 470
+#define RT0ORTHO 471
+#define SAVE 472
+#define SAVEMESH 473
+#define SET 474
+#define SIGMA 475
+#define SIN 476
+#define SINH 477
+#define SLASHEQ 478
+#define SMALL_N 479
+#define SOLVE 480
+#define SOLVER 481
+#define SPLIT 482
+#define SPLITIN2 483
+#define SPLITMESH 484
+#define SPLITPBEDGE 485
+#define SQRT 486
+#define SQUARE 487
+#define STAREQ 488
+#define STRATEGY 489
+#define STRING 490
+#define SUM 491
+#define SYM 492
+#define T 493
+#define TAN 494
+#define TANH 495
+#define TGV 496
+#define THETAMAX 497
+#define TOL 498
+#define TRIANGULATE 499
+#define TRUNC 500
+#define UMFPACK 501
+#define USER_BORDER 502
+#define USER_FUNCTION 503
+#define USER_PROBLEM 504
+#define USER_TYPE 505
+#define USER_VARF 506
+#define USER_VARIABLE 507
+#define VALUE 508
+#define VARF 509
+#define VARROW 510
+#define VECTOR 511
+#define VEPS 512
+#define VERBOSITY 513
+#define VERSION 514
+#define VISO 515
+#define WAIT 516
+#define WHILE 517
+#define X 518
+#define Y 519
+#define Z 520
+#define NBCOEF 521
+#define TOLPIVOT 522
+#define TOLPIVOTSYM 523
+#define L1 524
+#define L2 525
+#define LINFTY 526
+#define TRY 527
+#define CATCH 528
+#define THROW 529
+#define FFEOF 530
+#define GOOD 531
+#define SCIENTIFIC 532
+#define FIXED 533
+#define SHOWBASE 534
+#define NOSHOWBASE 535
+#define SHOWPOS 536
+#define NOSHOWPOS 537
+#define DEFAULT 538
+#define IM 539
+#define RE 540
 
 
 
 
-#if ! defined (YYSTYPE) && ! defined (YYSTYPE_IS_DECLARED)
+#if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef int YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
@@ -581,7 +621,7 @@ typedef int YYSTYPE;
 
 extern YYSTYPE yylval;
 
-#if ! defined (YYLTYPE) && ! defined (YYLTYPE_IS_DECLARED)
+#if ! defined YYLTYPE && ! defined YYLTYPE_IS_DECLARED
 typedef struct YYLTYPE
 {
   int first_line;
@@ -595,5 +635,3 @@ typedef struct YYLTYPE
 #endif
 
 extern YYLTYPE yylloc;
-
-

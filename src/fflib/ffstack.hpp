@@ -1,3 +1,30 @@
+// -*- Mode : c++ -*-
+//
+// SUMMARY  :      
+// USAGE    :        
+// ORG      : 
+// AUTHOR   : Frederic Hecht
+// E-MAIL   : hecht@ann.jussieu.fr
+//
+
+/*
+ 
+ This file is part of Freefem++
+ 
+ Freefem++ is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+ 
+ Freefem++  is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License
+ along with Freefem++; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
 //-----------------------------------  
 //  to manage the freefem stack 
 
@@ -27,7 +54,7 @@ const int BeginOffset = 6;
 typedef void *Stack;
 
 
-static Stack  NullStack=0;
+ const Stack  NullStack=0;
 //typedef StackType& Stack;
 
 
@@ -231,7 +258,7 @@ T * Add2StackOfPtr2FreeA(Stack s,T * p)
 inline Stack newStack(size_t l)
  {
   Stack thestack = new char[l];
-  for (int i = 0;i< l/sizeof(long);i++) ((long*) thestack)[i]=0;
+  for (size_t i = 0;i< l/sizeof(long);i++) ((long*) thestack)[i]=0;
   ((char **) thestack)[MeshPointStackOffset] = new char [1000]; 
   WhereStackOfPtr2Free(thestack)=new StackOfPtr2Free(thestack); 
   

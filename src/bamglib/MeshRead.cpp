@@ -1,3 +1,30 @@
+// -*- Mode : c++ -*-
+//
+// SUMMARY  :      
+// USAGE    :        
+// ORG      : 
+// AUTHOR   : Frederic Hecht
+// E-MAIL   : hecht@ann.jussieu.fr
+//
+
+/*
+ 
+ This file is part of Freefem++
+ 
+ Freefem++ is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+ 
+ Freefem++  is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License
+ along with Freefem++; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
@@ -201,7 +228,7 @@ void Triangles::Read(MeshIstream & f_in,int Version,Real8 cutoffradian)
 		 { 
 		   Int4  i1,i2;
 		   Real8 s;
-		   VertexOnGeom & v =VerticesOnGeomVertex[i0];
+		   //VertexOnGeom & v =VerticesOnGeomVertex[i0];
 		   f_in >>  i1 >> i2  >> s;
 		   VerticesOnGeomEdge[i0]=VertexOnGeom(vertices[i1-1],Gh.edges[i2-1],s);
 		 }
@@ -412,7 +439,7 @@ void  Triangles::Read_am(MeshIstream &ff)
   assert(l==2*sizeof(Int4));
   f_in >> nbv >> nbt ;
   l=f_in.Record();
-  assert(l==nbt*sizeof(long)*4 + nbv*(2*sizeof(float)+sizeof(long)));
+  assert((size_t) l==nbt*sizeof(long)*4 + nbv*(2*sizeof(float)+sizeof(long)));
   if (verbosity>3)
     cout << "    nbv = " << nbv  << " nbt = " << nbt << endl;
   
@@ -501,7 +528,7 @@ void  Triangles::Read_nopo(MeshIstream & ff)
  Int4 ntria = nop2[7];
  Int4 nquad = nop2[8];
  Int4 np = nop2[21];
- Int4 nef = nop2[13];
+ // Int4 nef = nop2[13];
  Metric M1(1);
  if(verbosity>2) 
    cout << "    ndim = " << ndim << " ncopnp= " << ncopnp << " ne = " << ne 
@@ -551,7 +578,7 @@ void  Triangles::Read_nopo(MeshIstream & ff)
  Int4 kr =0;
  for (i=0;i<ne;i++)
    {
-     Int4 ng[4]={0,0,0,0};
+     // Int4 ng[4]={0,0,0,0};
      Int4 np[4],rv[4],re[4];
      Int4 ncge,nmae,ndsde,npo;
      f_in >> ncge >> nmae >> ndsde >> npo ;
@@ -830,7 +857,7 @@ Triangles::Triangles(const char * filename,Real8 cutoffradian)
 
   //  Int4 beginquad=0,begintria=0;
   // Int4 endquad=0;endtria=0;
-  int type_file=0;
+  //int type_file=0;
 
   int lll = strlen(filename);
   int  am_fmt = !strcmp(filename + lll - 7,".am_fmt");

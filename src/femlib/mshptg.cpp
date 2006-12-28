@@ -1,24 +1,31 @@
-// Emacs will be in -*- Mode: c++ -*-
+// -*- Mode : c++ -*-
 //
-// ********** DO NOT REMOVE THIS BANNER **********
+// SUMMARY  :      
+// USAGE    :        
+// ORG      : 
+// AUTHOR   : Frederic Hecht
+// E-MAIL   : hecht@ann.jussieu.fr
 //
-// SUMMARY: Language for a Finite Element Method
-// RELEASE: 2.0     
-// USAGE  : You may copy freely these files and use it for    
-//          teaching or research. These or part of these may   
-//          not be sold or used for a commercial purpose with- 
-//          out our consent : fax (33)1 44 27 44 11        
-//
-// AUTHORS:  D. Bernardi, Y. Darmaillac F. Hecht,    
-//           P. Parole O. Pironneau C. Prud'homme
-// ORG    :          
-// E-MAIL :   pironneau@ann.jussieu.fr     
-//
-// ORIG-DATE:     June-94
-// LAST-MOD:     16-Jan-96 at 16:10:19 by Prud'homme Christophe
-//
-// DESCRIPTION:  
-// DESCRIP-END.
+
+/*
+ 
+ This file is part of Freefem++
+ 
+ Freefem++ is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+ 
+ Freefem++  is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License
+ along with Freefem++; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
+ 
 
 // bof bof FH je ne sais pas pourquoi nnnBAMG_LONG_LONG
 // nov 2005 j'ai corrige les problemes 
@@ -317,7 +324,7 @@ mshptg8_ (double *cr, double *h, long *c, long *nu, long *nbs, long nbsmx, long 
   if (*nbs < 3 || nbsmx < *nbs)
      {
        *err = 1;
-       printf("mshptg bug in number of points %d > %d == max nb points \n",*nbs,nbsmx);
+       printf("mshptg bug in number of points %ld > %ld == max nb points \n",*nbs,nbsmx);
        return 0;
      }
 /* ------------------------- */
@@ -954,7 +961,7 @@ mshtri_ (double *cr, long *c, long *nbs, long *tri, LONG8  *nu, double *trfri, l
 		    {
 		      ++ierr;
 	             if (ierr <10) 
-	             printf(" The points %d and %d are too close \n",tri[i],tri[i+1]);
+	             printf(" The points %ld and %ld are too close \n",tri[i],tri[i+1]);
 		    }
 	       }
 	    xx = nu[jc];
@@ -971,7 +978,7 @@ mshtri_ (double *cr, long *c, long *nbs, long *tri, LONG8  *nu, double *trfri, l
        if (nu[i] == nu[i + 1])
 	  {
 	    if (ierr <10) 
-	      printf(" The points %d and %d are to close \n",tri[i],tri[i+1]);
+	      printf(" The points %ld and %ld are to close \n",tri[i],tri[i+1]);
 	    ++ierr;
 	  }
      }
@@ -1684,7 +1691,7 @@ L50:
 			   else if (det2 == 0 && reft[s2t] == 0)
 			      {
 				err1 = 10;
-				printf(" det = %d %d %d %d %d == %d \n ",
+				printf(" det = %ld %ld %ld %ld %ld == %ld \n ",
 				   (c[(s2t << 1) + 1] - c[(s1 << 1) + 1]), (c[( s2 << 1) + 2] - c[(s1 << 1) + 2]) ,
 				   (c[(s2t << 1) + 2] - c[(s1 << 1) + 2]), (c[( s2 << 1) + 1] - c[(s1 << 1) + 1]) ,
 				   (c[(s2t << 1) + 1] - c[(s1 << 1) + 1]) * (c[( s2 << 1) + 2] - c[(s1 << 1) + 2]) ,
@@ -1692,18 +1699,18 @@ L50:
 				   );
 				   
 				 
-				printf("bug 2, mshptg: point %d is on boundary edge %d %d  \n",s2t,i_2,i_3);
+				printf("bug 2, mshptg: point %ld is on boundary edge %ld %ld  \n",s2t,i_2,i_3);
 			      }
 			   else if (det3 == 0 && reft[s3t] == 0)
 			      {
 				err1 = 10;
-				printf(" det = %d %d %d %d  %d %d \n ",
+				printf(" det = %ld %ld %ld %ld  %ld %ld \n ",
 				    (c[(s3t << 1) + 1] - c[(s1 << 1) + 1]),  (c[( s2 << 1) + 2] - c[(s1 << 1) + 2]) ,
 				    (c[(s3t << 1) + 2] - c[(s1 << 1) + 2]),  (c[( s2 << 1) + 1] - c[(s1 << 1) + 1]) ,
 				    (c[(s3t << 1) + 1] - c[(s1 << 1) + 1]) * (c[( s2 << 1) + 2] - c[(s1 << 1) + 2]) ,
 				    (c[(s3t << 1) + 2] - c[(s1 << 1) + 2]) *  (c[( s2 << 1) + 1] - c[(s1 << 1) + 1])
 				    );
-				printf("bug 2, mshptg: point %d is on  boundary %d %d\n",s3t,i_2,i_3);
+				printf("bug 2, mshptg: point %ld is on  boundary %ld %ld\n",s3t,i_2,i_3);
 			      }
 			   ap = a;
 			   a = w[a];
@@ -2027,7 +2034,7 @@ L20:
 	  }
        else
 	  {
-	    printf("mshptg: bug the point %d  is on boundary \n", s3 ); 
+	    printf("mshptg: bug the point %ld  is on boundary \n", s3 ); 
 	    *err = 10+s3*10;
 	    return 0;
 	  }

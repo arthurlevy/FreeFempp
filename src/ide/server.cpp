@@ -1,8 +1,35 @@
+// -*- Mode : c++ -*-
+//
+// SUMMARY  :      
+// USAGE    :        
+// ORG      : 
+// AUTHOR   : Antoine Le Hyaric -
+// E-MAIL   : lehyaric@ann.jussieu.fr
+//
+
+/*
+ 
+ This file is part of Freefem++
+ 
+ Freefem++ is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+ 
+ Freefem++  is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License
+ along with Freefem++; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
 // Server-side treatments
 // ----------------------
 
 // Antoine Le Hyaric - LJLL Paris 6 - lehyaric@ann.jussieu.fr - 21/10/04
-// $Id: server.cpp,v 1.7 2005/09/21 11:34:17 lehyaric Exp $
+// $Id: server.cpp,v 1.9 2006-09-29 20:30:15 hecht Exp $
 #define FF_GRAPH_SET_PTR
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -161,6 +188,10 @@ void runfreefem(const string program){
     zzzfff->Add("return",RETURN);
     zzzfff->Add("border",BORDER);
     zzzfff->Add("fespace",FESPACEID);
+    zzzfff->Add("try",TRY);
+    zzzfff->Add("catch",CATCH);
+    zzzfff->Add("throw",THROW);
+
     Init_map_type();
     cout << " Load: ";
     init_lgfem();
@@ -189,6 +220,7 @@ void runfreefem(const string program){
     currentblock=0;
     currentblock = new Block(currentblock);  
 
+    GetEnvironment();     
     // compile
     retvalue=Compile();
 

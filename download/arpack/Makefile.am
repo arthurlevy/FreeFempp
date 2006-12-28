@@ -1,7 +1,7 @@
 # Downloading and compiling extra libraries
 # -----------------------------------------
 
-# $Id: Makefile.am,v 1.11 2006-04-13 16:36:41 hecht Exp $
+# $Id: Makefile.am,v 1.13 2006/11/10 21:09:19 hecht Exp $
 
 all-local: $(DOWNLOAD_ARPACK)
 EXTRA_DIST=ARmake.m4
@@ -22,6 +22,11 @@ $(ARPACKLIB): ARPACK/fait
 ARPACK/fait: arpack96.tar.gz patch.tar.gz ARmake.m4 Makefile
 	gunzip -c arpack96.tar.gz | tar xf -
 	gunzip -c patch.tar.gz | tar xf -
+	gunzip -c ../../arpack/arpack-patch-lapack.tar.gz | tar xf -
+	for i in ARPACK/SRC/*.f ; do \
+	    mv  $$i $$i.cpy; sed 's/call *second/call secnd2/' <$$i.cpy >$$i;rm $$i.cpy; done 
+	for i in  ARPACK/UTIL/second.f;  do  \
+	   mv  $$i $$i.cpy; sed 's/ SECOND *(/secnd2(/' <$$i.cpy >$$i;rm $$i.cpy; done 
 	m4 -DFF_BLASLIB="$(BLASLIB)" \
 	   -DFF_FC="@F77@" \
            -DFF_FFLAGS="@FFLAGS@" \
@@ -31,7 +36,7 @@ ARPACK/fait: arpack96.tar.gz patch.tar.gz ARmake.m4 Makefile
 	   -DFF_SECOND="@FF_SECOND@" \
 	    ARmake.m4 >ARPACK/ARmake.inc
 	cp ARPACK/UTIL/Makefile ARPACK/Makefile_UTIL
-	sed  -e '1,$$s/second.o/$$(SECOND_O)/' <ARPACK/Makefile_UTIL  >ARPACK/UTIL/Makefile  
+#	sed  -e '1,$$s/second.o/$$(SECOND_O)/' <ARPACK/Makefile_UTIL  >ARPACK/UTIL/Makefile  
 	touch ARPACK/fait
 	cd ARPACK/LAPACK;
 

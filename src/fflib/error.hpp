@@ -1,3 +1,30 @@
+// -*- Mode : c++ -*-
+//
+// SUMMARY  :      
+// USAGE    :        
+// ORG      : 
+// AUTHOR   : Frederic Hecht
+// E-MAIL   : hecht@ann.jussieu.fr
+//
+
+/*
+ 
+ This file is part of Freefem++
+ 
+ Freefem++ is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+ 
+ Freefem++  is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License
+ along with Freefem++; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
 #ifndef ERROR_H
 #define ERROR_H
 #include <cassert>
@@ -35,8 +62,8 @@ private:
 protected:
   Error(CODE_ERROR c,const char * t1,const char * t2,const char * t3=0,
 	int n=0,const char * t4=0,const char * t5=0,const char * t6=0,
-	const char * t7=0,const char * t8=0,const char * t9=0) 
-    :code(c)
+	const char * t7=0,const char * t8=0,const char * t9=0)     
+    : message(),code(c)
   {
     using namespace std;
     ostringstream mess;
@@ -104,8 +131,8 @@ class ErrorExit : public Error
 {
   int codeexit;
 public:
-  ErrorExit(const char * ,int l) :codeexit(l) ,
-    Error(NONE,"exit","(","",l,")")  {}
+  ErrorExit(const char * ,int l) :
+    Error(NONE,"exit","(","",l,")"), codeexit(l)   {}
     // the exit code fo freefem++ is given by l 
   int errcode() const{return codeexit;}
 };

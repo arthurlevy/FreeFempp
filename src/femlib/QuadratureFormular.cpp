@@ -1,3 +1,31 @@
+// -*- Mode : c++ -*-
+//
+// SUMMARY  :      
+// USAGE    :        
+// ORG      : 
+// AUTHOR   : Frederic Hecht
+// E-MAIL   : hecht@ann.jussieu.fr
+//
+
+/*
+ 
+ This file is part of Freefem++
+ 
+ Freefem++ is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+ 
+ Freefem++  is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License
+ along with Freefem++; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
+
 #include <stdlib.h>
 #include <math.h>
 #include <iostream>
@@ -159,7 +187,7 @@ static const QuadraturePoint P_QuadratureFormular_Q_3[4] = {
 // ----------------------------------------------------------------------
 
 const QuadratureFormular QuadratureFormular_Q_3(4,3,4,P_QuadratureFormular_Q_3);
-
+// from:  http://mathworld.wolfram.com/Legendre-GaussQuadrature.html
 const R gauss_n3_0=  0.5 ;
 const R gauss_n3_1=  (1-sqrt(3./5.)) /2  ;
 const R gauss_n3_2 =  1 - gauss_n3_1 ;
@@ -167,6 +195,19 @@ const R gauss_n3_2 =  1 - gauss_n3_1 ;
 const R pgauss_n3_0=  8./18.;
 const R pgauss_n3_1=  5./18.;
 const R pgauss_n3_2=  5./18.;
+
+const R pgauss1_n4_a= (18.+sqrt(30.))/36.;
+const R pgauss1_n4_b= (18.-sqrt(30.))/36.;
+const R gauss1_n4_a=  sqrt( 525. - 70.* sqrt(30.))/35.;
+const R gauss1_n4_b=  sqrt( 525. + 70.* sqrt(30.))/35.;
+
+const R pgauss1_n5_0 = 128./225.;
+const R pgauss1_n5_a= (322+13.*sqrt(70.))/900.;
+const R pgauss1_n5_b= (322-13.*sqrt(70.))/900.;
+const R gauss1_n5_a=  sqrt(245.-14.*sqrt(70.))/21.;
+const R gauss1_n5_b=  sqrt(245.+14.*sqrt(70.))/21.;
+
+
 
 /* 
 ~ script degeneration en csh 
@@ -310,19 +351,52 @@ void QuadratureFormular::Verification()
     
 }
 
-const QuadratureFormular1d QF_GaussLegendre3(
+void QuadratureFormular1d::Check()
+{
+    int err=0;
+    for(int m=0;m<=exact;++m)
+    {
+	R ve = 1./ ( m+1), v=0.;
+	for (int i=0;i<n;++i)
+	    v += p[i].a*pow(p[i].x,m);
+	if (abs( ve-v)/ve > 1.e-8)
+	{
+	    cout << " erreur QuadratureFormular1d  n= " << n  << " exact = " << exact << endl;
+	    cout << " int x^" <<m << " == " << ve << " ! = " << v  << endl; 
+	    err++;
+	}
+    }
+    assert(err==0);	
+}
+const QuadratureFormular1d QF_GaussLegendre3(5,
                   QuadratureFormular1d::Point(pgauss_n3_0,gauss_n3_0),
                   QuadratureFormular1d::Point(pgauss_n3_1,gauss_n3_1),
                   QuadratureFormular1d::Point(pgauss_n3_2,gauss_n3_2)); 
                     
-const QuadratureFormular1d QF_GaussLegendre2(
+const QuadratureFormular1d QF_GaussLegendre2(3,
                   QuadratureFormular1d::Point(0.5,gauss_n2_1),
                   QuadratureFormular1d::Point(0.5,gauss_n2_2)); 
 
-const QuadratureFormular1d QF_GaussLegendre1(QuadratureFormular1d::Point(1,0.5)); 
+const QuadratureFormular1d QF_GaussLegendre1(1,QuadratureFormular1d::Point(1,0.5)); 
 
-const QuadratureFormular1d QF_LumpP1_1D(
+const QuadratureFormular1d QF_LumpP1_1D(1,
                   QuadratureFormular1d::Point(0.5,0.),
                   QuadratureFormular1d::Point(0.5,1.)); 
+
+
+const QuadratureFormular1d QF_GaussLegendre4(7,
+					     QuadratureFormular1d::Point(pgauss1_n4_a/2.,(1.+gauss1_n4_a)/2.),
+					     QuadratureFormular1d::Point(pgauss1_n4_a/2.,(1.-gauss1_n4_a)/2.),
+					     QuadratureFormular1d::Point(pgauss1_n4_b/2.,(1.+gauss1_n4_b)/2.),
+					     QuadratureFormular1d::Point(pgauss1_n4_b/2.,(1.-gauss1_n4_b)/2.)
+					     ); 
+
+const QuadratureFormular1d QF_GaussLegendre5(9,
+					     QuadratureFormular1d::Point(pgauss1_n5_0/2.,0.5),
+					     QuadratureFormular1d::Point(pgauss1_n5_a/2.,(1.+gauss1_n5_a)/2),
+					     QuadratureFormular1d::Point(pgauss1_n5_a/2.,(1.-gauss1_n5_a)/2.),
+					     QuadratureFormular1d::Point(pgauss1_n5_b/2.,(1.+gauss1_n5_b)/2.),
+					     QuadratureFormular1d::Point(pgauss1_n5_b/2.,(1.-gauss1_n5_b)/2.)
+					     ); 
 
 }

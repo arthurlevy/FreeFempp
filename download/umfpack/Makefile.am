@@ -1,7 +1,7 @@
 # Downloading and compiling extra libraries
 # -----------------------------------------
 
-# $Id: Makefile.am,v 1.14 2006-02-10 09:41:16 lehyaric Exp $
+# $Id: Makefile.am,v 1.15 2006/11/06 12:55:02 hecht Exp $
 
 all-local: $(DOWNLOAD_UMFPACK)
 EXTRA_DIST=UMFPACK_Make.m4
@@ -43,4 +43,4 @@ UMFPACKv4.4.tar.gz:
 	@WGET@ -N http://www.cise.ufl.edu/research/sparse/umfpack/v4.4/UMFPACKv4.4.tar.gz
 
 clean-local:
-	-rm -r UMFPACKv4.?.tar.gz UMFPACKv4.?
+	-rm -rf UMFPACKv4.?.tar.gz UMFPACKv4.?

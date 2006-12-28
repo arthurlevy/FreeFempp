@@ -1,3 +1,30 @@
+// -*- Mode : c++ -*-
+//
+// SUMMARY  :      
+// USAGE    :        
+// ORG      : 
+// AUTHOR   : Frederic Hecht
+// E-MAIL   : hecht@ann.jussieu.fr
+//
+
+/*
+ 
+ This file is part of Freefem++
+ 
+ Freefem++ is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+ 
+ Freefem++  is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License
+ along with Freefem++; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
 
 #include <cmath>
 #include "error.hpp"
@@ -35,7 +62,7 @@ int dichotomie(const RN_ &viso,R v)
 void plot(long i)
 {
   char buf[24];
-  snprintf(buf,24,"%d",i);
+  snprintf(buf,24,"%ld",i);
   plotstring(buf);
 }
 void plot(int i)
@@ -279,7 +306,7 @@ R2 FElement::MinMax(const RN_& U,const RN_& V,int i0,int i1) const
   RN f1(3);
   bool whatd[last_operatortype];
   initwhatd(whatd,0);  
-  R2 Pt,P[3],A(T[0]),B(T[1]),C(T[2]);
+  R2 Pt,A(T[0]),B(T[1]),C(T[2]);
   for (int i=0;i<nbdf;i++) // get the local value
     fk[i] = U[operator()(i)];
   for (int i=0;i<nbdf;i++) // get the local value
@@ -314,7 +341,7 @@ R2 FElement::MinMax(const RN_& U,int i0) const
   RNMK fb(nbdf,N,3); //  the value for basic fonction
   RN f0(3);
   RN f1(3);
-  R2 Pt,P[3],A(T[0]),B(T[1]),C(T[2]);
+  R2 Pt,A(T[0]),B(T[1]),C(T[2]);
    bool whatd[last_operatortype];
   initwhatd(whatd,0);
  

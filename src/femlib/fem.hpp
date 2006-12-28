@@ -306,7 +306,7 @@ public:
        Rd B=*(vertices[1]=v0+i1);
        Rd C=*(vertices[2]=v0+i2); 
        area = a ==0 ? (( B-A)^(C-A))*0.5 : a;
-       throwassert(area>0);}
+       ffassert(area>0);}
        
   Rd Edge(int i) const // opposite edge vertex i
      {return (Rd) *vertices[(i+2)%3]-(Rd) *vertices[(i+1)%3];}
@@ -397,7 +397,7 @@ class TMortar {
    Mesh * Th;
    int nleft,nright;
    int *left,*right;
-   TMortar(): Th(0),left(0),right(0),nleft(0),nright(0){}
+   TMortar(): Th(0),nleft(0),nright(0),left(0),right(0){}
    void Draw() const;
    public:
      int NbLeft() const{return nleft;} 

@@ -1,7 +1,7 @@
 # Downloading and compiling extra libraries
 # -----------------------------------------
 
-# $Id: Makefile.am,v 1.10 2005/11/22 09:10:29 lehyaric Exp $
+# $Id: Makefile.am,v 1.11 2006-09-29 20:30:14 hecht Exp $
 
 all-local: $(DOWNLOAD_FLTK)
 
@@ -11,7 +11,7 @@ all-local: $(DOWNLOAD_FLTK)
 # FLTK information
 SRCDIR=fltk-$(FLTK_VERSION)
 PACKAGE=fltk-$(FLTK_VERSION)-source.tar.bz2
-SERVER=http://ovh.dl.sourceforge.net/sourceforge/fltk
+SERVER=http://switch.dl.sourceforge.net/sourceforge/fltk
 INSTALL=install
 
 fltk: $(SRCDIR)/$(INSTALL)

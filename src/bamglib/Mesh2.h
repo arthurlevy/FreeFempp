@@ -1,19 +1,30 @@
-// ********** DO NOT REMOVE THIS BANNER **********
+// -*- Mode : c++ -*-
 //
-// SUMMARY:  Bamg: Bidimensional Anisotrope Mesh Generator
-// RELEASE: 0 
-// USAGE  : You may copy freely these files and use it for    
-//          teaching or research. These or part of these may   
-//          not be sold or used for a commercial purpose with- 
-//          out our consent : fax (33) 1 39 63 55 14       
+// SUMMARY  :      
+// USAGE    :        
+// ORG      : 
+// AUTHOR   : Frederic Hecht
+// E-MAIL   : hecht@ann.jussieu.fr
 //
-// AUTHOR:   F. Hecht,    
-// ORG    :  INRIA
-// E-MAIL :   Frederic.Hecht@Inria.fr   
-//
-// ORIG-DATE:     Dec 97
 
-//#define DRAWING1
+/*
+ 
+ This file is part of Freefem++
+ 
+ Freefem++ is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+ 
+ Freefem++  is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License
+ along with Freefem++; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
 
 #include <stdlib.h>
 #include <math.h>
@@ -107,7 +118,7 @@ Int4 AGoodNumberPrimeWith(Int4 n);
 
 
 class Geometry;
-static Geometry *NULLGeometry=0;
+//static Geometry *NULLGeometry=0;
 class Triangles;
 class Triangle;
 class QuadTree;
@@ -498,29 +509,29 @@ public:
 /////////////////////////////////////////////////////////////////////////////////////
 class SegInterpolation {
  public:
- GeometricalEdge * e;
- Real8 sBegin,sEnd; // abscisse of the seg on edge parameter
- Real8 lBegin,lEnd; // length abscisse  set in ListofIntersectionTriangles::Length
- int last;// last index  in ListofIntersectionTriangles for this Sub seg of edge
- R2 F(Real8 s){ 
-   Real8 c01=lEnd-lBegin, c0=(lEnd-s)/c01, c1=(s-lBegin)/c01;
-   assert(lBegin<= s && s <=lEnd);
-   return e->F(sBegin*c0+sEnd*c1);}
+  GeometricalEdge * e;
+  Real8 sBegin,sEnd; // abscisse of the seg on edge parameter
+  Real8 lBegin,lEnd; // length abscisse  set in ListofIntersectionTriangles::Length
+  int last;// last index  in ListofIntersectionTriangles for this Sub seg of edge
+  R2 F(Real8 s){ 
+    Real8 c01=lEnd-lBegin, c0=(lEnd-s)/c01, c1=(s-lBegin)/c01;
+    assert(lBegin<= s && s <=lEnd);
+    return e->F(sBegin*c0+sEnd*c1);}
 };
-
-  int MaxSize; // 
-  int Size; //
-  Real8 len; //
-  int state;
-  IntersectionTriangles * lIntTria;
-  int MaxNbSeg;
-  int NbSeg;
-  SegInterpolation * lSegsI;
-public:
-  IntersectionTriangles & operator[](int i) {return lIntTria[i];}
-  operator int&() {return Size;}
-  ListofIntersectionTriangles(int n=256,int m=16)
-    :state(-1),MaxSize(n), Size(0), lIntTria(new IntersectionTriangles[n]) ,
+ 
+ int MaxSize; // 
+ int Size; //
+ Real8 len; //
+ int state;
+ IntersectionTriangles * lIntTria;
+ int NbSeg;
+ int MaxNbSeg;
+ SegInterpolation * lSegsI;
+ public:
+ IntersectionTriangles & operator[](int i) {return lIntTria[i];}
+ operator int&() {return Size;}
+ ListofIntersectionTriangles(int n=256,int m=16)
+   :   MaxSize(n), Size(0), len(-1),state(-1),lIntTria(new IntersectionTriangles[n]) ,
     NbSeg(0), MaxNbSeg(m), lSegsI(new SegInterpolation[m])  
   { if (verbosity>9) 
     cout << "      construct ListofIntersectionTriangles"
@@ -601,8 +612,8 @@ public:
 /////////////////////////////////////////////////////////////////////////////////////
 class VertexOnGeom {  public:
 
-  Real8 abscisse;  
   Vertex * mv;
+  Real8 abscisse;  
   union{ 
     GeometricalVertex * gv; // if abscisse <0; 
     GeometricalEdge * ge;  // if abscisse in [0..1]
@@ -983,7 +994,7 @@ public:
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 
-inline Triangles::Triangles(Int4 i) :BTh(*this),Gh(*new Geometry()){PreInit(i);}
+inline Triangles::Triangles(Int4 i) :Gh(*new Geometry()),BTh(*this){PreInit(i);}
 
 extern Triangles * CurrentTh;
 

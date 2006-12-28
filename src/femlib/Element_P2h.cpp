@@ -1,3 +1,30 @@
+// -*- Mode : c++ -*-
+//
+// SUMMARY  :      
+// USAGE    :        
+// ORG      : 
+// AUTHOR   : Frederic Hecht
+// E-MAIL   : hecht@ann.jussieu.fr
+//
+
+/*
+ 
+ This file is part of Freefem++
+ 
+ Freefem++ is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+ 
+ Freefem++  is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License
+ along with Freefem++; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
 #include "error.hpp"
 #include "rgraph.hpp"
 using namespace std;  
@@ -30,7 +57,7 @@ namespace  Fem2D {
 {
   R2 A(K[0]), B(K[1]),C(K[2]);
   R l0=1-P.x-P.y,l1=P.x,l2=P.y; 
-  R l4_0=(4*l0-1),l4_1=(4*l1-1),l4_2=(4*l2-1); 
+  //  R l4_0=(4*l0-1),l4_1=(4*l1-1),l4_2=(4*l2-1); 
   
   throwassert( val.N()>=3);
   throwassert(val.M()==1);

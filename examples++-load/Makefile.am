@@ -1,4 +1,4 @@
-# $Id: Makefile.am,v 1.25 2006-09-19 09:47:20 hecht Exp $
+# $Id: Makefile.am,v 1.28 2006/11/30 13:48:47 hecht Exp $
 
 all-local: @LOAD_COMPILE@
 TESTS=@LOAD_TESTS@
@@ -12,19 +12,22 @@ EXTRA_DIST=load.link dfft.link  include.tar.gz \
  mat_dervieux.cpp convect_dervieux.edp funcTemplate.cpp AFunction_ext.hpp funcTemplate.edp \
  NSP2BRP0.edp bilapMorley.edp convect_dervieux.edp convectchacon.edp \
  dfft.edp  funcTemplate.edp load.edp testFE.edp testFEMorley.edp \
-  regtests.edp    regtests.m4  makeref.edp ref.edp
+  regtests.edp    regtests.m4  makeref.edp ref.edp myType.edp addNewType.cpp
 
 LIST_COMPILE=myfunction.$(DYLIB_SUFFIX)  BernadiRaugel.$(DYLIB_SUFFIX) \
-         Morley.$(DYLIB_SUFFIX) funcTemplate.$(DYLIB_SUFFIX)
+         Morley.$(DYLIB_SUFFIX) funcTemplate.$(DYLIB_SUFFIX) addNewType.$(DYLIB_SUFFIX)
 
 load_compile:include  $(LIST_COMPILE)
 
-.cpp.$(DYLIB_SUFFIX): include
-	./load.link $< 
+.cpp.$(DYLIB_SUFFIX): 
+	./load.link $<
 
 include: include.tar.gz
+	rm -rf include 
 	tar zxvf include.tar.gz
+	-chmod a+rw include/._*
 	-rm include/._*
+
 Ref: makeref.edp
 	../src/nw/FreeFem++-nw makeref.edp
 
@@ -35,5 +38,8 @@ makeref.edp: regtests.m4 ../regtests.m4
 regtests.edp: regtests.m4 ../regtests.m4
 	m4 -DASSERT regtests.m4 > regtests.edp
 
+$(LIST_COMPILE):include Makefile
+
 clean-local:
-	-rm myfunction.o myfunction.so myfunction.dll
+	-rm *.o  $(LIST_COMPILE)  regtests.edp makeref.edp
+	-rm -rf include
