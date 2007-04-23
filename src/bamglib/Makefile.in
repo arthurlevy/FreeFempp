@@ -16,7 +16,7 @@
 
 # Makefile using Automake + Autoconf
 # ----------------------------------
-# $Id: Makefile.in,v 1.146 2006-09-19 19:36:43 hecht Exp $
+# $Id: Makefile.in,v 1.175 2007/04/20 15:18:59 hecht Exp $
 
 # This is not compiled as a separate library because its
 # interconnections with other libraries have not been solved.
@@ -126,6 +126,7 @@ STD_GRAPH_OBJ = @STD_GRAPH_OBJ@
 STD_LDFLAGS = @STD_LDFLAGS@
 STD_LIBS = @STD_LIBS@
 STRIP = @STRIP@
+TESTIDEPROG = @TESTIDEPROG@
 UMFPACKLIB = @UMFPACKLIB@
 VERSION = @VERSION@
 WGET = @WGET@

@@ -1,6 +1,6 @@
 #!/bin/sh
 # Testing procedure for MPI version of FreeFem++
-# $Id: regtests.sh,v 1.3 2004-07-01 12:26:01 lehyaric Exp $
+# $Id: regtests.sh,v 1.3 2004/07/01 12:26:01 lehyaric Exp $
 
 NPROCS=2 REGEDP=essai.edp ../regtests.sh
 if test $? != 0

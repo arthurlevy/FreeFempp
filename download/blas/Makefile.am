@@ -1,7 +1,7 @@
 # Downloading and compiling extra libraries
 # -----------------------------------------
 
-# $Id: Makefile.am,v 1.20 2006-05-18 11:51:16 hecht Exp $
+# $Id: Makefile.am,v 1.21 2007/04/02 09:36:29 hecht Exp $
 
 ATLASSRCLIB=ATLAS/lib/ff++/libatlas.a ATLAS/lib/ff++/libcblas.a	\
 	ATLAS/lib/ff++/libf77blas.a
@@ -166,8 +166,11 @@ libcblas_a_CFLAGS=-DADD_
 BLAS:BLAS/fait
 
 BLAS/fait:blas.tgz
-	mkdir -p BLAS
-	cd BLAS && tar xvzf ../blas.tgz
+	-if tar xvzf blas.tgz BLAS/xerbla.f 2>&1 1>/dev/null ; then \
+	tar xvzf blas.tgz ; \
+	else \
+	mkdir -p BLAS;cd BLAS && tar xvzf ../blas.tgz;\
+	fi
 	cp BLAS/xerbla.f blas_xerbla.f
 	touch BLAS/fait
 $(F77BLAS_SOURCES): BLAS

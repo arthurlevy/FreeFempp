@@ -1,7 +1,7 @@
 # Downloading and compiling extra libraries
 # -----------------------------------------
 
-# $Id: Makefile.am,v 1.11 2006-09-29 20:30:14 hecht Exp $
+# $Id: Makefile.am,v 1.16 2007/04/18 10:01:44 hecht Exp $
 
 all-local: $(DOWNLOAD_FLTK)
 
@@ -12,21 +12,33 @@ all-local: $(DOWNLOAD_FLTK)
 SRCDIR=fltk-$(FLTK_VERSION)
 PACKAGE=fltk-$(FLTK_VERSION)-source.tar.bz2
 SERVER=http://switch.dl.sourceforge.net/sourceforge/fltk
-INSTALL=install
+INSTALL=../..
 
-fltk: $(SRCDIR)/$(INSTALL)
+fltk: $(SRCDIR)/FF
 
 # Using system JPEG and PNG lib is a problem under Cygwin
-$(SRCDIR)/$(INSTALL): $(SRCDIR)
+$(SRCDIR)/FFF: $(SRCDIR)
 	cd $(SRCDIR) && ./configure --enable-threads --enable-localjpeg	\
 		--enable-localpng $(FLTK_CONFIG_PARAM) --disable-gl	\
 		@FLTK_XONLY@ --prefix=`pwd`/$(INSTALL) CXX=$(CXX) CC=$(CC)
+	touch $(SRCDIR)/FFF
+	cd $(SRCDIR); \
+	if grep '#define'  config.h|egrep -q "U32|U64" ; then  \
+	 echo " fltk conf OK ??? FH ";  \
+	else \
+	 echo " fltk configure  bug (on windows) ????  add #define U32 unsigned long (bofbof) " ;\
+	 echo "#define U32 unsigned long" >> config.h ; \
+	 echo "stop the make process ; just redo make to continue " ; \
+	 exit 1; \
+	 fi
+
+$(SRCDIR)/FF: $(SRCDIR)/FFF
 	cd $(SRCDIR) && make
 	cd $(SRCDIR) && make install
-
+	touch FF
 $(SRCDIR): $(PACKAGE)
 	tar xvjf $(PACKAGE)
-
+	touch $(SRCDIR)
 $(PACKAGE):
 	@WGET@ -N $(SERVER)/$(PACKAGE)
 

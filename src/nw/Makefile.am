@@ -1,6 +1,6 @@
 # Makefile using Automake + Autoconf
 # ----------------------------------
-# $Id: Makefile.am,v 1.4 2004-11-22 13:11:11 lehyaric Exp $
+# $Id: Makefile.am,v 1.4 2004/11/22 13:11:11 lehyaric Exp $
 
 # To create statically linked executables (see configure.ac)
 CXXLD=$(STATICTOOL) $(CXX)

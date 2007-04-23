@@ -1,0 +1,5 @@
+mesh Th=square(2,2);
+fespace Mh(Th,P0);
+varf a(u,v)=int2d(Th)(u*v);
+matrix A=a(Mh,Mh);
+cout << A << endl;

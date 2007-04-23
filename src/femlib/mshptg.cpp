@@ -622,7 +622,16 @@ mshgpt_ (long *c, double *cr, long *nu, double *h, long *reft, long *nbs,
   pui = puis;
   *nbt = (*nbs << 1) - 2;
   if (*nbs >= nbsmx)
-     {
+     { /*  ADD FH  avril 2007 */
+      i_1 = *nbt;
+      for (t = 1; t <= i_1; ++t)
+        if (nu[t * 6 + 6] != 0)
+        { 
+	  mshopt_ (&c[3], &nu[7], &t, 4L, err);
+	  mshopt_ (&c[3], &nu[7], &t, 5L, err);
+	  mshopt_ (&c[3], &nu[7], &t, 6L, err);
+        }	
+	/* FIN  ADD FH  vril 2007 */    
        return 0;
      }
   tete = 0;
@@ -1482,6 +1491,7 @@ L10:
        nu[i22 + 3 + t2 * 6] = i12 + 3 + (t1 << 3);
        if (i + 4 > 1024)
 	  {
+	   //  goto L10; 
 	    *err = 21;
 	    return 0;
 	  }
@@ -1889,6 +1899,7 @@ L136:
 			 }
 		      else
 			 {
+			    cout << " Err sous domaine " << isd << "ref par  d'arete +/-  = " << a  << " n'est dans aucun triangle " << endl;
 			   *err = 11;
 			 }
 		      jsd = isd + isd;
@@ -1904,6 +1915,7 @@ L136:
      {
        if (w[isd + isd - 1] == 0)
 	  {
+	   cout << " Err sous domaine " << isd << "ref par  d'arete +/-  = " << sd[(isd << 1) + 1]  << " n'est dans aucun triangle " << endl;
 	    *err = 11;
 	  }
        else
@@ -1947,6 +1959,9 @@ L200:
 	  }
        else
 	  {
+	    ta = w[i-1] ; 
+	    if( nu[ta * 6 + 1]>=0)    nu[ta * 6 + 1]= -nu[ta * 6 + 1]; // pour etre sur que le traingle est bien marque 
+
 	    i += -2;
 	  }
        goto L200;

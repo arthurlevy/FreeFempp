@@ -14,7 +14,7 @@
 
 @SET_MAKE@
 
-# $Id: Makefile.in,v 1.92 2006-09-19 19:36:42 hecht Exp $
+# $Id: Makefile.in,v 1.121 2007/04/20 15:18:58 hecht Exp $
 SHELL = @SHELL@
 
 srcdir = @srcdir@
@@ -121,6 +121,7 @@ STD_GRAPH_OBJ = @STD_GRAPH_OBJ@
 STD_LDFLAGS = @STD_LDFLAGS@
 STD_LIBS = @STD_LIBS@
 STRIP = @STRIP@
+TESTIDEPROG = @TESTIDEPROG@
 UMFPACKLIB = @UMFPACKLIB@
 VERSION = @VERSION@
 WGET = @WGET@

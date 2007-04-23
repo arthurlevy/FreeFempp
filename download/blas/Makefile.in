@@ -17,7 +17,7 @@
 # Downloading and compiling extra libraries
 # -----------------------------------------
 
-# $Id: Makefile.in,v 1.146 2006-09-19 19:36:42 hecht Exp $
+# $Id: Makefile.in,v 1.175 2007/04/20 15:18:58 hecht Exp $
 SHELL = @SHELL@
 
 srcdir = @srcdir@
@@ -124,6 +124,7 @@ STD_GRAPH_OBJ = @STD_GRAPH_OBJ@
 STD_LDFLAGS = @STD_LDFLAGS@
 STD_LIBS = @STD_LIBS@
 STRIP = @STRIP@
+TESTIDEPROG = @TESTIDEPROG@
 UMFPACKLIB = @UMFPACKLIB@
 VERSION = @VERSION@
 WGET = @WGET@
@@ -4085,8 +4086,11 @@ clean-local::
 BLAS:BLAS/fait
 
 BLAS/fait:blas.tgz
-	mkdir -p BLAS
-	cd BLAS && tar xvzf ../blas.tgz
+	-if tar xvzf blas.tgz BLAS/xerbla.f 2>&1 1>/dev/null ; then \
+	tar xvzf blas.tgz ; \
+	else \
+	mkdir -p BLAS;cd BLAS && tar xvzf ../blas.tgz;\
+	fi
 	cp BLAS/xerbla.f blas_xerbla.f
 	touch BLAS/fait
 $(F77BLAS_SOURCES): BLAS

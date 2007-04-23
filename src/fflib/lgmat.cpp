@@ -87,6 +87,19 @@ list<triplet<R,MatriceCreuse<R> *, bool > > * to(Matrice_Creuse_Transpose<R>  M)
   return  l;
 }
 
+template<class R>
+AnyType M2L3 (Stack , const AnyType & pp)
+{
+    return to(GetAny<Matrice_Creuse<R> *>(pp));
+}
+
+
+template<class R>
+AnyType tM2L3 (Stack , const AnyType & pp)
+{
+    return to(GetAny<Matrice_Creuse_Transpose<R> >(pp));
+}
+
 
 template<class R> 
 struct Op2_ListCM: public binary_function<R,Matrice_Creuse<R> *,list<triplet<R,MatriceCreuse<R> *,bool> > *> 
@@ -119,7 +132,60 @@ struct Op2_ListMC: public binary_function<Matrice_Creuse<R> *,R,list<triplet<R,M
     r ->push_back(make_triplet<R,MatriceCreuse<R> *>(a,b->A,false));
     return r;}
 };
+//  ADD FH 16/02/2007
 
+template<class R> 
+struct Op2_ListCMt: public binary_function<R,Matrice_Creuse_Transpose<R> ,list<triplet<R,MatriceCreuse<R> *,bool> > *> 
+{ 
+    typedef triplet<R,MatriceCreuse<R> *,bool>  P;
+    typedef list<P> L;
+    typedef L * RR;
+    typedef R  AA;
+    typedef Matrice_Creuse_Transpose<R>  BB;
+    
+    static  RR f(const   AA & a,const   BB & b)  
+    {
+	RR r=  new list<P> ;
+	r ->push_back(make_triplet<R,MatriceCreuse<R> *>(a,b.A->A,true));
+	return r;}
+};
+
+template<class R> 
+struct Op2_ListMtC: public binary_function<Matrice_Creuse_Transpose<R> ,R,list<triplet<R,MatriceCreuse<R> *,bool> > *> 
+{ 
+    typedef triplet<R,MatriceCreuse<R> *,bool>  P;
+    typedef list<P> L;
+    typedef L * RR;
+    typedef R  AA;
+    typedef Matrice_Creuse_Transpose<R> BB;
+    
+    static  RR f(const   BB & b,const   AA & a)  
+    {
+	RR r=  new list<P> ;
+	r ->push_back(make_triplet<R,MatriceCreuse<R> *>(a,b.A->A,true));
+	return r;}
+};
+// FIN ADD 16/02/2007
+
+
+
+template<class R> 
+struct Op1_LCMd: public unary_function<list<triplet<R,MatriceCreuse<R> *,bool> > *,
+list<triplet<R,MatriceCreuse<R> *,bool> > *  >
+{  //  - ...
+    typedef triplet<R,MatriceCreuse<R> *,bool>  P;
+    typedef list<P> L;
+    typedef L * RR;
+    
+    static   RR f(const RR & l)  
+    { 
+	typedef typename list<triplet<R,MatriceCreuse<R> *,bool> >::iterator lci;
+	for (lci i= l->begin();i !=l->end();++i)
+	    i->first *= R(-1);
+	return l;
+    }    
+    
+};
 
 template<class R> 
 struct Op2_ListCMCMadd: public binary_function<list<triplet<R,MatriceCreuse<R> *,bool> > *,
@@ -133,6 +199,7 @@ struct Op2_ListCMCMadd: public binary_function<list<triplet<R,MatriceCreuse<R> *
   static   RR f(const RR & a,const RR & b)  
   { 
     a->insert(a->end(),b->begin(),b->end());
+      
     delete b;
     return a;
   }    
@@ -260,7 +327,7 @@ template<class R>
        Expression a; 
        
        static  aType btype;
-       static const int n_name_param =11;
+       static const int n_name_param =12; //  add nbiter FH 30/01/2007 11 -> 12 
        static basicAC_F0::name_and_type name_param[] ;
        Expression nargs[n_name_param];
        const OneOperator * precon;
@@ -311,7 +378,9 @@ basicAC_F0::name_and_type  SetMatrix_Op<R>::name_param[]= {
    {  "factorize",&typeid(bool)},
    {  "strategy",&typeid(long )},
    {  "tolpivot",&typeid(double )},
-   {  "tolpivotsym",&typeid(double )}
+   {  "tolpivotsym",&typeid(double )},
+   {  "nbiter", &typeid(long)} // 11
+
 
 };
 
@@ -331,7 +400,6 @@ AnyType SetMatrix_Op<R>::operator()(Stack stack)  const
   bool factorize=false;
   double tol_pivot=-1;
   double tol_pivot_sym=-1;
-  
 // type de matrice par default
 #ifdef HAVE_LIBUMFPACK         
      TypeSolveMat tmat(TypeSolveMat::UMFpack); 
@@ -353,6 +421,7 @@ AnyType SetMatrix_Op<R>::operator()(Stack stack)  const
   if (nargs[8]) umfpackstrategy = GetAny<long>((*nargs[8])(stack)); 
   if (nargs[9]) tol_pivot = GetAny<double>((*nargs[9])(stack)); 
   if (nargs[10]) tol_pivot_sym = GetAny<double>((*nargs[10])(stack)); 
+  if (nargs[11]) itmax = GetAny<long>((*nargs[11])(stack)); //  frev 2007 OK
    
    if(A->typemat.profile != typemat->profile) 
    {
@@ -781,6 +850,26 @@ AnyType CombMat(Stack stack,Expression emat,Expression combMat)
 
 
 template<class R>
+AnyType MatriceCreuse2map(Stack , const AnyType & mat)
+{
+
+  using namespace Fem2D;
+
+  Matrice_Creuse<R> * sparce_mat =GetAny<Matrice_Creuse<R>* >(mat);
+  ffassert(sparce_mat);
+  int n=sparce_mat->N(),m=sparce_mat->M();
+  map<pair<int,int>,R> *M=new map<pair<int,int>,R>;
+  if (n >0 && m>0 && sparce_mat->A) 
+    {
+      sparce_mat->A->addMatTo(R(1.),*M);
+      // hack 
+      (*M)[make_pair(n-1,m-1)]+=R();
+    }
+  return M;
+}
+
+
+template<class R>
 AnyType DiagMat(Stack stack,Expression emat,Expression edia)
 {
   using namespace Fem2D;
@@ -1081,115 +1170,8 @@ KN<R> * get_mat_coef(KN<R> * x,TheCoefMat<R> dm)
    Expression emat; 
    Expression ** e_Mij;
    int ** t_Mij;
-   BlockMatrix(const basicAC_F0 & args) 
-    {   
-      N=0;
-      M=0;
-      args.SetNameParam();
-      emat = args[0];
-      const E_Array & eMij= *dynamic_cast<const E_Array*>((Expression) args[1]);
-      N=eMij.size();
-      int err =0;
-      for (int i=0;i<N;i++)
-       {
-        const E_Array* emi= dynamic_cast<const E_Array*>((Expression)  eMij[i]);
-        if (!emi) err++;
-        else
-        { 
-        if ( i==0) 
-         M = emi->size();
-        else
-         if(M != emi->size()) err++;
-        }
-        }
-        if (err) {
-          CompileError(" Block matric : [[ a, b, c], [ a, b,c ]]");
-        }
-       assert(N && M);
-       e_Mij = new Expression * [N];
-       t_Mij = new int * [N];
-       for (int i=0;i<N;i++)
-        {
-         const E_Array li= *dynamic_cast<const E_Array*>((Expression)  eMij[i]);
-         
-          e_Mij[i] =  new Expression [M];
-          t_Mij[i] = new int [M]; 
-           for (int j=0; j<M;j++)  
-            {
-              C_F0 c_Mij(li[j]);
-              Expression eij=c_Mij.LeftValue();
-              aType rij = c_Mij.left();
-              if ( rij == atype<long>() &&  eij->EvaluableWithOutStack() )
-               {
-                  long contm = GetAny<long>((*eij)(0));
-                  if(contm !=0) 
-                  CompileError(" Block matrix , Just 0 matrix");
-                  e_Mij[i][j]=0;
-                  t_Mij[i][j]=0;
-               }
-              else if ( rij ==  atype<Matrice_Creuse<R> *>()) 
-               {
-                  e_Mij[i][j]=eij;
-                  t_Mij[i][j]=1;
-               } 
-              else if ( rij ==  atype<Matrice_Creuse_Transpose<R> >()) 
-               {
-                  e_Mij[i][j]=eij;
-                  t_Mij[i][j]=2;
-               } 
-              else if ( atype<KN_<R> >()->CastingFrom(rij) )
-              {  
-                  e_Mij[i][j]=to<KN_<R> >(c_Mij);
-                  t_Mij[i][j]=3;
-              
-              } 
-              else if ( atype<Transpose<KN_<R> > >()->CastingFrom(rij) )
-              {  
-              
-                  e_Mij[i][j]=to<Transpose<KN_<R> > >(c_Mij);
-                  t_Mij[i][j]=4;
-              } 
-              else if ( atype<KNM<R> *  >()->CastingFrom(rij) )
-              {  
-              
-                  e_Mij[i][j]=to<KNM<R> * >(c_Mij);
-                  t_Mij[i][j]=5;
-              }
-              else if ( atype<Transpose< KNM<R> * > >()->CastingFrom(rij) )
-              {  
-              
-                  e_Mij[i][j]=to<Transpose<KNM<R> *> >(c_Mij);
-                  t_Mij[i][j]=6;
-              }
-              else {  
-                  
-                  CompileError(" Block matrix ,  bad type in block matrix");
-              }
- /*            else if   ( atype<map< pair<int,int>, R> * >()->CastingFrom(rij) ) 
-               {
-                  e_Mij[i][j]= to<map< pair<int,int>, R> *>(C_F0(eij,rij)).LeftValue();
-                  t_Mij[i][j]=10;
-               }*/
-           }
-           
-          }
-        }
-        
-    ~BlockMatrix() 
-     {  
-       if (e_Mij)
-         {  cout << " del Block matrix "<< this << " " << e_Mij <<" N = " << N << " M = " << M << endl;
-          for (int i=0;i<N;i++)
-            { delete [] e_Mij[i];
-              delete [] t_Mij[i];
-            }
-          delete [] e_Mij;
-          delete [] t_Mij;
-          N=0;
-          M=0;
-          e_Mij=0;
-          t_Mij=0; }
-     }     
+   BlockMatrix(const basicAC_F0 & args) ;
+   ~BlockMatrix() ;
       
     static ArrayOfaType  typeargs() { return  ArrayOfaType(atype<Matrice_Creuse<R>*>(),atype<E_Array>());}
     static  E_F0 * f(const basicAC_F0 & args){ return new BlockMatrix(args);} 
@@ -1242,7 +1224,7 @@ map< pair<int,int>, R> *Matrixfull2mapIJ (KNM<R>   * const & pa,const KN_<long> 
   // cout << "  ### n m " << n << " " << m << endl; 
    map< pair<int,int>, R> *pA= new map< pair<int,int>, R>;
    map< pair<int,int>, R> & A(*pA);
-   A[make_pair(n-1,m-1)] = R(); // Hack to be sure that the last term existe 
+   A[make_pair(n-1,m-1)] += R(); // Hack to be sure that the last term existe 
   
    for (long il=0;il<N;++il)
     for (long jl=0;jl<M;++jl)
@@ -1288,6 +1270,7 @@ AnyType Matrixfull2map (Stack , const AnyType & pp)
 }
 
 
+
 template<class R>
 map< pair<int,int>, R> *Matrixoutp2mapIJ_inv (outProduct_KN_<R>   * const & pop,const Inv_KN_long & iii,const Inv_KN_long & jjj)
 {
@@ -1320,6 +1303,96 @@ map< pair<int,int>, R> *Matrixoutp2mapIJ_inv (outProduct_KN_<R>   * const & pop,
   delete pop;
     
   return pA;
+}
+
+
+template<class R>
+map< pair<int,int>, R> *Matrixmapp2mapIJ1 (map< pair<int,int>, R> *const &  B,const Inv_KN_long & iii,const Inv_KN_long  & jjj)
+{
+    const KN_<long> &ii(iii), &jj(jjj);  
+    typedef typename map< pair<int,int>, R>::const_iterator It;
+    
+    map< pair<int,int>, R> *pA= new map< pair<int,int>, R>;
+    map< pair<int,int>, R> & A(*pA);
+    int n=0,m=0;
+    // hack:  the last element must exist in the map  to set matrix size 
+/*    
+    It lastb= --B->end(); // le last element
+    
+    if( lastb != B->end() )	
+    { 
+	nb = last->first.first+1; 
+	mb=last->first.second+1;
+    } */
+    int N=ii.N(),M=jj.N();
+   // A[make_pair(n-1,m-1)] = R(); // Hack to be sure that the last term existe 
+    
+    for (It k=B->begin();k!=B->end();++k)
+    {
+	int il =  k->first.first;
+	int jl =  k->first.second;
+	if ( !( 0 <= il && il < N && 0 <= jl && jl < M )  )
+	{
+	    cerr << " Out of Bound  in (Map)(I,J) : " << il << " " << jl << " not in " << "[0,"<<N<<"[x[0," << M << "[ \n";
+	    ExecError("Out of Bound Error");
+	}
+	int i=ii(il);
+	int j=jj(jl);
+	n=max(i,n);
+	m=max(j,m);
+	R aij =k->second;
+	if(i >=0 && j>=0) 
+	  A[make_pair(i,j)] += aij;
+    }
+     A[make_pair(n,m)] += R(); // Hack to be sure that the last term existe 
+     delete B;
+    
+    return pA;
+}
+
+template<class R>
+map< pair<int,int>, R> *Matrixmapp2mapIJ (map< pair<int,int>, R> *const &  B,const KN_<long> & ii,const KN_<long>  & jj)
+{
+    
+    typedef typename map< pair<int,int>, R>::const_iterator It;
+    typedef typename multimap< int,int>::iterator  MI;
+    
+    map< pair<int,int>, R> *pA= new map< pair<int,int>, R>;
+    map< pair<int,int>, R> & A(*pA);
+    multimap< int,int > I,J;
+    int N=ii.N(),M=jj.N();
+    for (int i=0;i<N;++i)
+	if(ii[i]>=0)
+	  I.insert(make_pair(ii[i],i));
+    for (int j=0;j<M;++j)
+	if(jj[j]>=0)
+	    J.insert(make_pair(jj[j],j));
+    int n=0,m=0;
+
+    for (It k=B->begin();k!=B->end();++k)
+    {
+	int il =  k->first.first;
+	int jl =  k->first.second;
+	R aij =k->second;
+	pair<MI,MI> PPi=I.equal_range(il);
+	pair<MI,MI> PPj=J.equal_range(jl);
+	for(MI pi=PPi.first ; pi !=  PPi.second; ++pi)
+	{
+	    int i=pi->second;
+	    for(MI pj=PPj.first ; pj !=  PPj.second; ++pj)
+	    { 
+		int j=pj->second;
+		n=max(i,n);
+	        m=max(j,m);	
+	       if(i >=0 && j>=0) 
+	         A[make_pair(i,j)] += aij;
+	    }
+	}   
+    }
+    A[make_pair(n,m)] =+ R(); // Hack to be sure that the last term existe 
+    delete B;
+    
+    return pA;
 }
 
 template<class R>
@@ -1379,12 +1452,143 @@ AnyType Matrixoutp2map (Stack , const AnyType & pp)
 }
 
 
+template<typename R>  BlockMatrix<R>::~BlockMatrix() 
+{  
+    if (e_Mij)
+    {  cout << " del Block matrix "<< this << " " << e_Mij <<" N = " << N << " M = " << M << endl;
+	for (int i=0;i<N;i++)
+	{ delete [] e_Mij[i];
+	    delete [] t_Mij[i];
+	}
+	delete [] e_Mij;
+	delete [] t_Mij;
+	N=0;
+	M=0;
+	e_Mij=0;
+	t_Mij=0; }
+}     
+
+template<typename R>  BlockMatrix<R>::BlockMatrix(const basicAC_F0 & args) 
+{   
+    N=0;
+    M=0;
+    args.SetNameParam();
+    emat = args[0];
+    const E_Array & eMij= *dynamic_cast<const E_Array*>((Expression) args[1]);
+    N=eMij.size();
+    int err =0;
+    for (int i=0;i<N;i++)
+    {
+        const E_Array* emi= dynamic_cast<const E_Array*>((Expression)  eMij[i]);
+        if (!emi) err++;
+        else
+        { 
+	    if ( i==0) 
+		M = emi->size();
+	    else
+		if(M != emi->size()) err++;
+        }
+    }
+    if (err) {
+	CompileError(" Block matric : [[ a, b, c], [ a, b,c ]]");
+    }
+    assert(N && M);
+    e_Mij = new Expression * [N];
+    t_Mij = new int * [N];
+    for (int i=0;i<N;i++)
+    {
+	const E_Array li= *dynamic_cast<const E_Array*>((Expression)  eMij[i]);
+	
+	e_Mij[i] =  new Expression [M];
+	t_Mij[i] = new int [M]; 
+	for (int j=0; j<M;j++)  
+	{
+	    C_F0 c_Mij(li[j]);
+	    Expression eij=c_Mij.LeftValue();
+	    aType rij = c_Mij.left();
+	    if ( rij == atype<long>() &&  eij->EvaluableWithOutStack() )
+	    {
+		long contm = GetAny<long>((*eij)(0));
+		/*  prev  version
+		if(contm !=0) 
+		CompileError(" Block matrix , Just 0 matrix");
+		e_Mij[i][j]=0;
+		t_Mij[i][j]=0;*/
+		if(contm==0)
+		{
+		    e_Mij[i][j]=0;
+		    t_Mij[i][j]=0;
+		}
+		else if ( atype<R >()->CastingFrom(rij) )
+		{  		  // frev 2007 
+		    e_Mij[i][j]=to<R>(c_Mij);
+		    t_Mij[i][j]=7; //  just un scalaire 
+		}
+		else CompileError(" Block matrix , Just 0 matrix");
+	    }
+	    else if ( rij ==  atype<Matrice_Creuse<R> *>()) 
+	    {
+		e_Mij[i][j]=eij;
+		t_Mij[i][j]=1;
+	    } 
+	    else if ( rij ==  atype<Matrice_Creuse_Transpose<R> >()) 
+	    {
+		e_Mij[i][j]=eij;
+		t_Mij[i][j]=2;
+	    } 
+	    else if ( atype<KN_<R> >()->CastingFrom(rij) )
+	    {  
+		e_Mij[i][j]=to<KN_<R> >(c_Mij);
+		t_Mij[i][j]=3;
+		
+	    } 
+	    else if ( atype<Transpose<KN_<R> > >()->CastingFrom(rij) )
+	    {  
+		
+		e_Mij[i][j]=to<Transpose<KN_<R> > >(c_Mij);
+		t_Mij[i][j]=4;
+	    } 
+	    else if ( atype<KNM<R> *  >()->CastingFrom(rij) )
+	    {  
+		
+		e_Mij[i][j]=to<KNM<R> * >(c_Mij);
+		t_Mij[i][j]=5;
+	    }
+	    else if ( atype<Transpose< KNM<R> * > >()->CastingFrom(rij) )
+	    {  
+		
+		e_Mij[i][j]=to<Transpose<KNM<R> *> >(c_Mij);
+		t_Mij[i][j]=6;
+	    }
+	    else if ( atype<R >()->CastingFrom(rij) )
+	    {  		  // frev 2007 
+		e_Mij[i][j]=to<R>(c_Mij);
+		t_Mij[i][j]=7; //  just un scalaire 
+	    }
+	    
+	    else {  
+		
+		CompileError(" Block matrix ,  bad type in block matrix");
+	    }
+	    /*            else if   ( atype<map< pair<int,int>, R> * >()->CastingFrom(rij) ) 
+	    {
+		e_Mij[i][j]= to<map< pair<int,int>, R> *>(C_F0(eij,rij)).LeftValue();
+		t_Mij[i][j]=10;
+	    }*/
+	}
+	
+    }
+}
+
+
 template<typename R>  AnyType BlockMatrix<R>::operator()(Stack s) const
 {
   typedef list<triplet<R,MatriceCreuse<R> *,bool> > * L;
    KNM<L> Bij(N,M);
    KNM<KNM_<R> * > Fij(N,M); 
    KNM<bool> cnjij(N,M); 
+   KNM<R> Rij(N,M); //  to sto
+  
    cnjij = false; 
    KN<long> Oi(N+1), Oj(M+1);
    if(verbosity>3) { cout << " Build Block Matrix : " << N << " x " << M << endl;}
@@ -1407,6 +1611,7 @@ template<typename R>  AnyType BlockMatrix<R>::operator()(Stack s) const
         else if (tij==4)  { KN_<R> x=GetAny< Transpose< KN_<R> >   >( e).t ;  Fij(i,j) = new KNM_<R>(x,1,x.N());}
         else if (tij==5)  { KNM<R> * m= GetAny< KNM<R>*  >( e);  Fij(i,j) = new KNM_<R>(*m);}
         else if (tij==6)  { KNM<R> * m= GetAny< Transpose< KNM<R>* >  >( e).t;  Fij(i,j) = new KNM_<R>(m->t()); }
+	else if (tij==7)   { Rij(i,j)=GetAny< R  >( e);  Fij(i,j) = new KNM_<R>(&(Rij(i,j)),1,1);}
         
    //     else if  (tij==3) {}
         else {
@@ -1456,7 +1661,7 @@ template<typename R>  AnyType BlockMatrix<R>::operator()(Stack s) const
 
     for (int i=0;i<N;++i)
       Oi(i+1) += Oi(i);
-    for (int j=0;j<N;++j)
+    for (int j=0;j<M;++j) // correct 10/01/2007 FH 
       Oj(j+1) += Oi(j);
   long n=Oi(N),m=Oj(M);
   if(verbosity>3)
@@ -1506,8 +1711,42 @@ template<typename R>  AnyType BlockMatrix<R>::operator()(Stack s) const
 
 }
 
+template<class R>
+class minusMat { public:
+    list<triplet<R,MatriceCreuse<R> *,bool> >  *l;
+    minusMat(list<triplet<R,MatriceCreuse<R> *,bool> > *ll):
+	l(new list<triplet<R,MatriceCreuse<R> *,bool> >(*ll) )
+      {
+	    typedef typename list<triplet<R,MatriceCreuse<R> *,bool> >::iterator lci;
+	    for (lci i= l->begin();i !=l->end();++i)
+		i->first*= R(-1);
+      }
+};
 
-
+template<class R>
+AnyType mM2L3 (Stack , const AnyType & pp)
+{
+    minusMat<R> mpp(to(GetAny<Matrice_Creuse<R> *>(pp)));
+    return SetAny<minusMat<R> >(mpp);
+}
+/* template<class R>
+AnyType mmM2L3 (Stack , const AnyType & pp)
+{
+    minusMat<R> &  p(GetAny<minusMat<R> >(pp));
+    minusMat<R> mpp(p.l);
+    delete  p.l;
+    return mpp.l;
+}
+/*
+template<class R>
+AnyType mmM2L3c (Stack , const AnyType & pp)
+{
+    list<triplet<R,MatriceCreuse<R> *,bool> >  *  p(GetAny<minusMat<R> >(pp))
+    minusMat<R> mpp(p.l);
+    delete  p.l;
+    return mpp.l;
+}
+*/
 template <class R>
 void AddSparceMat()
 {
@@ -1516,7 +1755,15 @@ void AddSparceMat()
  Dcl_Type<TheDiagMat<R> >();
  Dcl_Type<TheCoefMat<R> >(); // Add FH oct 2005
  Dcl_Type< map< pair<int,int>, R> * >(); // Add FH mars 2005 
-
+ Dcl_Type<  minusMat<R>  >(); // Add FJH mars 2007
+ 
+ basicForEachType * t_MC=atype<  Matrice_Creuse<R>* >();
+ basicForEachType * t_MCt=atype<  Matrice_Creuse_Transpose<R> >();
+ basicForEachType * t_lM=atype< list<triplet<R,MatriceCreuse<R> *,bool> > * >();
+ basicForEachType * t_nM=atype<  minusMat<R> >();
+ 
+ basicForEachType * t_MM=atype<map< pair<int,int>, R> * >();
+ 
 TheOperators->Add("*", 
         new OneBinaryOperator<Op2_mulvirtAv<typename VirtualMatrice<R>::plusAx,Matrice_Creuse<R>*,KN_<R> > >,
         new OneBinaryOperator<Op2_mulvirtAv<typename VirtualMatrice<R>::plusAtx,Matrice_Creuse_Transpose<R>,KN_<R> > >,
@@ -1563,16 +1810,23 @@ TheOperators->Add("*",
         new OneBinaryOperator<Op2_pair<Matrix_Prod<R,R>,Matrice_Creuse_Transpose<R>,Matrice_Creuse_Transpose<R> > >,
         new OneBinaryOperator<Op2_pair<Matrix_Prod<R,R>,Matrice_Creuse<R>*,Matrice_Creuse_Transpose<R> > > ,
         new OneBinaryOperator<Op2_ListCM<R> >  , 
-        new OneBinaryOperator<Op2_ListMC<R> >   
+        new OneBinaryOperator<Op2_ListMC<R> >  ,
+	new OneBinaryOperator<Op2_ListCMt<R> >  , 
+        new OneBinaryOperator<Op2_ListMtC<R> >  
+		  
         );
 TheOperators->Add("+", 
         new OneBinaryOperator<Op2_ListCMCMadd<R> >,
         new OneBinaryOperator<Op2_ListCMMadd<R> >,
         new OneBinaryOperator<Op2_ListMCMadd<R> >,
+//	new OneBinaryOperator<Op2_ListCMCMadd<R> >(t_MCt,t_lM),
+//	new OneBinaryOperator<Op2_ListCMCMadd<R> >(t_MC,t_lM),
         new OneBinaryOperator<Op2_ListMMadd<R> >
        
        ); 
-        
+ TheOperators->Add("-",  
+	 new OneUnaryOperator<Op1_LCMd<R> >
+     );
  Add<Matrice_Creuse<R> *>("n",".",new OneOperator1<long,Matrice_Creuse<R> *>(get_mat_n<R>) );
  Add<Matrice_Creuse<R> *>("m",".",new OneOperator1<long,Matrice_Creuse<R> *>(get_mat_m<R>) );
  Add<Matrice_Creuse<R> *>("nbcoef",".",new OneOperator1<long,Matrice_Creuse<R> *>(get_mat_nbcoef<R>) );
@@ -1600,27 +1854,55 @@ TheOperators->Add("+",
  atype<Matrice_Creuse<R> * >()->Add("(","",new OneOperator3_<R*,Matrice_Creuse<R> *,long,long >(get_elementp2mc<R>));
  
  atype<KNM<R>*>()->Add("(","",new OneOperator3_<map< pair<int,int>, R> *,KNM<R>*,Inv_KN_long,Inv_KN_long >(Matrixfull2mapIJ_inv<R>));
- atype<outProduct_KN_<R>*>()->Add("(","",new OneOperator3_<map< pair<int,int>, R> *,outProduct_KN_<R>*,Inv_KN_long,Inv_KN_long >(Matrixoutp2mapIJ_inv<R>));
-
  atype<KNM<R>*>()->Add("(","",new OneOperator3_<map< pair<int,int>, R> *,KNM<R>*,KN_<long>,KN_<long> >(Matrixfull2mapIJ<R>));
+ 
+ atype<outProduct_KN_<R>*>()->Add("(","",new OneOperator3_<map< pair<int,int>, R> *,outProduct_KN_<R>*,Inv_KN_long,Inv_KN_long >(Matrixoutp2mapIJ_inv<R>));
  atype<outProduct_KN_<R>*>()->Add("(","",new OneOperator3_<map< pair<int,int>, R> *,outProduct_KN_<R>*,KN_<long>,KN_<long> >(Matrixoutp2mapIJ<R>));
 
+
+
+
+
+ t_MM->Add("(","",  new OneOperator3_<map< pair<int,int>, R> *,map< pair<int,int>, R> *,Inv_KN_long,Inv_KN_long >(Matrixmapp2mapIJ1<R>));
+ t_MM->Add("(","",new OneOperator3_<map< pair<int,int>, R> *,map< pair<int,int>, R> *,KN_<long>,KN_<long> >(Matrixmapp2mapIJ<R>));
+
+ t_MC->Add("(","",new OneOperator3_<map< pair<int,int>, R> *,map< pair<int,int>, R> *,Inv_KN_long,Inv_KN_long >(Matrixmapp2mapIJ1<R>,t_MC));
+ t_MC->Add("(","",new OneOperator3_<map< pair<int,int>, R> *,map< pair<int,int>, R> *,KN_<long>,KN_<long> >(Matrixmapp2mapIJ<R>,t_MC));
+
+ //atype<outProduct_KN_<R>*>()->Add("(","",new OneOperator3_<map< pair<int,int>, R> *,map< pair<int,int>, R> *,Inv_KN_long,Inv_KN_long >(Matrixmapp2mapIJ1<R>),t_lM);
+ //atype<outProduct_KN_<R>*>()->Add("(","",new OneOperator3_<map< pair<int,int>, R> *,map< pair<int,int>, R> *,KN_<long>,KN_<long> >(Matrixmapp2mapIJ<R>),t_lM);
+
+ 
 //map< pair<int,int>, R> * ttt=   (0);
 
    //   ; 
  map_type[typeid(map< pair<int,int>, R> *).name()]->AddCast(
      new E_F1_funcT<map< pair<int,int>, R> *,KNM<R>* >(Matrixfull2map<R>),
-     new E_F1_funcT<map< pair<int,int>, R> *,outProduct_KN_<R>* >(Matrixoutp2map<R>)
-     
+     new E_F1_funcT<map< pair<int,int>, R> *,outProduct_KN_<R>* >(Matrixoutp2map<R>),
+     new E_F1_funcT<map< pair<int,int>, R> *,Matrice_Creuse<R>* >(MatriceCreuse2map<R>)
+
        ); 
 
- 
+ map_type[typeid(list<triplet<R,MatriceCreuse<R> *,bool> > *).name()]->AddCast(
+     new E_F1_funcT<list<triplet<R,MatriceCreuse<R> *,bool> > *,Matrice_Creuse<R>* >(M2L3<R>),
+     new E_F1_funcT<list<triplet<R,MatriceCreuse<R> *,bool> > *,Matrice_Creuse_Transpose<R> >(tM2L3<R>),						    
+     new E_F1_funcT<list<triplet<R,MatriceCreuse<R> *,bool> > *,minusMat<R> >(mM2L3<R> )
+     );
+ /*
+ map_type[typeid(minusMat<R>).name()]->AddCast( 
+	new E_F1_funcT<minusMat<R>,list<triplet<R,MatriceCreuse<R> *,bool> > * >(mmM2L3<R> )
+	//new E_F1_funcT<minusMat<R>,Matrice_Creuse<R>*  > * >(mmM2L3c<R> ),
+	//new E_F1_funcT<minusMat<R>,Matrice_Creuse_Transpose<R> > * >(mmM2L3ct<R> )
+						
+      );
+*/
 
 
 
       
 //  --- end  
 }
+
 
 //extern Map_type_of_map map_type_of_map ; //  to store te type 
 //extern Map_type_of_map map_pair_of_type ; //  to store te type 
@@ -1655,14 +1937,16 @@ void  init_lgmat()
 
    map_type_of_map[make_pair(atype<Matrice_Creuse<double>* >(),atype<double*>())]=atype<Matrice_Creuse<double> *>();
    map_type_of_map[make_pair(atype<Matrice_Creuse<double>* >(),atype<Complex*>())]=atype<Matrice_Creuse<Complex> *>();
-    AddSparceMat<double>();
-    AddSparceMat<Complex>();
+   AddSparceMat<double>();
+   AddSparceMat<Complex>();
  
  Add<const MatrixInterpolation::Op *>("<-","(", new MatrixInterpolation);
  Add<const MatrixInterpolation::Op *>("<-","(", new MatrixInterpolation(1));
  Global.Add("interpolate","(",new MatrixInterpolation);
  Global.Add("interpolate","(",new MatrixInterpolation(1));
  Global.Add("interplotematrix","(",new  OneOperatorCode<PrintErrorCompileIM>);
+ zzzfff->Add("mapmatrix",atype<map< pair<int,int>, double> *>());
+ zzzfff->Add("Cmapmatrix",atype<map< pair<int,int>, Complex> *>()); // a voir
        
 
  // pour compatibiliter 
@@ -1679,3 +1963,5 @@ void  init_lgmat()
  TheOperators->Add("<-", new OneOperator2_<Matrice_Creuse<Complex>*,Matrice_Creuse<Complex>*,Matrice_Creuse<double>*,E_F_StackF0F0>(CopyMat<R,Complex>)
                  );
 }
+
+

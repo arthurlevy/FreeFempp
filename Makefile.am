@@ -4,7 +4,7 @@
 # Adaptation to Automake: Antoine Le Hyaric - LJLL Paris 6 -
 # lehyaric@ann.jussieu.fr - 13/5/04
 
-# $Id: Makefile.am,v 1.88 2006/10/26 12:09:29 hecht Exp $
+# $Id: Makefile.am,v 1.89 2007/04/17 19:47:29 hecht Exp $
 
 SUBDIRS=download src DOC examples++-tutorial examples++	\
 	examples++-eigen examples++-load examples++-mpi	\
@@ -111,7 +111,7 @@ speedtest: all
 # information from the Debian Changelog to get the package release
 # number as well.
 win32:WindowsPackage.iss
-	cd examples++-load;tar zxvf include.tar.gz;cp -L include/* include-tmp
+	cd examples++-load;tar zxvf include.tar.gz;mkdir include-tmp;cp -L include/* include-tmp
 WindowsPackage.iss: WindowsPackage.m4 configure.ac Makefile.am
 	m4 -DVERSION=$(VERSION)$(ADD_PACKAGE_NAME) \
 		WindowsPackage.m4 > WindowsPackage.iss

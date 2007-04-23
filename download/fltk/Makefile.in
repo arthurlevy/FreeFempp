@@ -17,7 +17,7 @@
 # Downloading and compiling extra libraries
 # -----------------------------------------
 
-# $Id: Makefile.in,v 1.148 2006-09-19 19:36:42 hecht Exp $
+# $Id: Makefile.in,v 1.178 2007/04/20 15:18:58 hecht Exp $
 SHELL = @SHELL@
 
 srcdir = @srcdir@
@@ -67,7 +67,7 @@ POST_UNINSTALL = :
 EXEEXT = @EXEEXT@
 OBJEXT = @OBJEXT@
 PATH_SEPARATOR = @PATH_SEPARATOR@
-INSTALL = install
+INSTALL = ../..
 ADD_PACKAGE_NAME = @ADD_PACKAGE_NAME@
 AGLPROG = @AGLPROG@
 AMTAR = @AMTAR@
@@ -124,6 +124,7 @@ STD_GRAPH_OBJ = @STD_GRAPH_OBJ@
 STD_LDFLAGS = @STD_LDFLAGS@
 STD_LIBS = @STD_LIBS@
 STRIP = @STRIP@
+TESTIDEPROG = @TESTIDEPROG@
 UMFPACKLIB = @UMFPACKLIB@
 VERSION = @VERSION@
 WGET = @WGET@
@@ -160,7 +161,7 @@ install_sh = @install_sh@
 
 # FLTK information
 SRCDIR = fltk-$(FLTK_VERSION)
-SERVER = http://ovh.dl.sourceforge.net/sourceforge/fltk
+SERVER = http://switch.dl.sourceforge.net/sourceforge/fltk
 subdir = download/fltk
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/config.h
@@ -283,19 +284,31 @@ uninstall-am: uninstall-info-am
 
 all-local: $(DOWNLOAD_FLTK)
 
-fltk: $(SRCDIR)/$(INSTALL)
+fltk: $(SRCDIR)/FF
 
 # Using system JPEG and PNG lib is a problem under Cygwin
-$(SRCDIR)/$(INSTALL): $(SRCDIR)
+$(SRCDIR)/FFF: $(SRCDIR)
 	cd $(SRCDIR) && ./configure --enable-threads --enable-localjpeg	\
 		--enable-localpng $(FLTK_CONFIG_PARAM) --disable-gl	\
 		@FLTK_XONLY@ --prefix=`pwd`/$(INSTALL) CXX=$(CXX) CC=$(CC)
+	touch $(SRCDIR)/FFF
+	cd $(SRCDIR); \
+	if grep '#define'  config.h|egrep -q "U32|U64" ; then  \
+	 echo " fltk conf OK ??? FH ";  \
+	else \
+	 echo " fltk configure  bug (on windows) ????  add #define U32 unsigned long (bofbof) " ;\
+	 echo "#define U32 unsigned long" >> config.h ; \
+	 echo "stop the make process ; just redo make to continue " ; \
+	 exit 1; \
+	 fi
+
+$(SRCDIR)/FF: $(SRCDIR)/FFF
 	cd $(SRCDIR) && make
 	cd $(SRCDIR) && make install
-
+	touch FF
 $(SRCDIR): $(PACKAGE)
 	tar xvjf $(PACKAGE)
-
+	touch $(SRCDIR)
 $(PACKAGE):
 	@WGET@ -N $(SERVER)/$(PACKAGE)
 

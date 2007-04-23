@@ -119,6 +119,7 @@ STD_GRAPH_OBJ = @STD_GRAPH_OBJ@
 STD_LDFLAGS = @STD_LDFLAGS@
 STD_LIBS = @STD_LIBS@
 STRIP = @STRIP@
+TESTIDEPROG = @TESTIDEPROG@
 UMFPACKLIB = @UMFPACKLIB@
 VERSION = @VERSION@
 WGET = @WGET@
@@ -152,7 +153,7 @@ install_sh = @install_sh@
 
 # Makefile using Automake + Autoconf
 # ----------------------------------
-# $Id: Makefile.in,v 1.50 2006-09-19 19:36:43 hecht Exp $
+# $Id: Makefile.in,v 1.79 2007/04/20 15:18:59 hecht Exp $
 CXXLD = $(STATICTOOL) $(CXX)
 
 bin_PROGRAMS = bamg  cvmsh2 drawbdmesh

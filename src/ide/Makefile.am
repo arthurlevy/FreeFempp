@@ -2,10 +2,10 @@
 # ----------------------------------
 
 # Antoine Le Hyaric - LJLL Paris 6 - lehyaric@ann.jussieu.fr - 21/10/04
-# $Id: Makefile.am,v 1.31 2006-01-27 12:21:43 hecht Exp $
+# $Id: Makefile.am,v 1.32 2007/04/20 15:18:59 hecht Exp $
 
 bin_PROGRAMS=$(IDEPROG)
-EXTRA_PROGRAMS=FreeFem++-ide FreeFem++-cs FreeFem++-client FreeFem++-server
+EXTRA_PROGRAMS=FreeFem++-ide FreeFem++-cs FreeFem++-client FreeFem++-server testhighlight
 
 # To create statically linked executables (see configure.ac)
 CXXLD=$(STATICTOOL) $(CXX)
@@ -99,7 +99,7 @@ FreeFem___server_LDADD=../lglib/liblg.a ../fflib/libff.a	\
 # Test program for color-coding in editor window (with YACC debug option)
 # -----------------------------------------------------------------------
 
-noinst_PROGRAMS=testhighlight
+noinst_PROGRAMS= $(TESTIDEPROG)
 testhighlight_SOURCES= hl_yacc.y++ hl_lex.l++ highlight.hpp	\
 highlight.cpp testhighlight.cpp
 testhighlight_CXXFLAGS=-DYYDEBUG=1

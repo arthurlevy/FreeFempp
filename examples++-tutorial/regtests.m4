@@ -1,7 +1,7 @@
 // Regression tests
 // ----------------
 
-// $Id: regtests.m4,v 1.22 2005-11-22 15:34:11 hecht Exp $
+// $Id: regtests.m4,v 1.22 2005/11/22 15:34:11 hecht Exp $
 
 include(../regtests.m4)
 

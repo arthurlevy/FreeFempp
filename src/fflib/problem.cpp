@@ -65,7 +65,8 @@ basicAC_F0::name_and_type  Problem::name_param[]= {
   {  "save",&typeid(string* )},
   {  "cadna",&typeid(KN<double>*)},
   {  "tolpivot", &typeid(double)},
-  {  "tolpivotsym", &typeid(double)}
+  {  "tolpivotsym", &typeid(double)},
+  {  "nbiter", &typeid(long)} // 12 
   
 };
 
@@ -204,9 +205,9 @@ void Check(const Opera &Op,int N,int  M)
            PB(TriangleHat[VerticesOfTriangularEdge[ie][1]]),
            PC(TriangleHat[OppositeVertex[ie]]);
   // warning the to edge are in opposite sens         
-  R2 PPA(TriangleHat[VerticesOfTriangularEdge[iie][1]]),
-     PPB(TriangleHat[VerticesOfTriangularEdge[iie][0]]),
-     PPC(TriangleHat[OppositeVertex[ie]]);
+  R2 PP_A(TriangleHat[VerticesOfTriangularEdge[iie][1]]),
+     PP_B(TriangleHat[VerticesOfTriangularEdge[iie][0]]),
+     PP_C(TriangleHat[OppositeVertex[ie]]);
   R2 Normal(E.perp()/-le); 
   for (npi=0;npi<FIb.n;npi++) // loop on the integration point
       {
@@ -215,13 +216,13 @@ void Check(const Opera &Op,int N,int  M)
         double coef = le*pi.a;
         double sa=pi.x,sb=1-sa;
         R2 Pt(PA*sa+PB*sb ); //
-        R2 PPt(PPA*sa+PPB*sb ); //  
+        R2 PP_t(PP_A*sa+PP_B*sb ); //  
         if (binside) {
             Pt   = (1-binside)*Pt + binside*PC; 
-            PPt  = (1-binside)*PPt + binside*PPC; }
+            PP_t  = (1-binside)*PP_t + binside*PP_C; }
         Ku.BF(Dop,Pt,fu);
-        KKu.BF(Dop,PPt,ffu);
-        if (!same) { Kv.BF(Dop,Pt,fv); KKv.BF(Dop,PPt,ffv); }     
+        KKu.BF(Dop,PP_t,ffu);
+        if (!same) { Kv.BF(Dop,Pt,fv); KKv.BF(Dop,PP_t,ffv); }     
         // int label=-999999; // a passer en argument 
         MeshPointStack(stack)->set(T(Pt),Pt,Kv,label, Normal,ie);
         if (classoptm) (*Op.optiexpK)(stack); // call optim version 
@@ -544,7 +545,6 @@ void Check(const Opera &Op,int N,int  M)
 		    tv=tu;
 		    outsidev=outsideu;
 		    Ptv=Ptu;
-		    iut = Thu(tu);
 		}
 		else
 		{
@@ -560,9 +560,10 @@ void Check(const Opera &Op,int N,int  M)
 			    if(verbosity>100) cout << " On a pas trouver (v) " << P << " " << endl;
 			    continue;
 			}}
-		    ivt = Thv(tv);
 		} 
-		
+		iut = Thu(tu);
+		ivt = Thv(tv);
+		if( verbosity>1000) cout << " T " << it  << "  iut " << iut << " ivt " << ivt  <<  endl ; 
 		FElement Ku(Uh[iut]);
 		FElement Kv(Vh[ivt]);
 		long n= Kv.NbDoF() ,m=Ku.NbDoF();
@@ -642,6 +643,7 @@ void Check(const Opera &Op,int N,int  M)
 			    tv=tu;
 			    outsidev=outsideu;
 			    Ptv=Ptu;
+			    ivt=iut;
 			}
 			else
 			{
@@ -1733,13 +1735,13 @@ template<class R>
      //     sptr->clean(); // modif FH mars 2006  clean Ptr
     Check(l->l,Vh.N);
     if ( B && B->N() != Vh.NbOfDF) ExecError("AssembleLinearForm size rhs and nb of DF of Vh");
-    if ( & Th != &Vh.Th ) ExecError("AssembleLinearForm on different meshes  ( not implemented FH).");
+   // if ( & Th != &Vh.Th ) ExecError("AssembleLinearForm on different meshes  ( not implemented FH).");
     KN<double> buf(Vh.MaximalNbOfDF()*last_operatortype*Vh.N);
     
     //            const  FormLinear * l=dynamic_cast<const  FormLinear *>(e);
     const CDomainOfIntegration & di= *l->di;
-    const Mesh & ThI = * GetAny<pmesh>( (* di.Th)(stack));
-    bool sameMesh = &ThI == &Th;
+    const Mesh & ThI = Th;//* GetAny<pmesh>( (* di.Th)(stack));
+    bool sameMesh = &ThI == &Vh.Th;
     
     SHOWVERB(cout << " FormLinear " << endl);
     const vector<Expression>  & what(di.what);
@@ -2204,7 +2206,6 @@ AnyType Problem::eval(Stack stack,Data * data,CountPointer<MatriceCreuse<R> > & 
   int umfpackstrategy=0;
   double tol_pivot=-1.; // defaut UMFPACK value  Add FH 31 oct 2005 
   double tol_pivot_sym=-1.; // defaut Add FH 31 oct 2005 
-  
   KN<double>* cadna=0; 
   if (nargs[0]) initmat= ! GetAny<bool>((*nargs[0])(stack));
   if (nargs[1]) typemat= GetAny<TypeSolveMat *>((*nargs[1])(stack));
@@ -2217,6 +2218,8 @@ AnyType Problem::eval(Stack stack,Data * data,CountPointer<MatriceCreuse<R> > & 
   if (nargs[9]) cadna= GetAny<KN<double>* >((*nargs[9])(stack));
   if (nargs[10]) tol_pivot= GetAny<double>((*nargs[10])(stack));
   if (nargs[11]) tol_pivot_sym= GetAny<double>((*nargs[11])(stack));
+  if (nargs[12]) itmax = GetAny<long>((*nargs[12])(stack)); //  fevr 2007
+  
   bool sym = typemat->sym;
   
   list<C_F0>::const_iterator ii,ib=op->largs.begin(),

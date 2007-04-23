@@ -27,13 +27,13 @@
  */
 // Color-coding for FreeFem++-cs editor window - test program
 // Antoine Le Hyaric - LJLL Paris  - lehyaric@ann.jussieu.fr
-// $Id: testhighlight.cpp,v 1.6 2006-09-29 20:30:15 hecht Exp $
-
-#include <iostream>
-#include <fstream>
+// $Id: testhighlight.cpp,v 1.7 2007/04/20 15:18:59 hecht Exp $
 using namespace std;
 #include "highlight.hpp"
 #include "hl_lexyacc.hpp"
+#include <iostream>
+#include <fstream>
+
 extern int yydebug;
 
 // Just prints out the color codes

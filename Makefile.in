@@ -20,7 +20,7 @@
 # Adaptation to Automake: Antoine Le Hyaric - LJLL Paris 6 -
 # lehyaric@ann.jussieu.fr - 13/5/04
 
-# $Id: Makefile.in,v 1.151 2006-09-19 19:36:41 hecht Exp $
+# $Id: Makefile.in,v 1.181 2007/04/20 15:18:58 hecht Exp $
 SHELL = @SHELL@
 
 srcdir = @srcdir@
@@ -127,6 +127,7 @@ STD_GRAPH_OBJ = @STD_GRAPH_OBJ@
 STD_LDFLAGS = @STD_LDFLAGS@
 STD_LIBS = @STD_LIBS@
 STRIP = @STRIP@
+TESTIDEPROG = @TESTIDEPROG@
 UMFPACKLIB = @UMFPACKLIB@
 VERSION = @VERSION@
 WGET = @WGET@
@@ -164,6 +165,7 @@ SUBDIRS = download src DOC examples++-tutorial examples++	\
 
 
 EXTRA_DIST = regtests.sh config-wrapper.h arpack/arpack++/include/*.h \
+arpack/arpack-patch-lapack.tar.gz \
 FreeFem++.*mcp HISTORY HISTORY_BEFORE_2005  BUGS TODO regtests.m4 \
 WindowsPackage.m4 README README_ARPACK  README_CVS README_CW  README_WINDOWS \
 logo.ico copysharedlibs.sh COPYRIGHT edp.nedit INNOVATION reconfigure \
@@ -347,7 +349,7 @@ distcleancheck_listfiles = find . -type f -print
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkinstalldirs) $(distdir)/arpack/arpack++/include $(distdir)/examples-bamg/NACA012 $(distdir)/examples-bamg/quadloop $(distdir)/examples-bamg/square $(distdir)/examples-bamg/test
+	$(mkinstalldirs) $(distdir)/arpack $(distdir)/arpack/arpack++/include $(distdir)/examples-bamg/NACA012 $(distdir)/examples-bamg/quadloop $(distdir)/examples-bamg/square $(distdir)/examples-bamg/test
 	@list='$(DISTFILES)'; for file in $$list; do \
 	  if test -f $$file || test -d $$file; then d=.; else d=$(srcdir); fi; \
 	  dir=`echo "$$file" | sed -e 's,/[^/]*$$,,'`; \
@@ -613,7 +615,7 @@ speedtest: all
 # information from the Debian Changelog to get the package release
 # number as well.
 win32:WindowsPackage.iss
-	cd examples++-load;tar zxvf include.tar.gz;cp -L include/* include-tmp
+	cd examples++-load;tar zxvf include.tar.gz;mkdir include-tmp;cp -L include/* include-tmp
 WindowsPackage.iss: WindowsPackage.m4 configure.ac Makefile.am
 	m4 -DVERSION=$(VERSION)$(ADD_PACKAGE_NAME) \
 		WindowsPackage.m4 > WindowsPackage.iss

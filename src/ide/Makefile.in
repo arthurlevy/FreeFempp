@@ -18,7 +18,7 @@
 # ----------------------------------
 
 # Antoine Le Hyaric - LJLL Paris 6 - lehyaric@ann.jussieu.fr - 21/10/04
-# $Id: Makefile.in,v 1.148 2006-09-19 19:36:43 hecht Exp $
+# $Id: Makefile.in,v 1.177 2007/04/20 15:18:59 hecht Exp $
 SHELL = @SHELL@
 
 srcdir = @srcdir@
@@ -125,6 +125,7 @@ STD_GRAPH_OBJ = @STD_GRAPH_OBJ@
 STD_LDFLAGS = @STD_LDFLAGS@
 STD_LIBS = @STD_LIBS@
 STRIP = @STRIP@
+TESTIDEPROG = @TESTIDEPROG@
 UMFPACKLIB = @UMFPACKLIB@
 VERSION = @VERSION@
 WGET = @WGET@
@@ -157,7 +158,7 @@ ff_wget = @ff_wget@
 install_sh = @install_sh@
 
 bin_PROGRAMS = $(IDEPROG)
-EXTRA_PROGRAMS = FreeFem++-ide FreeFem++-cs FreeFem++-client FreeFem++-server
+EXTRA_PROGRAMS = FreeFem++-ide FreeFem++-cs FreeFem++-client FreeFem++-server testhighlight
 
 # To create statically linked executables (see configure.ac)
 CXXLD = $(STATICTOOL) $(CXX)
@@ -220,7 +221,7 @@ FreeFem___server_LDADD = ../lglib/liblg.a ../fflib/libff.a	\
 
 # Test program for color-coding in editor window (with YACC debug option)
 # -----------------------------------------------------------------------
-noinst_PROGRAMS = testhighlight
+noinst_PROGRAMS = $(TESTIDEPROG)
 testhighlight_SOURCES = hl_yacc.y++ hl_lex.l++ highlight.hpp	\
 highlight.cpp testhighlight.cpp
 
@@ -252,9 +253,10 @@ mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 EXTRA_PROGRAMS = FreeFem++-ide$(EXEEXT) FreeFem++-cs$(EXEEXT) \
-	FreeFem++-client$(EXEEXT) FreeFem++-server$(EXEEXT)
+	FreeFem++-client$(EXEEXT) FreeFem++-server$(EXEEXT) \
+	testhighlight$(EXEEXT)
 bin_PROGRAMS = @IDEPROG@
-noinst_PROGRAMS = testhighlight$(EXEEXT)
+noinst_PROGRAMS = @TESTIDEPROG@
 PROGRAMS = $(bin_PROGRAMS) $(noinst_PROGRAMS)
 
 am_FreeFem___client_OBJECTS = FreeFem___client-cs.$(OBJEXT) \

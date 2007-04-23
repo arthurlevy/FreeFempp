@@ -17,7 +17,7 @@
 # Downloading and compiling extra libraries
 # -----------------------------------------
 
-# $Id: Makefile.in,v 1.146 2006-09-19 19:36:42 hecht Exp $
+# $Id: Makefile.in,v 1.175 2007/04/20 15:18:58 hecht Exp $
 SHELL = @SHELL@
 
 srcdir = @srcdir@
@@ -124,6 +124,7 @@ STD_GRAPH_OBJ = @STD_GRAPH_OBJ@
 STD_LDFLAGS = @STD_LDFLAGS@
 STD_LIBS = @STD_LIBS@
 STRIP = @STRIP@
+TESTIDEPROG = @TESTIDEPROG@
 UMFPACKLIB = @UMFPACKLIB@
 VERSION = @VERSION@
 WGET = @WGET@
@@ -314,7 +315,7 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-recursive
-all-am: Makefile
+all-am: Makefile all-local
 installdirs: installdirs-recursive
 installdirs-am:
 
@@ -344,7 +345,7 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-recursive
 
-clean-am: clean-generic mostlyclean-am
+clean-am: clean-generic clean-local mostlyclean-am
 
 distclean: distclean-recursive
 
@@ -380,11 +381,11 @@ uninstall-am: uninstall-info-am
 
 uninstall-info: uninstall-info-recursive
 
-.PHONY: $(RECURSIVE_TARGETS) GTAGS all all-am check check-am clean \
-	clean-generic clean-recursive distclean distclean-generic \
-	distclean-recursive distclean-tags distdir dvi dvi-am \
-	dvi-recursive info info-am info-recursive install install-am \
-	install-data install-data-am install-data-recursive \
+.PHONY: $(RECURSIVE_TARGETS) GTAGS all all-am all-local check check-am \
+	clean clean-generic clean-local clean-recursive distclean \
+	distclean-generic distclean-recursive distclean-tags distdir \
+	dvi dvi-am dvi-recursive info info-am info-recursive install \
+	install-am install-data install-data-am install-data-recursive \
 	install-exec install-exec-am install-exec-recursive \
 	install-info install-info-am install-info-recursive install-man \
 	install-recursive install-strip installcheck installcheck-am \
@@ -395,6 +396,16 @@ uninstall-info: uninstall-info-recursive
 	uninstall-am uninstall-info-am uninstall-info-recursive \
 	uninstall-recursive
 
+
+all-local: lib include
+
+lib: 
+	mkdir lib
+include:
+	mkdir  include
+
+clean-local:
+	-rm -rf  lib include 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

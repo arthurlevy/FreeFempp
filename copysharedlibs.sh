@@ -1,7 +1,7 @@
 #!/bin/sh
 # Find out which shared libs an executable needs and copy them
 # Antoine Le Hyaric - LJLL Paris 6 - lehyaric@ann.jussieu.fr - 22/11/04
-# $Id: copysharedlibs.sh,v 1.1 2004-11-22 16:00:15 lehyaric Exp $
+# $Id: copysharedlibs.sh,v 1.1 2004/11/22 16:00:15 lehyaric Exp $
 
 # $1=executable to analyze
 if test ! -x $1

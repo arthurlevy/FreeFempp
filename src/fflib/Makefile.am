@@ -1,6 +1,6 @@
 # Makefile using Automake + Autoconf
 # ----------------------------------
-# $Id: Makefile.am,v 1.28 2006-03-31 16:26:20 hecht Exp $
+# $Id: Makefile.am,v 1.29 2007/03/07 12:51:33 hecht Exp $
 
 noinst_LIBRARIES=libff.a
 

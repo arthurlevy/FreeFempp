@@ -1,15 +1,15 @@
-g# Configuration script using Automake + Autoconf for FreeFem++
+# Configuration script using Automake + Autoconf for FreeFem++
 # ------------------------------------------------------------
 
 # Antoine Le Hyaric - LJLL Paris 6 - lehyaric@ann.jussieu.fr - 13/5/04
-# $Id: configure.ac,v 1.189 2006/11/30 13:45:16 hecht Exp $
+# $Id: configure.ac,v 1.204 2007/04/20 15:18:58 hecht Exp $
 
 # Version numbering: x.xx-pp where "pp" is the package version (when
 # the same FreeFem++ version is packaged several times). For
 # coherency, this should have the same value as the top-most package
 # number in debian/changelog.
 
-AC_INIT(FreeFem++,2.11-2,hecht@ann.jussieu.fr,freefem++)
+AC_INIT(FreeFem++,2.16-1,hecht@ann.jussieu.fr,freefem++)
 AC_CONFIG_SRCDIR(src/FreeFem++-CoCoa)
 
 # Automake 1.4 is too old
@@ -43,7 +43,7 @@ then
 	 for i in $FLIBS; do
           case $i in 
 # save last directory of the list 
-	   -L*)    ff_libs="$i";; 
+	   -L*)    ff_flibs="$i";; 
           esac
 	 done 
 	 FLIBS="$ff_flibs -lg2c"
@@ -117,6 +117,14 @@ then
 	ff_aglprog=FreeFem++-agl${EXEEXT}
 fi
 AC_MSG_RESULT($ff_mac)
+
+AC_MSG_CHECKING(wether we are on  SunOS)
+ff_sunos=no
+if test `uname -s` = SunOS;
+then
+	ff_sunos=yes
+fi
+AC_MSG_RESULT($ff_sunos)
 
 # Checking wether we can produce a Microsoft Windows-specific version
 # -------------------------------------------------------------------
@@ -448,8 +456,8 @@ ff_mpi=no)
                         AC_DEFINE(HAVE_MPI_CXX_MPICXX_H,1, mpi/cxx/mpicxx.h  have include file))
                 AC_CHECK_HEADER(ompi/mpi/cxx/mpicxx.h,
                         AC_DEFINE(HAVE_OMPI_MPI_CXX_MPICXX_H,1, ompi/mpi/cxx/mpicxx.h  have include file))
-                AC_CHECK_HEADER(mpic++.h,
-                        AC_DEFINE(HAVE_MPICPP_H,1, mpic++.h  have include file))
+                AC_CHECK_HEADER(mpi++.h,
+                        AC_DEFINE(HAVE_MPICPP_H,1, mpi++.h  have include file))
                 AC_CHECK_HEADER(mpi++.h,
                         AC_DEFINE(HAVE_MPICPP_H,1, mpi++.h  have include file))
 		AC_SUBST(MPIPROG,FreeFem++-mpi${EXEEXT})
@@ -865,7 +873,7 @@ then
 	then
 		AC_CHECK_LIB(umfpack,umf_i_malloc,
 			AC_DEFINE(HAVE_LIBUMFPACK,1,UMFPACK)	
-			ff_umfpack_lib="$ff_umfpack_lib -lumfpack"
+			ff_umfpack_lib=" -lumfpack $ff_umfpack_lib"
 			ff_umfpack_ok=yes,,$ff_umfpack_lib)
 	fi
 fi
@@ -880,7 +888,7 @@ if test "$ff_umfpack_ok" = no -a "$ff_wget" = yes
 	# because this lib does not exist yet, and this could make the
 	# following tests fail.
 
-	ff_umfpack_lib="${curdir}/download/umfpack/UMFPACKv4.4/UMFPACK/Lib/libumfpack.a ${curdir}/download/umfpack/UMFPACKv4.4/AMD/Lib/libamd.a"
+	ff_umfpack_lib="${curdir}/download/lib/libumfpack.a ${curdir}/download/lib/libamd.a"
 	AC_DEFINE(HAVE_LIBUMFPACK,1,UMFPACK)
 	if test "$ff_win32" = yes; then
   	AC_SUBST(FF_UMFPACK_CONFIG,-DCBLAS)
@@ -970,7 +978,7 @@ int main(int argc,char **argv){
 	AC_MSG_RESULT($ff_dynload)
 fi
 
-#  the -rdynamic don't exist on macos 
+#  the -rdynamic don't exist on macos and sunOS
 if test "$ff_dynload" = yes
 then
 	AC_DEFINE(HAVE_DLFCN_H,1,Dynamic loading - not mandatory)
@@ -981,7 +989,7 @@ then
 
 	# gcc on MacOS does not produce an error with "-rdynamic" but
 	# still complains about it.
-	if test "$ff_mac" = "no" -a "$ff_win32"  = "no" ;
+	if test "$ff_mac" = "no" -a "$ff_win32"  = "no" -a "$ff_sunos"  = "no" ;
 	then
 		CHECK_COMPILE_FLAG(C++,-rdynamic,CXXFLAGS)
 	fi
@@ -1111,7 +1119,7 @@ then
 	AC_SUBST(DOWNLOAD_FLTK,fltk)
 	ff_fltk_version=1.1.6
 	AC_SUBST(FLTK_VERSION,$ff_fltk_version)
-	ff_fltk_config="$curdir/download/fltk/fltk-$ff_fltk_version/install/bin/fltk-config"
+	ff_fltk_config="$curdir/download//bin/fltk-config"
 	ff_fltk=yes
 fi
 
@@ -1123,6 +1131,7 @@ then
         
 	ff_ideprog="FreeFem++-ide${EXEEXT} FreeFem++-cs${EXEEXT} FreeFem++-client${EXEEXT} FreeFem++-server${EXEEXT}"
 	ff_idetest="./testhighlight.sh"
+	ff_testideprog=testhighlight
 	if test "$enable_cygwindll" = yes 
 	 then
            AC_SUBST(FLTK_CONFIG_PARAM,"--enable-localzlib --enable-cygwin")
@@ -1191,6 +1200,7 @@ AC_SUBST(GLXPROG,$ff_glxprog)
 AC_SUBST(AGLPROG,$ff_aglprog)
 AC_SUBST(X11PROG,$ff_x11prog)
 AC_SUBST(IDEPROG,$ff_ideprog)
+AC_SUBST(TESTIDEPROG,$ff_testideprog)
 # The final test program
 AC_SUBST(IDE_TESTS,$ff_idetest)
 
@@ -1204,11 +1214,9 @@ AC_OUTPUT(Makefile
 	download/fltk/Makefile
 	src/Makefile
 	src/bamglib/Makefile
-	src/iml/Makefile
 	src/Graphics/Makefile
 	src/femlib/Makefile
 	src/Algo/Makefile
-	src/umfpack/Makefile
 	src/lglib/Makefile
 	src/fflib/Makefile
 	src/std/Makefile

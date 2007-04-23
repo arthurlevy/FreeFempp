@@ -1,13 +1,13 @@
 # Makefile using Automake + Autoconf
 # ----------------------------------
-# $Id: Makefile.am,v 1.3 2004-06-28 17:26:56 lehyaric Exp $
+# $Id: Makefile.am,v 1.4 2007/03/07 12:51:33 hecht Exp $
 
 # This is not compiled as a separate library because its
 # interconnections with other libraries have not been solved.
 
 EXTRA_DIST=BamgFreeFem.cpp BamgFreeFem.hpp CGNL.hpp CheckPtr.cpp	\
 ConjuguedGradrientNL.cpp DOperator.hpp Drawing.cpp Element_P2h.cpp	\
-Element_P3.cpp Element_RT.cpp fem3.hpp fem.cpp fem.hpp FESpace.cpp	\
+Element_RT.cpp fem3.hpp fem.cpp fem.hpp FESpace.cpp	\
 FESpace.hpp FESpace-v0.cpp FQuadTree.cpp FQuadTree.hpp gibbs.cpp	\
 glutdraw.cpp gmres.hpp MatriceCreuse.hpp MatriceCreuse_tpl.hpp		\
 MeshPoint.hpp mortar.cpp mshptg.cpp QuadratureFormular.cpp		\

@@ -1,6 +1,6 @@
 #!/bin/bash
 # Speed benchmark for FreeFem++
-# $Id: speedtest.sh,v 1.6 2005-01-10 21:19:58 hecht Exp $
+# $Id: speedtest.sh,v 1.6 2005/01/10 21:19:58 hecht Exp $
 
 # The FreeFem++ executable
 ffexe=${PROGLOC}/nw/FreeFem++-nw${EXEEXT}

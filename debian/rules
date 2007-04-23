@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-DEB_TAR_SRCDIR                  := freefem++-2.7
+DEB_TAR_SRCDIR                  := freefem++-2.11-2
 DEB_AUTO_CLEANUP_RCS            := yes
 
 
