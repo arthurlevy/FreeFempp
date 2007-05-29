@@ -1,11 +1,11 @@
 
-documentation: $(DOCPDF) 
-docps:  $(DOCPS) $(DOCPSGZ) 
-docpdf: $(DOCPDF) 
+documentation: $(DOCPDF)
+docps:  $(DOCPS) $(DOCPSGZ)
+docpdf: $(DOCPDF)
 
-%.dvi:%.tex cpfigs $(CPFIGS_EPS) 
+%.dvi:%.tex cpfigs $(CPFIGS_EPS)
 	-rm $*.dvi $*.aux $*.log \
-                $*.toc $*.ind $*.glo $*.out $*.blg $*ilg $*.idx $*.bbl $*.tmp	
+                $*.toc $*.ind $*.glo $*.out $*.blg $*ilg $*.idx $*.bbl $*.tmp
 	latex $*
 	latex $*
 	makeindex $*
@@ -13,14 +13,14 @@ docpdf: $(DOCPDF)
 %.ps:%.dvi
 	dvips -u +psfonts.map -u +pdftex.map -u +Ttbbold.map -z -K $* -o $@
 
-%.pdf:%.tex  cpfigs $(CPFIGS_PDF) 
+%.pdf:%.tex  cpfigs $(CPFIGS_PDF)
 	-rm $*.pdf $*.aux $*.log \
-                $*.toc $*.ind $*.glo $*.out $*.blg $*ilg $*.idx $*.bbl $*.tmp	
+                $*.toc $*.ind $*.glo $*.out $*.blg $*ilg $*.idx $*.bbl $*.tmp
 	pdflatex $*
 	pdflatex $*
 	makeindex $*
 	pdflatex $*
-cpfigs: 
+cpfigs:
 	-mkdir cpfigs
 
 %.gz:%
@@ -31,16 +31,16 @@ clean:
 	-rm -r cpfigs
 
 cpfigs/%.pdf:plots/%.eps
-	epstopdf $^ --outfile=$@
+	pstopdf $@ $^
 cpfigs/%.pdf:figures/%.eps
-	epstopdf $^ --outfile=$@
+	pstopdf $@ $^
 cpfigs/%.eps:plots/%.jpg
 	convert $^  $@
 cpfigs/%.eps:plots/%.pdf
 	pdf2ps $^  $@
 
- 
-## ls */*.eps|column -c 80|sed 's/$/ \\/' 
+
+## ls */*.eps|column -c 80|sed 's/$/ \\/'
 FIGS_EPS=  \
 figures/1stCOD.eps              figures/LastCOD.eps             figures/cfunc1.eps \
 figures/1stCOD2.eps             figures/LastCOD2.eps            figures/cfunc2.eps \
@@ -102,7 +102,7 @@ FIGS_PDF= plots/LogoCNRS.pdf    plots/LogoLJLL.pdf    plots/LogoUPMC.pdf plots/f
 plots/titre-ff.pdf   plots/BG-russe.pdf plots/sanskrit.pdf
 
 EXTRA_DIST= addfe.tex docFFGUI.tex manual-full.tex freefem++doc.tex  manual.tex FF.sty FFF.sty dessin.sty pdfsync.sty styles.sty \
-$(FIGS_EPS)    $(FIGS_JPG)    $(FIGS_PDF)  
+$(FIGS_EPS)    $(FIGS_JPG)    $(FIGS_PDF)
 
 ##  la liste des figures a cree pour la doc (eps on pdf)
 CPFIGS_PDF = $(addprefix cpfigs/,$(notdir $(patsubst %.eps,%.pdf,$(FIGS_EPS)) \
@@ -113,5 +113,5 @@ CPFIGS_EPS = $(addprefix cpfigs/,$(notdir $(patsubst %.pdf,%.eps,$(FIGS_PDF))) \
 )
 
 
-# do not delete the copy figure to long to created 
+# do not delete the copy figure to long to created
 .PRECIOUS: $(CPFIGS_PDF) $(CPFIGS_EPS)

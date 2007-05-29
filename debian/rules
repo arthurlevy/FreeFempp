@@ -27,7 +27,11 @@ DEB_CONFIGURE_EXTRA_FLAGS := \
   --with-mpi=yes --includedir=/usr/lib/mpich/include/mpi2c++
 
 clean::
-	-rm DOC/cpfigs/*
+	-rm src/lglib/lg.output
+	-rm -rf DOC/cpfigs
+	-rm DOC/figures/*.pdf
+	-for i in DOC/plots/*.eps; do rm `basename $$i .eps`.pdf; done
+	-rm DOC/freefem++doc.aux DOC/docFFGUI.aux DOC/freefem++doc.pdfsync DOC/freefem++doc.out DOC/freefem++doc.pdf DOC/freefem++doc.ind DOC/addfe.aux DOC/freefem++doc.ilg DOC/freefem++doc.log DOC/freefem++doc.idx DOC/freefem++doc.toc
 	-rm examples++-load/*.so examples++-load/*.o examples++-load/include/*
 
 pre-build::
