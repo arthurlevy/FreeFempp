@@ -58,3 +58,11 @@ install/freefem++::
 	-(cd debian/freefem++/usr/bin/ && mv FreeFem++-client freefem++-client)
 	-(cd debian/freefem++/usr/bin/ && mv FreeFem++-server freefem++-server)
 #	find debian/freefem++ -name ".svn" -type d  | xargs rm -rf
+
+
+orig-tarball:
+	mkdir tmp; \
+	cd tmp; \
+	wget http://www.freefem.org/ff++/ftp/freefem++-2.20.tar.gz; \
+	mv freefem++-2.20.tar.gz ../freefem++_2.20.orig.tar.gz; \
+	cd ..; rm -rf tmp
