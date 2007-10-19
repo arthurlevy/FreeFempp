@@ -1,5 +1,5 @@
 Source: freefem++
-Section: non-free/math
+Section: contrib/math
 Homepage: http://www.freefem.org/ff++/
 Priority: extra
 Maintainer: Debian Scientific Computing Team <pkg-scicomp-devel@lists.alioth.debian.org>
