@@ -1,5 +1,0 @@
-#!/bin/sh
-/Applications/FreeFem++.app/Contents/Resources/script "$@"
-
-
-

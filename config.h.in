@@ -24,6 +24,9 @@
 /* Dynamic loading - not mandatory */
 #undef HAVE_DLFCN_H
 
+/* Define to 1 if you have the `erfc' function. */
+#undef HAVE_ERFC
+
 /* fftw is compute fft */
 #undef HAVE_FFTW
 
@@ -41,6 +44,9 @@
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
+
+/* Define to 1 if you have the `jn' function. */
+#undef HAVE_JN
 
 /* Arpack is used for eigenvalue computation */
 #undef HAVE_LIBARPACK
@@ -87,9 +93,6 @@
 /* Define to 1 if you have the <string.h> header file. */
 #undef HAVE_STRING_H
 
-/* Define to 1 if you have the <suitesparse/umfpack.h> header file. */
-#undef HAVE_SUITESPARSE_UMFPACK_H
-
 /* Define to 1 if you have the `sysconf' function. */
 #undef HAVE_SYSCONF
 
@@ -99,8 +102,20 @@
 /* Define to 1 if you have the <sys/types.h> header file. */
 #undef HAVE_SYS_TYPES_H
 
+/* Define to 1 if you have the `tgamma' function. */
+#undef HAVE_TGAMMA
+
 /* Define to 1 if you have the `times' function. */
 #undef HAVE_TIMES
+
+/* Define to 1 if you have the <ufsparse/umfpack.h> header file. */
+#undef HAVE_UFSPARSE_UMFPACK_H
+
+/* Define to 1 if you have the <umfpack.h> header file. */
+#undef HAVE_UMFPACK_H
+
+/* Define to 1 if you have the <umfpack/umfpack.h> header file. */
+#undef HAVE_UMFPACK_UMFPACK_H
 
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H

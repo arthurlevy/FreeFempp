@@ -1,3 +1,0 @@
-ofstream table("lestables");
-dumptable(table);
-if (!exec("ls")) cout << " execution ok " << endl;
