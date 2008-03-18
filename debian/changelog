@@ -1,3 +1,10 @@
+freefem++ (2.20-0cp2) UNRELEASED; urgency=low
+
+  * debian/control: Vcs fields transition. Fixed Vcs-Svn.
+  * debian/watch: Added.
+
+ -- Daniel Leidert (dale) <daniel.leidert@wgdd.de>  Tue, 18 Mar 2008 05:20:37 +0100
+
 freefem++ (2.20-0cp1) unstable; urgency=low
 
   [ Christophe Prud'homme ]

@@ -6,8 +6,8 @@ Maintainer: Debian Scientific Computing Team <pkg-scicomp-devel@lists.alioth.deb
 Uploaders: Christophe Prud'homme <prudhomm@debian.org>
 Build-Depends: quilt, cdbs, debhelper (>= 5.0.0), libblas-dev, libarpack++2-dev (>= 2.1), libsuitesparse-dev, libfltk1.1-dev (>= 1.1.5-1), libopenmpi-dev, libxxf86vm-dev, libxpm-dev, libgl1-mesa-dev, tetex-bin, context
 Standards-Version: 3.7.2
-XS-Vcs-Svn: svn://svn.debian.org/svn/pkg-scicomp/freefem++/
-XS-Vcs-Browser: http://svn.debian.org/wsvn/pkg-scicomp/freefem++/
+Vcs-Svn: svn://svn.debian.org/svn/pkg-scicomp/freefem++/trunk/
+Vcs-Browser: http://svn.debian.org/wsvn/pkg-scicomp/freefem++/
 
 Package: freefem++
 Architecture: any
