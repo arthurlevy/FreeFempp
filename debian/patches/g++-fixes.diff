@@ -1,0 +1,196 @@
+Index: freefem++-2.24.2.dfsg/src/fflib/lgmat.cpp
+===================================================================
+--- freefem++-2.24.2.dfsg.orig/src/fflib/lgmat.cpp	2008-09-30 16:21:06.000000000 +0200
++++ freefem++-2.24.2.dfsg/src/fflib/lgmat.cpp	2008-09-30 16:21:52.000000000 +0200
+@@ -31,6 +31,7 @@
+ #endif
+ 
+ #include  <cmath>
++#include  <limits>
+ #include  <iostream>
+ using namespace std;
+ #include "error.hpp"
+Index: freefem++-2.24.2.dfsg/src/femlib/fem.hpp
+===================================================================
+--- freefem++-2.24.2.dfsg.orig/src/femlib/fem.hpp	2008-09-30 16:23:51.000000000 +0200
++++ freefem++-2.24.2.dfsg/src/femlib/fem.hpp	2008-09-30 16:24:54.000000000 +0200
+@@ -1,6 +1,8 @@
+ #ifndef FEM2_H_
+ #define FEM2_H_
+ #include <string> 
++#include <cstring> 
++#include <algorithm>
+ #include "RefCounter.hpp"
+ #include "Serialize.hpp"
+ // some usefull function 
+Index: freefem++-2.24.2.dfsg/src/fflib/Serialize.hpp
+===================================================================
+--- freefem++-2.24.2.dfsg.orig/src/fflib/Serialize.hpp	2008-09-30 16:25:37.000000000 +0200
++++ freefem++-2.24.2.dfsg/src/fflib/Serialize.hpp	2008-09-30 16:25:49.000000000 +0200
+@@ -28,6 +28,8 @@
+ #ifndef SERIALEZE_HPP_
+ #define SERIALEZE_HPP_
+ 
++#include <cstring>
++
+ struct MPIrank;
+  class Serialize {  
+    // we store a refcounter in the pointer p a adresse p-sizeof(long)
+Index: freefem++-2.24.2.dfsg/src/Algo/CubicLS.hpp
+===================================================================
+--- freefem++-2.24.2.dfsg.orig/src/Algo/CubicLS.hpp	2008-09-30 16:33:49.000000000 +0200
++++ freefem++-2.24.2.dfsg/src/Algo/CubicLS.hpp	2008-09-30 16:34:16.000000000 +0200
+@@ -31,12 +31,12 @@
+   typedef typename LS::Vect Vect;
+   typedef typename LS::VMat VMat;
+   typedef LS  LineSearch;
+-  typedef NRJ<Param,Vect,VMat,Real> NRJ;
++  typedef NRJ<Param,Vect,VMat,Real> NRJType;
+ public:
+   //a constructor with the default delta
+-  CubicLineSearch(NRJ* f, int iter);
++  CubicLineSearch(NRJType* f, int iter);
+   //a constructor with the specified delta
+-  CubicLineSearch(NRJ* f, int iter, Vect* delta);
++  CubicLineSearch(NRJType* f, int iter, Vect* delta);
+    /*    The parameter $delta$ is not used by the line search 
+          itself. Rather it is used in the numerical computation
+          of the derivatives using centered differences. For
+@@ -65,13 +65,13 @@
+ };
+ 
+ template <class LS>
+-CubicLineSearch<LS>::CubicLineSearch(NRJ* f, int it) 
++CubicLineSearch<LS>::CubicLineSearch(NRJType* f, int it) 
+ : LS(f)
+ {	this->iterMax	=	it;
+ }
+ 
+ template <class LS>
+-CubicLineSearch<LS>::CubicLineSearch(NRJ* f, int it, Vect* interval)
++CubicLineSearch<LS>::CubicLineSearch(NRJType* f, int it, Vect* interval)
+ : LS(f,interval)
+ {	this->iterMax	=	it;
+ }
+Index: freefem++-2.24.2.dfsg/src/Algo/LineSearch.hpp
+===================================================================
+--- freefem++-2.24.2.dfsg.orig/src/Algo/LineSearch.hpp	2008-09-30 16:32:57.000000000 +0200
++++ freefem++-2.24.2.dfsg/src/Algo/LineSearch.hpp	2008-09-30 16:33:39.000000000 +0200
+@@ -30,7 +30,7 @@
+ 	typedef M Mat;
+ 	typedef P Param;
+ 	typedef V Vect;
+-	typedef  NRJ<Param,Vect,VMat,Real> NRJ;
++	typedef  NRJ<Param,Vect,VMat,Real> NRJType;
+ 
+ private:
+   //ne sert que si on calcule le gradient de manière numérique
+@@ -57,7 +57,7 @@
+   // c'est du meme type que le gradient
+   Vect* step;
+   //pointer to the nrj
+-  NRJ *	nrj;
++  NRJType *	nrj;
+   
+   void appendSearchNumber();
+   
+@@ -65,7 +65,7 @@
+   
+   //a constructor with pointer to the nrj and
+   //to the step if numerical gradient is computed
+-  LineSearch(NRJ* f,Vect* interval = NULL);
++  LineSearch(NRJType* f,Vect* interval = NULL);
+   virtual ~LineSearch();
+ 
+   // point de départ et direction de descente + des paramètres
+@@ -92,7 +92,7 @@
+ };
+ 
+ template <class P, class V,class M,class VM,class R>
+-LineSearch<P,V,M,VM,R>::LineSearch(NRJ* p, Vect* interval )
++LineSearch<P,V,M,VM,R>::LineSearch(NRJType* p, Vect* interval )
+ {
+    iterMax 	= 	MAX_IT_LS;
+    iterNum 	= 	0;
+Index: freefem++-2.24.2.dfsg/src/femlib/MatriceCreuse_tpl.hpp
+===================================================================
+--- freefem++-2.24.2.dfsg.orig/src/femlib/MatriceCreuse_tpl.hpp	2008-09-30 16:28:37.000000000 +0200
++++ freefem++-2.24.2.dfsg/src/femlib/MatriceCreuse_tpl.hpp	2008-09-30 16:28:47.000000000 +0200
+@@ -4,6 +4,8 @@
+ #include <set>
+ #include <list>
+ #include <map>
++#include <limits>
++
+ #endif
+ 
+ #ifndef __MWERKS__
+Index: freefem++-2.24.2.dfsg/src/Graphics/getprog-unix.hpp
+===================================================================
+--- freefem++-2.24.2.dfsg.orig/src/Graphics/getprog-unix.hpp	2008-09-30 16:37:04.000000000 +0200
++++ freefem++-2.24.2.dfsg/src/Graphics/getprog-unix.hpp	2008-09-30 16:37:20.000000000 +0200
+@@ -1,3 +1,4 @@
++#include <cstring>
+ 
+ extern long verbosity;
+ 
+Index: freefem++-2.24.2.dfsg/src/ide/commands.cpp
+===================================================================
+--- freefem++-2.24.2.dfsg.orig/src/ide/commands.cpp	2008-09-30 16:38:07.000000000 +0200
++++ freefem++-2.24.2.dfsg/src/ide/commands.cpp	2008-09-30 16:41:36.000000000 +0200
+@@ -30,6 +30,7 @@
+ 
+ // May be called either directly if client and server are merged
+ // together, or through sockets if they are separated.
++#include <cstdlib>
+ 
+ #include <FL/Fl.H>
+ #include "commands.hpp"
+Index: freefem++-2.24.2.dfsg/src/ide/highlight.cpp
+===================================================================
+--- freefem++-2.24.2.dfsg.orig/src/ide/highlight.cpp	2008-09-30 16:42:07.000000000 +0200
++++ freefem++-2.24.2.dfsg/src/ide/highlight.cpp	2008-09-30 16:42:22.000000000 +0200
+@@ -30,6 +30,7 @@
+ // $Id: highlight.cpp,v 1.19 2006-09-29 20:30:15 hecht Exp $
+ 
+ #include <iostream>
++#include <cstring>
+ #include <cassert>
+ using namespace std;
+ #include "highlight.hpp"
+Index: freefem++-2.24.2.dfsg/src/ide/spawn.cpp
+===================================================================
+--- freefem++-2.24.2.dfsg.orig/src/ide/spawn.cpp	2008-09-30 16:42:46.000000000 +0200
++++ freefem++-2.24.2.dfsg/src/ide/spawn.cpp	2008-09-30 16:43:04.000000000 +0200
+@@ -35,6 +35,7 @@
+ #define SPAWN_HPP
+ 
+ #include <iostream>
++#include <cstdlib>
+ using namespace std;
+ #include <cassert>
+ #include <FL/Fl.H>
+Index: freefem++-2.24.2.dfsg/src/ide/socket.cpp
+===================================================================
+--- freefem++-2.24.2.dfsg.orig/src/ide/socket.cpp	2008-09-30 16:43:40.000000000 +0200
++++ freefem++-2.24.2.dfsg/src/ide/socket.cpp	2008-09-30 16:44:25.000000000 +0200
+@@ -32,6 +32,7 @@
+ // $Id: socket.cpp,v 1.12 2006-09-29 20:30:15 hecht Exp $
+ 
+ #include <iostream>
++#include <cstring>
+ #include <cassert>
+ #include "socket.hpp"
+ using namespace std;
+Index: freefem++-2.24.2.dfsg/src/ide/testhighlight.cpp
+===================================================================
+--- freefem++-2.24.2.dfsg.orig/src/ide/testhighlight.cpp	2008-09-30 16:45:34.000000000 +0200
++++ freefem++-2.24.2.dfsg/src/ide/testhighlight.cpp	2008-09-30 16:45:55.000000000 +0200
+@@ -33,6 +33,7 @@
+ #include "hl_lexyacc.hpp"
+ #include <iostream>
+ #include <fstream>
++#include <cstdlib>
+ 
+ extern int yydebug;
+ 

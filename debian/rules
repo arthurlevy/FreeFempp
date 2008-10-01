@@ -27,6 +27,8 @@ DEB_CONFIGURE_EXTRA_FLAGS := \
   --enable-optim \
   --enable-generic\
   --disable-pdf\
+  --disable-download \
+  --disable-arpack \
   --with-mpi=yes --includedir=/usr/lib/mpich/include/mpi2c++
 
 clean::

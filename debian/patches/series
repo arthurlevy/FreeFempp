@@ -1,2 +1,4 @@
 epstopdf.diff
-umfpack.diff
+
+arpack.diff
+g++-fixes.diff
