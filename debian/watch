@@ -1,2 +1,3 @@
 version=3
-opts="uversionmangle=s/-([^-]+)/.$1/" http://www.freefem.org/ff++/ftp/ freefem\+\+-([\d.-]+)\.tar\.gz
+opts=uversionmangle=s/-([^-]+)/.$1/,dversionmangle=s/\.dfsg$// \
+  http://www.freefem.org/ff++/ftp/ freefem\+\+-([\d.-]+)\.tar\.gz

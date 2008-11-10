@@ -1,0 +1,10 @@
+freefem++ source for Debian
+---------------------------
+
+The directory arpack has been removed from the package and arpack support has
+been disabled, until arpack{++} licensing is sorted out.
+
+Packaging makes use of CDBS and quilt. For the latter see
+`/usr/share/doc/quilt/README.source'.
+
+ -- Daniel Leidert <daniel.leidert@wgdd.de>, 24 Oct 2008

@@ -1,70 +1,41 @@
 #!/usr/bin/make -f
 
-DEB_TAR_SRCDIR                  := freefem++-2.11-2
 DEB_AUTO_CLEANUP_RCS            := yes
 
-DEB_AUTO_UPDATE_ACLOCAL    := 1.9
-DEB_AUTO_UPDATE_AUTOCONF   := 1
-DEB_AUTO_UPDATE_AUTOHEADER := 1
-DEB_AUTO_UPDATE_AUTOMAKE   := 1.9
+DEB_AUTO_UPDATE_ACLOCAL		:= 1.9
+DEB_AUTO_UPDATE_AUTOCONF	:= 1
+DEB_AUTO_UPDATE_AUTOHEADER	:= 1
+DEB_AUTO_UPDATE_AUTOMAKE	:= 1.9
 
-DEB_MAKE_CLEAN_TARGET    := clean
-#DEB_MAKE_BUILD_TARGET    := default
-DEB_COMPRESS_EXCLUDE     := .pdf .svn
+DEB_COMPRESS_EXCLUDE		:= .pdf .svn
 
 include /usr/share/cdbs/1/class/autotools.mk
 include /usr/share/cdbs/1/rules/debhelper.mk
-include /usr/share/cdbs/1/rules/tarball.mk
 include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 
-DEB_SRCDIR 			:= $(CURDIR)
-DEB_BUILDDIR 			:= $(DEB_SRCDIR)
-DEB_CONFIGURE_SCRIPT		:= $(DEB_SRCDIR)/configure
+#DEB_MAKE_ENVVARS		:= -j2
 
-#DEB_MAKE_ENVVARS    := -j2
+DEB_CONFIGURE_SCRIPT_ENV	+= F77="gfortran"
+DEB_CONFIGURE_EXTRA_FLAGS	:= \
+	--enable-optim \
+	--enable-generic \
+	--disable-pdf \
+	--disable-download \
+	--disable-arpack \
+	--with-mpi=yes --includedir=/usr/lib/mpich/include/mpi2c++ \
+	--program-transform-name="s/^FreeFem++/freefem++/"
 
-DEB_CONFIGURE_EXTRA_FLAGS := \
-  --enable-optim \
-  --enable-generic\
-  --disable-pdf\
-  --disable-download \
-  --disable-arpack \
-  --with-mpi=yes --includedir=/usr/lib/mpich/include/mpi2c++
+DEB_STRIPPED_UPSTREAM_VERSION = $(shell echo $(DEB_UPSTREAM_VERSION) | sed -n -e 's/\.dfsg.*$$//p')
 
-clean::
-	-rm src/lglib/lg.output
-	-rm -rf DOC/cpfigs
-	-for i in DOC/plots/*.eps; do rm -f DOC/plots/`basename $$i .eps`.pdf; done
-	-for i in DOC/figures/*.eps; do rm -f DOC/figures/`basename $$i .eps`.pdf; done
-	-for i in DOC/plots/*.eps; do rm `basename $$i .eps`.pdf; done
-	-rm DOC/freefem++doc.aux DOC/docFFGUI.aux DOC/freefem++doc.pdfsync DOC/freefem++doc.out DOC/freefem++doc.pdf DOC/freefem++doc.ind DOC/addfe.aux DOC/freefem++doc.ilg DOC/freefem++doc.log DOC/freefem++doc.idx DOC/freefem++doc.toc
-	-rm examples++-load/*.so examples++-load/*.o examples++-load/include/*
-
-pre-build::
-	-(cd examples++-load/include && for i in ../../src/fflib/*.h*; do cp $$i .; done)
-	-(cd examples++-load/include && for i in ../../src/femlib/*.h*; do cp $$i .; done)
-	-(cd examples++-load/include && for i in ../../src/Graphics/*.h*; do cp $$i .; done)
-	-(cd examples++-load/include && for i in ../../*.h; do cp $$i .; done)
-	-(cd examples++-load/include && cp ../../config.h .)
-
-build/freefem++::
-	cd DOC && make freefem++doc.pdf
-
-install/freefem++::
-	-(cd debian/freefem++/usr/bin/ && mv FreeFem++ freefem++)
-	-(cd debian/freefem++/usr/bin/ && mv FreeFem++-nw  freefem++-nw)
-	-(cd debian/freefem++/usr/bin/ && mv FreeFem++-glx freefem++-glx)
-	-(cd debian/freefem++/usr/bin/ && mv FreeFem++-ide freefem++-ide)
-	-(cd debian/freefem++/usr/bin/ && mv FreeFem++-cs  freefem++-cs)
-	-(cd debian/freefem++/usr/bin/ && mv FreeFem++-mpi freefem++-mpi)
-	-(cd debian/freefem++/usr/bin/ && mv FreeFem++-client freefem++-client)
-	-(cd debian/freefem++/usr/bin/ && mv FreeFem++-server freefem++-server)
-#	find debian/freefem++ -name ".svn" -type d  | xargs rm -rf
-
-
-orig-tarball:
-	mkdir tmp; \
-	cd tmp; \
-	wget http://www.freefem.org/ff++/ftp/freefem++-2.20.tar.gz; \
-	mv freefem++-2.20.tar.gz ../freefem++_2.20.orig.tar.gz; \
-	cd ..; rm -rf tmp
+.PHONY: get-orig-source
+get-orig-source:
+	set -ex ; \
+	TMPDIR=`mktemp -d $(DEB_SOURCE_PACKAGE)-$(DEB_UPSTREAM_VERSION).orig` ; \
+	uscan --force-download --symlink --check-dirname-level 0 --destdir "$$TMPDIR" ; \
+	tar -C "$$TMPDIR" --strip-components 1 -xzf "$$TMPDIR"/$(DEB_SOURCE_PACKAGE)_$(DEB_STRIPPED_UPSTREAM_VERSION).orig.tar.gz ; \
+	rm -f "$$TMPDIR"/$(DEB_SOURCE_PACKAGE)*.tar.gz ; \
+	rm -rf "$$TMPDIR"/arpack ; \
+	GZIP=-9 tar -czf \
+	    $(CURDIR)/$(DEB_SOURCE_PACKAGE)_$(DEB_UPSTREAM_VERSION).orig.tar.gz \
+	    $(DEB_SOURCE_PACKAGE)-$(DEB_UPSTREAM_VERSION).orig ; \
+	rm -rf "$$TMPDIR"
