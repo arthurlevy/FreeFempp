@@ -2,10 +2,10 @@
 
 DEB_AUTO_CLEANUP_RCS            := yes
 
-DEB_AUTO_UPDATE_ACLOCAL		:= 1.9
+DEB_AUTO_UPDATE_ACLOCAL	:= 1.11
 DEB_AUTO_UPDATE_AUTOCONF	:= 1
 DEB_AUTO_UPDATE_AUTOHEADER	:= 1
-DEB_AUTO_UPDATE_AUTOMAKE	:= 1.9
+DEB_AUTO_UPDATE_AUTOMAKE	:= 1.11
 
 DEB_COMPRESS_EXCLUDE		:= .pdf .svn
 
@@ -21,12 +21,38 @@ DEB_CONFIGURE_EXTRA_FLAGS	:= \
 	--enable-generic \
 	--disable-pdf \
 	--disable-download \
-	--disable-arpack \
-	--with-mpi=yes --includedir=/usr/lib/mpich/include/mpi2c++ \
+	--with-mpi=yes \
 	--program-transform-name="s/^FreeFem++/freefem++/"
 
 DEB_STRIPPED_UPSTREAM_VERSION = $(shell echo $(DEB_UPSTREAM_VERSION) | sed -n -e 's/\.dfsg.*$$//p')
 
+# Work around to fix examples++-load erreurs
+build/freefem++::
+	cd examples++-load ; \
+	echo `pwd` ; \
+	./ff-c++ SuperLu.cpp '-lsuperlu' '-I/usr/include/superlu' ; \
+	./ff-c++ dfft.cpp '-lfftw3' ; \
+	./ff-c++ metis.cpp '-lscotchmetis -lmetis -lscotch' '-I/usr/include/metis' ; \
+	./ff-c++ tetgen.cpp '-ltet' ; \
+	make ; \
+	cd ..
+
+clean::
+	-rm DOC/*.dvi DOC/*.pdf *~ DOC/*.aux DOC/*.log DOC/*.ps DOC/*.ps.gz \
+	   DOC/*.toc DOC/*.ind DOC/*.glo DOC/*.out DOC/*.blg DOC/*ilg \
+	   DOC/*.idx DOC/*.bbl DOC/*.tmp DOC/*.pdfsync
+	rm -rf DOC/cpfigs/*.pdf
+	rm -rf examples++-load/freefem++.pref
+	rm -rf examples++-load/WHERE_LIBRARY-config
+	rm -rf examples++-load/config.log
+	rm -rf download/fftw/cxxflags
+	rm -rf download/tetgen/cxxflags
+	rm -rf download/bin
+	rm -rf config_LIB_INFO
+	rm -rf config-version.h
+	rm -rf configure.param
+	rm -rf src/medit/compil.date
+		
 .PHONY: get-orig-source
 get-orig-source:
 	set -ex ; \

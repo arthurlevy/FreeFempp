@@ -21,7 +21,6 @@ case "$1" in
     configure|abort-upgrade)
       update-alternatives --install /usr/bin/freefem++ freefem++ /usr/bin/freefem++-nw 10
       update-alternatives --install /usr/bin/freefem++ freefem++ /usr/bin/freefem++-glx 20
-      update-alternatives --install /usr/bin/freefem++ freefem++ /usr/bin/freefem++-cs 30
       update-alternatives --install /usr/bin/freefem++ freefem++ /usr/bin/freefem++-mpi 40
     ;;
 

@@ -1,3 +1,52 @@
+freefem++ (3.7.1-1) unstable; urgency=low
+
+  [ Christophe Trophime ]
+  * Non-maintainer uload
+  * New upstream release
+
+  [ Christophe Prud'homme ]
+  * Upload
+
+ -- Christophe Prud'homme <prudhomm@debian.org>  Fri, 05 Feb 2010 10:04:57 +0100
+
+freefem++ (3.7-2.1) unstable; urgency=low
+
+  * Fix missing examples in examples++-load
+  * Fix direct loading gmsh mesh in examples++-load
+
+ -- Christophe Trophime <christophe.trophime@grenoble.cnrs.fr>  Fri, 8 Jan 2010 9:27:47 +0100
+
+freefem++ (3.7-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * New upstream version
+  * Fix missing examples in examples++-load
+  * Fix direct loading gmsh mesh in examples++-load
+
+ -- Christophe Trophime <christophe.trophime@grenoble.cnrs.fr>  Sat, 12 Dec 2009 10:27:47 +0100
+
+freefem++ (3.6.1-2.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * remove freefem++-cs
+
+ -- Christophe Trophime <christophe.trophime@grenoble.cnrs.fr>  Fri, 20 Nov 2009 09:49:13 +0100
+
+freefem++ (3.6.1-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * New upstream version
+  * debian/control:
+    - Bump Standards-Version to 3.8.3.
+    - Bump debhelper to version 7.
+    - change automake and autoconf version
+  * debian/patches:
+    - remove all patches
+  * debian/rules:
+    - comment out DEB_AUTO_UPDATE*
+
+ -- Christophe Trophime <christophe.trophime@grenoble.cnrs.fr>  Fri, 20 Nov 2009 08:48:41 +0100
+
 freefem++ (2.24.2.dfsg-1) unstable; urgency=low
 
   [Christophe Prud'homme]
@@ -8,11 +57,11 @@ freefem++ (2.24.2.dfsg-1) unstable; urgency=low
     Freefem++
   * lintian: fixed all lintian warnings
   * compilation: fixed some compilation issues with g++-4.3
-  
+
   [Daniel Leidert]
   * debian/control: Vcs fields transition. Fixed Vcs-Svn.
   * debian/watch: Added.
-  * debian/rules: Various fixes and simplification in build 
+  * debian/rules: Various fixes and simplification in build
   * debian/rules: Fixes for get-orig-source
   * Cleaned out the last arpack* bits in debian/
 
@@ -30,11 +79,11 @@ freefem++ (2.16.1-1) unstable; urgency=low
   [ Christophe Prud'homme ]
   * New upstream release
   * Upstream has fixed all remaining licensing issues.
-  
+
   [ Rafael Laboissiere ]
   * debian/control: Added XS-Vcs-Svn and XS-Vcs-Browser fields to the Source
     section
-      
+
  -- Christophe Prud'homme <prudhomm@debian.org>  Mon, 23 Apr 2007 17:09:16 +0200
 
 freefem++ (2.11-2-1) unstable; urgency=low
@@ -54,7 +103,7 @@ freefem++ (2.9-1) unstable; urgency=low
 freefem++ (2.7-1) unstable; urgency=low
 
   * Initial Release
-  * Added freefem++ to pkg-scicomp on Alioth 
+  * Added freefem++ to pkg-scicomp on Alioth
 
  -- Christophe Prud'homme <prudhomm@debian.org>  Wed, 26 Apr 2006 11:36:10 +0200
 
