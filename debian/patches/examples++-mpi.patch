@@ -1,0 +1,107 @@
+Index: freefem++-3.9/configure.ac
+===================================================================
+--- freefem++-3.9.orig/configure.ac	2010-07-13 14:27:09.000000000 +0200
++++ freefem++-3.9/configure.ac	2010-07-13 15:17:49.000000000 +0200
+@@ -649,8 +649,15 @@
+ # -------------------------------------------------
+ dnl m4_include(ax_mpi.m4)
+ ff_save_path="$PATH"
++#with_mpi=mpic++
++
+ # We need to choose between mpich, openmpi  and lam for the Debian package
+-AC_ARG_WITH(mpi,[  --with-mpi=[yes/no/mpiCC/mpic++/... ]	or --without-mpi	Choose MPI implementation (default is mpic++)])
++AC_ARG_WITH([mpi],
++            [AS_HELP_STRING([--with-mpi=[yes/no/mpiCC/mpic++/...]],
++	       [Choose MPI implementation (default is mpic++)])],
++	    [with_mpi=$withval],
++            [with_mpi=no])
++
+ 
+ #if test "$with_mpi" != no ; then
+ #AX_MPI(with_mpi=yes, with_mpi=no)
+@@ -658,22 +665,23 @@
+ 
+ # Default is mpich
+ ff_mpi_suffix="";
+-if test "$with_mpi" = yes -o -z "$with_mpi" 
++if test "$with_mpi" = yes -o -z "$with_mpi"
+ then
+    ff_mpicxx=mpic++
++   ff_mpirun=mpirun
+ else 
+-  case "$with_mpi" in
+- lam|mpich|openmpi)   ff_mpi_suffix=.$with_mpi;ff_mpicxx=mpic++.$with_mpi;;
+- *)  ff_mpicxx="$with_mpi" ;;
+- esac
++   case "$with_mpi" in
++        lam|mpich|openmpi)   ff_mpi_suffix=.$with_mpi;ff_mpicxx=mpic++.$with_mpi;ff_mpirun=mpirun.$with_mpi;;
++        *)  ff_mpicxx="$with_mpi" ;;
++   esac
+ fi
+ 
+-if test "$with_mpi" != no
++if test "$with_mpi" != no;
+ then
+ 	ff_mpi_path=`dirname "$ff_mpicxx"`;
+ dnl	echo "ff_mpi_path '$ff_mpi_path' .............."
+ 	case "$ff_mpi_path" in
+-	    .) ff_mpi_path="";ff_mpipath=$PATH;;
++	    .) ff_mpi_path="";ff_mpi_path=$PATH;;
+ 	    *) ff_mpi_path="$ff_mpi_path";ff_mpipath="$ff_mpi_path:$PATH";;
+ 	esac	
+ #	export PATH="$ff_mpi_path:$PATH"
+@@ -703,17 +711,17 @@
+ 	# Also check that mpirun is there. If it isn't, then MPI is
+ 	# not fully installed.
+ 
+-	if test "$ff_mpi" = yes;
++	if test "$ff_mpi" = yes
+ 	then
+-	echo "ff_mpi_path::$ff_mpi_path:"
+-		AC_PATH_PROGS(ff_mpirun,mpirun mpiexec,no,"$ff_mpi_path")
++	        # echo "ff_mpi_path::$ff_mpi_path:"
++	        AC_PATH_PROGS(ff_mpirun, mpirun$ff_mpi_suffix mpiexec$ff_mpi_suffix, no,$ff_mpi_path)
+ 		if test "$ff_mpirun" = no
+ 		then
+ 			ff_mpi=no
+ 		fi
+ 	fi
+ 
+-	if test "$ff_mpi" = yes;
++	if test "$ff_mpi" = yes
+ 	then
+ 	  echo "MPI CC $ff_mpi" >config_LIB_INFO
+ 
+@@ -1725,10 +1733,13 @@
+ ff_save_libs=$LIBS
+ LIBS="$LIBS $2"
+ AC_LINK_IFELSE([AC_LANG_PROGRAM([m4_if($3,,,[#include <$3>])],[])], [ff_WHERE=yes],[ff_WHERE=no]) 
+-if test "$ff_where" = "yes" ; then
+-     echo "$1 LD '$2'"  >$ff_where_lib_conf
++if test "$ff_WHERE" = "yes" ; then
++     echo "$1 LD '$2'"  >>$ff_where_lib_conf
+ if test -n "$3" ; then
+-       echo "$1 INCLUDE  /usr/include/AS_DIRNAME[$3]  >$ff_where_lib_conf
++       if test "$incdir" != "."; then
++          echo "$1 INCLUDE " -I/usr/include/$incdir
++          echo "$1 INCLUDE " -I/usr/include/$incdir  >>$ff_where_lib_conf
++       fi
+ fi 
+ fi
+ AC_MSG_RESULT($ff_WHERE)
+@@ -1740,10 +1751,11 @@
+ m4_map([AC_FF_WHERELIB],[ 
+ [[mumps],[-lpord -lmumps_common -ldmumps -lzmumps -lpord],[dmumps_c.h]],
+ [[fftw3],[-lfftw3],[fftw3.h]],
+-[[superlu],[-lsuperlu],[superlu_defs.h]],
+-[[blacs],[ -lblacsCinit$ff_with_mpi	-lblacsF77init$ff_with_mpi	-lblacs$ff_with_mpi],[]],
+-[[scalapack],[-lscalapack],[]],
+-[[scotch],[-lscotch -lscotcherr],[]],	
++[[superlu],[-lsuperlu],[superlu/slu_ddefs.h]],
++[[blacs],[ -lblacsCinit$ff_with_mpi	-lblacsF77init$ff_with_mpi	-lblacs$ff_with_mpi]],
++[[scalapack],[-lscalapack$ff_with_mpi]],
++[[scotch],[-lscotch -lscotcherr]],
++[[ptscotch],[-lptscotch -lptscotcherr]],
+ [[metis],[-lmetis],[metis/metis.h]],
+ [[parmetis],[-lparmetis],[parmetis/parmetis.h]]
+ ]

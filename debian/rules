@@ -1,11 +1,9 @@
 #!/usr/bin/make -f
 
+version=3.8
+
 DEB_AUTO_CLEANUP_RCS            := yes
 
-DEB_AUTO_UPDATE_ACLOCAL	:= 1.11
-DEB_AUTO_UPDATE_AUTOCONF	:= 1
-DEB_AUTO_UPDATE_AUTOHEADER	:= 1
-DEB_AUTO_UPDATE_AUTOMAKE	:= 1.11
 
 DEB_COMPRESS_EXCLUDE		:= .pdf .svn
 
@@ -26,19 +24,31 @@ DEB_CONFIGURE_EXTRA_FLAGS	:= \
 
 DEB_STRIPPED_UPSTREAM_VERSION = $(shell echo $(DEB_UPSTREAM_VERSION) | sed -n -e 's/\.dfsg.*$$//p')
 
+USCAN_DESTDIR := $(CURDIR)/tmp
+
+update-config::
+	rm -f configure
+	libtoolize --automake --force
+	aclocal --force
+	autoconf --force
+	automake --add-missing --gnu --force
+
 # Work around to fix examples++-load erreurs
 build/freefem++::
 	cd examples++-load ; \
 	echo `pwd` ; \
 	./ff-c++ SuperLu.cpp '-lsuperlu' '-I/usr/include/superlu' ; \
-	./ff-c++ dfft.cpp '-lfftw3' ; \
 	./ff-c++ metis.cpp '-lscotchmetis -lmetis -lscotch' '-I/usr/include/metis' ; \
 	./ff-c++ tetgen.cpp '-ltet' ; \
-	make ; \
 	cd ..
 
+install/freefem++::
+	perl -pi -e "s|include/ff++.hpp|/usr/include/freefem++/ff++.hpp|g" debian/freefem++/usr/bin/ff-c++
+	mkdir -p debian/freefem++/usr/share/freefem+/$(version)/examples++-load
+	install -m 644 examples++-load/*.cpp debian/freefem++/usr/share/freefem+/$(version)/examples++-load
+
 clean::
-	-rm DOC/*.dvi DOC/*.pdf *~ DOC/*.aux DOC/*.log DOC/*.ps DOC/*.ps.gz \
+	-rm DOC/*.dvi *~ DOC/*.aux DOC/*.log DOC/*.ps DOC/*.ps.gz \
 	   DOC/*.toc DOC/*.ind DOC/*.glo DOC/*.out DOC/*.blg DOC/*ilg \
 	   DOC/*.idx DOC/*.bbl DOC/*.tmp DOC/*.pdfsync
 	rm -rf DOC/cpfigs/*.pdf
@@ -52,16 +62,18 @@ clean::
 	rm -rf config-version.h
 	rm -rf configure.param
 	rm -rf src/medit/compil.date
+	find . -name Makefile.in -exec rm -rf {} + 
+	rm -f ltmain.sh mkinstalldirs depcomp install-sh INSTALL missing
+	rm -rf autom4te.cache
 		
 .PHONY: get-orig-source
 get-orig-source:
-	set -ex ; \
-	TMPDIR=`mktemp -d $(DEB_SOURCE_PACKAGE)-$(DEB_UPSTREAM_VERSION).orig` ; \
-	uscan --force-download --symlink --check-dirname-level 0 --destdir "$$TMPDIR" ; \
-	tar -C "$$TMPDIR" --strip-components 1 -xzf "$$TMPDIR"/$(DEB_SOURCE_PACKAGE)_$(DEB_STRIPPED_UPSTREAM_VERSION).orig.tar.gz ; \
-	rm -f "$$TMPDIR"/$(DEB_SOURCE_PACKAGE)*.tar.gz ; \
-	rm -rf "$$TMPDIR"/arpack ; \
-	GZIP=-9 tar -czf \
+	mkdir -p $(USCAN_DESTDIR)
+	uscan --force-download  --no-symlink --verbose --destdir $(USCAN_DESTDIR)
+	tar -C $(USCAN_DESTDIR) -xzf $(USCAN_DESTDIR)/$(DEB_SOURCE_PACKAGE)-$(DEB_UPSTREAM_VERSION).tar.gz
+	rm -f $(USCAN_DESTDIR)/$(DEB_SOURCE_PACKAGE)*.tar.gz
+	rm -rf $(USCAN_DESTDIR)/$(DEB_SOURCE_PACKAGE)-$(DEB_UPSTREAM_VERSION)/arpack
+	cd $(USCAN_DESTDIR) && GZIP=-9 tar -czf \
 	    $(CURDIR)/$(DEB_SOURCE_PACKAGE)_$(DEB_UPSTREAM_VERSION).orig.tar.gz \
-	    $(DEB_SOURCE_PACKAGE)-$(DEB_UPSTREAM_VERSION).orig ; \
-	rm -rf "$$TMPDIR"
+	    $(DEB_SOURCE_PACKAGE)-$(DEB_UPSTREAM_VERSION)
+	rm -rf $(USCAN_DESTDIR)/$(DEB_SOURCE_PACKAGE)-$(DEB_UPSTREAM_VERSION)

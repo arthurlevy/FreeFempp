@@ -5,10 +5,10 @@ Maintainer: Debian Scientific Computing Team <pkg-scicomp-devel@lists.alioth.deb
 Uploaders: Christophe Prud'homme <prudhomm@debian.org>
 Build-Depends: quilt, cdbs, debhelper (>= 7), autoconf, automake,
  libblas-dev, libfftw3-dev, libscotchmetis-dev, libfltk1.1-dev (>= 1.1.5), 
- libsuitesparse-dev, libsuperlu3-dev, libxext-dev, libxpm-dev, libxt-dev, libxxf86vm-dev,
+ libsuitesparse-dev, libarpack2-dev, libsuperlu3-dev, libxext-dev, libxpm-dev, libxt-dev, libxxf86vm-dev,
  libx11-dev, libgl1-mesa-dev | nvidia-glx-dev, libglut3-dev, freeglut3-dev,
- context, gfortran, mpi-default-bin, mpi-default-dev, texlive, unzip
-Standards-Version: 3.8.3
+ context, gfortran, mpi-default-bin, mpi-default-dev, texlive, texlive-latex-extra, unzip, flex
+Standards-Version: 3.8.4
 Homepage: http://www.freefem.org/ff++/
 Vcs-Svn: svn://svn.debian.org/svn/pkg-scicomp/freefem++/trunk/
 Vcs-Browser: http://svn.debian.org/wsvn/pkg-scicomp/freefem++/

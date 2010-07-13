@@ -1,1 +1,3 @@
 configure.patch
+superlu.patch
+examples++-mpi.patch
