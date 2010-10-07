@@ -1,7 +1,7 @@
-Index: freefem++-3.8/acoptim.m4
+Index: freefem++-3.9-2/acoptim.m4
 ===================================================================
---- freefem++-3.8.orig/acoptim.m4	2010-02-12 09:18:49.000000000 +0100
-+++ freefem++-3.8/acoptim.m4	2010-02-12 09:18:55.000000000 +0100
+--- freefem++-3.9-2.orig/acoptim.m4	2010-09-07 12:47:46.000000000 +0200
++++ freefem++-3.9-2/acoptim.m4	2010-09-07 12:47:54.000000000 +0200
 @@ -47,14 +47,6 @@
  AC_ARG_ENABLE(debug,[  --enable-debug	Turn on debug versions of FreeFem++])
  AC_ARG_ENABLE(optim,[  --enable-optim	Turn on compiler optimization])
@@ -45,11 +45,11 @@ Index: freefem++-3.8/acoptim.m4
      # MacOS X Darwin
      if test -x /usr/bin/hostinfo
  	then
-Index: freefem++-3.8/examples++-load/Makefile.am
+Index: freefem++-3.9-2/examples++-load/Makefile.am
 ===================================================================
---- freefem++-3.8.orig/examples++-load/Makefile.am	2010-02-12 09:18:49.000000000 +0100
-+++ freefem++-3.8/examples++-load/Makefile.am	2010-02-12 09:52:03.000000000 +0100
-@@ -121,14 +121,14 @@
+--- freefem++-3.9-2.orig/examples++-load/Makefile.am	2010-09-07 12:47:46.000000000 +0200
++++ freefem++-3.9-2/examples++-load/Makefile.am	2010-09-07 12:47:54.000000000 +0200
+@@ -125,17 +125,18 @@
  freefem++.pref:
  	echo loadpath = \"./\" >freefem++.pref
  install-exec-local:: load_compile
@@ -72,10 +72,14 @@ Index: freefem++-3.8/examples++-load/Makefile.am
  	$(INSTALL_SCRIPT) ff-c++  $(DESTDIR)${bindir}
  	$(INSTALL_SCRIPT) ff-pkg-download  $(DESTDIR)${bindir}
  	$(INSTALL_SCRIPT) ff-get-dep  $(DESTDIR)${bindir}
-Index: freefem++-3.8/examples++-3d/Makefile.am
++	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/lib
+ 	-for i in $(LIST_COMPILE_PKG); do \
+ 	 if [ -f $$i ] ; then 	$(INSTALL)  -m 555 $$i $(DESTDIR)$(ff_prefix_dir)/lib; fi; done
+ 
+Index: freefem++-3.9-2/examples++-3d/Makefile.am
 ===================================================================
---- freefem++-3.8.orig/examples++-3d/Makefile.am	2010-02-12 09:50:55.000000000 +0100
-+++ freefem++-3.8/examples++-3d/Makefile.am	2010-02-12 09:51:41.000000000 +0100
+--- freefem++-3.9-2.orig/examples++-3d/Makefile.am	2010-09-07 12:47:46.000000000 +0200
++++ freefem++-3.9-2/examples++-3d/Makefile.am	2010-09-07 12:47:54.000000000 +0200
 @@ -31,8 +31,8 @@
  	echo loadpath += \"./\" >>freefem++.pref
  
@@ -87,10 +91,10 @@ Index: freefem++-3.8/examples++-3d/Makefile.am
  
  
  
-Index: freefem++-3.8/examples++-tutorial/Makefile.am
+Index: freefem++-3.9-2/examples++-tutorial/Makefile.am
 ===================================================================
---- freefem++-3.8.orig/examples++-tutorial/Makefile.am	2010-02-12 09:52:23.000000000 +0100
-+++ freefem++-3.8/examples++-tutorial/Makefile.am	2010-02-12 09:53:01.000000000 +0100
+--- freefem++-3.9-2.orig/examples++-tutorial/Makefile.am	2010-09-07 12:47:46.000000000 +0200
++++ freefem++-3.9-2/examples++-tutorial/Makefile.am	2010-09-07 12:47:54.000000000 +0200
 @@ -22,8 +22,8 @@
  Ref: makeref.edp
  	../src/nw/FreeFem++-nw makeref.edp
@@ -109,3 +113,29 @@ Index: freefem++-3.8/examples++-tutorial/Makefile.am
 -FORCE:
 \ No newline at end of file
 +FORCE:
+Index: freefem++-3.9-2/examples++-mpi/Makefile.am
+===================================================================
+--- freefem++-3.9-2.orig/examples++-mpi/Makefile.am	2010-09-07 12:48:08.000000000 +0200
++++ freefem++-3.9-2/examples++-mpi/Makefile.am	2010-09-07 12:53:30.000000000 +0200
+@@ -16,8 +16,21 @@
+ complex_pastix_FreeFem.$(DYLIB_SUFFIX) real_pastix_FreeFem.$(DYLIB_SUFFIX) \
+ dSuperLU_DIST.$(DYLIB_SUFFIX)
+ 
++LIST_COMPILE_PKG= MUMPS_FreeFem.$(DYLIB_SUFFIX) MUMPS_all.$(DYLIB_SUFFIX)
++
+ all-local:$(LIST_COMPILE)
+ 	echo "finish compile load mpi solver !"
+ 
++install-exec-local:: all-local
++	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/lib
++	-for i in $(LIST_COMPILE_PKG); do \
++	 if [ -f $$i ] ; then 	$(INSTALL)  -m 555 $$i $(DESTDIR)$(ff_prefix_dir)/lib; fi; done
++
++clean-local:
++	-rm *.o  load.link WHERE_LIBRARY-download ff-get-dep ff-c++ ff-pkg-download \
++	  $(LIST_COMPILE) $(LIST_COMPILE_PKG)  regtests.edp makeref.edp
++	-rm -rf include
++
++
+ .cpp.$(DYLIB_SUFFIX): ff-c++
+ 	 ../examples++-load//ff-c++ -auto  $< 

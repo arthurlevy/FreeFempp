@@ -1,3 +1,4 @@
 configure.patch
+ff-pkg-download.patch
 superlu.patch
 examples++-mpi.patch

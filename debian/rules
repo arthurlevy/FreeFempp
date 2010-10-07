@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-version=3.8
+version=3.9-2
 
 DEB_AUTO_CLEANUP_RCS            := yes
 
@@ -45,13 +45,17 @@ build/freefem++::
 install/freefem++::
 	perl -pi -e "s|include/ff++.hpp|/usr/include/freefem++/ff++.hpp|g" debian/freefem++/usr/bin/ff-c++
 	mkdir -p debian/freefem++/usr/share/freefem+/$(version)/examples++-load
-	install -m 644 examples++-load/*.cpp debian/freefem++/usr/share/freefem+/$(version)/examples++-load
+	install -m 644 examples++-load/*.cpp debian/freefem++/usr/share/freefem++/$(version)/examples++-load
+	
+	# Fix permissions
+	chmod ugo-x debian/freefem++/usr/share/freefem++/$(version)/examples++*/*.edp
+	chmod ugo-x debian/freefem++/usr/lib/freefem++/idp/*.idp
 
 clean::
 	-rm DOC/*.dvi *~ DOC/*.aux DOC/*.log DOC/*.ps DOC/*.ps.gz \
 	   DOC/*.toc DOC/*.ind DOC/*.glo DOC/*.out DOC/*.blg DOC/*ilg \
 	   DOC/*.idx DOC/*.bbl DOC/*.tmp DOC/*.pdfsync
-	rm -rf DOC/cpfigs/*.pdf
+	rm -rf DOC/freefem++doc.pdf DOC/cpfigs/*.pdf
 	rm -rf examples++-load/freefem++.pref
 	rm -rf examples++-load/WHERE_LIBRARY-config
 	rm -rf examples++-load/config.log

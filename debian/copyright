@@ -20,8 +20,7 @@ FreeFem++ is copyrighted (C) 1995-2008 by F. Hecht, O. Pironneau and
 A. Le Hyearic, it is distributed under the terms of the GNU Lesser General
 Public License (LGPL).
 
-arpack/arpack++: removed from source and arpack support disabled until
-                 arpack{++} licensing is sorted out.
+arpack/arpack++: removed from source.
 
 src/Algo: extracted from the COOOL software by the FreeFem++ authors
           (http://coool.mines.edu/)
@@ -73,3 +72,5 @@ src/fflib/mt19937ar.cpp
    LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
    NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+   
+
