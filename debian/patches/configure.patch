@@ -1,0 +1,141 @@
+Index: freefem++-3.9-2/acoptim.m4
+===================================================================
+--- freefem++-3.9-2.orig/acoptim.m4	2010-09-07 12:47:46.000000000 +0200
++++ freefem++-3.9-2/acoptim.m4	2010-09-07 12:47:54.000000000 +0200
+@@ -47,14 +47,6 @@
+ AC_ARG_ENABLE(debug,[  --enable-debug	Turn on debug versions of FreeFem++])
+ AC_ARG_ENABLE(optim,[  --enable-optim	Turn on compiler optimization])
+ 
+-# Autoconf always chooses -O2. -O2 in gcc makes some functions
+-# disappear. This is not ideal for debugging. And when we optimize, we
+-# do not use -O2 anyway.
+-
+-CFLAGS="`echo $CFLAGS | sed 's/-O2//g'`"
+-FFLAGS="`echo $FFLAGS | sed 's/-O2//g'`"
+-CXXFLAGS="`echo $CXXFLAGS | sed 's/-O2//g'`"
+-
+ if test "$enable_debug" = yes;
+ then
+ 	AC_MSG_RESULT(yes)
+@@ -63,9 +55,9 @@
+ 
+ 	# No debugging information in optimized code
+ 
+-	CFLAGS="`echo $CFLAGS | sed 's/-g//g'` -DNDEBUG"
+-	FFLAGS="`echo $FFLAGS | sed 's/-g//g'` -DNDEBUG"
+-	CXXFLAGS="`echo $CXXFLAGS | sed 's/-g//g'` -DNDEBUG"
++	CFLAGS="$CFLAGS -DNDEBUG"
++	FFLAGS="$FFLAGS -DNDEBUG"
++	CXXFLAGS="$CXXFLAGS -DNDEBUG"
+ fi
+ 
+ # Hardware-independant optimization
+@@ -99,6 +91,14 @@
+     -a "$enable_generic" != yes
+ then
+ 
++# Autoconf always chooses -O2. -O2 in gcc makes some functions
++# disappear. This is not ideal for debugging. And when we optimize, we
++# do not use -O2 anyway.
++
++CFLAGS="`echo $CFLAGS | sed 's/-O2//g'`"
++FFLAGS="`echo $FFLAGS | sed 's/-O2//g'`"
++CXXFLAGS="`echo $CXXFLAGS | sed 's/-O2//g'`"
++
+     # MacOS X Darwin
+     if test -x /usr/bin/hostinfo
+ 	then
+Index: freefem++-3.9-2/examples++-load/Makefile.am
+===================================================================
+--- freefem++-3.9-2.orig/examples++-load/Makefile.am	2010-09-07 12:47:46.000000000 +0200
++++ freefem++-3.9-2/examples++-load/Makefile.am	2010-09-07 12:47:54.000000000 +0200
+@@ -125,17 +125,18 @@
+ freefem++.pref:
+ 	echo loadpath = \"./\" >freefem++.pref
+ install-exec-local:: load_compile
+-	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/lib
+-	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/include
+-	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/etc
+-	$(INSTALL_DATA)  include/* $(DESTDIR)$(ff_prefix_dir)/include
+-	$(INSTALL)  -m 555 $(LIST_COMPILE) $(DESTDIR)$(ff_prefix_dir)/lib
+-	echo loadpath += \"./\"  >$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
+-	echo loadpath += \"$(ff_prefix_dir)/lib\"  >>$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
+-	echo includepath += \"$(ff_prefix_dir)/idp\"  >>$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
++	$(mkinstalldirs) -m 755 $(DESTDIR)$(libdir)/freefem++
++	$(mkinstalldirs) -m 755 $(DESTDIR)/usr/include/freefem++
++	$(mkinstalldirs) -m 755 $(DESTDIR)/etc
++	$(INSTALL_DATA)  include/* $(DESTDIR)/usr/include/freefem++
++	$(INSTALL)  -m 555 $(LIST_COMPILE) $(DESTDIR)$(libdir)/freefem++
++	echo loadpath += \"./\"  >$(DESTDIR)/etc/freefem++.pref
++	echo loadpath += \"$(libdir)/freefem++\"  >>$(DESTDIR)/etc/freefem++.pref
++	echo includepath += \"$(libdir)/freefem++/idp\"  >>$(DESTDIR)/etc/freefem++.pref
+ 	$(INSTALL_SCRIPT) ff-c++  $(DESTDIR)${bindir}
+ 	$(INSTALL_SCRIPT) ff-pkg-download  $(DESTDIR)${bindir}
+ 	$(INSTALL_SCRIPT) ff-get-dep  $(DESTDIR)${bindir}
++	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/lib
+ 	-for i in $(LIST_COMPILE_PKG); do \
+ 	 if [ -f $$i ] ; then 	$(INSTALL)  -m 555 $$i $(DESTDIR)$(ff_prefix_dir)/lib; fi; done
+ 
+Index: freefem++-3.9-2/examples++-3d/Makefile.am
+===================================================================
+--- freefem++-3.9-2.orig/examples++-3d/Makefile.am	2010-09-07 12:47:46.000000000 +0200
++++ freefem++-3.9-2/examples++-3d/Makefile.am	2010-09-07 12:47:54.000000000 +0200
+@@ -31,8 +31,8 @@
+ 	echo loadpath += \"./\" >>freefem++.pref
+ 
+ install-exec-local:: 
+-	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/idp
+-	$(INSTALL)  -m 555  $(LIST_IDP)  $(DESTDIR)$(ff_prefix_dir)/idp
++	$(mkinstalldirs) -m 755 $(DESTDIR)$(libdir)/freefem++/idp
++	$(INSTALL)  -m 555  $(LIST_IDP)  $(DESTDIR)$(libdir)/freefem++/idp
+ 
+ 
+ 
+Index: freefem++-3.9-2/examples++-tutorial/Makefile.am
+===================================================================
+--- freefem++-3.9-2.orig/examples++-tutorial/Makefile.am	2010-09-07 12:47:46.000000000 +0200
++++ freefem++-3.9-2/examples++-tutorial/Makefile.am	2010-09-07 12:47:54.000000000 +0200
+@@ -22,8 +22,8 @@
+ Ref: makeref.edp
+ 	../src/nw/FreeFem++-nw makeref.edp
+ install-exec-local:: 
+-	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/idp
+-	$(INSTALL)  -m 555  $(LIST_IDP)  $(DESTDIR)$(ff_prefix_dir)/idp
++	$(mkinstalldirs) -m 755 $(DESTDIR)$(libdir)/freefem++/idp
++	$(INSTALL)  -m 555  $(LIST_IDP)  $(DESTDIR)$(libdir)/freefem++/idp
+ 
+ 
+ makeref.edp: regtests.m4 ../regtests.m4
+@@ -32,4 +32,4 @@
+ # To check the scripts against their reference values
+ regtests.edp: regtests.m4 ../regtests.m4
+ 	m4 -DASSERT regtests.m4 > regtests.edp
+-FORCE:
+\ No newline at end of file
++FORCE:
+Index: freefem++-3.9-2/examples++-mpi/Makefile.am
+===================================================================
+--- freefem++-3.9-2.orig/examples++-mpi/Makefile.am	2010-09-07 12:48:08.000000000 +0200
++++ freefem++-3.9-2/examples++-mpi/Makefile.am	2010-09-07 12:53:30.000000000 +0200
+@@ -16,8 +16,21 @@
+ complex_pastix_FreeFem.$(DYLIB_SUFFIX) real_pastix_FreeFem.$(DYLIB_SUFFIX) \
+ dSuperLU_DIST.$(DYLIB_SUFFIX)
+ 
++LIST_COMPILE_PKG= MUMPS_FreeFem.$(DYLIB_SUFFIX) MUMPS_all.$(DYLIB_SUFFIX)
++
+ all-local:$(LIST_COMPILE)
+ 	echo "finish compile load mpi solver !"
+ 
++install-exec-local:: all-local
++	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/lib
++	-for i in $(LIST_COMPILE_PKG); do \
++	 if [ -f $$i ] ; then 	$(INSTALL)  -m 555 $$i $(DESTDIR)$(ff_prefix_dir)/lib; fi; done
++
++clean-local:
++	-rm *.o  load.link WHERE_LIBRARY-download ff-get-dep ff-c++ ff-pkg-download \
++	  $(LIST_COMPILE) $(LIST_COMPILE_PKG)  regtests.edp makeref.edp
++	-rm -rf include
++
++
+ .cpp.$(DYLIB_SUFFIX): ff-c++
+ 	 ../examples++-load//ff-c++ -auto  $< 

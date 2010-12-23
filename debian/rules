@@ -1,0 +1,83 @@
+#!/usr/bin/make -f
+
+version=3.9-2
+
+DEB_AUTO_CLEANUP_RCS            := yes
+
+
+DEB_COMPRESS_EXCLUDE		:= .pdf .svn
+
+include /usr/share/cdbs/1/class/autotools.mk
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+
+#DEB_MAKE_ENVVARS		:= -j2
+
+DEB_CONFIGURE_SCRIPT_ENV	+= F77="gfortran"
+DEB_CONFIGURE_EXTRA_FLAGS	:= \
+	--enable-optim \
+	--enable-generic \
+	--disable-pdf \
+	--disable-download \
+	--with-mpi=yes \
+	--program-transform-name="s/^FreeFem++/freefem++/"
+
+DEB_STRIPPED_UPSTREAM_VERSION = $(shell echo $(DEB_UPSTREAM_VERSION) | sed -n -e 's/\.dfsg.*$$//p')
+
+USCAN_DESTDIR := $(CURDIR)/tmp
+
+update-config::
+	rm -f configure
+	libtoolize --automake --force
+	aclocal --force
+	autoconf --force
+	automake --add-missing --gnu --force
+
+# Work around to fix examples++-load erreurs
+build/freefem++::
+	cd examples++-load ; \
+	echo `pwd` ; \
+	./ff-c++ SuperLu.cpp '-lsuperlu' '-I/usr/include/superlu' ; \
+	./ff-c++ metis.cpp '-lscotchmetis -lmetis -lscotch' '-I/usr/include/metis' ; \
+	./ff-c++ tetgen.cpp '-ltet' ; \
+	cd ..
+
+install/freefem++::
+	perl -pi -e "s|include/ff++.hpp|/usr/include/freefem++/ff++.hpp|g" debian/freefem++/usr/bin/ff-c++
+	mkdir -p debian/freefem++/usr/share/freefem+/$(version)/examples++-load
+	install -m 644 examples++-load/*.cpp debian/freefem++/usr/share/freefem++/$(version)/examples++-load
+	
+	# Fix permissions
+	chmod ugo-x debian/freefem++/usr/share/freefem++/$(version)/examples++*/*.edp
+	chmod ugo-x debian/freefem++/usr/lib/freefem++/idp/*.idp
+
+clean::
+	-rm DOC/*.dvi *~ DOC/*.aux DOC/*.log DOC/*.ps DOC/*.ps.gz \
+	   DOC/*.toc DOC/*.ind DOC/*.glo DOC/*.out DOC/*.blg DOC/*ilg \
+	   DOC/*.idx DOC/*.bbl DOC/*.tmp DOC/*.pdfsync
+	rm -rf DOC/freefem++doc.pdf DOC/cpfigs/*.pdf
+	rm -rf examples++-load/freefem++.pref
+	rm -rf examples++-load/WHERE_LIBRARY-config
+	rm -rf examples++-load/config.log
+	rm -rf download/fftw/cxxflags
+	rm -rf download/tetgen/cxxflags
+	rm -rf download/bin
+	rm -rf config_LIB_INFO
+	rm -rf config-version.h
+	rm -rf configure.param
+	rm -rf src/medit/compil.date
+	find . -name Makefile.in -exec rm -rf {} + 
+	rm -f ltmain.sh mkinstalldirs depcomp install-sh INSTALL missing
+	rm -rf autom4te.cache
+		
+.PHONY: get-orig-source
+get-orig-source:
+	mkdir -p $(USCAN_DESTDIR)
+	uscan --force-download  --no-symlink --verbose --destdir $(USCAN_DESTDIR)
+	tar -C $(USCAN_DESTDIR) -xzf $(USCAN_DESTDIR)/$(DEB_SOURCE_PACKAGE)-$(DEB_UPSTREAM_VERSION).tar.gz
+	rm -f $(USCAN_DESTDIR)/$(DEB_SOURCE_PACKAGE)*.tar.gz
+	rm -rf $(USCAN_DESTDIR)/$(DEB_SOURCE_PACKAGE)-$(DEB_UPSTREAM_VERSION)/arpack
+	cd $(USCAN_DESTDIR) && GZIP=-9 tar -czf \
+	    $(CURDIR)/$(DEB_SOURCE_PACKAGE)_$(DEB_UPSTREAM_VERSION).orig.tar.gz \
+	    $(DEB_SOURCE_PACKAGE)-$(DEB_UPSTREAM_VERSION)
+	rm -rf $(USCAN_DESTDIR)/$(DEB_SOURCE_PACKAGE)-$(DEB_UPSTREAM_VERSION)
