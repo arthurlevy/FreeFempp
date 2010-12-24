@@ -1,0 +1,20 @@
+Source: freefem++
+Section: unknown
+Priority: extra
+Maintainer: Dimitrios Eftaxiopoulos <eftaxiop@filippos.mechan.ntua.gr>
+Build-Depends: debhelper (>= 7.0.50~), autotools-dev
+Standards-Version: 3.8.4
+Homepage: <insert the upstream URL, if relevant>
+#Vcs-Git: git://git.debian.org/collab-maint/freefem++.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/freefem++.git;a=summary
+
+Package: freefem++
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: <insert up to 60 chars description>
+ <insert long description, indented with spaces>
+
+Package: freefem++-doc
+Architecture: all
+Description: documentation for freefem++
+ <insert long description, indented with spaces>

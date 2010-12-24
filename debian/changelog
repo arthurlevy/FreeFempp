@@ -1,0 +1,5 @@
+freefem++ (3.11-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Dimitrios Eftaxiopoulos <eftaxiop@filippos.mechan.ntua.gr>  Fri, 24 Dec 2010 17:50:44 +0200
