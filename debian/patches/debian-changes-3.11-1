@@ -46,7 +46,7 @@ Last-Update: <YYYY-MM-DD>
 +#define VERSION "3.11"
 +
 +/* FreeFem++ build date */
-+#define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++#define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +
 +/* FreeFem++ version as a float */
 +#define VersionFreeFempp (3.11)
@@ -246,7 +246,7 @@ Last-Update: <YYYY-MM-DD>
 +#define VERSION "3.11"
 +
 +/* FreeFem++ build date */
-+#define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++#define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +
 +/* FreeFem++ version as a float */
 +#define VersionFreeFempp 3.11
@@ -259,7 +259,7 @@ Last-Update: <YYYY-MM-DD>
 +#define YYTEXT_POINTER 1
 --- /dev/null
 +++ freefem++-3.11/config.log
-@@ -0,0 +1,5382 @@
+@@ -0,0 +1,5247 @@
 +This file contains any messages produced by compilers while
 +running configure, to aid debugging if configure makes a mistake.
 +
@@ -563,13 +563,13 @@ Last-Update: <YYYY-MM-DD>
 +Configured with: ../src/configure -v --with-pkgversion='Debian 4.4.5-10' --with-bugurl=file:///usr/share/doc/gcc-4.4/README.Bugs --enable-languages=c,c++,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-4.4 --enable-shared --enable-multiarch --enable-linker-build-id --with-system-zlib --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --with-gxx-include-dir=/usr/include/c++/4.4 --libdir=/usr/lib --enable-nls --enable-clocale=gnu --enable-libstdcxx-debug --enable-objc-gc --with-arch-32=i586 --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
 +Thread model: posix
 +gcc version 4.4.5 (Debian 4.4.5-10) 
-+ /usr/lib/gcc/x86_64-linux-gnu/4.4.5/f951 conftest.f -ffixed-form -quiet -dumpbase conftest.f -mtune=generic -auxbase conftest -g -O2 -version -fintrinsic-modules-path /usr/lib/gcc/x86_64-linux-gnu/4.4.5/finclude -o /tmp/ccII80Bx.s
++ /usr/lib/gcc/x86_64-linux-gnu/4.4.5/f951 conftest.f -ffixed-form -quiet -dumpbase conftest.f -mtune=generic -auxbase conftest -g -O2 -version -fintrinsic-modules-path /usr/lib/gcc/x86_64-linux-gnu/4.4.5/finclude -o /tmp/ccEWlvqT.s
 +GNU Fortran (Debian 4.4.5-10) version 4.4.5 (x86_64-linux-gnu)
 +	compiled by GNU C version 4.4.5, GMP version 4.3.2, MPFR version 3.0.0-p3.
 +GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
-+ as -V -Qy -o /tmp/ccjIV7a2.o /tmp/ccII80Bx.s
++ as -V -Qy -o /tmp/ccq3BqBh.o /tmp/ccEWlvqT.s
 +GNU assembler version 2.20.1 (x86_64-linux-gnu) using BFD version (GNU Binutils for Debian) 2.20.1-system.20100303
-+ /usr/lib/gcc/x86_64-linux-gnu/4.4.5/collect2 --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=both -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /usr/lib/gcc/x86_64-linux-gnu/4.4.5/../../../../lib/crt1.o /usr/lib/gcc/x86_64-linux-gnu/4.4.5/../../../../lib/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.4.5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/4.4.5 -L/usr/lib/gcc/x86_64-linux-gnu/4.4.5 -L/usr/lib/gcc/x86_64-linux-gnu/4.4.5/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.4.5/../../.. /tmp/ccjIV7a2.o -lgfortranbegin -lgfortran -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/4.4.5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/4.4.5/../../../../lib/crtn.o
++ /usr/lib/gcc/x86_64-linux-gnu/4.4.5/collect2 --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=both -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /usr/lib/gcc/x86_64-linux-gnu/4.4.5/../../../../lib/crt1.o /usr/lib/gcc/x86_64-linux-gnu/4.4.5/../../../../lib/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.4.5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/4.4.5 -L/usr/lib/gcc/x86_64-linux-gnu/4.4.5 -L/usr/lib/gcc/x86_64-linux-gnu/4.4.5/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.4.5/../../.. /tmp/ccq3BqBh.o -lgfortranbegin -lgfortran -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/4.4.5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/4.4.5/../../../../lib/crtn.o
 +configure:5455: result: -v
 +configure:5457: checking for Fortran 77 libraries of gfortran
 +configure:5480: gfortran -o conftest -g -O2 -v conftest.f
@@ -578,13 +578,13 @@ Last-Update: <YYYY-MM-DD>
 +Configured with: ../src/configure -v --with-pkgversion='Debian 4.4.5-10' --with-bugurl=file:///usr/share/doc/gcc-4.4/README.Bugs --enable-languages=c,c++,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-4.4 --enable-shared --enable-multiarch --enable-linker-build-id --with-system-zlib --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --with-gxx-include-dir=/usr/include/c++/4.4 --libdir=/usr/lib --enable-nls --enable-clocale=gnu --enable-libstdcxx-debug --enable-objc-gc --with-arch-32=i586 --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
 +Thread model: posix
 +gcc version 4.4.5 (Debian 4.4.5-10) 
-+ /usr/lib/gcc/x86_64-linux-gnu/4.4.5/f951 conftest.f -ffixed-form -quiet -dumpbase conftest.f -mtune=generic -auxbase conftest -g -O2 -version -fintrinsic-modules-path /usr/lib/gcc/x86_64-linux-gnu/4.4.5/finclude -o /tmp/ccVmJ8cD.s
++ /usr/lib/gcc/x86_64-linux-gnu/4.4.5/f951 conftest.f -ffixed-form -quiet -dumpbase conftest.f -mtune=generic -auxbase conftest -g -O2 -version -fintrinsic-modules-path /usr/lib/gcc/x86_64-linux-gnu/4.4.5/finclude -o /tmp/cccOH0YY.s
 +GNU Fortran (Debian 4.4.5-10) version 4.4.5 (x86_64-linux-gnu)
 +	compiled by GNU C version 4.4.5, GMP version 4.3.2, MPFR version 3.0.0-p3.
 +GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
-+ as -V -Qy -o /tmp/ccqjedT7.o /tmp/ccVmJ8cD.s
++ as -V -Qy -o /tmp/ccv3X8kn.o /tmp/cccOH0YY.s
 +GNU assembler version 2.20.1 (x86_64-linux-gnu) using BFD version (GNU Binutils for Debian) 2.20.1-system.20100303
-+ /usr/lib/gcc/x86_64-linux-gnu/4.4.5/collect2 --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=both -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /usr/lib/gcc/x86_64-linux-gnu/4.4.5/../../../../lib/crt1.o /usr/lib/gcc/x86_64-linux-gnu/4.4.5/../../../../lib/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.4.5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/4.4.5 -L/usr/lib/gcc/x86_64-linux-gnu/4.4.5 -L/usr/lib/gcc/x86_64-linux-gnu/4.4.5/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.4.5/../../.. /tmp/ccqjedT7.o -lgfortranbegin -lgfortran -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/4.4.5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/4.4.5/../../../../lib/crtn.o
++ /usr/lib/gcc/x86_64-linux-gnu/4.4.5/collect2 --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=both -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o conftest /usr/lib/gcc/x86_64-linux-gnu/4.4.5/../../../../lib/crt1.o /usr/lib/gcc/x86_64-linux-gnu/4.4.5/../../../../lib/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.4.5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/4.4.5 -L/usr/lib/gcc/x86_64-linux-gnu/4.4.5 -L/usr/lib/gcc/x86_64-linux-gnu/4.4.5/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.4.5/../../.. /tmp/ccv3X8kn.o -lgfortranbegin -lgfortran -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/4.4.5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/4.4.5/../../../../lib/crtn.o
 +configure:5654: result:  -L/usr/lib/gcc/x86_64-linux-gnu/4.4.5 -L/usr/lib/gcc/x86_64-linux-gnu/4.4.5/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.4.5/../../.. -lgfortranbegin -lgfortran -lm
 +configure:5725: WARNING:   get dir of -lgfortran  FLIBS :  /usr/lib/gcc/x86_64-linux-gnu/4.4.5/libgfortran.so 
 +configure:5784: gcc -o conftest -g -O2   conftest.c  /usr/lib/gcc/x86_64-linux-gnu/4.4.5/libgfortran.so >&5
@@ -604,7 +604,7 @@ Last-Update: <YYYY-MM-DD>
 +configure:5974: gfortran -c -g -O2 conftest.f >&5
 +configure:5974: $? = 0
 +configure:6015: gcc -o conftest -g -O2   conftest.c cfortran_test.o  /usr/lib/gcc/x86_64-linux-gnu/4.4.5/libgfortran.so >&5
-+/tmp/ccMmFtxe.o: In function `main':
++/tmp/cctwdjgG.o: In function `main':
 +/home/eftaxiop/Αρχεία/Γενικά/Λογισμικό/freefem++/freefem++-3.11/conftest.c:30: undefined reference to `foobar'
 +collect2: ld returned 1 exit status
 +configure:6015: $? = 1
@@ -688,11 +688,11 @@ Last-Update: <YYYY-MM-DD>
 +configure:7024: result: lex.yy
 +configure:7029: checking lex library
 +configure:7043: gcc -o conftest -g -O2   conftest.c   >&5
-+/tmp/ccGW0L9r.o: In function `input':
++/tmp/cc4P9PLR.o: In function `input':
 +/home/eftaxiop/Αρχεία/Γενικά/Λογισμικό/freefem++/freefem++-3.11/lex.yy.c:1182: undefined reference to `yywrap'
-+/tmp/ccGW0L9r.o: In function `yylex':
++/tmp/cc4P9PLR.o: In function `yylex':
 +/home/eftaxiop/Αρχεία/Γενικά/Λογισμικό/freefem++/freefem++-3.11/lex.yy.c:881: undefined reference to `yywrap'
-+/tmp/ccGW0L9r.o: In function `main':
++/tmp/cc4P9PLR.o: In function `main':
 +/home/eftaxiop/Αρχεία/Γενικά/Λογισμικό/freefem++/freefem++-3.11/conftest.l:17: undefined reference to `yywrap'
 +collect2: ld returned 1 exit status
 +configure:7043: $? = 1
@@ -2590,7 +2590,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| /* end confdefs.h.  */
 +| #include <ac_nonexistent.h>
@@ -2614,7 +2614,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| /* end confdefs.h.  */
 +| #include <ac_nonexistent.h>
@@ -2724,7 +2724,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -2790,7 +2790,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -2835,7 +2835,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -2902,7 +2902,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -2970,7 +2970,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -3055,7 +3055,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -3114,7 +3114,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -3184,7 +3184,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -3239,7 +3239,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -3299,7 +3299,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -3370,7 +3370,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -3411,7 +3411,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -3476,7 +3476,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -3520,7 +3520,7 @@ Last-Update: <YYYY-MM-DD>
 +configure:12369: result: no
 +configure:12332: checking for daxpy_ in 
 +configure:12362: g++ -o conftest  -DNDEBUG -O3 -mmmx -msse -msse2 -DDRAWING -DBAMG_LONG_LONG  -DNCHECKPTR    conftest.cpp   >&5
-+/tmp/ccFre6pz.o: In function `main':
++/tmp/ccItw3MR.o: In function `main':
 +conftest.cpp:(.text+0x5): undefined reference to `daxpy_'
 +collect2: ld returned 1 exit status
 +configure:12362: $? = 1
@@ -3538,7 +3538,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -3616,7 +3616,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -3688,7 +3688,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -3729,7 +3729,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -3801,7 +3801,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -3826,7 +3826,7 @@ Last-Update: <YYYY-MM-DD>
 +configure:12555: result: no
 +configure:12698: checking for lapack in  /usr/lib/gcc/x86_64-linux-gnu/4.4.5/libgfortran.so, -lblas and -llapack 
 +configure:12727: g++ -o conftest  -DNDEBUG -O3 -mmmx -msse -msse2 -DDRAWING -DBAMG_LONG_LONG  -DNCHECKPTR    conftest.cpp  /usr/lib/gcc/x86_64-linux-gnu/4.4.5/libgfortran.so >&5
-+/tmp/ccFBApQQ.o: In function `main':
++/tmp/ccRbw0rj.o: In function `main':
 +conftest.cpp:(.text+0x5): undefined reference to `dgeqr2_'
 +collect2: ld returned 1 exit status
 +configure:12727: $? = 1
@@ -3844,7 +3844,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -3887,7 +3887,7 @@ Last-Update: <YYYY-MM-DD>
 +|   return 0;
 +| }
 +configure:12761: g++ -o conftest  -DNDEBUG -O3 -mmmx -msse -msse2 -DDRAWING -DBAMG_LONG_LONG  -DNCHECKPTR    conftest.cpp  /usr/lib/gcc/x86_64-linux-gnu/4.4.5/libgfortran.so -lblas >&5
-+/tmp/ccQyoN5V.o: In function `main':
++/tmp/ccD5Hi8o.o: In function `main':
 +conftest.cpp:(.text+0x5): undefined reference to `dgeqr2_'
 +collect2: ld returned 1 exit status
 +configure:12761: $? = 1
@@ -3905,7 +3905,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -3972,7 +3972,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -4045,7 +4045,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -4087,7 +4087,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -4160,7 +4160,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -4202,7 +4202,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -4275,7 +4275,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -4365,7 +4365,7 @@ Last-Update: <YYYY-MM-DD>
 +configure:13288: result: yes
 +configure:13300: checking for srandomdev
 +configure:13300: g++ -o conftest  -DNDEBUG -O3 -mmmx -msse -msse2 -DDRAWING -DBAMG_LONG_LONG  -DNCHECKPTR    conftest.cpp  /usr/lib/gcc/x86_64-linux-gnu/4.4.5/libgfortran.so >&5
-+/tmp/ccceYKZi.o: In function `main':
++/tmp/ccjU6f0C.o: In function `main':
 +conftest.cpp:(.text+0x5): undefined reference to `srandomdev'
 +collect2: ld returned 1 exit status
 +configure:13300: $? = 1
@@ -4383,7 +4383,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -4464,7 +4464,7 @@ Last-Update: <YYYY-MM-DD>
 +configure:13300: result: no
 +configure:13312: checking for second_
 +configure:13312: g++ -o conftest  -DNDEBUG -O3 -mmmx -msse -msse2 -DDRAWING -DBAMG_LONG_LONG  -DNCHECKPTR    conftest.cpp  /usr/lib/gcc/x86_64-linux-gnu/4.4.5/libgfortran.so >&5
-+/tmp/ccoKEQeo.o: In function `main':
++/tmp/ccPxAwiI.o: In function `main':
 +conftest.cpp:(.text+0x5): undefined reference to `second_'
 +collect2: ld returned 1 exit status
 +configure:13312: $? = 1
@@ -4482,7 +4482,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -4636,9 +4636,8 @@ Last-Update: <YYYY-MM-DD>
 +configure:14223: checking for pdf2ps
 +configure:14251: result: no
 +configure:14263: checking for epstopdf
-+configure:14293: result: no
-+configure:14263: checking for pstopdf
-+configure:14293: result: no
++configure:14279: found /usr/bin/epstopdf
++configure:14290: result: epstopdf
 +configure:14304: checking for convert
 +configure:14320: found /usr/bin/convert
 +configure:14332: result: yes
@@ -4653,75 +4652,8 @@ Last-Update: <YYYY-MM-DD>
 +configure:14714: result: libc-2.11.2
 +configure:14882: checking check mumps
 +configure:14905: g++ -o conftest  -DNDEBUG -O3 -mmmx -msse -msse2 -DDRAWING -DBAMG_LONG_LONG  -DNCHECKPTR -rdynamic -fPIC    conftest.cpp -ldl  /usr/lib/gcc/x86_64-linux-gnu/4.4.5/libgfortran.so -ldmumps -lzmumps  -lmumps_common  -lpord  >&5
-+conftest.cpp:50:22: error: dmumps_c.h: No such file or directory
-+configure:14905: $? = 1
-+configure: failed program was:
-+| /* confdefs.h */
-+| #define PACKAGE_NAME "FreeFem++"
-+| #define PACKAGE_TARNAME "freefem++"
-+| #define PACKAGE_VERSION "3.11"
-+| #define PACKAGE_STRING "FreeFem++ 3.11"
-+| #define PACKAGE_BUGREPORT "hecht@ann.jussieu.fr"
-+| #define PACKAGE_URL ""
-+| #define PACKAGE "freefem++"
-+| #define VERSION "3.11"
-+| #define F77_FUNC(name,NAME) name ## _
-+| #define F77_FUNC_(name,NAME) name ## _
-+| #define YYTEXT_POINTER 1
-+| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
-+| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
-+| #define STDC_HEADERS 1
-+| #define HAVE_SYS_TYPES_H 1
-+| #define HAVE_SYS_STAT_H 1
-+| #define HAVE_STDLIB_H 1
-+| #define HAVE_STRING_H 1
-+| #define HAVE_MEMORY_H 1
-+| #define HAVE_STRINGS_H 1
-+| #define HAVE_INTTYPES_H 1
-+| #define HAVE_STDINT_H 1
-+| #define HAVE_UNISTD_H 1
-+| #define HAVE_GL_GL_H 1
-+| #define HAVE_GL_GLUT_H 1
-+| #define HAVE_GL_GLX_H 1
-+| #define PROG_FFGLUT "ffglut"
-+| #define HAVE_FFTW3_H 1
-+| #define HAVE_CBLAS_H 1
-+| #define HAVE_LIBARPACK 1
-+| #define HAVE_SUITESPARSE_UMFPACK_H 1
-+| #define HAVE_LIBUMFPACK 1
-+| #define TIME_WITH_SYS_TIME 1
-+| #define HAVE_MALLOC_H 1
-+| #define HAVE_ASINH 1
-+| #define HAVE_ACOSH 1
-+| #define HAVE_ATANH 1
-+| #define HAVE_GETENV 1
-+| #define HAVE_JN 1
-+| #define HAVE_ERFC 1
-+| #define HAVE_TGAMMA 1
-+| #define HAVE_GETTIMEOFDAY 1
-+| #define HAVE_TIMES 1
-+| #define HAVE_SYSCONF 1
-+| #define HAVE_LIBDL 1
-+| #define HAVE_DLFCN_H 1
-+| /* end confdefs.h.  */
-+| #include <dmumps_c.h>
-+| #ifdef F77_DUMMY_MAIN
-+| 
-+| #  ifdef __cplusplus
-+|      extern "C"
-+| #  endif
-+|    int F77_DUMMY_MAIN() { return 1; }
-+| 
-+| #endif
-+| int
-+| main ()
-+| {
-+| 
-+|   ;
-+|   return 0;
-+| }
-+configure:14941: result: no
++configure:14905: $? = 0
++configure:14941: result: yes
 +configure:14945: checking check fftw3
 +configure:14968: g++ -o conftest  -DNDEBUG -O3 -mmmx -msse -msse2 -DDRAWING -DBAMG_LONG_LONG  -DNCHECKPTR -rdynamic -fPIC    conftest.cpp -ldl  /usr/lib/gcc/x86_64-linux-gnu/4.4.5/libgfortran.so -lfftw3  >&5
 +configure:14968: $? = 0
@@ -4744,7 +4676,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -4815,7 +4747,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -4886,7 +4818,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -4941,76 +4873,8 @@ Last-Update: <YYYY-MM-DD>
 +configure:15193: result: no
 +configure:15197: checking check scotch
 +configure:15220: g++ -o conftest  -DNDEBUG -O3 -mmmx -msse -msse2 -DDRAWING -DBAMG_LONG_LONG  -DNCHECKPTR -rdynamic -fPIC    conftest.cpp -ldl  /usr/lib/gcc/x86_64-linux-gnu/4.4.5/libgfortran.so -lscotch -lscotcherr  >&5
-+/usr/bin/ld: cannot find -lscotch
-+collect2: ld returned 1 exit status
-+configure:15220: $? = 1
-+configure: failed program was:
-+| /* confdefs.h */
-+| #define PACKAGE_NAME "FreeFem++"
-+| #define PACKAGE_TARNAME "freefem++"
-+| #define PACKAGE_VERSION "3.11"
-+| #define PACKAGE_STRING "FreeFem++ 3.11"
-+| #define PACKAGE_BUGREPORT "hecht@ann.jussieu.fr"
-+| #define PACKAGE_URL ""
-+| #define PACKAGE "freefem++"
-+| #define VERSION "3.11"
-+| #define F77_FUNC(name,NAME) name ## _
-+| #define F77_FUNC_(name,NAME) name ## _
-+| #define YYTEXT_POINTER 1
-+| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
-+| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
-+| #define STDC_HEADERS 1
-+| #define HAVE_SYS_TYPES_H 1
-+| #define HAVE_SYS_STAT_H 1
-+| #define HAVE_STDLIB_H 1
-+| #define HAVE_STRING_H 1
-+| #define HAVE_MEMORY_H 1
-+| #define HAVE_STRINGS_H 1
-+| #define HAVE_INTTYPES_H 1
-+| #define HAVE_STDINT_H 1
-+| #define HAVE_UNISTD_H 1
-+| #define HAVE_GL_GL_H 1
-+| #define HAVE_GL_GLUT_H 1
-+| #define HAVE_GL_GLX_H 1
-+| #define PROG_FFGLUT "ffglut"
-+| #define HAVE_FFTW3_H 1
-+| #define HAVE_CBLAS_H 1
-+| #define HAVE_LIBARPACK 1
-+| #define HAVE_SUITESPARSE_UMFPACK_H 1
-+| #define HAVE_LIBUMFPACK 1
-+| #define TIME_WITH_SYS_TIME 1
-+| #define HAVE_MALLOC_H 1
-+| #define HAVE_ASINH 1
-+| #define HAVE_ACOSH 1
-+| #define HAVE_ATANH 1
-+| #define HAVE_GETENV 1
-+| #define HAVE_JN 1
-+| #define HAVE_ERFC 1
-+| #define HAVE_TGAMMA 1
-+| #define HAVE_GETTIMEOFDAY 1
-+| #define HAVE_TIMES 1
-+| #define HAVE_SYSCONF 1
-+| #define HAVE_LIBDL 1
-+| #define HAVE_DLFCN_H 1
-+| /* end confdefs.h.  */
-+| 
-+| #ifdef F77_DUMMY_MAIN
-+| 
-+| #  ifdef __cplusplus
-+|      extern "C"
-+| #  endif
-+|    int F77_DUMMY_MAIN() { return 1; }
-+| 
-+| #endif
-+| int
-+| main ()
-+| {
-+| 
-+|   ;
-+|   return 0;
-+| }
-+configure:15256: result: no
++configure:15220: $? = 0
++configure:15256: result: yes
 +configure:15260: checking check metis
 +configure:15283: g++ -o conftest  -DNDEBUG -O3 -mmmx -msse -msse2 -DDRAWING -DBAMG_LONG_LONG  -DNCHECKPTR -rdynamic -fPIC    conftest.cpp -ldl  /usr/lib/gcc/x86_64-linux-gnu/4.4.5/libgfortran.so -lmetis  >&5
 +conftest.cpp:50:25: error: metis/metis.h: No such file or directory
@@ -5029,7 +4893,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -5102,7 +4966,7 @@ Last-Update: <YYYY-MM-DD>
 +| #define F77_FUNC_(name,NAME) name ## _
 +| #define YYTEXT_POINTER 1
 +| #define VersionFreeFempp 3.11
-+| #define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++| #define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +| #define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +| #define STDC_HEADERS 1
 +| #define HAVE_SYS_TYPES_H 1
@@ -5347,6 +5211,7 @@ Last-Update: <YYYY-MM-DD>
 +ac_cv_path_mkdir=/bin/mkdir
 +ac_cv_prog_AWK=gawk
 +ac_cv_prog_CXXCPP='g++ -E'
++ac_cv_prog_EPSTOPDF=epstopdf
 +ac_cv_prog_LEX=flex
 +ac_cv_prog_YACC='bison -y'
 +ac_cv_prog_ac_ct_CC=gcc
@@ -5409,7 +5274,7 @@ Last-Update: <YYYY-MM-DD>
 +CYGPATH_W='echo'
 +DEFS='-DHAVE_CONFIG_H'
 +DEPDIR='.deps'
-+DOCPDF=''
++DOCPDF='freefem++doc.pdf'
 +DOCPS=''
 +DOCPSGZ=''
 +DOWNLOADCOMPILE=''
@@ -5424,7 +5289,7 @@ Last-Update: <YYYY-MM-DD>
 +EGREP='/bin/grep -E'
 +EIGENOBJ='eigenvalue.$(OBJEXT)'
 +EIGENTEST='../regtests.sh'
-+EPSTOPDF='false'
++EPSTOPDF='epstopdf'
 +EXEEXT=''
 +F77='gfortran'
 +FC='gfortran'
@@ -5605,7 +5470,7 @@ Last-Update: <YYYY-MM-DD>
 +#define F77_FUNC_(name,NAME) name ## _
 +#define YYTEXT_POINTER 1
 +#define VersionFreeFempp 3.11
-+#define VersionFreeFemDate "Fri Dec 24 16:32:08 UTC 2010"
++#define VersionFreeFemDate "Fri Dec 24 17:04:19 UTC 2010"
 +#define FF_PREFIX_DIR "/usr/lib/ff++/3.11"
 +#define STDC_HEADERS 1
 +#define HAVE_SYS_TYPES_H 1
@@ -5788,7 +5653,7 @@ Last-Update: <YYYY-MM-DD>
 +CYGPATH_W = echo
 +DEFS = -DHAVE_CONFIG_H
 +DEPDIR = .deps
-+DOCPDF = 
++DOCPDF = freefem++doc.pdf
 +DOCPS = 
 +DOCPSGZ = 
 +DOWNLOADCOMPILE = 
@@ -5803,7 +5668,7 @@ Last-Update: <YYYY-MM-DD>
 +EGREP = /bin/grep -E
 +EIGENOBJ = eigenvalue.$(OBJEXT)
 +EIGENTEST = ../regtests.sh
-+EPSTOPDF = false
++EPSTOPDF = epstopdf
 +EXEEXT = 
 +F77 = gfortran
 +FC = gfortran
@@ -7370,13 +7235,13 @@ Last-Update: <YYYY-MM-DD>
 +S["STD_GRAPH_OBJ"]="Xrgraph.o"
 +S["HISTORY"]=""
 +S["ff_history"]=""
-+S["DOCPDF"]=""
++S["DOCPDF"]="freefem++doc.pdf"
 +S["ff_pdflatex"]="yes"
 +S["DOCPSGZ"]=""
 +S["ff_gzip"]=""
 +S["DOCPS"]=""
 +S["ff_convert"]="yes"
-+S["EPSTOPDF"]="false"
++S["EPSTOPDF"]="epstopdf"
 +S["ff_pdf2ps"]="no"
 +S["ff_dvips"]="yes"
 +S["ff_makeindex"]="yes"
@@ -7603,7 +7468,7 @@ Last-Update: <YYYY-MM-DD>
 +D["F77_FUNC_"]=" name ## _"
 +D["YYTEXT_POINTER"]=" 1"
 +D["VersionFreeFempp"]=" 3.11"
-+D["VersionFreeFemDate"]=" \"Fri Dec 24 16:32:08 UTC 2010\""
++D["VersionFreeFemDate"]=" \"Fri Dec 24 17:04:19 UTC 2010\""
 +D["FF_PREFIX_DIR"]=" \"/usr/lib/ff++/3.11\""
 +D["STDC_HEADERS"]=" 1"
 +D["HAVE_SYS_TYPES_H"]=" 1"
@@ -8176,7 +8041,7 @@ Last-Update: <YYYY-MM-DD>
 +CYGPATH_W = echo
 +DEFS = -DHAVE_CONFIG_H
 +DEPDIR = .deps
-+DOCPDF = 
++DOCPDF = freefem++doc.pdf
 +DOCPS = 
 +DOCPSGZ = 
 +DOWNLOADCOMPILE = 
@@ -8191,7 +8056,7 @@ Last-Update: <YYYY-MM-DD>
 +EGREP = /bin/grep -E
 +EIGENOBJ = eigenvalue.$(OBJEXT)
 +EIGENTEST = ../regtests.sh
-+EPSTOPDF = false
++EPSTOPDF = epstopdf
 +EXEEXT = 
 +F77 = gfortran
 +FC = gfortran
@@ -8897,7 +8762,7 @@ Last-Update: <YYYY-MM-DD>
 +
 --- /dev/null
 +++ freefem++-3.11/download/metis/config.log
-@@ -0,0 +1,34 @@
+@@ -0,0 +1,51 @@
 +
 +## ---------------------- ##
 +## Running config.status. ##
@@ -8915,6 +8780,23 @@ Last-Update: <YYYY-MM-DD>
 +on filippos
 +
 +config.status:1026: creating Makefile.in
++
++## ---------------------- ##
++## Running config.status. ##
++## ---------------------- ##
++
++This file was extended by FreeFem++ config.status 3.11, which was
++generated by GNU Autoconf 2.65.  Invocation command line was
++
++  CONFIG_FILES    = 
++  CONFIG_HEADERS  = 
++  CONFIG_LINKS    = 
++  CONFIG_COMMANDS = 
++  $ ../../config.status --file=Makefile.in:Makefile-metis.in
++
++on filippos
++
++config.status:1037: creating Makefile.in
 +
 +## ---------------------- ##
 +## Running config.status. ##
@@ -8951,8 +8833,8 @@ Last-Update: <YYYY-MM-DD>
 +WIN32DLLTARGET = 
 --- /dev/null
 +++ freefem++-3.11/examples++-load/WHERE_LIBRARY-config
-@@ -0,0 +1,20 @@
-+#  Build with freefem++ with ./configure  Fri Dec 24 16:32:06 UTC 2010
+@@ -0,0 +1,22 @@
++#  Build with freefem++ with ./configure  Fri Dec 24 17:04:17 UTC 2010
 +f77 LD /usr/lib/gcc/x86_64-linux-gnu/4.4.5/libgfortran.so
 +f77 INCLUDE -DAdd_
 +fc LD /usr/lib/gcc/x86_64-linux-gnu/4.4.5/libgfortran.so
@@ -8971,7 +8853,9 @@ Last-Update: <YYYY-MM-DD>
 +amd INCLUDE '-I/usr/include/suitesparse'
 +umfpack LD $ff_umfpack_libs\
 +umfpack INCLUDE '-I/usr/include/suitesparse'
++mumps LD '-ldmumps -lzmumps  -lmumps_common  -lpord'
 +fftw3 LD '-lfftw3'
++scotch LD '-lscotch -lscotcherr'
 --- /dev/null
 +++ freefem++-3.11/examples++-load/config.log
 @@ -0,0 +1,34 @@
@@ -9041,7 +8925,24 @@ Last-Update: <YYYY-MM-DD>
 +if [ -z "$dry" ]; then eval  "${a[*]}"; fi
 --- /dev/null
 +++ freefem++-3.11/src/mpi/config.log
-@@ -0,0 +1,17 @@
+@@ -0,0 +1,34 @@
++
++## ---------------------- ##
++## Running config.status. ##
++## ---------------------- ##
++
++This file was extended by FreeFem++ config.status 3.11, which was
++generated by GNU Autoconf 2.65.  Invocation command line was
++
++  CONFIG_FILES    = 
++  CONFIG_HEADERS  = 
++  CONFIG_LINKS    = 
++  CONFIG_COMMANDS = 
++  $ ../../config.status --file=ff-mpirun:ff-mpirun.in
++
++on filippos
++
++config.status:1037: creating ff-mpirun
 +
 +## ---------------------- ##
 +## Running config.status. ##
