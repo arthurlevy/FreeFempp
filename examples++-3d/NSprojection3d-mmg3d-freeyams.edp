@@ -1,0 +1,282 @@
+// file NSprojection3d.edp
+load "msh3"
+load "/Users/morice/work/postdoc/freefem++prod/examples++-load/mshmet"
+load "mmg3d"
+load "tetgen"
+load "freeyams"
+load "medit"
+
+//===============================
+// options::  freeyams et mmg3d
+//===============================
+
+// ==================
+// parametre mshmet
+// ==================
+/*
+loptions= a vector of integer of size 7. This vector contains the integer parameters of mshmet.
+loptions(0): normalization level (default 0).
+loptions(1): isotropic parameters (default 0). 1 for isotropic metric results otherwise
+0.
+loptions(2): level set parameters (default 0). 1 for building level set metric otherwise
+0.
+loptions(3): debug parameters (default 0). 1 for turning on debug mode otherwise 0.
+loptions(4): level of verbosity (default 10).
+loptions(5): number of regularization's iteration of solutions given (default 0).
+loptions(6): previously metric parameter (default 0). 1 for using previous metric oth-
+erwise 0.
+*/
+int[int] MSHloptions(7);
+MSHloptions(0)=0;
+MSHloptions(1)=1;
+MSHloptions(2)=0;
+MSHloptions(3)=0;
+MSHloptions(4)=10;
+MSHloptions(5)=0;
+MSHloptions(6)=0;
+/*
+doptions= a vector of double of size 4. This vector contains the real parameters of mshmet_ dop-
+tions(0): hmin : min size parameters (default 0.01).
+doptions(1): hmax : max size parameters (default 1.0).
+doptions(2): eps : tolerance parameters ( default 0.01).
+doptions(3): width : relative width for Level Set (0 < w < 1) ( default 0.05).
+*/
+real[int] MSHdoptions(4);
+MSHdoptions(0)=0.005;
+MSHdoptions(1)=0.1;
+MSHdoptions(2)=0.05; 
+MSHdoptions(3)=0;
+
+// remarque baisse de la tolerance sur mshmet ==> besoin de raffiner plus grand
+/*
+metric= a vector of double. This vector contains an initial metric given to mshmet. The
+structure of the metric vector is described in the next paragraph.
+ */
+// conclusion :: 
+//
+
+//=======================
+//  parametre mmg3d
+//====================== 
+// autre parametres : metric, displacement, displVect
+int[int] options(6);
+options(0)=1;  /* optimization parameter : 0 (optimization), 1 (adaptation with metric), 4 splitting, 9 moving+adaptation */  
+options(1)=0;  /* debug mode */
+options(2)=64; /* size of the bucket */
+options(3)=0;  /* flip edge and surface */
+options(4)=0;  /* insert point mode */
+options(5)=3;  /* verbosity */
+
+// attention a la place memoire, on donne la valeur en Mb
+int MMG3dmemory=80;
+
+// conclusion :: Le parametre le plus important est la "metrique" pour mmg3d
+// ==> Il est important de bien connaitre mshmet
+
+//============================
+//   parametre freeyams
+//============================
+// autre parametre : metric
+/*
+loptions= a vector of integer of size 13. This vectors contains the integer options of FreeYams.
+loptions(0): anisotropic parameter (default 0). If you give an anisotropic metric 1
+otherwise 0.
+loptions(1): Finite Element correction parameter (default 0). 1 for no Finite Element
+correction otherwise 0.
+loptions(2): Split multiple connected points parameter (default 1). 1 for splitting mul-
+tiple connected points otherwise 0
+6
+loptions(3): maximum value of memory size in Mbytes (default -1: the size is given by
+freeyams).
+loptions(4): set the value of the connected component which we want to obtain. (Re-
+mark: freeyams give an automatic value at each connected component).
+loptions(5): level of verbosity
+loptions(6): Create point on straight edge (no mapping) parameter (default 0). 1 for
+creating point on straight edge otherwise 0.
+loptions(7): validity check during smoothing parameter. This parameter is only used
+with No-Shrinkage Vertex Smoothing optimization (optimization option parameter 9).
+1 for No validity checking during smoothing otherwise 0.
+loptions(8): number of desired's vertices (default -1).
+loptions(9): number of iteration of optimizations (default 30).
+loptions(10): ridge detection parameter (default 0) . 1 for detecting the ridge on the
+mesh otherwise 0. The ridge denition is given in the parameter doptions(12).
+loptions(11): vertex smoothing parameter (default 0). 1 for smoothing the vertices
+otherwise 0.
+loptions(12): Optimization level parameter (default 0).
+0 : mesh optimization (smoothing+swapping)
+1 : decimation+enrichment adaptated to a metric map.
+-1: decimation adaptated to a metric map.
+2 : decimation+enrichment with a Hausdorf-like method
+-2: decimation with a Hausdorf-like method
+4 : split triangles recursively.
+9 : No-Shrinkage Vertex Smoothing
+*/
+int[int] FYamsloptions(13);
+FYamsloptions(0) = 0;   // 1: anisotropic parameter, 0: isotropic parameter
+FYamsloptions(1) = 1;   // Finite Element correction parameter
+FYamsloptions(2) = 1;   // split multiple connected point
+FYamsloptions(3) = -1;  // memory in Mb
+FYamsloptions(4) = 0;    // obligatoire == 0 : mettre le paramétre par défaut 
+FYamsloptions(5) = 10;  // verbosity level
+FYamsloptions(6) = 0;   // straight edge
+FYamsloptions(7) = 0;   // with optimization option parameter 9
+FYamsloptions(8) = -1;  // number of desired vertices
+FYamsloptions(9) = 30;  // optimization iteration
+FYamsloptions(10) = 0;  // ridge detection on/off 
+FYamsloptions(11) = 0;  // smoothing vertex parameter (permet de mettre de points sur une courbure et non sur un segment)   
+FYamsloptions(12) = 1;  // optimiztion level parameter
+
+/*
+doptions= a vector of double of size 11. This vectors contains the real options of freeyams.
+doptions(0): Set the geometric approximation (Tangent plane deviation) (default 0.01).
+doptions(1): Set the lamda parameter (default -1. ).
+doptions(2): Set the mu parmeter (default -1. ).
+doptions(3): Set the gradation value (Mesh density control) (default 1.3).
+doptions(4): Set the minimal size(hmin) (default -2.0: the size is automatically com-
+puted).
+doptions(5): Set the maximal size(hmax) (default -2.0: the size is automatically com-
+puted).
+doptions(6): Set the tolerance of the control of Chordal deviation (default -2.0).
+doptions(7): Set the quality of degradation (default 0.599).
+doptions(8): Set the declic parameter (default 2.0).
+doptions(9): Set the angular walton limitation parameter (default 45 degree).
+doptions(10): Set the angular ridge detection (default 45 degree).
+*/
+
+real[int] FYamsdoptions(11);
+FYamsdoptions(0)= 0.01;
+FYamsdoptions(1)= -1;
+FYamsdoptions(2)= -1; 
+FYamsdoptions(3)= 1.3;
+FYamsdoptions(4)= -2.0;  // hmin
+FYamsdoptions(5)= -2.0;  // hmax
+FYamsdoptions(6)=-2.0;  // chordal deviation
+FYamsdoptions(7)= 0.599; //
+FYamsdoptions(8)= 2.0;   // declic parameter
+FYamsdoptions(9)= 45;   // angular walton limitation (in degree)
+FYamsdoptions(10)= 45; // angular ridge detection (in degree)
+
+//=============================
+
+border a0(t=1,0){ x=0;      y=t;      label=1;}
+border a1(t=0,1){ x=2*t;    y=0;        label=2;}
+border a2(t=0,1){ x=2;      y=-t/2;       label=2;}
+border a3(t=0,1){ x=2+18*t^1.2;  y=-0.5;       label=2;}
+border a4(t=0,1){ x=20;     y=-0.5+1.5*t;   label=3;}
+border a5(t=1,0){ x=20*t; y=1;        label=4;}
+int n=1;
+mesh ThS = buildmesh(a0(3*n)+a1(20*n)+a2(10*n)+a3(150*n)+a4(5*n)+a5(100*n));
+
+int[int] rup=[0,5],  rdown=[0,6], rmid=[1,1,2,2,3,3,4,4];
+func zmin  = 0.;
+func zmax  = 1.;
+
+mesh3 Th=buildlayers(ThS,5*n,
+  coef= 1.,
+  zbound=[zmin,zmax],
+  reffacemid=rmid, 
+  reffaceup = rup,
+  reffacelow = rdown);
+
+medit("-TH--",Th,wait=1); 
+
+fespace Vh(Th,P1);
+real nu = 0.0025, dt = 0.2; // Reynolds=200
+Vh w,u = 4*y*(1-y)*z*(1-z)*(y>0)*(x<2)*(z>0)*(z<1), v =0, vz=0,p = 0, q=0;
+real area= int3d(Th)(1.);
+
+for(int n=0;n<2;n++){
+  
+  Vh uold = u,  vold = v, pold=p, vzold=vz;
+  Vh f=convect([u,v,vz],-dt,uold);
+  Vh g=convect([u,v,vz],-dt,vold);
+  Vh gz=convect([u,v,vz],-dt,vzold);
+
+  //========================================================================
+  //   question :: qu'est ce que le solveur LU ??
+  //========================================================================
+  //------------------------------------------------------------------------
+  //        bug ::  si je le rappelle why au niveau de la place memoire  ???
+  //------------------------------------------------------------------------
+  //========================================================================
+  problem pb4u(u,w,solver=sparsesolver)
+    =int3d(Th)(u*w/dt +nu*(dx(u)*dx(w)+dy(u)*dy(w)+dz(u)*dz(w)))
+    -int3d(Th)((f/dt-dx(p))*w)
+    + on(1,u = 4*y*(1-y)*z*(1-z)) + on(2,4,u = 0)+ on(3,5,6,u=f);
+ 
+  pb4u;
+  
+  problem pb4v(v,w,solver=sparsesolver)
+    = int3d(Th)(v*w/dt +nu*(dx(v)*dx(w)+dy(v)*dy(w)+dz(v)*dz(w)))
+    -int3d(Th)((g/dt-dy(p))*w)
+    +on(1,2,3,4,5,6,v = 0);
+  
+  pb4v;
+
+  problem pb4vz(vz,w,solver=sparsesolver)
+    = int3d(Th)(vz*w/dt +nu*(dx(vz)*dx(w)+dy(vz)*dy(w)+dz(vz)*dz(w)))
+    -int3d(Th)((gz/dt-dz(p))*w)
+    +on(1,2,3,4,5,6,vz = 0);
+
+  pb4vz;
+  real meandiv = int3d(Th)(dx(u)+dy(v)+dz(vz))/area;
+
+  problem pb4p(q,w,solver=sparsesolver)= int3d(Th)(dx(q)*dx(w)+dy(q)*dy(w)+dz(q)*dz(w))
+    - int3d(Th)((dx(u)+ dy(v)+dz(vz)-meandiv)*w/dt)+ on(3,q=0);
+  
+  pb4p;
+
+  real meanpq = int3d(Th)(pold - q)/area;
+ 
+  if(n==1){
+    
+    real sizeofvolume = 0.001; //1./6*(1.*nn)^3;
+    real[int] ldomain=[0.1,0.1,0.1,0,sizeofvolume];//
+    cout << "mshmet -1- " << n << endl;
+    real[int] bb=mshmet(Th,u,v,vz,q,loptions=MSHloptions,doptions=MSHdoptions);
+    cout << "freeyams --- " << n << endl;
+    Th = freeyams(Th,loptions=FYamsloptions,doptions=FYamsdoptions,metric=bb);    
+    cout << "tetg --- " << n << endl;
+    Th = tetg(Th,switch="pqaACCYY",nbofregions=1,regionlist=ldomain); 
+    medit("Th",Th,wait=1);
+    
+    cout << " uuu "<< endl;
+    u=u; v=v; p=p; vz=vz; q=q;
+    uold = u;  vold = v; pold=p; vzold=vz;
+    f=convect([u,v,vz],-dt,uold);
+    g=convect([u,v,vz],-dt,vold);
+    gz=convect([u,v,vz],-dt,vzold);
+    
+    cout << " pb4u "<< endl;
+    pb4u;
+    cout << " pb4v "<< endl;
+    pb4v;
+    cout << " pb4vz "<< endl;
+    pb4vz;
+    meandiv = int3d(Th)(dx(u)+dy(v)+dz(vz))/area;
+    pb4p;
+    meanpq = int3d(Th)(pold - q)/area;
+    
+    cout << "mshmet -2- " << n << endl;
+    real[int] bb1=mshmet(Th,u,v,vz,q,loptions=MSHloptions,doptions=MSHdoptions); 
+    cout << "mmg3d --- " << n << endl;
+    Th = mmg3d(Th,options=options,memory= MMG3dmemory,metric=bb1);
+    // In parameter metric := metric at the new vertices of Th
+    cout << " size metric " << bb1.n << " " << Vh.ndof <<endl;  
+    assert(  bb1.n == Vh.ndof );
+    options(0)=0;  // Optimize the 3d-mesh with mmg3d
+    Th = mmg3d(Th,options=options,memory= MMG3dmemory,metric=bb1);
+    options(0)=1;  // Optimize for a given metric 
+    //---------------
+  }
+  
+  p  = pold-q-meanpq;
+  u  =  u + dx(q)*dt;
+  v  =  v + dy(q)*dt;
+  vz = vz + dz(q)*dt;
+}
+medit("u p",Th,u,p);
+/*
+plot(p,wait=1,ps="NSprojP.eps");
+plot(u,wait=1,ps="NSprojU.eps");
+*/
