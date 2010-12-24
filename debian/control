@@ -1,8 +1,9 @@
 Source: freefem++
 Section: math
 Priority: extra
-Maintainer: Debian Scientific Computing Team <pkg-scicomp-devel@lists.alioth.debian.org>
-Uploaders: Christophe Prud'homme <prudhomm@debian.org>
+Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Uploaders: Christophe Trophime <christophe.trophime@grenoble.cnrs.fr>, 
+ Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>
 Build-Depends: quilt, cdbs, debhelper (>= 7), autoconf, automake,
  libblas-dev, libfftw3-dev, libscotchmetis-dev, libfltk1.1-dev (>= 1.1.5), 
  libsuitesparse-dev, libarpack2-dev, libarpack++2-dev, libsuperlu3-dev, libxext-dev, libxpm-dev, libxt-dev, libxxf86vm-dev,
