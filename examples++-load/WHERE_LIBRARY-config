@@ -1,4 +1,4 @@
-#  Build with freefem++ with ./configure  Fri Dec 24 17:25:01 UTC 2010
+#  Build with freefem++ with ./configure  Fri Dec 24 17:51:09 UTC 2010
 f77 LD /usr/lib/gcc/x86_64-linux-gnu/4.4.5/libgfortran.so
 f77 INCLUDE -DAdd_
 fc LD /usr/lib/gcc/x86_64-linux-gnu/4.4.5/libgfortran.so
