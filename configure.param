@@ -1,0 +1,1 @@
+'--prefix=/usr' 'CFLAGS=-g -O2' 'LDFLAGS=' 'CPPFLAGS=' 'CXXFLAGS=-g -O2' 'FFLAGS=-g -O2'

@@ -16,7 +16,7 @@ export DH_OPTIONS=-v
 clean:
 	dh_testdir
 #	rm -rf png/*.png texinfo/mgl_ru.info-*
-	dh_auto_clean
+#	dh_auto_clean
 	dh_clean
 
 build:

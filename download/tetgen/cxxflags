@@ -1,0 +1,13 @@
+CXX = g++
+MPICXX = /usr/bin/mpic++
+ac_ct_CXX = g++
+CC = gcc
+MPICC = /usr/bin/mpicc
+YACC = bison -y
+ac_ct_CC = gcc
+CXXFLAGS =  -DNDEBUG -mmmx -msse -msse2 -DDRAWING -DBAMG_LONG_LONG  -DNCHECKPTR -rdynamic -fPIC
+WGET = wget --no-check-certificate
+AMTAR = ${SHELL} /home/eftaxiop/Αρχεία/Γενικά/Λογισμικό/freefem++/freefem++-3.11/missing --run tar
+AR = ar
+MMG3DLIB_TAR = libmmg3d-1001-LINUX-8.tar.gz
+ARFLAGS = rv

@@ -1,9 +1,16 @@
 Source: freefem++
-Section: unknown
-Priority: extra
+Section: math
+Priority: low
 Maintainer: Dimitrios Eftaxiopoulos <eftaxiop@filippos.mechan.ntua.gr>
-Build-Depends: debhelper (>= 7.0.50~), autotools-dev, gfortran
-Standards-Version: 3.8.4
+Build-Depends: debhelper (>= 7.0.50~), autotools-dev, gfortran, gawk,
+ gfortran, flex, bison, libxt-dev, libxext-dev, libxxf86vm-dev,
+ libxpm-dev, openmpi-bin, libfftw3-dev, libblas-dev,
+ libarpack2-dev, libsuitesparse-dev, libsuperlu3-dev, imagemagick, 
+ libfltk1.1-dev, freeglut3-dev, texlive, texlive-extra-utils, 
+ texlive-latex-extra, libtool, libglut3-dev, texlive-font-utils,
+ libmumps-dev,  libsuperlu3-dev, libblacs-mpi-dev, libscalapack-mpi-dev,
+ libscotch-dev
+Standards-Version: 3.9.1
 Homepage: <insert the upstream URL, if relevant>
 #Vcs-Git: git://git.debian.org/collab-maint/freefem++.git
 #Vcs-Browser: http://git.debian.org/?p=collab-maint/freefem++.git;a=summary
