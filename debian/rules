@@ -27,7 +27,8 @@ build:
 	gcc  -DNDEBUG -O3 -mmmx -msse -msse2 -rdynamic -fPIC   -o ffmedit animat.o cube.o image.o listnum.o mouse.o persp.o stream.o zaldy2.o bbfile.o dlists.o inmsh2.o material.o normal.o picking.o tiles.o camera.o ellipse.o inout.o medit.o param.o psfile.o transform.o cenrad.o geometry.o inout_morice.o menus.o parsar.o scene.o util.o clip.o gisfil.o inout_popenbinaire.o mesh.o parsop.o scissor.o vector.o clipvol.o hash.o items.o mlists.o particle.o sftcpy.o view.o critip.o ilists.o keyboard.o morphing.o path.o status.o zaldy1.o ../libMesh/libMesh.a -lglut -lGLU -lGL -ldl  /usr/lib/gcc/x86_64-linux-gnu/4.5.2/libgfortran.so -lm ; \
 	make ; \
 	cd ../.. ; \
-	make -j4 --keep-going
+	make -j4 ; \
+	make -j4 --ignore-errors ; \
 # 	cd examples++-load ; \
 # 	echo `pwd` ; \
 # 	./ff-c++ SuperLu.cpp '-lsuperlu' '-I/usr/include/superlu' ; \
