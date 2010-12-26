@@ -1897,7 +1897,7 @@ public:
     {  ffassert( ! (nargs[i] && nargs[ii]) ); i= nargs[i] ? i : ii;
 	return nargs[i] ? GetAny<KN_<long> >( (*nargs[i])(stack) ): a;}
   double  arg(int i,Stack stack,double a) const{ return nargs[i] ? GetAny< double >( (*nargs[i])(stack) ): a;}
-  long  arg(int i,Stack stack,long a) const{ return nargs[i] ? GetAny< long >( (*nargs[i])(stack) ): a;}
+  long  arg(int i,Stack stack,int a) const{ return nargs[i] ? GetAny< long >( (*nargs[i])(stack) ): a;}
 public:
   Movemesh3D_Op(const basicAC_F0 &  args,Expression tth) 
     : eTh(tth), xx(0) , yy(0) , zz(0)
@@ -1956,8 +1956,8 @@ AnyType Movemesh3D_Op::operator()(Stack stack)  const
   KN<long> nrtet  (arg(1,7,stack,zzempty));  
   KN<long> nrf (arg(2,8,stack,zzempty)); 
   double precis_mesh( arg(3,stack,1e-7));
-  long  mergefacemesh( arg(4,stack,1L) );
-  long  flagsurfaceall( arg(5,stack,0L) );
+  long  mergefacemesh( arg(4,stack,1) );
+  long  flagsurfaceall( arg(5,stack,0) );
 
   //if( nrtet.N() && nrfmid.N() && nrfup.N() && nrfdown.N() ) return m;
   ffassert( nrtet.N() %2 ==0);
@@ -2098,7 +2098,7 @@ AnyType Movemesh3D_Op::operator()(Stack stack)  const
 
   if(nbt != 0)
     {    
-      long orientationelement( arg(6,stack,1L) );
+      long orientationelement( arg(6,stack,1) );
       if( orientationelement == -1){
 	// change all orientation of borderelements and elements
 	for (int i=0;i<T_Th3->nt;i++)
@@ -2141,7 +2141,7 @@ AnyType Movemesh3D_Op::operator()(Stack stack)  const
   else
     {
       // parameter orientation for a 3D surface mesh
-      long orientationsurf( arg(6,stack,1L) );
+      long orientationsurf( arg(6,stack,1) );
       if( orientationsurf == -1){
 	// change all orientation of borderelements
 	for (int i=0;i<T_Th3->nbe;i++)
@@ -2245,7 +2245,7 @@ AnyType SetMesh3D_Op::operator()(Stack stack)  const
   KN<long> nrtet (arg(0,stack,zz));  
   KN<long> nrface (arg(1,stack,zz));  
 
-  if(nrface.N() <=0 && nrtet.N() <=0) return m; // modf J.M. oct 2010 
+  if(nrface.N() <=0 && nrtet.N() ) return m;
   ffassert( nrtet.N() %2 ==0);
   ffassert( nrface.N() %2 ==0);
   
@@ -2377,7 +2377,7 @@ public:
   Expression nargs[n_name_param];
   KN_<long>  arg(int i,Stack stack,KN_<long> a ) const{ 
       return nargs[i] ? GetAny<KN_<long> >( (*nargs[i])(stack) ): a;}
-  long arg(int i,Stack stack,long a ) const{ return nargs[i] ? GetAny<long>( (*nargs[i])(stack) ): a;}
+  int arg(int i,Stack stack,int a ) const{ return nargs[i] ? GetAny<int>( (*nargs[i])(stack) ): a;}
   double arg(int i,Stack stack,double a ) const{ return nargs[i] ? GetAny<double>( (*nargs[i])(stack) ): a;}
 public:
   Movemesh2D_3D_surf_Op(const basicAC_F0 &  args,Expression tth) : 
@@ -2427,10 +2427,10 @@ AnyType Movemesh2D_3D_surf_Op::operator()(Stack stack)  const
   
   KN<long> zzempty;
   //int intempty=0;
-  int mesureM (arg(1,stack,0L));
+  int mesureM (arg(1,stack,0));
   KN<long> nrface (arg(2,stack,arg(5,stack,zzempty)));
-  double precis_mesh(arg(3,stack,-1.));
-  long flagsurfaceall(arg(4,stack,-1L));
+  double precis_mesh(arg(3,stack,-1));
+  long flagsurfaceall(arg(4,stack,-1));
   
   if(nrface.N()<0 ) return m;
   ffassert( nrface.N() %2 ==0);
@@ -4178,8 +4178,8 @@ public:
   KN_<long>  arg(int i,Stack stack,KN_<long> a ) const
   { return nargs[i] ? GetAny<KN_<long> >( (*nargs[i])(stack) ): a;}
   double  arg(int i,Stack stack,double a ) const{ return nargs[i] ? GetAny< double >( (*nargs[i])(stack) ): a;}
-  long    arg(int i,Stack stack,long a ) const{ return nargs[i] ? GetAny< long >( (*nargs[i])(stack) ): a;}
-  //int    arg(int i,Stack stack,int a ) const{ return nargs[i] ? GetAny<long>( (*nargs[i])(stack) ): a;}
+  //long    arg(int i,Stack stack,long a ) const{ return nargs[i] ? GetAny< long >( (*nargs[i])(stack) ): a;}
+  int    arg(int i,Stack stack,int a ) const{ return nargs[i] ? GetAny< int >( (*nargs[i])(stack) ): a;}
 public:
   BuildLayeMesh_Op(const basicAC_F0 &  args,Expression tth,Expression nmaxx) 
     : eTh(tth),enmax(nmaxx), ezmin(0),ezmax(0),xx(0),yy(0),zz(0)
@@ -4293,8 +4293,8 @@ AnyType BuildLayeMesh_Op::operator()(Stack stack)  const
   KN<long> nrfmid (arg(4,stack,arg(4+6,stack,zzempty)));  
   KN<long> nrfup  (arg(5,stack,arg(5+6,stack,zzempty)));  
   KN<long> nrfdown (arg(6,stack,arg(6+6,stack,zzempty)));  
-  int point_confondus_ok (arg(7,stack,0L));
-  double precis_mesh (arg(8,stack,-1L));
+  int point_confondus_ok (arg(7,stack,0));
+  double precis_mesh (arg(8,stack,-1));
 
   
   //if( nrtet.N() && nrfmid.N() && nrfup.N() && nrfdown.N() ) return m;
@@ -4520,7 +4520,7 @@ public:
   KN_<double>  arg(int i,Stack stack,KN_<double> a ) const
   { return nargs[i] ? GetAny<KN_<double> >( (*nargs[i])(stack) ): a;}
   double  arg(int i,Stack stack,double a ) const{ return nargs[i] ? GetAny< double >( (*nargs[i])(stack) ): a;}
-  long  arg(int i,Stack stack,long a ) const{ return nargs[i] ? GetAny< long >( (*nargs[i])(stack) ): a;}
+  int  arg(int i,Stack stack,int a ) const{ return nargs[i] ? GetAny< long >( (*nargs[i])(stack) ): a;}
 public:
   DeplacementTab_Op(const basicAC_F0 &  args,Expression tth) 
     : eTh(tth)  //, xx(0) , yy(0) , zz(0)
@@ -4581,8 +4581,8 @@ AnyType DeplacementTab_Op::operator()(Stack stack)  const
   int recollement_elem=0;
   int recollement_border,point_confondus_ok;
   
-  int  mergefacemesh( arg(4,stack,0L) );
-  long  flagsurfaceall( arg(5,stack,1L) );
+  int  mergefacemesh( arg(4,stack,0) );
+  long  flagsurfaceall( arg(5,stack,1) );
 
    if(mergefacemesh == 0)
     {
@@ -4746,7 +4746,7 @@ public:
   KN_<long>  arg(int i,Stack stack,KN_<long> a ) const
   { return nargs[i] ? GetAny<KN_<long> >( (*nargs[i])(stack) ): a;}
   double  arg(int i,Stack stack,double a) const{ return nargs[i] ? GetAny< double >( (*nargs[i])(stack) ): a;}
-  long  arg(int i,Stack stack,long a) const{ return nargs[i] ? GetAny< long >( (*nargs[i])(stack) ): a;}
+  long  arg(int i,Stack stack,int a) const{ return nargs[i] ? GetAny< long >( (*nargs[i])(stack) ): a;}
 public:
   CheckManifoldMesh_Op(const basicAC_F0 &  args,Expression tth) 
     : eTh(tth)
@@ -4958,8 +4958,8 @@ Mesh3 * truncmesh(const Mesh3 &Th,const long &kksplit,int *split, bool kk, const
     first[nvtrunc] = majedge;
     for(int i=0; i<nvtrunc; i++)
       current[i] = first[i];
-    if(verbosity>9)
-      cout << "    trunc (3d) majedge =" << majedge << endl;
+
+    cout << "majedge =" << majedge << endl;
 
     KN<int> tableau(majedge);
     for(int i=0; i<Th.nt; i++){
@@ -5037,8 +5037,7 @@ Mesh3 * truncmesh(const Mesh3 &Th,const long &kksplit,int *split, bool kk, const
     cout << iii << " tetsub=" << trisub[3*iii] << " "<< trisub[3*iii+1] << " " << trisub[3*iii+2] << endl;
     }
   */
-  if(verbosity>3) 
-    cout << "  -- trunc (3d) : Th.nv= " << Th.nv << "kksplit="<< kksplit << endl;
+  cout << "Th.nv= " << Th.nv << "kksplit="<< kksplit << endl;
   // determination de nv 
   /*if(kksplit == 1)
     nv=nvtrunc;
@@ -5048,13 +5047,13 @@ Mesh3 * truncmesh(const Mesh3 &Th,const long &kksplit,int *split, bool kk, const
     int nbenosplit = nbe/kksplit2;
     int nfacenosplit = (4*ntnosplit+nbenosplit)/2;
     nv = ntnosplit*(nvsub - 4*( (kksplit+1)*(kksplit+2)/2 - 3*(kksplit-1) -3 ) - 6*( kksplit-1 ) - 4);
-    if(verbosity>100) cout << "       1) nv= " << nv << endl;
+    cout << " nv= " << nv << endl;
     nv = nv + nfacenosplit*( (kksplit+1)*(kksplit+2)/2 - 3*(kksplit-1) -3 );
-    if(verbosity>100) cout << "       2) nv= " << nv << endl;
+    cout << " nv= " << nv << endl;
     nv = nv + nbedge*( kksplit-1 );
-    if(verbosity>100) cout << "       3) nv= " << nv << endl;
+    cout << " nv= " << nv << endl;
     nv = nv + nvtrunc;
-    if(verbosity>100) cout << "       4) nv= " << nv << endl;
+    cout << " nv= " << nv << endl;
     //}
   
 
@@ -5162,7 +5161,7 @@ Mesh3 * truncmesh(const Mesh3 &Th,const long &kksplit,int *split, bool kk, const
 	  //assert(pvi);
 	  //newindex[iv] = pvi-v;
 	if(np>nv) cout << "np=" << np << " nv=" << nv << endl; 
-	ffassert( np <= nv );
+	assert( np <= nv );
       }
 
       for( int ii=0; ii<ntetsub; ii++){
@@ -5191,7 +5190,7 @@ Mesh3 * truncmesh(const Mesh3 &Th,const long &kksplit,int *split, bool kk, const
 	    for( int ii=0; ii<nfacesub; ii++){
 
 	      int iface = 3*FaceTriangle[j]*nfacesub+3*ii;
-	      if(verbosity > 99) cout << "face " << ie << "iface " << iface << " " << FaceTriangle[j] 
+	      if(verbosity > 1) cout << "face " << ie << "iface " << iface << " " << FaceTriangle[j] 
 				     << " " << trisub[iface] 
 				     << " " << trisub[iface+1]  
 				     << " " << trisub[iface+2] << endl; 
@@ -5280,7 +5279,7 @@ Mesh3 * truncmesh(const Mesh3 &Th,const long &kksplit,int *split, bool kk, const
        for( int jjj=0; jjj<3; jjj++){
 	 ivb[jjj] = newindex[ tri2Dsub[3*ii+jjj] ]; 
 	 assert( tri2Dsub[ 3*ii+jjj  ] < nvsub );
-	 if(verbosity > 4 ) cout << "        " << ivb[jjj] << " np:" << np<< endl;
+	 if(verbosity > 1) cout << ivb[jjj] << " np:" << np<< endl;
 	 assert( ivb[jjj] < np );
        }
        
@@ -5296,21 +5295,19 @@ Mesh3 * truncmesh(const Mesh3 &Th,const long &kksplit,int *split, bool kk, const
   delete [] tri2Dsub;   //[4*kksplit*kksplit];
 
   
-  if(verbosity>99)
-    {
-      cout << "nbofv initial" << Th.nv << endl; 
-      cout << "nv=" << nv << " np=" << np << endl; 
-      cout << "itt=" << itt << " nt=" << nt << endl;
-      cout << "ie=" << ie << " nbe=" << nbe << endl;
-    }
-  ffassert( nv == np );
-  ffassert( ie ==nbe);
-  ffassert( itt == nt );
+
+  cout << "nbofv initial" << Th.nv << endl; 
+  cout << "nv=" << nv << " np=" << np << endl; 
+  assert( nv == np );
+  cout << "itt=" << itt << " nt=" << nt << endl;
+  assert( itt == nt );
+  cout << "ie=" << ie << " nbe=" << nbe << endl;
+  assert( ie ==nbe);
 
   //delete gtree;
 
   Mesh3 *Tht = new Mesh3( nv, nt, nbe, v, t, b); 
-  Tht->BuildGTree(); // Add JM. Oct 2010 
+  
   delete gtree;
   
  
@@ -5338,23 +5335,23 @@ AnyType Op_trunc_mesh3::Op::operator()(Stack stack)  const {
       else  split[k]=0  ;    
     }
   //*mp=mps;
-  if (verbosity>1) 
+  //if (verbosity>1) 
     cout << "  -- Trunc mesh: Nb of Tetrahedrons = " << kk << " label=" <<label <<endl;
   Mesh3 * Tht = truncmesh(Th,kkksplit,split,false,label);
-  
-  
-  //  cout << Tht->nv << " " << Tht->nt << " " << Tht->nbe << " " << endl;
-  //   cout << "==================================" <<  Tht << endl;
-  //   exit(1);
-  //   for( int jjj=0; jjj<Tht->nv; jjj++){
-  //     cout << "apres trunc mesh :: vertex" << jjj+1 <<" " <<  Tht->vertices[jjj].x << " " << Tht->vertices[jjj].y << " " << Tht->vertices[jjj].z << " " << Tht->vertices[jjj].lab << endl;
-  //if( abs(Tht->vertices[jjj].lab) > 1 ) exit(1); 
-  //  }
-  //string filename("Thtpp_res.mesh");
-  //Tht->Save(filename); 
 
-  //  cout << "==================================" <<  Tht << endl;
-  
+
+ //  cout << Tht->nv << " " << Tht->nt << " " << Tht->nbe << " " << endl;
+//   cout << "==================================" <<  Tht << endl;
+//   exit(1);
+//   for( int jjj=0; jjj<Tht->nv; jjj++){
+//     cout << "apres trunc mesh :: vertex" << jjj+1 <<" " <<  Tht->vertices[jjj].x << " " << Tht->vertices[jjj].y << " " << Tht->vertices[jjj].z << " " << Tht->vertices[jjj].lab << endl;
+    //if( abs(Tht->vertices[jjj].lab) > 1 ) exit(1); 
+  //  }
+  string filename("Thtpp_res.mesh");
+  Tht->Save(filename); 
+
+  cout << "==================================" <<  Tht << endl;
+
 
   Add2StackOfPtr2FreeRC(stack,Tht);//  07/2008 FH 
   *mp=mps;
@@ -5385,7 +5382,7 @@ class ExtractMesh2D_Op : public E_F0mps
 		}
 		double  arg(int i,Stack stack,double a ) const{ return nargs[i] ? GetAny< double >( (*nargs[i])(stack) ): a;}
 		//long    arg(int i,Stack stack,long a ) const{ return nargs[i] ? GetAny< long >( (*nargs[i])(stack) ): a;}
-		long    arg(int i,Stack stack,long a ) const{ return nargs[i] ? GetAny<long>( (*nargs[i])(stack) ): a;}
+		int    arg(int i,Stack stack,int a ) const{ return nargs[i] ? GetAny< int >( (*nargs[i])(stack) ): a;}
 	public:
 		ExtractMesh2D_Op(const basicAC_F0 &  args,Expression tth) 
 		: eTh(tth)
@@ -5627,7 +5624,8 @@ public:
       return nargs[j] ? GetAny<KN_<long> >( (*nargs[j])(stack) ): a;
   }
   double  arg(int i,Stack stack,double a ) const{ return nargs[i] ? GetAny< double >( (*nargs[i])(stack) ): a;}
-  long    arg(int i,Stack stack,long a ) const{ return nargs[i] ? GetAny<long>( (*nargs[i])(stack) ): a;}
+  //long    arg(int i,Stack stack,long a ) const{ return nargs[i] ? GetAny< long >( (*nargs[i])(stack) ): a;}
+  int    arg(int i,Stack stack,int a ) const{ return nargs[i] ? GetAny< int >( (*nargs[i])(stack) ): a;}
 public:
   ExtractMesh_Op(const basicAC_F0 &  args,Expression tth) 
     : eTh(tth)

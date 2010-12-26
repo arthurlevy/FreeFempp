@@ -25,7 +25,6 @@ FAITwin32-dll-target:
 
 FAIT:	
 	$(MAKE) FAIRE WHERE
-	touch FAIT
 
 
 
@@ -60,6 +59,7 @@ install:
 	cd $(SRCDIR)/src && $(MAKE) install
 WHERE:
 	if [ -f $(SRCDIR)/FAIT ] ; then  \
+	make install ; \
 	echo hypre LD '-L@DIR@/lib/hypre  -lHYPRE'  >$(SRCDIR)/$(INSTALL)/lib/WHERE.hypre ;\
 	echo hypre INCLUDE '-I@DIR@/include/hypre'>> $(SRCDIR)/$(INSTALL)/lib/WHERE.hypre ;\
 	fi
@@ -74,7 +74,7 @@ $(PACKAGE):
 	cd $(PKGDIR); $(WGET)   $(SERVER)/`basename $(PACKAGE)`
 
 clean: clean-local
-	-rm ff-flags FAIT
+	-rm ff-flags
 clean-local:
 	-rm -rf $(SRCDIR) FAIT 
 

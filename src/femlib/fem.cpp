@@ -100,8 +100,7 @@ public:
 	    //    reffecran();
 	    //    cadreortho(0.22,0.22,.1);
 	    if (neb) BuildBoundaryAdjacences();
-            area=0;  // FH add nov 2010
-            lenbord=0; // FH add nov 2010
+	    
 	    if(TheAdjacencesLink) return; //
 	    TheAdjacencesLink = new int[3*nt];
 	    const int NbCode = 2*nv;
@@ -117,7 +116,6 @@ public:
 		for (i=0;i<nt;i++)
 		{ 
 		    Triangle & T=triangles[i];
-		    area += T.area; // add FH nov 2010 
 		    for( j=0; j<3; j++,n++ )
 		    { 
 			VerticesNumberOfEdge(T,j,j0,j1);
@@ -165,7 +163,6 @@ public:
 		for (i=0;i<neb;i++)
 		{  
 		    BoundaryEdge & be(bedges[i]);
-		    lenbord +=   be.length() ; // add Now 2010 FH 
 		    int n;
 		    int i0=number(be.vertices[0]);
 		    int i1=number(be.vertices[1]);
@@ -1419,8 +1416,7 @@ void Mesh::BuilTriangles(bool empty,bool removeouside)
 Mesh::Mesh(const Mesh & Th,int * split,bool WithMortar,int label)
 { //  routine complique 
   //  count the number of elements
-    area=0; //Th.area;
-    lenbord=0;
+    area=Th.area;
     volume=0;
     BoundaryAdjacencesHead=0;
     BoundaryAdjacencesLink=0;
@@ -1450,7 +1446,6 @@ Mesh::Mesh(const Mesh & Th,int * split,bool WithMortar,int label)
 	    splitmin=Min(splitmin, split[i]);
 	    splitmax=Max(splitmax, split[i]);	    
 	    nt += NbOfSubTriangle(split[i]);
-	    area+= Th[i].area; // error Nov 2010 FH ..
 	}
     
     bool constsplit=splitmin==splitmax;
@@ -1902,7 +1897,6 @@ Mesh::Mesh(const  Serialize &serialized)
     vertices=0;
     bedges=0;
     area=0;
-    lenbord=0;
     bnormalv=0;
     //  ---  assert(serialized.samewhat(magicmesh));
     size_t  pp=0;;
@@ -1941,12 +1935,11 @@ Mesh::Mesh(const  Serialize &serialized)
         serialized.get(pp,i0);
         serialized.get(pp,i1);
         serialized.get(pp,ir);
-        bedges[i] = BoundaryEdge(vertices,i0,i1,ir);
-	lenbord += bedges[i].length(); }
+        bedges[i] = BoundaryEdge(vertices,i0,i1,ir); }
     assert( pp ==  serialized.size() );   
     if(verbosity>2) 
 	cout << "   End of un serialize: area on mesh = " << area <<endl;  
-    ConsAdjacence();	
+    ConsAdjacence();
     
 }
 

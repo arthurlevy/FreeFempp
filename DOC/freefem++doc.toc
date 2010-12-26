@@ -1,0 +1,271 @@
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Installation }{2}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}For everyone:}{2}{subsection.1.1.1}
+\contentsline {paragraph}{Windows binaries install}{3}{section*.3}
+\contentsline {paragraph}{MacOS X binaries install}{3}{section*.4}
+\contentsline {paragraph}{Where to go from here}{3}{section*.5}
+\contentsline {subsection}{\numberline {1.1.2}For the pros: Installation from sources}{3}{subsection.1.1.2}
+\contentsline {paragraph}{The documentation archive}{3}{section*.6}
+\contentsline {paragraph}{The C++ archive}{4}{section*.7}
+\contentsline {paragraph}{Link with other text editors}{5}{section*.8}
+\contentsline {section}{\numberline {1.2}How to use \texttt {FreeFem++ }}{6}{section.1.2}
+\contentsline {paragraph}{Under MacOS X with Graphic Interfaces}{6}{section*.9}
+\contentsline {paragraph}{In Terminal mode}{6}{section*.10}
+\contentsline {section}{\numberline {1.3}Environment variables, and the init file}{8}{section.1.3}
+\contentsline {section}{\numberline {1.4}History}{9}{section.1.4}
+\contentsline {chapter}{\numberline {2}Getting Started}{11}{chapter.2}
+\contentsline {paragraph}{Exercise}{12}{section*.11}
+\contentsline {subsection}{\numberline {2.0.1}FEM by \texttt {FreeFem++ }: how does it work?}{12}{subsection.2.0.1}
+\contentsline {subsection}{\numberline {2.0.2}Some Features of \texttt {FreeFem++ }}{16}{subsection.2.0.2}
+\contentsline {section}{\numberline {2.1}The Development Cycle: Edit--Run/Visualize--Revise}{16}{section.2.1}
+\contentsline {chapter}{\numberline {3}Learning by Examples}{19}{chapter.3}
+\contentsline {section}{\numberline {3.1}Membranes}{19}{section.3.1}
+\contentsline {paragraph}{Summary}{19}{section*.12}
+\contentsline {paragraph}{WARNING}{20}{section*.13}
+\contentsline {paragraph}{Example}{20}{section*.14}
+\contentsline {section}{\numberline {3.2}Heat Exchanger}{24}{section.3.2}
+\contentsline {paragraph}{Summary}{24}{section*.15}
+\contentsline {paragraph}{The problem}{24}{section*.16}
+\contentsline {paragraph}{Exercise}{25}{section*.17}
+\contentsline {paragraph}{Writing and reading triangulation files}{26}{section*.18}
+\contentsline {section}{\numberline {3.3}Acoustics}{26}{section.3.3}
+\contentsline {paragraph}{Summary}{26}{section*.19}
+\contentsline {section}{\numberline {3.4}Thermal Conduction}{28}{section.3.4}
+\contentsline {paragraph}{Summary}{28}{section*.20}
+\contentsline {paragraph}{How air cools a plate}{28}{section*.21}
+\contentsline {subsection}{\numberline {3.4.1}Axisymmetry: 3D Rod with circular section}{29}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}A Nonlinear Problem : Radiation}{30}{subsection.3.4.2}
+\contentsline {section}{\numberline {3.5}Irrotational Fan Blade Flow and Thermal effects}{30}{section.3.5}
+\contentsline {paragraph}{Summary}{30}{section*.22}
+\contentsline {paragraph}{Incompressible flow}{31}{section*.23}
+\contentsline {paragraph}{Airfoil}{31}{section*.24}
+\contentsline {paragraph}{The NACA0012 Airfoil}{31}{section*.25}
+\contentsline {subsection}{\numberline {3.5.1}Heat Convection around the airfoil}{32}{subsection.3.5.1}
+\contentsline {section}{\numberline {3.6}Pure Convection : The Rotating Hill}{33}{section.3.6}
+\contentsline {paragraph}{Summary}{33}{section*.26}
+\contentsline {paragraph}{Solution by a Characteristics-Galerkin Method}{34}{section*.27}
+\contentsline {paragraph}{Solution by Discontinuous-Galerkin FEM}{34}{section*.28}
+\contentsline {paragraph}{Finite Volume Methods}{36}{section*.29}
+\contentsline {section}{\numberline {3.7}A Projection Algorithm for the Navier-Stokes equations }{37}{section.3.7}
+\contentsline {paragraph}{Summary}{37}{section*.30}
+\contentsline {paragraph}{The backward facing step}{38}{section*.31}
+\contentsline {section}{\numberline {3.8}The System of elasticity}{39}{section.3.8}
+\contentsline {paragraph}{Elasticity}{39}{section*.32}
+\contentsline {paragraph}{Lam\'e's system}{40}{section*.33}
+\contentsline {paragraph}{Example}{40}{section*.34}
+\contentsline {section}{\numberline {3.9}The System of Stokes for Fluids}{41}{section.3.9}
+\contentsline {section}{\numberline {3.10}A Large Fluid Problem}{43}{section.3.10}
+\contentsline {section}{\numberline {3.11}An Example with Complex Numbers}{46}{section.3.11}
+\contentsline {section}{\numberline {3.12}Optimal Control}{47}{section.3.12}
+\contentsline {paragraph}{Remark}{49}{section*.35}
+\contentsline {section}{\numberline {3.13}A Flow with Shocks}{49}{section.3.13}
+\contentsline {section}{\numberline {3.14}Classification of the equations}{51}{section.3.14}
+\contentsline {paragraph}{Summary}{51}{section*.36}
+\contentsline {paragraph}{Elliptic, parabolic and hyperbolic equations}{52}{section*.37}
+\contentsline {paragraph}{Examples}{53}{section*.38}
+\contentsline {paragraph}{Boundary conditions}{53}{section*.39}
+\contentsline {chapter}{\numberline {4}Syntax}{55}{chapter.4}
+\contentsline {section}{\numberline {4.1}Data Types}{55}{section.4.1}
+\contentsline {section}{\numberline {4.2}List of major types}{56}{section.4.2}
+\contentsline {section}{\numberline {4.3}Global Variables}{57}{section.4.3}
+\contentsline {section}{\numberline {4.4}System Commands}{58}{section.4.4}
+\contentsline {section}{\numberline {4.5}Arithmetics}{58}{section.4.5}
+\contentsline {paragraph}{On integers}{58}{section*.40}
+\contentsline {section}{\numberline {4.6}Functions of one Variable}{61}{section.4.6}
+\contentsline {section}{\numberline {4.7}Functions of two Variables}{63}{section.4.7}
+\contentsline {subsection}{\numberline {4.7.1}Formula}{63}{subsection.4.7.1}
+\contentsline {subsection}{\numberline {4.7.2}FE-functions}{63}{subsection.4.7.2}
+\contentsline {section}{\numberline {4.8}Arrays}{64}{section.4.8}
+\contentsline {paragraph}{Example of array with renumbering}{69}{section*.41}
+\contentsline {subsection}{\numberline {4.8.1}Arrays with two integer indices versus matrices}{70}{subsection.4.8.1}
+\contentsline {subsection}{\numberline {4.8.2}Matrix construction and setting}{71}{subsection.4.8.2}
+\contentsline {subsection}{\numberline {4.8.3}Matrix Operations}{72}{subsection.4.8.3}
+\contentsline {subsection}{\numberline {4.8.4}Other arrays}{76}{subsection.4.8.4}
+\contentsline {section}{\numberline {4.9}Loops}{77}{section.4.9}
+\contentsline {section}{\numberline {4.10}Input/Output}{78}{section.4.10}
+\contentsline {section}{\numberline {4.11}Exception handling}{79}{section.4.11}
+\contentsline {chapter}{\numberline {5}Mesh Generation}{83}{chapter.5}
+\contentsline {section}{\numberline {5.1}Commands for Mesh Generation}{83}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Square}{83}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Border}{84}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}Data Structures and Read/Write Statements for a Mesh}{87}{subsection.5.1.3}
+\contentsline {subsection}{\numberline {5.1.4}Mesh Connectivity}{89}{subsection.5.1.4}
+\contentsline {subsection}{\numberline {5.1.5}The keyword "triangulate"}{92}{subsection.5.1.5}
+\contentsline {section}{\numberline {5.2}Boundary FEM Spaces Built as Empty Meshes}{93}{section.5.2}
+\contentsline {section}{\numberline {5.3}Remeshing}{94}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Movemesh}{94}{subsection.5.3.1}
+\contentsline {section}{\numberline {5.4}Regular Triangulation: {\tt hTriangle}}{96}{section.5.4}
+\contentsline {section}{\numberline {5.5}Adaptmesh}{96}{section.5.5}
+\contentsline {section}{\numberline {5.6}Trunc}{101}{section.5.6}
+\contentsline {section}{\numberline {5.7}Splitmesh}{102}{section.5.7}
+\contentsline {section}{\numberline {5.8}Meshing Examples}{102}{section.5.8}
+\contentsline {section}{\numberline {5.9}How to change the label of elements and border elements of a mesh in FreeFem++ ?}{108}{section.5.9}
+\contentsline {paragraph}{``gluing'' different mesh}{108}{section*.42}
+\contentsline {section}{\numberline {5.10}Mesh in three dimensions}{109}{section.5.10}
+\contentsline {subsection}{\numberline {5.10.1}Read/Write Statements for a Mesh in 3D}{109}{subsection.5.10.1}
+\contentsline {paragraph}{extension file .msh}{109}{section*.43}
+\contentsline {paragraph}{extension file .mesh}{109}{section*.44}
+\contentsline {subsection}{\numberline {5.10.2}TeGen: A tetrahedral mesh generator }{109}{subsection.5.10.2}
+\contentsline {paragraph}{TetGen}{109}{section*.45}
+\contentsline {paragraph}{keyword: ``movemesh23''}{111}{section*.46}
+\contentsline {paragraph}{The keyword ``tetgtransfo''}{113}{section*.47}
+\contentsline {paragraph}{Remark:}{113}{section*.48}
+\contentsline {paragraph}{The keyword "tetgconvexhull"}{113}{section*.49}
+\contentsline {subsection}{\numberline {5.10.3}Reconstruct/Refine a three dimensional mesh with TetGen}{113}{subsection.5.10.3}
+\contentsline {subsection}{\numberline {5.10.4}Moving mesh in three dimensions }{115}{subsection.5.10.4}
+\contentsline {subsection}{\numberline {5.10.5}Layer mesh}{115}{subsection.5.10.5}
+\contentsline {section}{\numberline {5.11}Meshing examples}{120}{section.5.11}
+\contentsline {subsection}{\numberline {5.11.1}Build a 3d mesh of a cube with a balloon incrust}{122}{subsection.5.11.1}
+\contentsline {section}{\numberline {5.12}The output solution formats .sol and .solb}{123}{section.5.12}
+\contentsline {paragraph}{extension file .sol}{123}{section*.50}
+\contentsline {section}{\numberline {5.13}medit}{125}{section.5.13}
+\contentsline {subsection}{\numberline {5.13.1}mmg3d}{128}{subsection.5.13.1}
+\contentsline {subsection}{\numberline {5.13.2}Mshmet}{130}{subsection.5.13.2}
+\contentsline {subsection}{\numberline {5.13.3}FreeYams}{132}{subsection.5.13.3}
+\contentsline {subsection}{\numberline {5.13.4}mmg3d}{134}{subsection.5.13.4}
+\contentsline {subsection}{\numberline {5.13.5}Mshmet}{136}{subsection.5.13.5}
+\contentsline {subsection}{\numberline {5.13.6}FreeYams}{138}{subsection.5.13.6}
+\contentsline {chapter}{\numberline {6}Finite Elements}{141}{chapter.6}
+\contentsline {paragraph}{The 2d case:}{142}{equation.6.0.4}
+\contentsline {paragraph}{The 3d case:}{142}{equation.6.0.5}
+\contentsline {section}{\numberline {6.1}Use of ``fespace" in 2d}{143}{section.6.1}
+\contentsline {section}{\numberline {6.2}Use of fespace in 3d}{144}{section.6.2}
+\contentsline {section}{\numberline {6.3}Lagrangian Finite Elements}{145}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}P0-element}{145}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.2}P1-element}{145}{subsection.6.3.2}
+\contentsline {subsection}{\numberline {6.3.3}P2-element}{146}{subsection.6.3.3}
+\contentsline {section}{\numberline {6.4}P1 Nonconforming Element}{146}{section.6.4}
+\contentsline {section}{\numberline {6.5}Other FE-space}{148}{section.6.5}
+\contentsline {section}{\numberline {6.6}Vector valued FE-function}{148}{section.6.6}
+\contentsline {subsection}{\numberline {6.6.1}Raviart-Thomas element}{149}{subsection.6.6.1}
+\contentsline {section}{\numberline {6.7}A Fast Finite Element Interpolator}{151}{section.6.7}
+\contentsline {section}{\numberline {6.8}Keywords: Problem and Solve}{152}{section.6.8}
+\contentsline {subsection}{\numberline {6.8.1}Weak form and Boundary Condition}{153}{subsection.6.8.1}
+\contentsline {section}{\numberline {6.9}Parameters affecting \texttt {solve} and \texttt {problem}}{155}{section.6.9}
+\contentsline {section}{\numberline {6.10}Problem definition}{156}{section.6.10}
+\contentsline {section}{\numberline {6.11}Numerical Integration}{157}{section.6.11}
+\contentsline {section}{\numberline {6.12}Variational Form, Sparse Matrix, PDE Data Vector}{160}{section.6.12}
+\contentsline {section}{\numberline {6.13}Interpolation matrix}{164}{section.6.13}
+\contentsline {section}{\numberline {6.14}Finite elements connectivity}{165}{section.6.14}
+\contentsline {chapter}{\numberline {7}Visualization}{167}{chapter.7}
+\contentsline {section}{\numberline {7.1}Plot}{167}{section.7.1}
+\contentsline {section}{\numberline {7.2}link with gnuplot}{171}{section.7.2}
+\contentsline {section}{\numberline {7.3}link with medit}{171}{section.7.3}
+\contentsline {chapter}{\numberline {8}Algorithms}{173}{chapter.8}
+\contentsline {section}{\numberline {8.1}conjugate Gradient/GMRES}{173}{section.8.1}
+\contentsline {section}{\numberline {8.2}Optimization}{176}{section.8.2}
+\contentsline {chapter}{\numberline {9}Mathematical Models}{177}{chapter.9}
+\contentsline {paragraph}{Summary}{177}{section*.53}
+\contentsline {section}{\numberline {9.1}Static Problems}{177}{section.9.1}
+\contentsline {subsection}{\numberline {9.1.1}Soap Film}{177}{subsection.9.1.1}
+\contentsline {subsection}{\numberline {9.1.2}Electrostatics}{179}{subsection.9.1.2}
+\contentsline {subsection}{\numberline {9.1.3}Aerodynamics}{181}{subsection.9.1.3}
+\contentsline {subsection}{\numberline {9.1.4}Error estimation}{183}{subsection.9.1.4}
+\contentsline {subsection}{\numberline {9.1.5}Periodic Boundary Conditions }{184}{subsection.9.1.5}
+\contentsline {subsection}{\numberline {9.1.6}Poisson Problems with mixed boundary condition}{187}{subsection.9.1.6}
+\contentsline {subsection}{\numberline {9.1.7}Poisson with mixte finite element}{189}{subsection.9.1.7}
+\contentsline {subsection}{\numberline {9.1.8}Metric Adaptation and residual error indicator}{190}{subsection.9.1.8}
+\contentsline {subsection}{\numberline {9.1.9}Adaptation using residual error indicator}{192}{subsection.9.1.9}
+\contentsline {section}{\numberline {9.2}Elasticity}{194}{section.9.2}
+\contentsline {subsection}{\numberline {9.2.1}Fracture Mechanics}{197}{subsection.9.2.1}
+\contentsline {section}{\numberline {9.3}Nonlinear Static Problems}{201}{section.9.3}
+\contentsline {subsection}{\numberline {9.3.1}Newton-Raphson algorithm}{202}{subsection.9.3.1}
+\contentsline {section}{\numberline {9.4}Eigenvalue Problems}{203}{section.9.4}
+\contentsline {section}{\numberline {9.5}Evolution Problems}{206}{section.9.5}
+\contentsline {subsection}{\numberline {9.5.1}Mathematical Theory on Time Difference Approximations.}{208}{subsection.9.5.1}
+\contentsline {subsection}{\numberline {9.5.2}Convection}{210}{subsection.9.5.2}
+\contentsline {subsection}{\numberline {9.5.3}2D Black-Scholes equation for an European Put option}{212}{subsection.9.5.3}
+\contentsline {section}{\numberline {9.6}Navier-Stokes Equation}{213}{section.9.6}
+\contentsline {subsection}{\numberline {9.6.1}Stokes and Navier-Stokes}{213}{subsection.9.6.1}
+\contentsline {subsection}{\numberline {9.6.2}Uzawa Algorithm and Conjugate Gradients}{218}{subsection.9.6.2}
+\contentsline {subsection}{\numberline {9.6.3}NSUzawaCahouetChabart.edp}{219}{subsection.9.6.3}
+\contentsline {section}{\numberline {9.7}Variational inequality}{221}{section.9.7}
+\contentsline {section}{\numberline {9.8}Domain decomposition}{223}{section.9.8}
+\contentsline {subsection}{\numberline {9.8.1}Schwarz Overlap Scheme}{223}{subsection.9.8.1}
+\contentsline {subsection}{\numberline {9.8.2}Schwarz non Overlap Scheme}{225}{subsection.9.8.2}
+\contentsline {subsection}{\numberline {9.8.3}Schwarz-gc.edp}{227}{subsection.9.8.3}
+\contentsline {section}{\numberline {9.9}Fluid/Structures Coupled Problem}{229}{section.9.9}
+\contentsline {section}{\numberline {9.10}Transmission Problem}{231}{section.9.10}
+\contentsline {section}{\numberline {9.11}Free Boundary Problem}{235}{section.9.11}
+\contentsline {section}{\numberline {9.12}Non linear Elasticity (nolinear-elas.edp)}{237}{section.9.12}
+\contentsline {section}{\numberline {9.13}Compressible Neo-Hookean Materials: Computational Solutions}{241}{section.9.13}
+\contentsline {subsection}{\numberline {9.13.1}Notation}{241}{subsection.9.13.1}
+\contentsline {subsection}{\numberline {9.13.2}A Neo-Hookean Compressible Material}{241}{subsection.9.13.2}
+\contentsline {paragraph}{Constitutive Theory and Tangent Stress Measures}{241}{section*.55}
+\contentsline {paragraph}{The Weak Form of the BVP in the Absence of Body (External) Forces}{242}{section*.56}
+\contentsline {subsection}{\numberline {9.13.3}An Approach to Implementation in {\tt FreeFem++}}{242}{subsection.9.13.3}
+\contentsline {chapter}{\numberline {10}\texttt {MPI} Parallel version }{245}{chapter.10}
+\contentsline {section}{\numberline {10.1}\texttt {MPI} keywords}{245}{section.10.1}
+\contentsline {section}{\numberline {10.2}\texttt {MPI} constants}{245}{section.10.2}
+\contentsline {section}{\numberline {10.3}\texttt {MPI} Constructor}{245}{section.10.3}
+\contentsline {section}{\numberline {10.4}\texttt {MPI} functions}{246}{section.10.4}
+\contentsline {section}{\numberline {10.5}\texttt {MPI} communicator operator}{246}{section.10.5}
+\contentsline {section}{\numberline {10.6}Schwarz example in parallel}{247}{section.10.6}
+\contentsline {chapter}{\numberline {11}Parallel sparse solvers}{249}{chapter.11}
+\contentsline {section}{\numberline {11.1}Using parallel sparse solvers in \texttt {FreeFem++ }}{249}{section.11.1}
+\contentsline {section}{\numberline {11.2}Sparse direct solver}{252}{section.11.2}
+\contentsline {subsection}{\numberline {11.2.1}MUMPS solver}{252}{subsection.11.2.1}
+\contentsline {paragraph}{\bf {Installation of MUMPS}}{252}{section*.57}
+\contentsline {paragraph}{\bf {Creating Library of MUMPS interface for \texttt {FreeFem++ }:}}{252}{section*.58}
+\contentsline {paragraph}{\bf {MUMPS parameters:} }{253}{section*.59}
+\contentsline {paragraph}{Calling MUMPS in FreeFem++}{253}{section*.60}
+\contentsline {paragraph}{\bf {example}}{255}{section*.61}
+\contentsline {subsection}{\numberline {11.2.2}SuperLU distributed solver}{255}{subsection.11.2.2}
+\contentsline {paragraph}{\bf {Installation of SuperLU\_DIST:}}{255}{section*.62}
+\contentsline {paragraph}{\bf {Creating Library of SuperLU\_DIST interface for \texttt {FreeFem++ }:}}{255}{section*.63}
+\contentsline {paragraph}{\bf {SuperLU\_DIST parameters: }}{255}{section*.64}
+\contentsline {paragraph}{Calling SuperLU\_ DIST in FreeFem++}{256}{section*.65}
+\contentsline {paragraph}{Solver parameters is defined in .edp file:}{256}{section*.66}
+\contentsline {paragraph}{Reading solver parameters on a file:}{256}{section*.67}
+\contentsline {subsection}{\numberline {11.2.3}Pastix solver}{257}{subsection.11.2.3}
+\contentsline {paragraph}{\bf {Installation of Pastix:}}{257}{section*.68}
+\contentsline {paragraph}{\bf {Creating Library of pastix interface for \texttt {FreeFem++ }:}}{257}{section*.69}
+\contentsline {paragraph}{\bf {Pastix parameters: }}{257}{section*.70}
+\contentsline {paragraph}{Solver parameters defined in .edp file:}{257}{section*.71}
+\contentsline {paragraph}{Reading solver parameters on a file:}{258}{section*.72}
+\contentsline {paragraph}{\bf {Example:}}{258}{section*.73}
+\contentsline {section}{\numberline {11.3}Parallel sparse iterative solver}{258}{section.11.3}
+\contentsline {subsection}{\numberline {11.3.1}pARMS solver}{259}{subsection.11.3.1}
+\contentsline {subsection}{\numberline {11.3.2}Interfacing with HIPS}{261}{subsection.11.3.2}
+\contentsline {subsection}{\numberline {11.3.3}Interfacing with HYPRE}{265}{subsection.11.3.3}
+\contentsline {paragraph}{Installation of HYPRE}{267}{section*.81}
+\contentsline {subsection}{\numberline {11.3.4}Conclusion}{268}{subsection.11.3.4}
+\contentsline {section}{\numberline {11.4}Domain decomposition}{268}{section.11.4}
+\contentsline {subsection}{\numberline {11.4.1}Communicators and groups}{271}{subsection.11.4.1}
+\contentsline {subsection}{\numberline {11.4.2}Process}{272}{subsection.11.4.2}
+\contentsline {subsection}{\numberline {11.4.3}Points to Points communicators}{272}{subsection.11.4.3}
+\contentsline {subsection}{\numberline {11.4.4}Global operations}{272}{subsection.11.4.4}
+\contentsline {chapter}{\numberline {12}Mesh Files}{277}{chapter.12}
+\contentsline {section}{\numberline {12.1}File mesh data structure}{277}{section.12.1}
+\contentsline {section}{\numberline {12.2}bb File type for Store Solutions}{278}{section.12.2}
+\contentsline {section}{\numberline {12.3}BB File Type for Store Solutions}{278}{section.12.3}
+\contentsline {section}{\numberline {12.4}Metric File}{279}{section.12.4}
+\contentsline {section}{\numberline {12.5}List of AM\_FMT, AMDBA Meshes}{279}{section.12.5}
+\contentsline {paragraph}{AM\_FMT Files}{280}{section*.84}
+\contentsline {paragraph}{AM Files}{280}{section*.85}
+\contentsline {paragraph}{AMDBA Files}{280}{section*.86}
+\contentsline {paragraph}{msh Files}{280}{section*.87}
+\contentsline {paragraph}{ftq Files}{281}{section*.88}
+\contentsline {chapter}{\numberline {13}Addition of a new finite element}{283}{chapter.13}
+\contentsline {section}{\numberline {13.1}Some notations}{283}{section.13.1}
+\contentsline {section}{\numberline {13.2}Which class to add?}{284}{section.13.2}
+\contentsline {chapter}{\numberline {A}Table of Notations}{289}{appendix.A}
+\contentsline {section}{\numberline {A.1}Generalities}{289}{section.A.1}
+\contentsline {section}{\numberline {A.2}Sets, Mappings, Matrices, Vectors}{289}{section.A.2}
+\contentsline {section}{\numberline {A.3}Numbers}{290}{section.A.3}
+\contentsline {section}{\numberline {A.4}Differential Calculus}{290}{section.A.4}
+\contentsline {section}{\numberline {A.5}Meshes}{291}{section.A.5}
+\contentsline {section}{\numberline {A.6}Finite Element Spaces}{291}{section.A.6}
+\contentsline {chapter}{\numberline {B}Grammar}{293}{appendix.B}
+\contentsline {section}{\numberline {B.1}The bison grammar}{293}{section.B.1}
+\contentsline {section}{\numberline {B.2}The Types of the languages, and cast}{297}{section.B.2}
+\contentsline {section}{\numberline {B.3}All the operators}{297}{section.B.3}
+\contentsline {chapter}{\numberline {C}Dynamical link}{303}{appendix.C}
+\contentsline {section}{\numberline {C.1}A first example myfunction.cpp}{303}{section.C.1}
+\contentsline {section}{\numberline {C.2}Example: Discrete Fast Fourier Transform }{306}{section.C.2}
+\contentsline {section}{\numberline {C.3}Load Module for Dervieux' P0-P1 Finite Volume Method}{308}{section.C.3}
+\contentsline {section}{\numberline {C.4}More on Adding a new finite element}{311}{section.C.4}
+\contentsline {paragraph}{The Bernardi-Raugel Element}{311}{section*.89}
+\contentsline {paragraph}{The Morley Element}{314}{section*.90}
+\contentsline {section}{\numberline {C.5}Add a new sparse solver}{314}{section.C.5}
+\contentsline {chapter}{\numberline {D}Keywords}{325}{appendix.D}

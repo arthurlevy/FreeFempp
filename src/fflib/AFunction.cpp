@@ -268,15 +268,10 @@ AnyType TTry(Stack s ,Expression ins,Expression ccatch,Expression fin,Expression
 AnyType FIf(Stack s ,Expression test,Expression i1,Expression i2,Expression )
  {  AnyType a;
    if (GetAny<bool>((*test)(s))) 
-     {
-       if(i1) a=(*i1)(s);//Add if FH oct 2010
-     }
-      else if (i2) 
-    {
-     if(i2) a=(*i2)(s); //Add if FH oct 2010
-    }
-   	     	
-  return a;
+      a=(*i1)(s);
+   	else if (i2) 
+   	  a=(*i2)(s);   	
+   	return a;
  }
 
 
@@ -754,33 +749,14 @@ class ForEachType<void *>:  public basicForEachType{public:// correction july 20
     ForEachType(Function1 iv=0,Function1 id=0,Function1 OOnReturn=0):basicForEachType(typeid(void *),sizeof(void *),0,0,iv,id,OOnReturn) { }
 };
 
-inline double walltime(){
-#ifdef HAVE_GETTIMEOFDAY
-
-    
-    struct              timeval currentWallTime;
-    double             msecTime;
-    
-    gettimeofday(&currentWallTime, NULL);
-    
-    //time with milliseconds
-    msecTime = ( currentWallTime.tv_sec*1000. + currentWallTime.tv_usec/1000. )/1000.0;
-    
-    // return time with milliseconds
-    return msecTime;
-
-    
-#else
-
-    // add for Pichon mars 2010 
+inline long walltime(){ // add for Pichon mars 2010 
     time_t currentWallTime;
     time(&currentWallTime);
-    return (double)currentWallTime;
-#endif
+    return (long)currentWallTime;
 }
 
 long atoi(string* p) {return atoi(p->c_str());}// add march 2010
-double atof(string* p) {return atof(p->c_str());}// add march 2010
+long atof(string* p) {return atof(p->c_str());}// add march 2010
 
 void Init_map_type()
 {
@@ -1254,7 +1230,7 @@ void Init_map_type()
      Global.Add("tanh","(",new OneOperator1<double>(tanh));
 
     Global.Add("atoi","(",new OneOperator1<long,string*>(atoi));// add march 2010
-    Global.Add("atof","(",new OneOperator1<double,string*>(atof));// add march 2010
+    Global.Add("atof","(",new OneOperator1<long,string*>(atof));// add march 2010
     
 #ifdef HAVE_ATANH
      Global.Add("atanh","(",new OneOperator1<double>(atanh));
@@ -1330,7 +1306,7 @@ void Init_map_type()
      Global.Add("assert","(",new OneOperator1<bool>(Assert));     
      
      Global.Add("clock","(",new OneOperator0<double>(CPUtime));
-    Global.Add("time","(",new OneOperator0<double>(walltime));// add mars 2010 for Pichon. 
+    Global.Add("time","(",new OneOperator0<long>(walltime));// add mars 2010 for Pichon. 
     
      Global.Add("dumptable","(",new OneOperator1<ostream*,ostream*>(dumptable));
      Global.Add("exec","(",new OneOperator1<long,string* >(exec));  //FH string * mars 2006 

@@ -96,39 +96,6 @@ template<class A> inline AnyType Destroy_KN(Stack,const AnyType &x){
 // fin add
 
 
-template<class A,class B>
-struct set_Inv_KN_long: public binary_function<A,B,A> {
-    static A f(const A & a, B const & b)  
-    {  
-	int n=a.N();
-	KN_<long> I(b.t);
-	for(int i=0;i<I.N();++i)
-	  {
-	    int j=I[i];
-	    if(j>=0 && j<n)
-	    a[j]=i;
-	  }
-
-    return a;}
-};
-template<class A,class B>
-struct set_Inv_pKN_longI: public binary_function<A,B,A> {
-    static A f(const A & a, B const & b)  
-    {  
-	KN_<long> I(b.t);
-	int n=I.max()+1;
-	a->init(n);
-	(*a)=-1;
-	for(int i=0;i<I.N();++i)
-	  {
-	    int j=I[i];
-	    if(j>=0 && j<n)
-	    (*a)[j]=i;
-	  }
-	return a;}
-};
-
-
 void initArrayOperatorlong()
 {
     typedef long K;
@@ -153,13 +120,6 @@ void initArrayOperatorlong()
     Add<KN<String> *>("n",".",new OneOperator1<long,KN<String> *>(get_n));  
     extern   KN<String> *pkarg;
     Global.New("ARGV",CPValue<KN<String> >(*pkarg));// add FH mars 2010
-    Global.Add("toZarray","(",new OneOperator_2KN_<long>);
-    TheOperators->Add("=",
-		      new OneBinaryOperator<set_Inv_KN_long<KN_<long> ,Inv_KN_long > > );
-    TheOperators->Add("<-",
-		      new OneBinaryOperator<set_Inv_pKN_longI<KN<long>*,Inv_KN_long > > );
-
-    
     
 }
 

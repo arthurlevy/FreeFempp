@@ -1,0 +1,681 @@
+\indexentry{verbosity|hyperpage}{4}
+\indexentry{verbosity|hyperpage}{8}
+\indexentry{includepath|hyperpage}{8}
+\indexentry{loadpath|hyperpage}{8}
+\indexentry{load|hyperpage}{8}
+\indexentry{include|hyperpage}{8}
+\indexentry{hat function|hyperpage}{13}
+\indexentry{degree of freedom|hyperpage}{13}
+\indexentry{nodes|hyperpage}{13}
+\indexentry{elements|hyperpage}{13}
+\indexentry{barycentric coordinates|hyperpage}{13}
+\indexentry{elements|hyperpage}{14}
+\indexentry{solve!tgv=|hyperpage}{15}
+\indexentry{matrix|hyperpage}{15}
+\indexentry{varf|hyperpage}{15}
+\indexentry{matrix!stiffness matrix|hyperpage}{15}
+\indexentry{[]@\verb=[]=|hyperpage}{16}
+\indexentry{Dirichlet|hyperpage}{19}
+\indexentry{mixed Dirichlet Neumann|hyperpage}{19}
+\indexentry{Laplace operator|hyperpage}{19}
+\indexentry{membrane|hyperpage}{19}
+\indexentry{accuracy|hyperpage}{19}
+\indexentry{graphics packages|hyperpage}{19}
+\indexentry{non-homogeneous Dirichlet|hyperpage}{19}
+\indexentry{weak form|hyperpage}{20}
+\indexentry{variational formulation|hyperpage}{20}
+\indexentry{geometry input |hyperpage}{24}
+\indexentry{triangulation files, as well as read and write|hyperpage}{24}
+\indexentry{label on the boundaries|hyperpage}{25}
+\indexentry{Dirichlet|hyperpage}{25}
+\indexentry{ill posed problems|hyperpage}{26}
+\indexentry{eigenvalue problems|hyperpage}{26}
+\indexentry{ time dependent|hyperpage}{28}
+\indexentry{parabolic|hyperpage}{28}
+\indexentry{axisymmetric|hyperpage}{28}
+\indexentry{nonlinear problem|hyperpage}{28}
+\indexentry{Fourier|hyperpage}{28}
+\indexentry{Robin|hyperpage}{28}
+\indexentry{mixed|hyperpage}{28}
+\indexentry{radiation|hyperpage}{30}
+\indexentry{nonlinear|hyperpage}{30}
+\indexentry{multi-physics system|hyperpage}{30}
+\indexentry{Complex geometry,|hyperpage}{30}
+\indexentry{multiple meshes|hyperpage}{30}
+\indexentry{region indicator|hyperpage}{30}
+\indexentry{upwinding|hyperpage}{33}
+\indexentry{Characteristics-Galerkin|hyperpage}{33}
+\indexentry{Discontinuous-Galerkin|hyperpage}{33}
+\indexentry{convect|hyperpage}{34}
+\indexentry{nTonEdge|hyperpage}{35}
+\indexentry{level line|hyperpage}{35}
+\indexentry{viso|hyperpage}{35}
+\indexentry{macro|hyperpage}{35}
+\indexentry{normal|hyperpage}{35}
+\indexentry{set|hyperpage}{36}
+\indexentry{init|hyperpage}{36}
+\indexentry{set|hyperpage}{36}
+\indexentry{problem|hyperpage}{36}
+\indexentry{Finite Volume Methods|hyperpage}{36}
+\indexentry{mass lumping|hyperpage}{37}
+\indexentry{external C++ function|hyperpage}{37}
+\indexentry{mesh adaptation|hyperpage}{37}
+\indexentry{FE function!complex|hyperpage}{46}
+\indexentry{complex|hyperpage}{46}
+\indexentry{Helmholtz|hyperpage}{46}
+\indexentry{Dirichlet|hyperpage}{53}
+\indexentry{Neumann|hyperpage}{53}
+\indexentry{initial condition|hyperpage}{53}
+\indexentry{Cauchy|hyperpage}{53}
+\indexentry{compiler|hyperpage}{55}
+\indexentry{variable|hyperpage}{55}
+\indexentry{alphanumeric|hyperpage}{55}
+\indexentry{\_|hyperpage}{55}
+\indexentry{bool|hyperpage}{56}
+\indexentry{true|hyperpage}{56}
+\indexentry{false|hyperpage}{56}
+\indexentry{string|hyperpage}{56}
+\indexentry{real|hyperpage}{56}
+\indexentry{Complex|hyperpage}{56}
+\indexentry{array|hyperpage}{56}
+\indexentry{array|hyperpage}{56}
+\indexentry{func|hyperpage}{57}
+\indexentry{mesh|hyperpage}{57}
+\indexentry{problem|hyperpage}{57}
+\indexentry{solve|hyperpage}{57}
+\indexentry{varf|hyperpage}{57}
+\indexentry{matrix|hyperpage}{57}
+\indexentry{x|hyperpage}{57}
+\indexentry{y|hyperpage}{57}
+\indexentry{z|hyperpage}{57}
+\indexentry{label|hyperpage}{57}
+\indexentry{region|hyperpage}{57}
+\indexentry{P|hyperpage}{57}
+\indexentry{N|hyperpage}{57}
+\indexentry{lenEdge|hyperpage}{57}
+\indexentry{hTriangle|hyperpage}{57}
+\indexentry{nuTriangle|hyperpage}{57}
+\indexentry{nuEdge|hyperpage}{57}
+\indexentry{nTonEdge|hyperpage}{58}
+\indexentry{area|hyperpage}{58}
+\indexentry{volume|hyperpage}{58}
+\indexentry{cout|hyperpage}{58}
+\indexentry{cin|hyperpage}{58}
+\indexentry{true|hyperpage}{58}
+\indexentry{false|hyperpage}{58}
+\indexentry{pi|hyperpage}{58}
+\indexentry{dumptable|hyperpage}{58}
+\indexentry{exec|hyperpage}{58}
+\indexentry{assert()|hyperpage}{58}
+\indexentry{maximum|hyperpage}{58}
+\indexentry{minimum|hyperpage}{58}
+\indexentry{?:|hyperpage}{58}
+\indexentry{imag|hyperpage}{60}
+\indexentry{real|hyperpage}{60}
+\indexentry{complex|hyperpage}{60}
+\indexentry{modulus|hyperpage}{60}
+\indexentry{argument|hyperpage}{60}
+\indexentry{de Moivre's formula|hyperpage}{60}
+\indexentry{functions|hyperpage}{61}
+\indexentry{cos|hyperpage}{61}
+\indexentry{sin|hyperpage}{61}
+\indexentry{exp|hyperpage}{61}
+\indexentry{log|hyperpage}{61}
+\indexentry{tan|hyperpage}{61}
+\indexentry{log10|hyperpage}{61}
+\indexentry{asin|hyperpage}{61}
+\indexentry{acos|hyperpage}{61}
+\indexentry{atan|hyperpage}{61}
+\indexentry{sinh|hyperpage}{61}
+\indexentry{cosh|hyperpage}{61}
+\indexentry{acosh|hyperpage}{61}
+\indexentry{atanh|hyperpage}{61}
+\indexentry{asinh|hyperpage}{61}
+\indexentry{pow|hyperpage}{61}
+\indexentry{floor|hyperpage}{61}
+\indexentry{rint|hyperpage}{61}
+\indexentry{ceil|hyperpage}{61}
+\indexentry{random|hyperpage}{62}
+\indexentry{rand|hyperpage}{62}
+\indexentry{randint32|hyperpage}{62}
+\indexentry{randint31|hyperpage}{62}
+\indexentry{randinit|hyperpage}{62}
+\indexentry{gamma|hyperpage}{62}
+\indexentry{bessel|hyperpage}{62}
+\indexentry{erf|hyperpage}{62}
+\indexentry{erfc|hyperpage}{62}
+\indexentry{FE-function|hyperpage}{63}
+\indexentry{FE function!complex|hyperpage}{64}
+\indexentry{array|hyperpage}{64}
+\indexentry{array!resize|hyperpage}{65}
+\indexentry{resize|hyperpage}{65}
+\indexentry{max|hyperpage}{65}
+\indexentry{array!max|hyperpage}{65}
+\indexentry{min|hyperpage}{65}
+\indexentry{array!min|hyperpage}{65}
+\indexentry{sum|hyperpage}{65}
+\indexentry{array!sum|hyperpage}{65}
+\indexentry{array!?:|hyperpage}{65}
+\indexentry{array!::|hyperpage}{65}
+\indexentry{array!sort|hyperpage}{65}
+\indexentry{sort|hyperpage}{65}
+\indexentry{re|hyperpage}{65}
+\indexentry{array!re|hyperpage}{65}
+\indexentry{im|hyperpage}{65}
+\indexentry{array!im|hyperpage}{65}
+\indexentry{re|hyperpage}{66}
+\indexentry{array!re|hyperpage}{66}
+\indexentry{im|hyperpage}{66}
+\indexentry{array!im|hyperpage}{66}
+\indexentry{array!\texttt{=  +  -  *  /  .*  ./ += -= /= *=}  |hyperpage}{67}
+\indexentry{array!.l1|hyperpage}{67}
+\indexentry{array!.l2|hyperpage}{68}
+\indexentry{array!.linfty|hyperpage}{68}
+\indexentry{array!.sum|hyperpage}{68}
+\indexentry{array!.max|hyperpage}{68}
+\indexentry{array!.min|hyperpage}{68}
+\indexentry{array!dot product|hyperpage}{68}
+\indexentry{array!quantile|hyperpage}{68}
+\indexentry{quantile|hyperpage}{69}
+\indexentry{renumbering|hyperpage}{69}
+\indexentry{array!renumbering|hyperpage}{69}
+\indexentry{outer product|hyperpage}{70}
+\indexentry{line|hyperpage}{70}
+\indexentry{column|hyperpage}{70}
+\indexentry{array!line|hyperpage}{70}
+\indexentry{array!column|hyperpage}{70}
+\indexentry{matrix!array|hyperpage}{70}
+\indexentry{matrix!renumbering|hyperpage}{70}
+\indexentry{matrix!set|hyperpage}{71}
+\indexentry{set!matrix|hyperpage}{71}
+\indexentry{matrix!varf|hyperpage}{71}
+\indexentry{matrix!constant|hyperpage}{71}
+\indexentry{matrix!block|hyperpage}{71}
+\indexentry{block matrix|hyperpage}{71}
+\indexentry{matrix!renumbering|hyperpage}{72}
+\indexentry{matrix!resize|hyperpage}{72}
+\indexentry{transpose|hyperpage}{72}
+\indexentry{.*|hyperpage}{72}
+\indexentry{\string'|hyperpage}{72}
+\indexentry{divide!term to term|hyperpage}{72}
+\indexentry{./|hyperpage}{72}
+\indexentry{\string'|hyperpage}{72}
+\indexentry{product!term to term|hyperpage}{72}
+\indexentry{solve!linear system|hyperpage}{72}
+\indexentry{dot product|hyperpage}{72}
+\indexentry{product!dot|hyperpage}{72}
+\indexentry{product! Hermitian dot|hyperpage}{72}
+\indexentry{outer product|hyperpage}{72}
+\indexentry{product!outer|hyperpage}{72}
+\indexentry{FE function!complex|hyperpage}{73}
+\indexentry{complex|hyperpage}{73}
+\indexentry{matrix!complex|hyperpage}{73}
+\indexentry{diag|hyperpage}{73}
+\indexentry{matrix!diag|hyperpage}{73}
+\indexentry{diagonal matrix|hyperpage}{73}
+\indexentry{resize|hyperpage}{73}
+\indexentry{matrix!resize|hyperpage}{73}
+\indexentry{$<<$!matrix|hyperpage}{74}
+\indexentry{array|hyperpage}{76}
+\indexentry{array!FE function|hyperpage}{76}
+\indexentry{dot product|hyperpage}{76}
+\indexentry{transpose|hyperpage}{76}
+\indexentry{product!dot|hyperpage}{76}
+\indexentry{min|hyperpage}{76}
+\indexentry{array!min|hyperpage}{76}
+\indexentry{for|hyperpage}{77}
+\indexentry{while|hyperpage}{77}
+\indexentry{break|hyperpage}{77}
+\indexentry{continue|hyperpage}{77}
+\indexentry{cout|hyperpage}{78}
+\indexentry{cin|hyperpage}{78}
+\indexentry{ifstream|hyperpage}{78}
+\indexentry{ofstream|hyperpage}{78}
+\indexentry{endl|hyperpage}{78}
+\indexentry{$<<$|hyperpage}{78}
+\indexentry{$>>$|hyperpage}{78}
+\indexentry{append|hyperpage}{78}
+\indexentry{ofstream!append|hyperpage}{78}
+\indexentry{precision|hyperpage}{78}
+\indexentry{scientific|hyperpage}{78}
+\indexentry{fixed|hyperpage}{78}
+\indexentry{showbase|hyperpage}{78}
+\indexentry{noshowbase|hyperpage}{78}
+\indexentry{showpos|hyperpage}{78}
+\indexentry{noshowpos|hyperpage}{78}
+\indexentry{default|hyperpage}{78}
+\indexentry{exception|hyperpage}{79}
+\indexentry{catch|hyperpage}{79}
+\indexentry{try|hyperpage}{79}
+\indexentry{label|hyperpage}{83}
+\indexentry{square!flags=|hyperpage}{84}
+\indexentry{square!label=|hyperpage}{84}
+\indexentry{square!region=|hyperpage}{84}
+\indexentry{border|hyperpage}{84}
+\indexentry{label|hyperpage}{84}
+\indexentry{border|hyperpage}{85}
+\indexentry{buildmesh!nbvx=|hyperpage}{86}
+\indexentry{buildmesh!fixeborder|hyperpage}{86}
+\indexentry{plot!border|hyperpage}{86}
+\indexentry{plot!mesh|hyperpage}{86}
+\indexentry{readmesh|hyperpage}{87}
+\indexentry{savemesh|hyperpage}{87}
+\indexentry{file!am\_fmt|hyperpage}{88}
+\indexentry{file!bamg|hyperpage}{88}
+\indexentry{file!mesh|hyperpage}{88}
+\indexentry{file!nopo|hyperpage}{88}
+\indexentry{tutorial!readmesh.edp|hyperpage}{88}
+\indexentry{read files|hyperpage}{88}
+\indexentry{write files|hyperpage}{88}
+\indexentry{file!am\_fmt|hyperpage}{88}
+\indexentry{file!bamg|hyperpage}{88}
+\indexentry{file!mesh|hyperpage}{88}
+\indexentry{file!nopo|hyperpage}{88}
+\indexentry{mesh!connectivity|hyperpage}{89}
+\indexentry{triangle![]|hyperpage}{89}
+\indexentry{triangle!label|hyperpage}{89}
+\indexentry{triangle!label|hyperpage}{89}
+\indexentry{vertex!x|hyperpage}{89}
+\indexentry{vertex!y|hyperpage}{89}
+\indexentry{vertex!label|hyperpage}{89}
+\indexentry{mesh!()|hyperpage}{89}
+\indexentry{mesh![]|hyperpage}{89}
+\indexentry{point!triange|hyperpage}{89}
+\indexentry{region|hyperpage}{89}
+\indexentry{point!region|hyperpage}{89}
+\indexentry{triangle!area|hyperpage}{89}
+\indexentry{triangle!region|hyperpage}{89}
+\indexentry{triangle!label|hyperpage}{89}
+\indexentry{triangulate|hyperpage}{92}
+\indexentry{function!tables|hyperpage}{92}
+\indexentry{emptymesh|hyperpage}{93}
+\indexentry{movemesh|hyperpage}{94}
+\indexentry{checkmovemesh|hyperpage}{94}
+\indexentry{tutorial!movemesh.edp|hyperpage}{95}
+\indexentry{lagrangian|hyperpage}{95}
+\indexentry{mesh!regular|hyperpage}{96}
+\indexentry{adaptmesh|hyperpage}{96}
+\indexentry{tutorial!adapt.edp|hyperpage}{98}
+\indexentry{singularity|hyperpage}{98}
+\indexentry{concatenation|hyperpage}{98}
+\indexentry{solver=!CG|hyperpage}{98}
+\indexentry{adaptmesh|hyperpage}{99}
+\indexentry{adaptmesh!hmin=|hyperpage}{99}
+\indexentry{adaptmesh!hmax=|hyperpage}{99}
+\indexentry{adaptmesh!err=|hyperpage}{99}
+\indexentry{adaptmesh!errg=|hyperpage}{99}
+\indexentry{adaptmesh!nbvx=|hyperpage}{99}
+\indexentry{adaptmesh!nbsmooth=|hyperpage}{99}
+\indexentry{adaptmesh!nbjacoby=|hyperpage}{99}
+\indexentry{adaptmesh!ratio=|hyperpage}{99}
+\indexentry{adaptmesh!omega=|hyperpage}{99}
+\indexentry{adaptmesh!iso=|hyperpage}{99}
+\indexentry{adaptmesh!abserror=|hyperpage}{99}
+\indexentry{adaptmesh!cutoff=|hyperpage}{100}
+\indexentry{adaptmesh!verbosity=     |hyperpage}{100}
+\indexentry{adaptmesh!inquire=|hyperpage}{100}
+\indexentry{adaptmesh!splitpbedge=|hyperpage}{100}
+\indexentry{adaptmesh!maxsubdiv=|hyperpage}{100}
+\indexentry{adaptmesh!rescaling=|hyperpage}{100}
+\indexentry{adaptmesh!keepbackvertices=|hyperpage}{100}
+\indexentry{adaptmesh!isMetric=|hyperpage}{100}
+\indexentry{adaptmesh!powerin=|hyperpage}{100}
+\indexentry{adaptmesh!splitin2|hyperpage}{100}
+\indexentry{adaptmesh!metric=|hyperpage}{100}
+\indexentry{adaptmesh!nomeshgeneration=|hyperpage}{100}
+\indexentry{adaptmesh!periodic=|hyperpage}{100}
+\indexentry{mesh!uniform|hyperpage}{100}
+\indexentry{adaptmesh!uniform|hyperpage}{100}
+\indexentry{mesh!uniform|hyperpage}{101}
+\indexentry{trunc|hyperpage}{101}
+\indexentry{split=|hyperpage}{101}
+\indexentry{label=|hyperpage}{101}
+\indexentry{trunc!split=|hyperpage}{101}
+\indexentry{trunc!label=|hyperpage}{101}
+\indexentry{mesh!beam|hyperpage}{102}
+\indexentry{mesh!NACA0012|hyperpage}{103}
+\indexentry{mesh!Cardioid|hyperpage}{103}
+\indexentry{mesh!Cassini Egg|hyperpage}{104}
+\indexentry{mesh!Bezier curve|hyperpage}{104}
+\indexentry{mesh!Section of Engine|hyperpage}{105}
+\indexentry{mesh!U-shape channel|hyperpage}{105}
+\indexentry{mesh!V-shape cut|hyperpage}{106}
+\indexentry{mesh!Smiling face|hyperpage}{106}
+\indexentry{mesh!3point bending|hyperpage}{107}
+\indexentry{mesh!change|hyperpage}{108}
+\indexentry{change|hyperpage}{108}
+\indexentry{mesh!+|hyperpage}{108}
+\indexentry{readmesh|hyperpage}{109}
+\indexentry{savemesh|hyperpage}{109}
+\indexentry{tetgtransfo|hyperpage}{113}
+\indexentry{tetgconvexhull|hyperpage}{113}
+\indexentry{cube|hyperpage}{117}
+\indexentry{cone|hyperpage}{118}
+\indexentry{finite element space|hyperpage}{141}
+\indexentry{fespace|hyperpage}{141}
+\indexentry{periodic|hyperpage}{141}
+\indexentry{type of finite element|hyperpage}{142}
+\indexentry{P0|textbf}{142}
+\indexentry{fespace!P0|hyperpage}{142}
+\indexentry{P1|textbf}{142}
+\indexentry{fespace!P1|hyperpage}{142}
+\indexentry{fespace!P13d|hyperpage}{142}
+\indexentry{P1dc|textbf}{142}
+\indexentry{fespace!P1dc|hyperpage}{142}
+\indexentry{P1b|textbf}{142}
+\indexentry{fespace!P1b|hyperpage}{142}
+\indexentry{fespace!P1b3d|hyperpage}{142}
+\indexentry{P2|textbf}{142}
+\indexentry{fespace!P2|hyperpage}{142}
+\indexentry{P2|textbf}{142}
+\indexentry{fespace!P2|hyperpage}{142}
+\indexentry{P2dc|textbf}{142}
+\indexentry{fespace!P2dc|hyperpage}{142}
+\indexentry{RT0|textbf}{143}
+\indexentry{fespace!RT0|hyperpage}{143}
+\indexentry{Edge03d|textbf}{143}
+\indexentry{fespace!Edge03d|hyperpage}{143}
+\indexentry{P1nc|textbf}{143}
+\indexentry{fespace!P1nc|hyperpage}{143}
+\indexentry{FE space|hyperpage}{143}
+\indexentry{FE-function|hyperpage}{143}
+\indexentry{array!fespace|hyperpage}{144}
+\indexentry{FE space|hyperpage}{144}
+\indexentry{FE-function|hyperpage}{144}
+\indexentry{array!fespace|hyperpage}{144}
+\indexentry{bubble|hyperpage}{148}
+\indexentry{FE function!value|hyperpage}{150}
+\indexentry{FE function![]|textbf}{150}
+\indexentry{FE function!n|textbf}{150}
+\indexentry{[]@\verb=[]=|hyperpage}{150}
+\indexentry{n|hyperpage}{150}
+\indexentry{=|hyperpage}{152}
+\indexentry{interpolation|hyperpage}{152}
+\indexentry{problem|hyperpage}{152}
+\indexentry{solve|hyperpage}{153}
+\indexentry{Dirichlet|hyperpage}{153}
+\indexentry{Robin|hyperpage}{153}
+\indexentry{compatibility condition|hyperpage}{154}
+\indexentry{periodic|hyperpage}{155}
+\indexentry{fespace!periodic=|hyperpage}{155}
+\indexentry{solver=!LU|hyperpage}{155}
+\indexentry{solver=!CG|hyperpage}{155}
+\indexentry{solver=!Crout|hyperpage}{155}
+\indexentry{solver=!GMRES|hyperpage}{155}
+\indexentry{solver=!Cholesky|hyperpage}{155}
+\indexentry{solver=!UMFPACK|hyperpage}{155}
+\indexentry{solver=!sparsesolver|hyperpage}{155}
+\indexentry{LU|hyperpage}{155}
+\indexentry{CG|hyperpage}{155}
+\indexentry{Crout|hyperpage}{155}
+\indexentry{GMRES|hyperpage}{155}
+\indexentry{Cholesky|hyperpage}{155}
+\indexentry{UMFPACK|hyperpage}{155}
+\indexentry{sparsesolver|hyperpage}{155}
+\indexentry{solve!solver=|hyperpage}{155}
+\indexentry{problem!solver=|hyperpage}{155}
+\indexentry{problem!eps=|hyperpage}{155}
+\indexentry{solve!eps=|hyperpage}{155}
+\indexentry{stop test|hyperpage}{155}
+\indexentry{problem!init=|hyperpage}{155}
+\indexentry{solve!init=|hyperpage}{155}
+\indexentry{init=|hyperpage}{155}
+\indexentry{problem!precon=|hyperpage}{155}
+\indexentry{solve!precon=|hyperpage}{155}
+\indexentry{precon=|hyperpage}{155}
+\indexentry{problem!tgv=|hyperpage}{155}
+\indexentry{solve!tgv=|hyperpage}{155}
+\indexentry{problem!tolpivot =|hyperpage}{155}
+\indexentry{solve!tolpivot=|hyperpage}{155}
+\indexentry{problem!tolpivotsym =|hyperpage}{155}
+\indexentry{solve!tolpivotsym=|hyperpage}{155}
+\indexentry{problem!strategy =|hyperpage}{155}
+\indexentry{solve!strategy=|hyperpage}{155}
+\indexentry{int1d|hyperpage}{156}
+\indexentry{int2d|hyperpage}{156}
+\indexentry{intalledges|hyperpage}{156}
+\indexentry{varf|hyperpage}{156}
+\indexentry{on!scalar|hyperpage}{156}
+\indexentry{on|hyperpage}{156}
+\indexentry{on!scalar|hyperpage}{157}
+\indexentry{Neumann|hyperpage}{157}
+\indexentry{Robin|hyperpage}{157}
+\indexentry{Neumann|hyperpage}{157}
+\indexentry{Robin|hyperpage}{157}
+\indexentry{normal|hyperpage}{157}
+\indexentry{N|hyperpage}{157}
+\indexentry{quadrature:qf1pE|hyperpage}{158}
+\indexentry{quadrature:qf2pE|hyperpage}{158}
+\indexentry{quadrature:qf3pE|hyperpage}{158}
+\indexentry{quadrature:qf1pElump|hyperpage}{158}
+\indexentry{area coordinate|hyperpage}{158}
+\indexentry{quadrature:qf1pT|hyperpage}{159}
+\indexentry{quadrature:qf2pT|hyperpage}{159}
+\indexentry{quadrature: qf5pT|hyperpage}{159}
+\indexentry{quadrature:qf1pTlump|hyperpage}{159}
+\indexentry{quadrature:qf2pT4P1|hyperpage}{159}
+\indexentry{quadrature:qf7pT|hyperpage}{159}
+\indexentry{quadrature:qf7pT|hyperpage}{159}
+\indexentry{quadrature:qfe=|hyperpage}{159}
+\indexentry{quadrature:qft=|hyperpage}{159}
+\indexentry{quadrature:qforder=|hyperpage}{159}
+\indexentry{quadrature:qfV|hyperpage}{159}
+\indexentry{quadrature:qfV1|hyperpage}{160}
+\indexentry{quadrature:qfV2|hyperpage}{160}
+\indexentry{quadrature: qfV5|hyperpage}{160}
+\indexentry{quadrature:qfV1lump|hyperpage}{160}
+\indexentry{quadrature:qfe=|hyperpage}{160}
+\indexentry{quadrature:qft=|hyperpage}{160}
+\indexentry{quadrature:qforder=|hyperpage}{160}
+\indexentry{quadrature:default|hyperpage}{160}
+\indexentry{varf|hyperpage}{160}
+\indexentry{array|hyperpage}{160}
+\indexentry{boundary condition|hyperpage}{161}
+\indexentry{.*@\verb=.*=|hyperpage}{161}
+\indexentry{varf!array|hyperpage}{162}
+\indexentry{varf!matrix|hyperpage}{162}
+\indexentry{matrix!varf|hyperpage}{162}
+\indexentry{matrix!varf!solver=|hyperpage}{162}
+\indexentry{matrix!varf!solver=factorize|hyperpage}{162}
+\indexentry{matrix!varf!eps=|hyperpage}{162}
+\indexentry{matrix!varf!precon=|hyperpage}{162}
+\indexentry{precon=|hyperpage}{162}
+\indexentry{matrix!varf!tgv=|hyperpage}{162}
+\indexentry{matrix!varf!tolpivot =|hyperpage}{162}
+\indexentry{problem!tolpivotsym =|hyperpage}{162}
+\indexentry{solve!tolpivotsym=|hyperpage}{162}
+\indexentry{problem!strategy =|hyperpage}{162}
+\indexentry{solve!strategy=|hyperpage}{162}
+\indexentry{array!varf|hyperpage}{162}
+\indexentry{expression optimization|hyperpage}{163}
+\indexentry{optimize=|hyperpage}{163}
+\indexentry{varf!optimize=|hyperpage}{163}
+\indexentry{interpolate|hyperpage}{163}
+\indexentry{matrix!interpolate|hyperpage}{163}
+\indexentry{inside=|hyperpage}{164}
+\indexentry{interpolate!inside=|hyperpage}{164}
+\indexentry{interpolate!t=|hyperpage}{164}
+\indexentry{interpolate!t=|hyperpage}{164}
+\indexentry{interpolate!op=|hyperpage}{164}
+\indexentry{interpolate!op=|hyperpage}{164}
+\indexentry{nt|hyperpage}{165}
+\indexentry{ndof|hyperpage}{165}
+\indexentry{ndofK|hyperpage}{165}
+\indexentry{connectivity|hyperpage}{165}
+\indexentry{FEspace!nt|hyperpage}{165}
+\indexentry{FEspace!ndof|hyperpage}{165}
+\indexentry{FEspace!(int ,int )|hyperpage}{165}
+\indexentry{number of element|hyperpage}{165}
+\indexentry{number of degrees of freedom|hyperpage}{165}
+\indexentry{sec:Plot|hyperpage}{167}
+\indexentry{plot!ps=|hyperpage}{168}
+\indexentry{plot!coef=|hyperpage}{168}
+\indexentry{plot!coef=|hyperpage}{168}
+\indexentry{plot!cmm=|hyperpage}{168}
+\indexentry{plot!value=|hyperpage}{168}
+\indexentry{plot! aspectratio =|hyperpage}{168}
+\indexentry{plot!bb=|hyperpage}{168}
+\indexentry{plot! nbiso =|hyperpage}{168}
+\indexentry{plot!nbarraw=|hyperpage}{168}
+\indexentry{plot!viso=|hyperpage}{168}
+\indexentry{plot!varrow=|hyperpage}{168}
+\indexentry{plot!bw=|hyperpage}{168}
+\indexentry{plot!grey=|hyperpage}{168}
+\indexentry{plot!hsv=|hyperpage}{168}
+\indexentry{plot!boundary =|hyperpage}{168}
+\indexentry{plot!dim=|hyperpage}{168}
+\indexentry{plot!cut|hyperpage}{168}
+\indexentry{gnuplot|hyperpage}{171}
+\indexentry{exec|hyperpage}{171}
+\indexentry{medit|hyperpage}{171}
+\indexentry{ffmedit|hyperpage}{171}
+\indexentry{medit|hyperpage}{172}
+\indexentry{exec|hyperpage}{172}
+\indexentry{linearCG!nbiter=|hyperpage}{173}
+\indexentry{linearCG!precon=|hyperpage}{173}
+\indexentry{linearCG!eps=|hyperpage}{173}
+\indexentry{linearCG!veps=|hyperpage}{173}
+\indexentry{NLCG!nbiter=|hyperpage}{173}
+\indexentry{NLCG!eps=|hyperpage}{173}
+\indexentry{NLCG!veps=|hyperpage}{173}
+\indexentry{LinearGMRES!nbiter=|hyperpage}{173}
+\indexentry{LinearGMRES!precon=|hyperpage}{173}
+\indexentry{LinearGMRES!eps=|hyperpage}{173}
+\indexentry{LinearGMRES!veps=|hyperpage}{173}
+\indexentry{matrix|hyperpage}{175}
+\indexentry{Cholesky|hyperpage}{175}
+\indexentry{factorize=|hyperpage}{175}
+\indexentry{solver=|hyperpage}{175}
+\indexentry{veps=|hyperpage}{175}
+\indexentry{NLCG|hyperpage}{175}
+\indexentry{Newton|hyperpage}{176}
+\indexentry{BFGS|hyperpage}{176}
+\indexentry{tutorial!aTutorial.edp|hyperpage}{178}
+\indexentry{periodic|hyperpage}{184}
+\indexentry{fespace!periodic=|hyperpage}{184}
+\indexentry{tutorial!periodic.edp|hyperpage}{184}
+\indexentry{tutorial!periodic4.edp|hyperpage}{184}
+\indexentry{tutorial!periodic4bis.edp|hyperpage}{186}
+\indexentry{buildmesh!fixeborder=1|hyperpage}{186}
+\indexentry{3d!periodic|hyperpage}{186}
+\indexentry{periodic!3d|hyperpage}{186}
+\indexentry{tutorial! LaplaceRT.edp|hyperpage}{190}
+\indexentry{tutorial!adaptindicatorP2.edp|hyperpage}{190}
+\indexentry{jump|hyperpage}{191}
+\indexentry{intalledges|hyperpage}{191}
+\indexentry{square|hyperpage}{191}
+\indexentry{lenEdge|hyperpage}{191}
+\indexentry{hTriangle|hyperpage}{191}
+\indexentry{tutorial!AdaptResidualErrorIndicator.edp|hyperpage}{192}
+\indexentry{displacement vector|hyperpage}{195}
+\indexentry{strain tensor|hyperpage}{195}
+\indexentry{stress tensor|hyperpage}{195}
+\indexentry{isotropic|hyperpage}{195}
+\indexentry{tutorial!beam.edp|hyperpage}{196}
+\indexentry{3d!beam-3d.edp|hyperpage}{197}
+\indexentry{Newton|hyperpage}{202}
+\indexentry{matrix!factorize=|hyperpage}{202}
+\indexentry{EigenValue!sym=|hyperpage}{203}
+\indexentry{EigenValue!nev=|hyperpage}{203}
+\indexentry{EigenValue!value=|hyperpage}{203}
+\indexentry{EigenValue!ivalue=|hyperpage}{203}
+\indexentry{EigenValue!vector=|hyperpage}{203}
+\indexentry{EigenValue!rawvector=|hyperpage}{203}
+\indexentry{EigenValue!tol=|hyperpage}{203}
+\indexentry{EigenValue!sigma=|hyperpage}{203}
+\indexentry{EigenValue!maxit=|hyperpage}{203}
+\indexentry{EigenValue!ncv=|hyperpage}{203}
+\indexentry{EigenValue|hyperpage}{204}
+\indexentry{backward Euler method|hyperpage}{207}
+\indexentry{tutorial!convect.edp|hyperpage}{211}
+\indexentry{tutorial!BlackSchol.edp|hyperpage}{213}
+\indexentry{stokes|hyperpage}{213}
+\indexentry{fluid|hyperpage}{216}
+\indexentry{Stokes|hyperpage}{216}
+\indexentry{streamlines|hyperpage}{217}
+\indexentry{Navier-Stokes|hyperpage}{217}
+\indexentry{convect|hyperpage}{217}
+\indexentry{Reusable matrices|hyperpage}{218}
+\indexentry{Taylor-Hood|hyperpage}{218}
+\indexentry{tutorial!StokesUzawa.edp|hyperpage}{218}
+\indexentry{on!intersection|hyperpage}{219}
+\indexentry{Navier-Stokes|hyperpage}{219}
+\indexentry{include|hyperpage}{219}
+\indexentry{tutorial!NSUzawaCahouetChabart.edp|hyperpage}{219}
+\indexentry{varf|hyperpage}{220}
+\indexentry{matrix!=|hyperpage}{220}
+\indexentry{matrix!solver=|hyperpage}{220}
+\indexentry{qforder=|hyperpage}{220}
+\indexentry{convect|hyperpage}{220}
+\indexentry{stop test!absolue|hyperpage}{220}
+\indexentry{precon=|hyperpage}{220}
+\indexentry{tutotial!VI.edp|hyperpage}{222}
+\indexentry{diag|hyperpage}{223}
+\indexentry{matrix!diag|hyperpage}{223}
+\indexentry{tutorial!Schwarz-overlap.edp|hyperpage}{224}
+\indexentry{domain decomposition|hyperpage}{225}
+\indexentry{shurr|hyperpage}{225}
+\indexentry{tutorial!Schwarz-no-overlap.edp|hyperpage}{226}
+\indexentry{domain decomposition|hyperpage}{227}
+\indexentry{shurr|hyperpage}{227}
+\indexentry{tutorial!Schwarz-gc.edp|hyperpage}{227}
+\indexentry{[]@\verb=[]=|hyperpage}{228}
+\indexentry{tutorial!fluidStruct.edp|hyperpage}{229}
+\indexentry{subdomains|hyperpage}{232}
+\indexentry{region|hyperpage}{233}
+\indexentry{discontinuous functions|hyperpage}{233}
+\indexentry{tutorial!freeboundary.edp|hyperpage}{236}
+\indexentry{macro|hyperpage}{239}
+\indexentry{mpiGroup|hyperpage}{245}
+\indexentry{mpiCom|hyperpage}{245}
+\indexentry{mpiRequest|hyperpage}{245}
+\indexentry{mpisize|hyperpage}{245}
+\indexentry{mpirank|hyperpage}{245}
+\indexentry{mpiUndefined|hyperpage}{245}
+\indexentry{mpiAnySource|hyperpage}{245}
+\indexentry{mpiCommWorld|hyperpage}{245}
+\indexentry{mpiMAX|hyperpage}{245}
+\indexentry{mpiMIN|hyperpage}{245}
+\indexentry{mpiSUM|hyperpage}{245}
+\indexentry{mpiPROD|hyperpage}{245}
+\indexentry{mpiLAND|hyperpage}{245}
+\indexentry{mpiLOR|hyperpage}{245}
+\indexentry{mpiLXOR|hyperpage}{245}
+\indexentry{mpiBXOR|hyperpage}{245}
+\indexentry{mpiSize|hyperpage}{246}
+\indexentry{mpiRank|hyperpage}{246}
+\indexentry{processor|hyperpage}{246}
+\indexentry{processorblock|hyperpage}{246}
+\indexentry{mpiBarrier|hyperpage}{246}
+\indexentry{mpiWait|hyperpage}{246}
+\indexentry{mpiWait|hyperpage}{246}
+\indexentry{mpiWtime|hyperpage}{246}
+\indexentry{mpiWtick|hyperpage}{246}
+\indexentry{Send|hyperpage}{247}
+\indexentry{Secv|hyperpage}{247}
+\indexentry{Isend|hyperpage}{247}
+\indexentry{Irecv|hyperpage}{247}
+\indexentry{mpiAlltoall|hyperpage}{247}
+\indexentry{mpiAllgather|hyperpage}{247}
+\indexentry{mpiGather|hyperpage}{247}
+\indexentry{mpiScatter|hyperpage}{247}
+\indexentry{mpiReduce|hyperpage}{247}
+\indexentry{mpiAllReduce|hyperpage}{247}
+\indexentry{mpiReduceScatter|hyperpage}{247}
+\indexentry{schwarz|hyperpage}{247}
+\indexentry{broadcast|hyperpage}{247}
+\indexentry{processor|hyperpage}{247}
+\indexentry{array!mesh|hyperpage}{247}
+\indexentry{file!data base|hyperpage}{277}
+\indexentry{file!bamg|hyperpage}{277}
+\indexentry{file!am|hyperpage}{279}
+\indexentry{file!am\_fmt|hyperpage}{279}
+\indexentry{file!amdba|hyperpage}{279}
+\indexentry{file!am\_fmt|hyperpage}{280}
+\indexentry{file!am|hyperpage}{280}
+\indexentry{file!amdba|hyperpage}{280}
+\indexentry{file!msh|hyperpage}{280}
+\indexentry{file!ftq|hyperpage}{281}
+\indexentry{transpose|hyperpage}{296}
+\indexentry{DFFT|hyperpage}{306}
+\indexentry{FFT|hyperpage}{306}

@@ -887,9 +887,9 @@ solver(0)
 	  ffassert(f.good() );
 	  i--;j--;
 	  imx=max(imx,i);
-	  jmx=max(jmx,j);
+	  imx=max(jmx,j);
 	  imn=min(imn,i);
-	  jmn=min(jmn,j);
+	  imn=min(jmn,j);
 	  //cout << i << " " << j << " " << aij << endl;
 	  if(i0!=i) {j0=-1;lg[i]=k;}
 	  ffassert(i0<=i && j0<j);

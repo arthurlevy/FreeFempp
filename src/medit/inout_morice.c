@@ -2,7 +2,7 @@
 #include "libmesh5.h"
 #include "extern.h"
 #include "string.h"
-static  int debug=0;
+
 void getline_number(char *nature, int *nb){
   char    data[256];
   char   *tictac;
@@ -16,7 +16,7 @@ void getline_number(char *nature, int *nb){
   else{
     //printf("tictac=%s\n",tictac);
     *nb = atoi(tictac);
-    if(debug) fprintf(stdout,"Number of %s %i \n",nature,*nb);
+    fprintf(stdout,"Number of %s %i \n",nature,*nb);
   }
 
 }
@@ -83,7 +83,7 @@ void getline_popen_vertex(int ddim, double *c, int *ref){
       c[i] = atof(tictac);
       //sscanf(tictac,"%f",&res);
       //c[i]=res;
-      if(debug) printf("valeur atof c[i] %f c%sc \n",c[i], tictac);
+      printf("valeur atof c[i] %f c%sc \n",c[i], tictac);
     }
     else if( lench == strcspn(tictac,keyse) ){ 
       sscanf(tictac,"%E",&c[i]);
@@ -193,7 +193,7 @@ void getline_popen_firstedge(int *v0, int *v1, int *ref){
   
   
   fgets(data,256,stdin);
- if(debug) fprintf(stdout,"data edge %s\n", data);
+  fprintf(stdout,"data edge %s\n", data);
   tictac = strtok(data," \n");
   if(tictac == NULL){
      fgets(data,256,stdin);
@@ -264,11 +264,15 @@ void getline_popen_firstdouble(char* nature, int ddim, double *v){
   if(tictac2 == NULL){
      fgets(data,256,stdin);
   }
+  /*
+  if(tictac2 == NULL) printf("problem in reading the first %s\n",nature);
+  */
+  //printf("data=%s\n",data);
   v[0]= strtod(data,&tictac);
-
+  //printf("v[i]= %f c%sc\n",v[0],tictac);
   for(i=1; i<ddim; i++ ) {
     v[i]= strtod(tictac,&tictac);
-
+    //printf("v[i]= %f c%sc\n",v[i],tictac);
   }
 }
 
@@ -310,7 +314,7 @@ void read_TypeSizeTyptab(char* nature,int *type,int *size,int *typtab){
   tmpsize=0;
   for(i=0; i<tmptype; i++){
     typtab[i] = atoi(tictac);
-    if(debug) printf("typtab[%i]=%i\n",i,typtab[i]);
+    printf("typtab[%i]=%i\n",i,typtab[i]);
     tmpsize += typtab[i];  
     tictac = strtok(NULL," \n");
   }
@@ -403,7 +407,7 @@ int loadMesh_popen(pMesh mesh) {
 	}
 	else{
 	mesh->dim = atoi(tictac);
-	if(debug) printf("%s %i\n",natureread,mesh->dim);
+	printf("%s %i\n",natureread,mesh->dim);
 	}
        */
       /*control of the dimension*/
@@ -425,7 +429,7 @@ int loadMesh_popen(pMesh mesh) {
 	}
 	else{
 	mesh->np = atoi(tictac);
-	if(debug) fprintf(stdout,"Number of  %s %i\n",natureread,mesh->np);
+	fprintf(stdout,"Number of  %s %i\n",natureread,mesh->np);
 	}
       */
       /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
@@ -896,7 +900,7 @@ int loadMesh_popen(pMesh mesh) {
     
       k=1;
       n = &mesh->extra->n[3*(k-1)+1];
-      getline_popen_firstdouble(natureread, 3, dn);
+      getline_popen_firstelemnoref(natureread, 3, dn);
  
       n[0] = dn[0];
       n[1] = dn[1];
@@ -911,7 +915,7 @@ int loadMesh_popen(pMesh mesh) {
 
       for (k=2; k<=mesh->nvn; k++) {
 	n = &mesh->extra->n[3*(k-1)+1];	
-	getline_popen_double(natureread, 3, dn); // modif FH 
+	getline_popen_elemnoref(natureread, 3, dn);
 	n[0] = dn[0];
 	n[1] = dn[1];
 	n[2] = dn[2];
@@ -1051,7 +1055,7 @@ int loadMesh_popen(pMesh mesh) {
       for (k=1; k<=mesh->ntg; k++) {
 	n = &mesh->extra->t[3*(k-1)+1];
 	
-	getline_popen_double(natureread, 3, dn);// modif FH
+	getline_popen_elemnoref(natureread, 3, dn);
 	n[0] = dn[0];
 	n[1] = dn[1];
 	n[2] = dn[2];
@@ -1326,7 +1330,7 @@ int loadSol_popen(pMesh mesh,char *filename,int numsol) {
       else{
 	ver = atoi(tictac);
       }
-      if(debug) fprintf(stdout,".sol: reading format %s %i \n",natureread,ver);
+      fprintf(stdout,".sol: reading format %s %i \n",natureread,ver);
     }
 
     if( !strncmp(tictac,"Dimension",9) ){
@@ -1341,7 +1345,7 @@ int loadSol_popen(pMesh mesh,char *filename,int numsol) {
       }
       else{
 	dim = atoi(tictac);
-	//if(debug) printf(".sol: %s %i (mesh)%i (lecture)%s \n",natureread,dim,mesh->dim,tictac);
+	printf(".sol: %s %i (mesh)%i (lecture)%s \n",natureread,dim,mesh->dim,tictac);
       }
       /*control of the dimension*/
       if ( dim != mesh->dim ) {
@@ -1356,7 +1360,7 @@ int loadSol_popen(pMesh mesh,char *filename,int numsol) {
       natureread = "SolAtVertices";
       fprintf(stdout,"data= %s\n",data);
       getline_number( natureread, &(nel) );
-      fprintf(stdout,"nel %d, mesh->np %d  \n",nel,mesh->np);
+      fprintf(stdout,"nel %i, mesh->np %i  %s\n",nel,mesh->np);
       if ( nel != mesh->np ) {
 	fprintf(stderr,"  %%%% Wrong number: %d Solutions discarded\n",nel-mesh->np);
 	return(0);

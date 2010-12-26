@@ -72,7 +72,6 @@ void initArrayOperatordouble()
 						  new E_F1_funcT<SetArray<K>,SetArray<long> >(Cast<SetArray<K>,SetArray<long> >)
 												  
 						  );
-    Global.Add("toRarray","(",new OneOperator_2KN_<double>);
     
     
 //     ArrayDCL<long>();

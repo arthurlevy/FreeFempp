@@ -21,8 +21,7 @@ freefem++.spec crimson-freefem++.zip \
 Install-MacOS.command.in \
 examples-bamg/NACA012/naca.awk  examples-bamg/quadloop/dotest.pl \
 examples-bamg/square/*_g.* examples-bamg/square/do* examples-bamg/NACA012/[adp]* \
-examples-bamg/test/dotest*.pl 0ldUserReadMe.txt CheckAllEdp  \
-WHERE_LIBRARY-mkl
+examples-bamg/test/dotest*.pl 0ldUserReadMe.txt CheckAllEdp 
 
 
 FF_MAC_PREFIX=FreeFem++v$(VERSION)$(ADD_PACKAGE_NAME)
@@ -126,8 +125,8 @@ speedtest: all
 win32:WindowsPackage.iss
 	cd examples++-load;tar zxvf include.tar.gz;mkdir include-tmp;cp -Lr *.h include/* include-tmp
 WindowsPackage.iss: WindowsPackage.m4 configure.ac Makefile.am
-	m4 -DVERSION='$(VERSION)$(ADD_PACKAGE_NAME)' \
-	-DMPIPROG='$MPIPROG' WindowsPackage.m4 > WindowsPackage.iss
+	m4 -DVERSION=$(VERSION)$(ADD_PACKAGE_NAME) \
+		WindowsPackage.m4 > WindowsPackage.iss
 
 # Debian package
 # --------------

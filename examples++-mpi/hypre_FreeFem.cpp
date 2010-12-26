@@ -35,7 +35,6 @@
 // add F.Hecht ...  oct 2010 
 #define HYPRE_TIMING
 // .. end add
-#include <mpi.h>
 
 #include  <iostream>
 using namespace std;
@@ -59,6 +58,7 @@ using namespace std;
 #include <stdlib.h>
 #include <string.h>
 
+#include "mpi.h"
 
 #ifdef MPI_WTIME_IS_GLOBAL
 #undef MPI_WTIME_IS_GLOBAL

@@ -74,13 +74,13 @@ public:
   /*
   readsol_Op(const basicAC_F0 &  args, Expression ffname) : filename(ffname)
   {
-    if(verbosity>2)  cout << "readsol"<< endl;
+    if(verbosity)  cout << "readsol"<< endl;
     args.SetNameParam(n_name_param,name_param,nargs);    
   }
   */
   readsol_Op(const basicAC_F0 &  args) 
   {
-    if(verbosity>2)  cout << "readsol"<< endl;
+    if(verbosity)  cout << "readsol"<< endl;
     args.SetNameParam(n_name_param,name_param,nargs);    
     if ( BCastTo<string *>(args[0]) ) 
       filename = CastTo<string *>(args[0]);
@@ -108,7 +108,7 @@ AnyType readsol_Op::operator()(Stack stack)  const
   int         nsol;
   int         key;
 
-  int numsol(arg(0,stack,-1L)); 
+  int numsol(arg(0,stack,-1)); 
   assert(abs(numsol)>=1);
 
   char * charfile= new char[ffname->size()+1];
@@ -127,7 +127,6 @@ AnyType readsol_Op::operator()(Stack stack)  const
       exit(1);
     }
   }
-  if(verbosity>2)
   cout <<"  %%%%" << (char *) data <<  " OPENED\n" << endl;
 
   nv = GmfStatKwd(inm,GmfSolAtVertices,&type,&offset,&typtab);
@@ -373,7 +372,7 @@ AnyType datasolMesh2_Op::operator()(Stack stack)  const
   int solnbfloat;
   int TypTab[l.size()];
  
-  int resultorder= arg(0, stack, 1L);
+  int resultorder= arg(0, stack, 1);
   long longdefault;
 
   int ver = GmfFloat, outm;
@@ -605,8 +604,8 @@ AnyType datasolMesh3_Op<v_fes>::operator()(Stack stack)  const
 
   char * ret= new char[ffname->size()+1];
   strcpy(ret, ffname->c_str());
-  if(verbosity>2)
-    cout << ret << endl;
+
+  cout << ret << endl;
   if ( !(outm = GmfOpenMesh( ret, GmfWrite, ver, 3)) ) {
     cerr <<"  -- Mesh3::Save  UNABLE TO OPEN  :"<< filename << endl;
     exit(1);
@@ -871,7 +870,7 @@ public:
   static const int n_name_param =5;  
   static basicAC_F0::name_and_type name_param[] ;
   Expression nargs[n_name_param];
-  long arg(int i,Stack stack,long a) const{ return nargs[i] ? GetAny< long >( (*nargs[i])(stack) ): a;}
+  long arg(int i,Stack stack,int a) const{ return nargs[i] ? GetAny< long >( (*nargs[i])(stack) ): a;}
   string*  arg(int i,Stack stack, string* a ) const{ return nargs[i] ? GetAny< string* >( (*nargs[i])(stack) ): a;}
   
 public:
@@ -1115,7 +1114,7 @@ AnyType PopenMeditMesh_Op::operator()(Stack stack)  const
     jt++;
   }
   assert( it==nt ); assert(iv==nv); assert(ibe=nbe);
-  if(verbosity>2) cout << "Popen medit : vertex "<< nv << " triangle "<< nt << " edge " << nbe << endl;  
+  if(verbosity) cout << "Popen medit : vertex "<< nv << " triangle "<< nt << " edge " << nbe << endl;  
 
   Mesh *pTh = new Mesh(nv,nt,nbe,v,t,b);
   Mesh &Th = *pTh;
@@ -1551,7 +1550,7 @@ AnyType PopenMeditMesh_Op::operator()(Stack stack)  const
       }
 
       if(boolsave){
-	if(verbosity>2) cout << "writing solution in file"  << endl;
+	if(verbosity) cout << "writing solution in file"  << endl;
 	if(typsol==1){
 	  writetabsol( datasize, nboftmp, vxx, solsave);
 	  nboftmp=nboftmp+1;
@@ -1565,12 +1564,9 @@ AnyType PopenMeditMesh_Op::operator()(Stack stack)  const
 	  nboftmp=nboftmp+3;
 	}
 	/*cout << "fin writing solution in file nboftmp=" << nboftmp << endl;
-	  if(verbosity>2)
-	  {
-	  cout << "datasize=" << datasize << " " << "solnbfloat=" << solnbfloat << " boolsave=" << boolsave << endl;
-	  for(int iy=0; iy<datasize; iy++){
+	cout << "datasize=" << datasize << " " << "solnbfloat=" << solnbfloat << " boolsave=" << boolsave << endl;
+	for(int iy=0; iy<datasize; iy++){
 	  if(iy==0 || iy==datasize-1) cout << iy <<" " <<solsave(0,iy) << endl;	      
-	  }
 	}
 	*/
       }
@@ -1667,7 +1663,7 @@ public:
   static const int n_name_param = 5;  
   static basicAC_F0::name_and_type name_param[] ;
   Expression nargs[n_name_param];
-  long arg(int i,Stack stack,long a) const{ return nargs[i] ? GetAny< long >( (*nargs[i])(stack) ): a;}
+  long arg(int i,Stack stack,int a) const{ return nargs[i] ? GetAny< long >( (*nargs[i])(stack) ): a;}
   string*  arg(int i,Stack stack, string* a ) const{ return nargs[i] ? GetAny< string* >( (*nargs[i])(stack) ): a;}
 
 public:
@@ -1762,7 +1758,7 @@ template<class v_fes>
 AnyType PopenMeditMesh3_Op<v_fes>::operator()(Stack stack)  const 
 {
   MeshPoint *mp(MeshPointStack(stack)) , mps=*mp;
-  long order (arg(0,stack,1L));
+  long order (arg(0,stack,1));
   //
   int ver = GmfFloat;
   int dimp =3;
@@ -1781,13 +1777,13 @@ AnyType PopenMeditMesh3_Op<v_fes>::operator()(Stack stack)  const
   string * ffname  = GetAny<string *>( (*filename)(stack) );
   string * meditff(arg(1,stack,&stringffmedit));
 
-  long filebin (arg(4,stack,1L));
+  long filebin (arg(4,stack,1));
   int smedit=max(1,nbsol);     
   char * commandline = meditcmd( filebin, nbsol, smedit, *meditff, *ffname);
   
   printf("version de medit %s\n",commandline);  
-  if(verbosity>2) cout << "number of solution = " << offset-1 << endl;
-  if(verbosity>2) cout << "number of mesh     = " << nbTh << endl;
+  if(verbosity) cout << "number of solution = " << offset-1 << endl;
+  if(verbosity) cout << "number of mesh     = " << nbTh << endl;
 
   // lecture des differents maillages
   int nv=0,nt=0,nbe=0; // sommet, triangles, arretes du maillage unifies
@@ -1854,7 +1850,7 @@ AnyType PopenMeditMesh3_Op<v_fes>::operator()(Stack stack)  const
     jt++;
   }
   assert( it==nt ); assert(iv==nv); assert(ibe=nbe);
-  if(verbosity>2) cout << "meditff :: Value of elements: vertex "<< nv << " Tet "<< nt << " triangle " << nbe << endl;  
+  if(verbosity) cout << "meditff :: Value of elements: vertex "<< nv << " Tet "<< nt << " triangle " << nbe << endl;  
 
   Mesh3 *pTh = new Mesh3(nv,nt,nbe,v,t,b);
   Mesh3 &Th = *pTh;
@@ -2318,7 +2314,7 @@ AnyType PopenMeditMesh3_Op<v_fes>::operator()(Stack stack)  const
       }
  
       if(boolsave){
-	if(verbosity>2) cout << "writing solution in file" << endl;
+	if(verbosity) cout << "writing solution in file" << endl;
 	if(typsol==1){
 	  writetabsol( datasize, nboftmp, vxx, solsave);
 	  nboftmp=nboftmp+1;
@@ -2409,7 +2405,7 @@ Init::Init(){  // le constructeur qui ajoute la fonction "splitmesh3"  a freefem
   typedef Mesh *pmesh;
   typedef Mesh3 *pmesh3;
   
-  if (verbosity>2)
+  if (verbosity)
     cout << " load:popen.cpp  " << endl;
   
   // 2D

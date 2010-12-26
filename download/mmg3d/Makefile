@@ -33,7 +33,7 @@ mmg3d-1:
 	   echo " file $(PACKAGE)  not found => no mmg3d tar file (download by hand) "; \
 	fi
 mmg3d-2: FAIT-2
-FAIT-2: 	
+FAIT-2: WHERE	
 	@if [ -f ../pkg/$(MMG3DLIB_TAR) ] ;then \
 	   echo tar zxf ../pkg/$(MMG3DLIB_TAR)  -C .. ;\
 	   tar zxf ../pkg/$(MMG3DLIB_TAR)  -C .. ;\
@@ -45,7 +45,7 @@ FAIT-2:
 FAIT-1: tag-tar
 	$(MAKE) -C $(SRCDIR) lib
 	touch FAIT-1
-install:install-$(OPT) WHERE
+install:install-$(OPT)
 install-1: FAIT-1
 	-mkdir $(SRCDIR)/$(INSTALL)/include
 	cp $(SRCDIR)/sources/libmmg3d.h  $(SRCDIR)/$(INSTALL)/include/libmmg3d.h
@@ -80,7 +80,7 @@ clean:
 	-rm -rf $(SRCDIR)/$(INSTALL)/lib/libmmg3d.a
 	-rm -rf $(SRCDIR)/$(INSTALL)/include/libmmg3d.a
 	-rm -r $(SRCDIR)
-	-rm FAIT* mmg*
+	-rm FAIT
 
 ff-flags: ../Makefile
 	grep 'abs_top_builddir *=' ../Makefile >> ff-flags

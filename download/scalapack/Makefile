@@ -46,9 +46,7 @@ WHERE:
 	echo "scalapack INCLUDE '-I@DIR@/include'">> $(SRCDIR)/$(INSTALL)/lib/WHERE.scalapack ;\
 	fi
 
-FAIRE: $(SRCDIR)/FAIT
-	$(MAKE) WHERE
-	touch FAIRE 
+FAIRE: $(SRCDIR)/FAIT	WHERE
 
 SLmake.inc: ../../config.status	Makefile
 	../../config.status  --file="SLmake.inc:SLmake-scalapack.inc"
@@ -65,7 +63,7 @@ clean-local:
 	-cd $(SRCDIR); $(MAKE) cleanlib 
 
 clean: clean-local
-	rm SLmake.inc FAIRE FAIT
+	rm SLmake.inc
 	-rm -rf $(SRCDIR)/$(INSTALL)/include/{pblas.h,pxsyevx.h,tools.h}
 	-rm -rf $(SRCDIR)/$(INSTALL)/lib/libscalapack.a
 	-rm -rf $(SRCDIR)

@@ -50,10 +50,7 @@ set<string> SetLoadFile;
 bool load(string ss)
 {
   if(SetLoadFile.find(ss) != SetLoadFile.end())
-    { 
-      if( (mpirank==0)&& verbosity)
-	cout << " (already loaded : " <<  ss << " ) " ;
-    }
+    cout << " (already loaded : " <<  ss << " ) " ;
     else
       {
 	SetLoadFile.insert(ss);
@@ -89,7 +86,7 @@ bool load(string ss)
 	      ret= handle !=0;
 	      if (  ret ) 
 		{
-		  if(verbosity && (mpirank ==0))
+		  if(verbosity)
 		    cout << " (load: dlopen " << s << " " << handle << ") ";
 		  return handle;
 		}
@@ -106,32 +103,26 @@ bool load(string ss)
 		  }
 		else 
 		  {
-		    if(verbosity&& (mpirank ==0))
+		    if(verbosity)
 		      cout << "(load: loadLibary " <<  s <<  " = " << handle << ")";
 		    return mod;
 	    }
 	      }
 #else
-	      if((mpirank ==0))
-		{
-		  cout << "------------------------------------   \n" ;
-		  cout << "  load: sorry no dlopen on this system " << s << " \n" ;
-		  cout << "------------------------------------   \n" ;
-		}
+	cout << "------------------------------------   \n" ;
+	cout << "  load: sorry no dlopen on this system " << s << " \n" ;
+	cout << "------------------------------------   \n" ;
 	CompileError("Error load");
 	return 0;
 #endif  
 	    }
-	if((mpirank ==0))
-	  {
-	    cerr  <<   "\nload error : " << ss << "\n \t fail : "  << endl;
-	    cerr << "list  prefix: " ;
-	    for (list<string>::const_iterator i= prefix.begin();i !=prefix.end();++i)
-	      cerr <<"'"<<*i<<"' ";
-	    cerr << "list  suffix : '"<< suffix[0] << "' , '"  << suffix[1] << "' "; 
-	    
-	    cerr << endl;
-	  }
+	cerr  <<   "\nload error : " << ss << "\n \t fail : "  << endl;
+	cerr << "list  prefix: " ;
+	for (list<string>::const_iterator i= prefix.begin();i !=prefix.end();++i)
+	  cerr <<"'"<<*i<<"' ";
+	cerr << "list  suffix : '"<< suffix[0] << "' , '"  << suffix[1] << "' "; 
+	
+	cerr << endl;
 	CompileError("Error load");
       }
   return 0 ;

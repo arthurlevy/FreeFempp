@@ -697,7 +697,6 @@ template<typename T,typename B,typename V>
 void GenericMesh<T,B,V>::BuildjElementConteningVertex()
 {
   const int nkv= T::nv;
-    int lerr[10];
   if(!ElementConteningVertex) ElementConteningVertex = new int[nv];
 
     for(int i=0;i<nv;++i)
@@ -709,14 +708,7 @@ void GenericMesh<T,B,V>::BuildjElementConteningVertex()
     int kerr=0;
     for(int i=0;i<nv;++i)
 	if (ElementConteningVertex[i]<0) 
-	    if(kerr<10) lerr[kerr++]=i; 
-    if(kerr)
-      {
-	cerr << " Fatal error: some vertex are not at least in one element  \n       :   " ;
-	for(int i=0;i<kerr;++i)
-	    cerr << " " << lerr[i];
-	cerr << endl;
-      }
+	    kerr++; 
     ffassert(kerr==0);//  Sure Error.
 
 } 
@@ -1456,8 +1448,8 @@ Serialize GenericMesh<T,B,V>::serialize() const
     l += nt*(sizeof(int)*(nve + 1));
     l += nv*( sizeof(int) + sizeof(double)*d);
     l += nbe*(sizeof(int)*(nvbe+1));
-    if(verbosity>1)
-       cout << "Serialize gmesh " << l << " " << nve << " " << nvbe << endl;
+    
+    cout << "Serialize gmesh " << l << " " << nve << " " << nvbe << endl;
     Serialize  serialized(l,GenericMesh_magicmesh);
     // cout << l << magicmesh << endl;
     size_t pp=0;

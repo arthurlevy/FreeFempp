@@ -81,15 +81,15 @@ OBJ_SUPERLU = $(ALLAUX) $(LAAUX) \
 superlu: FAIT
 
 FAIT:	
-	$(MAKE)  install 
+	$(MAKE) FAIRE
 	touch FAIT
 
 
-FAIRE:$(SRCDIR)
-	cd $(SRCDIR)/SRC; $(MAKE) -f ../../ff-FLAGS  $(OBJ_SUPERLU)
-	touch FAIRE
+FAIRE: $(SRCDIR)/SRC/$(SUPERLULIB) WHERE
+	touch FAIT
 
-install: FAIRE WHERE
+$(SRCDIR)/SRC/$(SUPERLULIB): $(SRCDIR)
+	cd $(SRCDIR)/SRC; $(MAKE) -f ../../ff-FLAGS  $(OBJ_SUPERLU)
 	cd $(SRCDIR)/SRC; $(AR) $(ARFLAGS) $(SUPERLULIB)  $(OBJ_SUPERLU)
 	cd $(SRCDIR)/SRC; $(RANLIB) $(SUPERLULIB) 
 	cp $(SRCDIR)/SRC/s*h  $(SRCDIR)/$(INSTALL)/include
@@ -119,7 +119,7 @@ clean:
 	-rm $(SRCDIR)/$(INSTALL)/include/slu*h 
 	-rm $(SRCDIR)/$(INSTALL)/include/supermatrix.h
 	-rm -r $(SRCDIR) ff-FLAGS
-	-rm -rf FAIT FAIRE
+	-rm -rf FAIT
 
 
 ff-FLAGS: ../Makefile  Makefile 

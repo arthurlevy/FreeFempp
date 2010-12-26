@@ -10,7 +10,7 @@ g# Configuration script using Automake + Autoconf for FreeFem++
 # number in debian/changelog.
 # add check of FLIBS and X11_LIBS  v2.24-2
 
-AC_INIT(FreeFem++,3.11,hecht@ann.jussieu.fr,freefem++)
+AC_INIT(FreeFem++,3.10,hecht@ann.jussieu.fr,freefem++)
 AC_PREREQ(2.50) dnl for AC_LANG_CASE
 AC_CONFIG_SRCDIR(src/FreeFem++-CoCoa)
 # Automake 1.4 is too old
@@ -240,7 +240,6 @@ AM_PROG_LEX
 AC_PROG_YACC
 AC_LANG(C++)
 
-
 # Some useful libraries
 
 AC_CHECK_LIB(pthread,pthread_create,ff_pthread="-lpthread",ff_pthread="")
@@ -321,7 +320,6 @@ CYGWIN*|MINGW*)
 	# We need Mingw to avoid Cygwin's extra DLLs
 	if test "$enable_cygwindll" != yes
 	then
-# 	        CHECK_COMPILE_FLAG(C++,-mwindows,CXXFLAGS)
 	        ff_glut_ok=yes
                 ff_mingw=yes 
                 enable_cygwindll=no;
@@ -329,14 +327,7 @@ CYGWIN*|MINGW*)
 		CXXFLAGS="$CXXFLAGS $ff_nocygwin -I/usr/include/mingw"		
 		FFLAGS="$FFLAGS $ff_nocygwin"
 		CFLAGS="$CFLAGS $ff_nocygwin -I/usr/include/mingw"
-                AC_COMPILE_IFELSE([int a;],[],
-                    [ff_nocygwin="";
-		     AC_MSG_NOTICE([Sorry $ff_nocygwin optio is wrong try whitout , but try with gcc-3.3])
-                    ])
-		CXXFLAGS="$CXXFLAGS $ff_nocygwin -I/usr/include/mingw"		
-		FFLAGS="$FFLAGS $ff_nocygwin"
-		CFLAGS="$CFLAGS $ff_nocygwin -I/usr/include/mingw"
-		CNOFLAGS="$CNOFLAGS $ff_nocygwin -I/usr/include/mingw"
+                AC_COMPILE_IFELSE([int a;],[],[AC_MSG_ERROR([Sorry $ff_nocygwin, but try with gcc-3.3])])
 		LIBS="$LIBS $ff_nocygwin -mthreads -lws2_32 -lcomdlg32" 
 		LIBSNOCONSOLE="-mwindows"
 		FLIBS="$ff_nocygwin -lg2c"
@@ -612,7 +603,6 @@ then
 
 fi
 fi
-AC_SUBST(LIBSPTHREAD,$ff_pthread)
 
 if test "$ff_glut_ok" = yes
 then
@@ -620,6 +610,7 @@ then
     if test -n  "$ff_pthread" ; then 
 	ff_ffglutprog="ffglut${EXEEXT}"
 	AC_DEFINE_UNQUOTED(PROG_FFGLUT,"$ff_ffglutprog", the ffglut application for the new graphics )
+	AC_SUBST(LIBSPTHREAD,$ff_pthread)
     fi
     ff_meditprog="ffmedit${EXEEXT}"
 fi
@@ -686,12 +677,11 @@ dnl	echo "ff_mpi_path '$ff_mpi_path' .............."
 	    .|"") ff_mpi_path="$PATH";ff_defmpicxx="$ff_mpicxx";;
 	    *) ff_mpi_path="$ff_mpi_path";ff_defmpicxx=`expr "//$ff_mpicxx" : '.*/\(.*\)'`;; 
 dnl if also  add $PATH they  could be missing some different mpi version... 
-	esac	 
+	esac	
+        
 	AC_ARG_VAR(MPICXX,[MPI C++ compiler command])
-	if test -z "$MPICXX" ; then
-	    AC_PATH_PROGS(MPICXX,$ff_defmpicxx mpic++$ff_mpi_suffix mpicxx$ff_mpi_suffix mpiCC$ff_mpi_suffix mpCC hcp mpxlC mpxlC_r cmpic++,no,$ff_mpi_path)
-	    AC_MSG_CHECKING(for MPICXX)
-	fi
+	AC_PATH_PROGS(MPICXX,$ff_defmpicxx mpic++$ff_mpi_suffix mpicxx$ff_mpi_suffix mpiCC$ff_mpi_suffix mpCC hcp mpxlC mpxlC_r cmpic++,no,$ff_mpi_path)
+	AC_MSG_CHECKING(for $MPICXX)
 	ff_mpicxx="$MPICXX"
 	ff_save_cxx="$CXX"
 	CXX=$ff_mpicxx
@@ -718,17 +708,12 @@ ff_mpi=no)
 
 	if test "$ff_mpi" = yes;
 	then
-            AC_ARG_VAR(MPIRUN,[MPI run command ])
-#	echo "ff_mpi_path::$ff_mpi_path:"
-#        AC_MSG_CHECKING(for MPIRUN)
-	    if test -z "$MPIRUN" ; then
-		AC_PATH_PROGS(MPIRUN,mpirun mpiexec,no,$ff_mpi_path)
-		if test "$MPIRUN" = no
+	echo "ff_mpi_path::$ff_mpi_path:"
+		AC_PATH_PROGS(ff_mpirun,mpirun mpiexec,no,$ff_mpi_path)
+		if test "$ff_mpirun" = no
 		then
-		    ff_mpi=no
+			ff_mpi=no
 		fi
-		AC_MSG_RESULT($MPIRUN)
-	    fi
 	fi
 
 	if test "$ff_mpi" = yes;
@@ -739,9 +724,8 @@ ff_mpi=no)
 		# computation here, because it must only be set when the
  		# parallel program is compiled (see src/mpi/Makfile.am)
 		ff_mpiprog="FreeFem++-mpi${EXEEXT}"
-   		  AC_SUBST(MPIPROG,"$ff_mpiprog")
-   		  AC_SUBST(MPISCRIPT,"ff-mpirun")
-   		  AC_SUBST(MPIRUN,$MPIRUN)
+   		  AC_SUBST(MPIPROG,$ff_mpiprog)
+   		  AC_SUBST(MPIRUN,$ff_mpirun)
                   AC_SUBST(MPICXX,$ff_mpicxx)
 	else
 	        AC_SUBST(MPICXX,$ff_save_cxx)
@@ -777,24 +761,18 @@ ff_mpi=no)
 
 	    AC_SUBST(MPICXX,$MPICXX)		
 	    AC_ARG_VAR(MPICC,[MPI C compiler command in $ff_mpi_path])
-	    if test -z "$MPICC" ; then		
-		AC_PATH_PROGS(MPICC,mpicc$ff_mpi_suffix hcc mpcc mpcc_r mpxlc cmpicc, "",$ff_mpi_path)
-	    fi
+	    AC_PATH_PROGS(MPICC,mpicc$ff_mpi_suffix hcc mpcc mpcc_r mpxlc cmpicc, "",$ff_mpi_path)
 	    AC_SUBST(MPICC,$MPICC)
 	    AC_SUBST(PASTIX_HOSTARCH,$ff_HOSTARCH_pastix)
 	    if test "$enable_fortran" != no
 	    then	
 		
 		AC_ARG_VAR(MPIF77,[MPI Fortran 77 compiler command])
-		if test -z "$MPIF77" ; then    
-		    AC_PATH_PROGS(MPIF77, mpif90$ff_mpi_suffix mpif77$ff_mpi_suffix hf77 mpxlf mpf77 mpif90 mpf90 mpxlf90 mpxlf95 mpxlf_r cmpifc cmpif90c, "",$ff_mpi_path)
-		fi
+		AC_PATH_PROGS(MPIF77, mpif90$ff_mpi_suffix mpif77$ff_mpi_suffix hf77 mpxlf mpf77 mpif90 mpf90 mpxlf90 mpxlf95 mpxlf_r cmpifc cmpif90c, "",$ff_mpi_path)
 		AC_SUBST(MPIF77)
 		
 		AC_ARG_VAR(MPIFC,[MPI Fortran 90  compiler command])
-		if test -z "$MPIFC" ; then
-		    AC_PATH_PROGS(MPIFC, mpif90$ff_mpi_suffix mpxlf95_r mpxlf90_r mpxlf95 mpxlf90 mpf90 cmpif90c, "",$ff_mpi_path)
-		fi		
+		AC_PATH_PROGS(MPIFC, mpif90$ff_mpi_suffix mpxlf95_r mpxlf90_r mpxlf95 mpxlf90 mpf90 cmpif90c, "",$ff_mpi_path)
 		AC_SUBST(MPIFC)
 	    fi
 	    if test ! -f "$ff_MPI_INCLUDE_DIR/mpif.h"  ; then
@@ -836,12 +814,6 @@ AC_ARG_WITH(wget,
 	   enable_download=yes
 	   ff_wget=yes
 	   ff_wget_command="${withval}")
-
-ff_mkl_libpath=yes
-AC_ARG_WITH(mkl,
-	[  --with-mkl= the  MKL LIBPATH : (ie. /opt/intel/mkl/RR.r.y.xxx/lib/<arch>)],
-	   ff_mkl_libpath="${withval}")
-
 
 if test "$enable_generic_blas" = yes
 then
@@ -922,7 +894,7 @@ AC_CHECK_LIB(fftw3,fftw_execute,ff_fftw_ok=yes)
 AC_CHECK_HEADERS(fftw3.h,ff_fftw_h=yes, ff_fftw_h=no)
 if test "$ff_fftw_ok" = yes -a "$ff_fftw_h" = yes
 then
-    [echo fftw3 LD  -lfftw3   >>$ff_where_lib_conf]
+    [echo fftw3 LD  -lffw3   >>$ff_where_lib_conf]
 fi
 dnl ---------------------------
 dnl   Looking for the tetgen
@@ -971,69 +943,25 @@ fi
 #done
 # Looking for the BLAS
 # --------------------
-ff_blas_ok=no
-ff_blas_inc=""
+
 # User-specified location
-# add MKL  seach dec 2010  FH ....
-AC_MSG_CHECKING(for MKL )
-ff_mkl_root=""
-if test "$ff_mkl_libpath" != "not" ; then
-    
-    if test "$ff_mkl_libpath"  = "yes"  -a  -n "$MKLROOT" ; then
-	ff_IFS="$IFS"
-	IFS=":"
-	for i in $LIBRARY_PATH;do 
-            case $i in 
-		*/mkl/*) ff_mkl_libpath=$i;;
-	    esac ;
-	done;
-      IFS="$ff_IFS"
-    else 
-	ff_mkl_libpath=no
-    fi
-    if test "$ff_mkl_libpath" != "no" -a -d "$ff_mkl_libpath" ; then
-	ff_mkl_root=`expr "//$ff_mkl_libpath" : '//\(.*\)/lib/.*'`
-	ff_mkl_arch=`expr "//$ff_mkl_libpath" : '//.*/lib/\(.*\)'`
-        ff_mkl_lp=
-        case "$ff_mkl_arch" in
-            *64*)  ff_mkl_lp=_lp64
-	esac
-        case $F77 in
-            *ifort*) ff_mkl_cc=intel;;
-            *) ff_mkl_cc=gf;;
-        esac
-#	echo ................  ff_mkl_root = $ff_mkl_root  .. $ff_mkl_arch
-	ff_mkl_blas="-L$ff_mkl_root/lib/$ff_mkl_arch -lmkl_${ff_mkl_cc}${ff_mkl_lp} -lmkl_lapack -lmkl_intel${ff_mkl_lp} -lmkl_intel_thread -lmkl_core -lguide -lm -lpthread"
-	ff_mkl_lapack="-L$ff_mkl_root/lib/$ff_mkl_arch -llibmkl_lapack"
-	ff_mkl_scalapack="-L$ff_mkl_root/lib/$ff_mkl_arch -lmkl_scalapack${ff_mkl_lp}"
-	ff_mkl_blacs="-L$ff_mkl_root/lib/$ff_mkl_arch -lmkl_blacs${ff_mkl_lp}"
-	ff_blas_ok=yes
-	ff_lapack_ok=yes
-	ff_blas_libs="$ff_mkl_blas"
-	ff_blas_inc="$ff_mkl_root/include"
-    else 
-	ff_mkl_libpath=no
-    fi
-fi
 
-
-AC_MSG_RESULT( root: $ff_mkl_root , arch: $ff_mkl_arch , $ff_mkl_lp ...)
-
+ff_blas_ok=no
 AC_ARG_WITH(blas,
-    [  --with-blas=library	Use a specific version of the Blas],
+	[  --with-blas=library	Use a specific version of the Blas],
 	ff_blas_ok=yes
 	ff_blas_libs="${withval}")
 
-
+ff_blas_inc=""
 
 # Specific BLAS library location for FreeBSD
 ff_freebsd_blas="-lf2c -lf77blas -latlas -lgslcblas"
 #  zmach is in lapack 
 # Trying  blas library
-# echo "LIBS =  $LIBS blas --- $ff_blas_ok"
+#echo "LIBS = " $LIBS
 for iblas in \
-     "-framework vecLib" "$ff_mkl_blas" "-lblas"  "-L/usr/lib/atlas -lblas" \
-    $ff_freebsd_blas
+"-framework vecLib" "-lblas"  "-L/usr/lib/atlas -lblas" \
+$ff_freebsd_blas
 do
 #   
 #"-L${curdir}/download/blas -lcblas -lf77blas" \
@@ -1068,6 +996,10 @@ then
         ff_cblas_libs=yes)
     AC_MSG_RESULT($ff_cblas_libs)
     LIBS="$ff_save_libs"	
+fi
+if test "$ff_blas_ok" = yes 
+then
+    echo blas LD  \'$ff_blas_libs\'  >>$ff_where_lib_conf
 fi
 #echo "LIBS = " $LIBS
 # If all else fails, download!
@@ -1143,13 +1075,6 @@ then
 	ff_cblas_h=no)
     
 fi
-
-
-if test "$ff_blas_ok" = yes 
-then
-    echo blas LD  \'$ff_blas_libs\'  >>$ff_where_lib_conf
-fi
-
 # end of BLAS -------------------
 
 
@@ -1415,12 +1340,11 @@ AC_SUBST(UMFPACKLIBS,$ff_umfpack_libs)
 # Checking for some functions that may not appear everywhere
 # ----------------------------------------------------------
 
-# asinh acosh atanh are not in Mingw yet gettimeofday
+# asinh acosh atanh are not in Mingw yet
 ff_malloc_h=""
-AC_HEADER_TIME
 AC_CHECK_HEADERS(malloc.h,ff_malloc_h=1)
 AC_SUBST(FF_MALLOC_H,$ff_malloc_h)
-AC_CHECK_FUNCS(asinh acosh atanh getenv jn erfc tgamma gettimeofday)
+AC_CHECK_FUNCS(asinh acosh atanh getenv jn erfc tgamma)
 AC_CHECK_FUNCS(srandomdev)
 
 AC_CHECK_FUNCS(second_,ff_second="",ff_second=second.o)
@@ -1801,12 +1725,12 @@ if test -f download/pkg/mmg3dlib.tar.gz  ;then
 else
     ff_MACOS=`expr "xx $CXXFLAGS" : '.*-mmacosx-version-min=\([0-9.]*\).*'`
     
+    case $ff_MACOS  in
+	[0-9.]*) ff_MACOS="$ff_MACOS";;
+	*) ff_MACOS=`sw_vers -productVersion| awk -F. '{print $1"."$2}'`
+    esac
     ff_mmg3dlib=""
     if test "$ff_mac" = yes ; then
-        case $ff_MACOS  in
-	     [0-9.]*) ff_MACOS="$ff_MACOS";;
-	     *) ff_MACOS=`sw_vers -productVersion| awk -F. '{print $1"."$2}'`
-    	esac
 	MACOS=10.4
 	ff_mmg3dlib="libmmg3d-1001-OSX-$ff_MACOS.tar.gz"
     elif test "$ff_win32" = yes ; then
@@ -1844,25 +1768,16 @@ fi
 
 ff_with_mpi=-openmpi; 
 
-ff_blacs="-lblacsCinit$ff_with_mpi     -lblacsF77init$ff_with_mpi      -lblacs$ff_with_mpi"
-ff_scalapack=-lscalapack
-
-# change MKL interface ...
-test -n "$ff_mkl_blacs" && ff_blacs="$ff_mkl_blacs"
-test -n "$ff_mkl_scalapack" && ff_scalapack="$ff_mkl_scalapack"
-test -n "$ff_mkl_root" && ff_winc="$ff_mkl_root/include/mkl_blas.h"
-
 dnl search of associad software 
 m4_define([AC_FF_WHERELIB],
     [  	AC_MSG_CHECKING(check $1)
 	ff_save_libs=$LIBS
-	LIBS="$LIBS $2 $4"
+	LIBS="$LIBS $2"
 	AC_LINK_IFELSE([AC_LANG_PROGRAM([m4_if($3,,,[#include <$3>])],[])], [ff_WHERE=yes],[ff_WHERE=no]) 
-	if test "$ff_WHERE" = "yes" ; then
-	    echo "$1 LD '$2'"  >>$ff_where_lib_conf
-	    ff_WHERE_INC=`AS_DIRNAME(["$3"])`
-	    if test -n "$ff_WHERE_INC" -a  "$ff_WHERE_INC" != '.'   ; then
-		echo "$1 INCLUDE '-I$ff_WHERE_INC' "  >>$ff_where_lib_conf
+	if test "$ff_where" = "yes" ; then
+	    echo "$1 LD '$2'"  >$ff_where_lib_conf
+	    if test -n "$3" ; then
+		echo "$1 INCLUDE  /usr/include/AS_DIRNAME[$3]"  >$ff_where_lib_conf
 	    fi 
 	fi
 	AC_MSG_RESULT($ff_WHERE)
@@ -1871,14 +1786,14 @@ m4_define([AC_FF_WHERELIB],
     ])dnl end m4_define AC_FF_WHERELIB
 
 m4_map([AC_FF_WHERELIB],[ 
-	[[mumps],[-ldmumps -lzmumps  -lmumps_common  -lpord],[dmumps_c.h],[]],
-	[[fftw3],[-lfftw3],[fftw3.h],[]],
-	[[superlu],[-lsuperlu],[superlu_defs.h],[]],
-	[[blacs],[$ff_blacs],$ff_winc,[]],
-	[[scalapack],[$ff_scalapack],$ff_winc,[$ff_blacs  $ff_blas_libs $ff_MPI_LIB]],
-	[[scotch],[-lscotch -lscotcherr],[],[]],	
-	[[metis],[-lmetis],[metis/metis.h],[]],
-	[[parmetis],[-lparmetis],[parmetis/parmetis.h],[]]
+	[[mumps],[-lpord -lmumps_common -ldmumps -lzmumps -lpord],[dmumps_c.h]],
+	[[fftw3],[-lfftw3],[fftw3.h]],
+	[[superlu],[-lsuperlu],[superlu_defs.h]],
+	[[blacs],[ -lblacsCinit$ff_with_mpi	-lblacsF77init$ff_with_mpi	-lblacs$ff_with_mpi],[]],
+	[[scalapack],[-lscalapack],[]],
+	[[scotch],[-lscotch -lscotcherr],[]],	
+	[[metis],[-lmetis],[metis/metis.h]],
+	[[parmetis],[-lparmetis],[parmetis/parmetis.h]]
     ]
     )
 

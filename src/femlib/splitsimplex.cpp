@@ -244,8 +244,7 @@ void SplitSurfaceSimplex(int N,int &ntri2,int *&tri)
   
   // face i=0
   int l=0;
-  if(verbosity>100)
-    cout << "face i=0" << endl;
+  cout << "face i=0" << endl;
   for (int i=0;i<N;++i)
     for (int j=0;j<N;++j){
       if(i+j<N) 
@@ -261,11 +260,9 @@ void SplitSurfaceSimplex(int N,int &ntri2,int *&tri)
 	  tri[l++]= op+NumSimplex3(0,N-i-1,N-j); 
 	}
       //cout << "i,j " << i << "," << j << endl;
-      if(verbosity>100)
       cout << "l="<< l/3 <<  " "<< tri[l-3] <<" "<< tri[l-2] <<" "<<  tri[l-1] <<" "<<  endl;
     }
   // face j=0
-  if(verbosity>100)
   cout << "face j=0" << endl;
   for (int i=0;i<N;++i)
     for (int j=0;j<N;++j){
@@ -282,12 +279,10 @@ void SplitSurfaceSimplex(int N,int &ntri2,int *&tri)
 	  tri[l++]= op+NumSimplex3(N-i,0,N-j-1);
 	}
       //cout << "i,j " << i << "," << j << endl;
-      if(verbosity>100)    
-	cout << "l="<< l/3 <<  " "<< tri[l-3] <<" "<< tri[l-2] <<" "<<  tri[l-1] <<" "<<  endl;
+      cout << "l="<< l/3 <<  " "<< tri[l-3] <<" "<< tri[l-2] <<" "<<  tri[l-1] <<" "<<  endl;
     }
   // face k=0
-  if(verbosity>100)
-    cout << "face k=0" << endl;
+  cout << "face k=0" << endl;
   for (int i=0;i<N;++i)
     for (int j=0;j<N;++j){
       if(i+j<N) 
@@ -305,12 +300,10 @@ void SplitSurfaceSimplex(int N,int &ntri2,int *&tri)
 	  //tri[l++]= op+NumSimplex3(N-i,N-j-1,0);
 	}
       //cout << "i,j " << i << "," << j << endl;
-      if(verbosity>100)
-	cout << "l="<< l/3 <<  " "<< tri[l-3] <<" "<< tri[l-2] <<" "<<  tri[l-1] <<" "<<  endl;
+      cout << "l="<< l/3 <<  " "<< tri[l-3] <<" "<< tri[l-2] <<" "<<  tri[l-1] <<" "<<  endl;
     }
   // face i+j+k=1
-  if(verbosity>100)
-    cout << "dernier face " << endl;
+  cout << "dernier face " << endl;
   for (int k=0;k<N;++k)
     for (int j=0;j<N;++j){
       if(k+j<N) 
@@ -327,11 +320,11 @@ void SplitSurfaceSimplex(int N,int &ntri2,int *&tri)
 	  tri[l++]= op+NumSimplex3( i-1, N-j,   N-k); 
 	  tri[l++]= op+NumSimplex3(   i, N-j, N-k-1); 
 	}
-      if(verbosity>100)
-	cout << "l="<< l/3 <<  " "<< tri[l-3] <<" "<< tri[l-2] <<" "<<  tri[l-1] <<" "<<  endl;
+     
+      cout << "l="<< l/3 <<  " "<< tri[l-3] <<" "<< tri[l-2] <<" "<<  tri[l-1] <<" "<<  endl;
     }
-  if(verbosity>100)
-    cout << "l= " << l << " ntri=" << ntri << endl;
+  
+  cout << "l= " << l << " ntri=" << ntri << endl;
   assert( l == ntri); 
 }
 

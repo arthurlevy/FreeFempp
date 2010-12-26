@@ -18,15 +18,14 @@ PKG_VERSION=4.1
 INSTALL=../..
 
 
-$(PKG):FAIT 
+$(PKG):FAIT WHERE
 
 FAITwin32-dll-target:
 	echo "On Pure Win32 (to hard to compile) "
 
 FAIT: 
-	$(MAKE) install  
+	$(MAKE) install  WHERE
 	touch FAIT
-	$(MAKE) WHERE  	
 
 FAIRE: $(SRCDIR) 
 	cd $(SRCDIR) && ./configure --disable-dependency-tracking   --prefix=`pwd`/$(INSTALL) CXX="$(CXX)" CC="$(CC)"  CFLAGS="$(CFLAGS)" CPP='gcc -E' CXXFLAGS="$(CXXFLAGS)"
@@ -56,8 +55,7 @@ cxxflags: ../Makefile
 	grep 'WIN32DLLTARGET *=' ../Makefile >>cxxflags
 
 WHERE: 
-	-@if [ -f FAIT ] ; then \
-	echo build $(SRCDIR)/$(INSTALL)/lib/WHERE.gmm ;\
+	-if [ -f FAIT ] ; then \
 	echo gmm INCLUDE '-I@DIR@/include'> $(SRCDIR)/$(INSTALL)/lib/WHERE.gmm ;\
 	echo gmm LD '-L@DIR@/lib'>> $(SRCDIR)/$(INSTALL)/lib/WHERE.gmm ;\
 	fi

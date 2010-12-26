@@ -25,17 +25,14 @@ YAMS_SRCDIRNOLIB = $(YAMS_DIR)/sources
 YAMS_SRCDIR = $(YAMS_DIR)/sourceslib
 YAMS_OBJDIR = $(YAMS_DIR)/objects
 
-yams: FAIRE  
+yams: FAIRE  WHERE
 
 
 
-FAIRE: yamslib_internal.h yamslib.c yamslib.h  ../Makefile
-	$(MAKE)  install  WHERE
-	touch FAIRE
+FAIRE: 
+	$(MAKE)  install
 
-$(SRCDIR)/FAIT: $(SRCDIR)  yamslib_internal.h yamslib.c yamslib.h 
-	cp yamslib_internal.h yamslib.c yamslib.h $(YAMS_SRCDIR)/
-	cp makefile-yams.inc $(YAMS_DIR)/makefile
+$(SRCDIR)/FAIT: $(SRCDIR)
 	cd $(YAMS_DIR); make
 	touch $(SRCDIR)/FAIT
 install: $(SRCDIR)/FAIT
@@ -51,12 +48,14 @@ WHERE:
 	fi
 
 
-$(SRCDIR): $(PACKAGE) 
+$(SRCDIR): $(PACKAGE)
 	-mkdir -p $(SRCDIR)
 	cd $(SRCDIR); tar xvzf ../$(PACKAGE)
 	-mkdir $(YAMS_SRCDIR)
 	cp $(YAMS_SRCDIRNOLIB)/*.c $(YAMS_SRCDIRNOLIB)/*.h $(YAMS_SRCDIR)
 	cp $(YAMS_SRCDIRNOLIB)/compil.date $(YAMS_SRCDIR)
+	cp yamslib_internal.h yamslib.c yamslib.h $(YAMS_SRCDIR)/
+	cp makefile-yams.inc $(YAMS_DIR)/makefile
 	cd $(YAMS_SRCDIR); patch -p1 < ../../freeyams$(yams_VERSION).patch
 
 $(PACKAGE):
@@ -64,18 +63,17 @@ $(PACKAGE):
 	cd $(DIRPKG);$(WGET)   $(SERVER)/`basename $(PACKAGE)`
 
 clean-local: 
-	-rm FAIRE FAIT
 	cd $(YAMS_DIR); make  clean;
 	-rm $(YAMS_OBJDIR)/libyams.a
 
 clean: clean-local
 	-rm ff-flags
-	-rm $(SRCDIR)/$(INSTALL)/lib/libfreeyams.a
+	-rm -rf $(YAMS_DIR)
+	-rm $(SRCDIR)/$(INSTALL)/lib/libyams.a
 	-rm $(SRCDIR)/$(INSTALL)/include/*freeyams*.h
 	-rm $(SRCDIR)/$(INSTALL)/lib/WHERE.freeyams
-	-rm -rf $(YAMS_DIR)
 	-rm -rf $(SRCDIR)
-	-rm FAIT FAIRE
+	-rm FAIT
 
 ff-flags: ../Makefile 
 	grep 'abs_top_builddir *=' ../Makefile > ff-flags
@@ -87,7 +85,6 @@ ff-flags: ../Makefile
 	grep 'RANLIB *=' ../Makefile >> ff-flags
 	grep 'yams_VERSION *=' ./Makefile >> ff-flags
 	grep 'WGET *=' ../Makefile >> ff-flags
-	grep 'LIBS *=' ../Makefile >> ff-flags
 
 
 .PHONY: $(SRCDIR)/$(INSTALL)
