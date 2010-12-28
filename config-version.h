@@ -14,7 +14,7 @@
 #define VERSION "3.10"
 
 /* FreeFem++ build date */
-#define VersionFreeFemDate "Tue Dec 28 13:26:43 EET 2010"
+#define VersionFreeFemDate "Tue Dec 28 14:24:24 EET 2010"
 
 /* FreeFem++ version as a float */
 #define VersionFreeFempp (3.10)
