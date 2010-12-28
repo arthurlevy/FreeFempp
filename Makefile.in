@@ -212,6 +212,7 @@ MPIF77 = @MPIF77@
 MPIFC = @MPIFC@
 MPIPROG = @MPIPROG@
 MPIRUN = @MPIRUN@
+MPISCRIPT = @MPISCRIPT@
 MPI_INCLUDE = @MPI_INCLUDE@
 MPI_INC_DIR = @MPI_INC_DIR@
 MPI_LIB = @MPI_LIB@
@@ -291,7 +292,6 @@ ff_history = @ff_history@
 ff_latex = @ff_latex@
 ff_libtool = @ff_libtool@
 ff_makeindex = @ff_makeindex@
-ff_mpirun = @ff_mpirun@
 ff_pdf2ps = @ff_pdf2ps@
 ff_pdflatex = @ff_pdflatex@
 ff_prefix_dir = @ff_prefix_dir@
@@ -330,13 +330,14 @@ EXTRA_DIST = regtests.sh config-wrapper.h  \
 FreeFem++.mcp HISTORY HISTORY_BEFORE_2005  BUGS TODO regtests.m4 \
 INSTALL INSTALL-MacOSX INNOVATION \
 WindowsPackage.m4 README README_ARPACK  README_CVS README_CW  README_WINDOWS \
-logo.ico copysharedlibs.sh COPYRIGHT edp.nedit reconfigure \
+logo.ico copysharedlibs.sh COPYRIGHT edp.nedit  reconfigure \
 mode-mi-edp.zip aclocal.m4  acmacros.m4   acoptim.m4    \
 freefem++.spec crimson-freefem++.zip \
 Install-MacOS.command.in \
 examples-bamg/NACA012/naca.awk  examples-bamg/quadloop/dotest.pl \
 examples-bamg/square/*_g.* examples-bamg/square/do* examples-bamg/NACA012/[adp]* \
-examples-bamg/test/dotest*.pl 0ldUserReadMe.txt CheckAllEdp
+examples-bamg/test/dotest*.pl 0ldUserReadMe.txt CheckAllEdp  \
+WHERE_LIBRARY-mkl
 
 FF_MAC_PREFIX = FreeFem++v$(VERSION)$(ADD_PACKAGE_NAME)
 FF_EXAMPLES_FILES = COPYRIGHT HISTORY HISTORY_BEFORE_2005 README BUGS TODO INSTALL INSTALL-MacOSX INNOVATION \
@@ -923,8 +924,8 @@ speedtest: all
 win32:WindowsPackage.iss
 	cd examples++-load;tar zxvf include.tar.gz;mkdir include-tmp;cp -Lr *.h include/* include-tmp
 WindowsPackage.iss: WindowsPackage.m4 configure.ac Makefile.am
-	m4 -DVERSION=$(VERSION)$(ADD_PACKAGE_NAME) \
-		WindowsPackage.m4 > WindowsPackage.iss
+	m4 -DVERSION='$(VERSION)$(ADD_PACKAGE_NAME)' \
+	-DMPIPROG='$MPIPROG' WindowsPackage.m4 > WindowsPackage.iss
 
 # Debian package
 # --------------

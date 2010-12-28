@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.11.11)  28 DEC 2010 14:27
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.11.11)  28 DEC 2010 20:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -514,27 +514,6 @@ LaTeX Info: Redefining \bm on input line 204.
 Writing index file freefem++doc.idx
 (./freefem++doc.aux
 
-LaTeX Warning: Label `sec:mmg3d' multiply defined.
-
-
-LaTeX Warning: Label `mmg3dsimple' multiply defined.
-
-
-LaTeX Warning: Label `mmg3dmoving' multiply defined.
-
-
-LaTeX Warning: Label `sec:mshmet' multiply defined.
-
-
-LaTeX Warning: Label `mshmet' multiply defined.
-
-
-LaTeX Warning: Label `sec:freeyams' multiply defined.
-
-
-LaTeX Warning: Label `freeyams' multiply defined.
-
-
 LaTeX Warning: Label `exm:first' multiply defined.
 
 
@@ -546,11 +525,7 @@ LaTeX Warning: Label `AMGHypre' multiply defined.
 
 LaTeX Warning: Label `AMGHypre' multiply defined.
 
-(./addfe.aux)
-
-LaTeX Warning: Label `tech.freeyams' multiply defined.
-
-)
+(./addfe.aux))
 \openout1 = `freefem++doc.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 60.
@@ -649,7 +624,7 @@ erthousand on input line 60.
 LaTeX Info: Redefining \ohm on input line 60.
 Package gensymb Info: Using \textohm for \ohm on input line 60.
 Package gensymb Info: Using \textmu for \micro on input line 60.
- <plots/titre-ff.pdf, id=775, 226.8475pt x 146.5475pt>
+ <plots/titre-ff.pdf, id=779, 226.8475pt x 146.5475pt>
 File: plots/titre-ff.pdf Graphic file (type pdf)
 
 <use plots/titre-ff.pdf>
@@ -682,10 +657,10 @@ LaTeX Font Info:    Try loading font information for TS1+txr on input line 74.
 (/usr/share/texmf-texlive/tex/latex/txfonts/ts1txr.fd
 File: ts1txr.fd 2000/12/15 v3.1
 )
-<plots/ffauteur.pdf, id=777, 141.0531pt x 43.86409pt>
+<plots/ffauteur.pdf, id=781, 141.0531pt x 43.86409pt>
 File: plots/ffauteur.pdf Graphic file (type pdf)
  <use plots/ffauteur.pdf>
-<cpfigs/csSnap.pdf, id=778, 1027.84pt x 750.805pt>
+<cpfigs/csSnap.pdf, id=782, 1027.84pt x 750.805pt>
 File: cpfigs/csSnap.pdf Graphic file (type pdf)
  <use cpfigs/csSnap.pdf>
 Overfull \vbox (133.11067pt too high) detected at line 85
@@ -731,13 +706,13 @@ Overfull \hbox (31.99936pt too wide) in paragraph at lines 115--121
 n/12 http : / / www . ann . jussieu .
  []
 
-<plots/LogoLJLL.pdf, id=819, 569.12625pt x 654.445pt>
+<plots/LogoLJLL.pdf, id=823, 569.12625pt x 654.445pt>
 File: plots/LogoLJLL.pdf Graphic file (type pdf)
  <use plots/LogoLJLL.pdf>
-<plots/LogoUPMC.jpg, id=820, 420.6114pt x 211.0284pt>
+<plots/LogoUPMC.jpg, id=824, 420.6114pt x 211.0284pt>
 File: plots/LogoUPMC.jpg Graphic file (type jpg)
  <use plots/LogoUPMC.jpg>
-<plots/logo-finance-par-anr.jpg, id=821, 506.89375pt x 207.77625pt>
+<plots/logo-finance-par-anr.jpg, id=825, 506.89375pt x 207.77625pt>
 File: plots/logo-finance-par-anr.jpg Graphic file (type jpg)
 
 <use plots/logo-finance-par-anr.jpg>
@@ -776,7 +751,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.74 ...unctions of one Variable}{61}{section.4.6}
+l.74 ...unctions of one Variable}{59}{section.4.6}
                                                    [1
 
 ]
@@ -788,7 +763,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.ii}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.128 ...rline {6}Finite Elements}{141}{chapter.6}
+l.128 ...rline {6}Finite Elements}{133}{chapter.6}
                                                    [2]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
@@ -798,7 +773,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.iii}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.176 ...{9.5.2}Convection}{210}{subsection.9.5.2}
+l.176 ...{9.5.2}Convection}{202}{subsection.9.5.2}
                                                    [3]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
@@ -808,7 +783,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.iv}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.240 ...e for Store Solutions}{278}{section.12.2}
+l.239 ...mberline {12}Mesh Files}{273}{chapter.12}
                                                    [4])
 \tf@toc=\write6
 \openout6 = `freefem++doc.toc'.
@@ -825,7 +800,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [6
 
-] <plots/sanskrit.pdf, id=1062, 845.1575pt x 597.23125pt>
+] <plots/sanskrit.pdf, id=1067, 845.1575pt x 597.23125pt>
 File: plots/sanskrit.pdf Graphic file (type pdf)
 
 <use plots/sanskrit.pdf>
@@ -886,34 +861,22 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [3]
-LaTeX Font Info:    Font shape `OT1/txtt/m/it' in size <12> not available
-(Font)              Font shape `OT1/txtt/m/sl' tried instead on input line 422.
-
-
-Overfull \hbox (9.43721pt too wide) in paragraph at lines 426--429
-[]\OT1/txr/m/n/12 As an in-stal-la-tion test, un-der unix: go into the di-rec-t
-ory \OT1/txtt/m/n/12 examples++-tutorial \OT1/txr/m/n/12 and run \OT1/txtt/m/n/
-12 FreeFem++
+Overfull \hbox (42.16682pt too wide) in paragraph at lines 426--426
+[]   \OT1/txtt/m/n/10.95 FreeFem++ [ -v verbosity ] [ -fglut filepath ] [ -glut
+ command ] [ -nw] [ -f] filename[] 
  []
 
 
-Overfull \hbox (0.85954pt too wide) in paragraph at lines 441--442
-[][]\OT1/txtt/m/n/10.95 FreeFem++ [-?] [-vnn] [-fglut file1] [-glut file2] [-f]
-  edpfilepath  \OT1/txr/m/n/10.95 where the 
+Overfull \hbox (42.16682pt too wide) in paragraph at lines 428--428
+[]        \OT1/txtt/m/n/10.95 -fglut  filepath  : the file name of save all plo
+ts (replot with ffglut command )[] 
  []
 
 
-Overfull \hbox (2.34874pt too wide) in paragraph at lines 442--443
-[]\OT1/txr/m/n/10.95 or []\OT1/txtt/m/n/10.95 FreeFem++-nw -? [-vnn] [-fglut fi
-le1] [-glut file2] [-f]  edpfilepath  \OT1/txr/m/n/10.95 where
- []
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 437.
 
-
-Overfull \hbox (29.93755pt too wide) in paragraph at lines 445--447
-[][]\OT1/txtt/m/n/10.95 -fglut filename \OT1/txr/m/n/10.95 to store all the dat
-a for graphic in file [] \OT1/txtt/m/n/10.95 filename\OT1/txr/m/n/10.95 , and t
-o re-play do []\OT1/txtt/m/n/10.95 ffglut filename\OT1/txr/m/n/10.95 . 
- []
+LaTeX Font Info:    Font shape `OT1/txtt/m/it' in size <10.95> not available
+(Font)              Font shape `OT1/txtt/m/sl' tried instead on input line 438.
 
 
 Underfull \hbox (badness 10000) has occurred while \output is active
@@ -921,16 +884,30 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [4]
-Overfull \hbox (5.53754pt too wide) in paragraph at lines 471--472
-[]\OT1/txr/m/n/12 In Menu []\OT1/txtt/m/n/12 "Parameters"->"Configuration of th
-e  Color Syntax" \OT1/txr/m/n/12 pro-ceed
+Overfull \hbox (0.85954pt too wide) in paragraph at lines 458--459
+[][]\OT1/txtt/m/n/10.95 FreeFem++ [-?] [-vnn] [-fglut file1] [-glut file2] [-f]
+  edpfilepath  \OT1/txr/m/n/10.95 where the 
  []
 
 
-Overfull \hbox (0.59366pt too wide) in paragraph at lines 474--476
-[]\OT1/txr/m/n/12 Select []\OT1/txtt/m/n/12 "INSTRUCTION WORD" \OT1/txr/m/n/12 
-in the list []\OT1/txtt/m/n/12 "Description" \OT1/txr/m/n/12 and in the field [
-]\OT1/txtt/m/n/12 "supple
+Overfull \hbox (2.34874pt too wide) in paragraph at lines 459--460
+[]\OT1/txr/m/n/10.95 or []\OT1/txtt/m/n/10.95 FreeFem++-nw -? [-vnn] [-fglut fi
+le1] [-glut file2] [-f]  edpfilepath  \OT1/txr/m/n/10.95 where
+ []
+
+
+Overfull \hbox (29.93755pt too wide) in paragraph at lines 462--464
+[][]\OT1/txtt/m/n/10.95 -fglut filename \OT1/txr/m/n/10.95 to store all the dat
+a for graphic in file [] \OT1/txtt/m/n/10.95 filename\OT1/txr/m/n/10.95 , and t
+o re-play do []\OT1/txtt/m/n/10.95 ffglut filename\OT1/txr/m/n/10.95 . 
+ []
+
+
+Overfull \hbox (68.76363pt too wide) in paragraph at lines 491--493
+[]\OT1/txr/m/n/10.95 Select []\OT1/txtt/m/n/10.95 "INSTRUCTION WORD" \OT1/txr/m
+/n/10.95 in the list []\OT1/txtt/m/n/10.95 "Description" \OT1/txr/m/n/10.95 and
+ in the field []\OT1/txtt/m/n/10.95 "supple []mentary key word"\OT1/txr/m/n/10.
+95 ,
  []
 
 
@@ -938,27 +915,19 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[5] <cpfigs/crimpson.pdf, id=1132, 711.65875pt x 701.62125pt>
+[5]
+Overfull \hbox (5.41507pt too wide) in paragraph at lines 535--537
+\OT1/txr/m/n/10.95 It is also an ed-i-tor for TeX/LaTeX. It has a "`tool"' menu
+ which can be con-fig-ured to launch \OT1/txtt/m/n/10.95 FreeFem++
+ []
+
+<cpfigs/crimpson.pdf, id=1137, 711.65875pt x 701.62125pt>
 File: cpfigs/crimpson.pdf Graphic file (type pdf)
 
-<use cpfigs/crimpson.pdf> <figures/mi.jpg, id=1133, 808.01875pt x 820.06375pt>
+<use cpfigs/crimpson.pdf> <figures/mi.jpg, id=1138, 808.01875pt x 820.06375pt>
 File: figures/mi.jpg Graphic file (type jpg)
 
 <use figures/mi.jpg>
-Overfull \hbox (33.02914pt too wide) in paragraph at lines 596--597
- \OT1/txr/bx/n/12 In Ter-mi-nal mode[] \OT1/txr/m/n/12 Choose the type of ap-pl
-i-ca-tion from \OT1/txtt/m/n/12 FreeFem++\OT1/txr/m/n/12 , \OT1/txtt/m/n/12 Fre
-eFem++-nw\OT1/txr/m/n/12 , \OT1/txtt/m/n/12 FreeFem++-mpi\OT1/txr/m/n/12 ,
- []
-
-
-Overfull \hbox (15.72514pt too wide) in paragraph at lines 605--608
-\OT1/txtt/m/n/12 FreeFem++ \OT1/txr/m/n/12 reads a user's init file named  \OT1
-/txtt/m/n/12 freefem++.pref \OT1/txr/m/n/12 to ini-tial-ize global vari-ables: 
-\OT1/txtt/m/n/12 verbosity\OT1/txr/m/n/12 ,
- []
-
-
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -974,7 +943,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [8 <./figures/mi.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 663--690
+Underfull \hbox (badness 10000) in paragraph at lines 680--707
 
  []
 
@@ -990,14 +959,14 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [10]
 Chapter 2.
-<cpfigs/firstTh.pdf, id=1174, 342.27875pt x 329.23pt>
+<cpfigs/firstTh.pdf, id=1179, 342.27875pt x 329.23pt>
 File: cpfigs/firstTh.pdf Graphic file (type pdf)
  <use cpfigs/firstTh.pdf>
-<cpfigs/firstU.pdf, id=1176, 342.27875pt x 329.23pt>
+<cpfigs/firstU.pdf, id=1181, 342.27875pt x 329.23pt>
 File: cpfigs/firstU.pdf Graphic file (type pdf)
  <use cpfigs/firstU.pdf>
 LaTeX Font Info:    Font shape `OT1/txtt/m/it' in size <10> not available
-(Font)              Font shape `OT1/txtt/m/sl' tried instead on input line 743.
+(Font)              Font shape `OT1/txtt/m/sl' tried instead on input line 760.
 
 
 Underfull \hbox (badness 10000) has occurred while \output is active
@@ -1009,7 +978,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  <./cpfigs/firstTh.pdf> <./cpfigs/firstU.pdf>]
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 778.
+(hyperref)                than one, level fixed on input line 795.
 
 
 Underfull \hbox (badness 10000) has occurred while \output is active
@@ -1018,19 +987,19 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [12]
 LaTeX Font Info:    Font shape `TS1/txr/b/n' in size <10> not available
-(Font)              Font shape `TS1/txr/bx/n' tried instead on input line 851.
+(Font)              Font shape `TS1/txr/bx/n' tried instead on input line 868.
 LaTeX Font Info:    Font shape `TS1/txr/b/n' in size <7> not available
-(Font)              Font shape `TS1/txr/bx/n' tried instead on input line 851.
+(Font)              Font shape `TS1/txr/bx/n' tried instead on input line 868.
 LaTeX Font Info:    Font shape `TS1/txr/b/n' in size <5> not available
-(Font)              Font shape `TS1/txr/bx/n' tried instead on input line 851.
- <cpfigs/secondT.pdf, id=1205, 288.07625pt x 305.14pt>
+(Font)              Font shape `TS1/txr/bx/n' tried instead on input line 868.
+ <cpfigs/secondT.pdf, id=1210, 288.07625pt x 305.14pt>
 File: cpfigs/secondT.pdf Graphic file (type pdf)
 
-<use cpfigs/secondT.pdf> <cpfigs/hat.pdf, id=1206, 497.86pt x 224.84pt>
+<use cpfigs/secondT.pdf> <cpfigs/hat.pdf, id=1211, 497.86pt x 224.84pt>
 File: cpfigs/hat.pdf Graphic file (type pdf)
 
 <use cpfigs/hat.pdf>
-Overfull \hbox (5.9826pt too wide) in paragraph at lines 863--872
+Overfull \hbox (5.9826pt too wide) in paragraph at lines 880--889
 []$[][][]$   $[][][]$ 
  []
 
@@ -1039,13 +1008,13 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[13]
+[13 <./cpfigs/secondT.pdf> <./cpfigs/hat.pdf>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[14 <./cpfigs/secondT.pdf> <./cpfigs/hat.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 961--966
+[14]
+Underfull \hbox (badness 10000) in paragraph at lines 978--983
 
  []
 
@@ -1060,13 +1029,6 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [16]
-Overfull \hbox (19.80402pt too wide) in paragraph at lines 1078--1081
-\OT1/txr/m/n/12 plot-parameter \OT1/txtt/m/n/12 wait=1 \OT1/txr/m/n/12 to stop 
-the pro-gram at each plot. Use the plot-parameter \OT1/txtt/m/n/12 ps="toto.eps
-"
- []
-
-
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -1079,14 +1041,14 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [18]
 Chapter 3.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1167--1168
+Underfull \hbox (badness 10000) in paragraph at lines 1184--1185
 
  []
 
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1194.
+(amsmath)                 on input line 1211.
 
 
 Underfull \hbox (badness 10000) has occurred while \output is active
@@ -1095,15 +1057,15 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [19
 
-] <cpfigs/membraneTh.pdf, id=1278, 469.755pt x 460.72125pt>
+] <cpfigs/membraneTh.pdf, id=1283, 469.755pt x 460.72125pt>
 File: cpfigs/membraneTh.pdf Graphic file (type pdf)
 
 <use cpfigs/membraneTh.pdf>
-<cpfigs/membrane.pdf, id=1279, 469.755pt x 460.72125pt>
+<cpfigs/membrane.pdf, id=1284, 469.755pt x 460.72125pt>
 File: cpfigs/membrane.pdf Graphic file (type pdf)
 
 <use cpfigs/membrane.pdf>
-<cpfigs/gnumembrane.pdf, id=1280, 361.35pt x 252.945pt>
+<cpfigs/gnumembrane.pdf, id=1285, 361.35pt x 252.945pt>
 File: cpfigs/gnumembrane.pdf Graphic file (type pdf)
 
 <use cpfigs/gnumembrane.pdf>
@@ -1123,17 +1085,17 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [22]
+Underfull \hbox (badness 10000) in paragraph at lines 1426--1428
+
+ []
+
+
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
 [23]
-Underfull \hbox (badness 10000) in paragraph at lines 1409--1411
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1414--1419
+Underfull \hbox (badness 10000) in paragraph at lines 1431--1436
 
  []
 
@@ -1142,11 +1104,11 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[24] <cpfigs/heatexTh.pdf, id=1321, 423.5825pt x 423.5825pt>
+[24] <cpfigs/heatexTh.pdf, id=1326, 423.5825pt x 423.5825pt>
 File: cpfigs/heatexTh.pdf Graphic file (type pdf)
 
 <use cpfigs/heatexTh.pdf>
-<cpfigs/heatex.pdf, id=1322, 421.575pt x 434.62375pt>
+<cpfigs/heatex.pdf, id=1327, 421.575pt x 434.62375pt>
 File: cpfigs/heatex.pdf Graphic file (type pdf)
  <use cpfigs/heatex.pdf>
 Underfull \hbox (badness 10000) has occurred while \output is active
@@ -1158,10 +1120,10 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[26] <cpfigs/sound0.pdf, id=1347, 469.755pt x 460.72125pt>
+[26] <cpfigs/sound0.pdf, id=1354, 469.755pt x 460.72125pt>
 File: cpfigs/sound0.pdf Graphic file (type pdf)
 
-<use cpfigs/sound0.pdf> <cpfigs/eigen.pdf, id=1348, 469.755pt x 460.72125pt>
+<use cpfigs/sound0.pdf> <cpfigs/eigen.pdf, id=1355, 469.755pt x 460.72125pt>
 File: cpfigs/eigen.pdf Graphic file (type pdf)
 
 <use cpfigs/eigen.pdf>
@@ -1170,15 +1132,11 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [27 <./cpfigs/sound0.pdf> <./cpfigs/eigen.pdf>]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[28] <cpfigs/thermic.pdf, id=1367, 469.755pt x 460.72125pt>
+<cpfigs/thermic.pdf, id=1368, 469.755pt x 460.72125pt>
 File: cpfigs/thermic.pdf Graphic file (type pdf)
 
 <use cpfigs/thermic.pdf>
-<cpfigs/thermicvst.pdf, id=1368, 361.35pt x 252.945pt>
+<cpfigs/thermicvst.pdf, id=1369, 361.35pt x 252.945pt>
 File: cpfigs/thermicvst.pdf Graphic file (type pdf)
 
 <use cpfigs/thermicvst.pdf>
@@ -1186,21 +1144,33 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[29 <./cpfigs/thermic.pdf> <./cpfigs/thermicvst.pdf>]
+[28]
+Overfull \hbox (1.32379pt too wide) in paragraph at lines 1747--1749
+[]\OT1/txr/m/n/10.95 The prob-lem is non-lin-ear[][][], and must be solved it-e
+r-a-tively. If $[][]\OML/txmi/m/it/10.95 m$ \OT1/txr/m/n/10.95 de-notes the it-
+er-a-tion in-dex, a semi-linearization
+ []
+
+
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[30]
-Underfull \hbox (badness 10000) in paragraph at lines 1781--1785
+[29 <./cpfigs/thermic.pdf> <./cpfigs/thermicvst.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 1798--1802
 
  []
 
-<cpfigs/potential.pdf, id=1388, 469.755pt x 460.72125pt>
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[30] <cpfigs/potential.pdf, id=1398, 469.755pt x 460.72125pt>
 File: cpfigs/potential.pdf Graphic file (type pdf)
 
 <use cpfigs/potential.pdf>
-<cpfigs/potheat.pdf, id=1389, 469.755pt x 460.72125pt>
+<cpfigs/potheat.pdf, id=1399, 469.755pt x 460.72125pt>
 File: cpfigs/potheat.pdf Graphic file (type pdf)
 
 <use cpfigs/potheat.pdf>
@@ -1208,44 +1178,46 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[31]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[32 <./cpfigs/potential.pdf> <./cpfigs/potheat.pdf>]
-Overfull \hbox (5.30824pt too wide) in paragraph at lines 1869--1871
-[]\OT1/txr/m/n/12 how steel and air are iden-ti-fied by the mesh pa-ram-e-ter r
-e-gion which is de-fined when buildmesh
- []
-
-LaTeX Font Info:    Font shape `TS1/txr/b/n' in size <12> not available
-(Font)              Font shape `TS1/txr/bx/n' tried instead on input line 1900.
+[31 <./cpfigs/potential.pdf> <./cpfigs/potheat.pdf>]
+LaTeX Font Info:    Font shape `TS1/txr/b/n' in size <10.95> not available
+(Font)              Font shape `TS1/txr/bx/n' tried instead on input line 1917.
 
 LaTeX Font Info:    Font shape `TS1/txr/b/n' in size <8> not available
-(Font)              Font shape `TS1/txr/bx/n' tried instead on input line 1900.
+(Font)              Font shape `TS1/txr/bx/n' tried instead on input line 1917.
 
 LaTeX Font Info:    Font shape `TS1/txr/b/n' in size <6> not available
-(Font)              Font shape `TS1/txr/bx/n' tried instead on input line 1900.
+(Font)              Font shape `TS1/txr/bx/n' tried instead on input line 1917.
 
 
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[33]
+[32]
+Overfull \hbox (81.9099pt too wide) in paragraph at lines 1929--1934
+ \OT1/txr/bx/n/12 So-lu-tion by a Characteristics-Galerkin Method[] \OT1/txr/m/
+n/10.95 In \OT1/txtt/m/n/10.95 FreeFem++ \OT1/txr/m/n/10.95 there is an op-er-a
+-tor called \OT1/txtt/m/n/10.95 convect([u1,u2],dt,c)
+ []
+
+
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[34] <cpfigs/convectCG.pdf, id=1430, 469.755pt x 460.72125pt>
+[33] <cpfigs/convectCG.pdf, id=1431, 469.755pt x 460.72125pt>
 File: cpfigs/convectCG.pdf Graphic file (type pdf)
 
 <use cpfigs/convectCG.pdf>
-<cpfigs/convectDG.pdf, id=1431, 469.755pt x 460.72125pt>
+<cpfigs/convectDG.pdf, id=1432, 469.755pt x 460.72125pt>
 File: cpfigs/convectDG.pdf Graphic file (type pdf)
 
 <use cpfigs/convectDG.pdf>
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[34]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -1260,22 +1232,17 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[37]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[38] <cpfigs/NSprojTh.pdf, id=1466, 421.575pt x 36.135pt>
+[37] <cpfigs/NSprojTh.pdf, id=1467, 421.575pt x 36.135pt>
 File: cpfigs/NSprojTh.pdf Graphic file (type pdf)
 
-<use cpfigs/NSprojTh.pdf> <cpfigs/NSprojP.pdf, id=1467, 421.575pt x 34.1275pt>
+<use cpfigs/NSprojTh.pdf> <cpfigs/NSprojP.pdf, id=1468, 421.575pt x 34.1275pt>
 File: cpfigs/NSprojP.pdf Graphic file (type pdf)
 
-<use cpfigs/NSprojP.pdf> <cpfigs/NSprojU.pdf, id=1468, 421.575pt x 34.1275pt>
+<use cpfigs/NSprojP.pdf> <cpfigs/NSprojU.pdf, id=1469, 421.575pt x 34.1275pt>
 File: cpfigs/NSprojU.pdf Graphic file (type pdf)
 
 <use cpfigs/NSprojU.pdf>
-Underfull \hbox (badness 10000) in paragraph at lines 2234--2238
+Underfull \hbox (badness 10000) in paragraph at lines 2252--2256
 
  []
 
@@ -1284,16 +1251,16 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[39 <./cpfigs/NSprojTh.pdf> <./cpfigs/NSprojP.pdf> <./cpfigs/NSprojU.pdf>]
+[38 <./cpfigs/NSprojTh.pdf> <./cpfigs/NSprojP.pdf> <./cpfigs/NSprojU.pdf>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[40] <cpfigs/lamevect.pdf, id=1490, 401.5pt x 105.39375pt>
+[39] <cpfigs/lamevect.pdf, id=1491, 401.5pt x 105.39375pt>
 File: cpfigs/lamevect.pdf Graphic file (type pdf)
 
 <use cpfigs/lamevect.pdf>
-<cpfigs/lamedeform.pdf, id=1491, 401.5pt x 105.39375pt>
+<cpfigs/lamedeform.pdf, id=1492, 401.5pt x 105.39375pt>
 File: cpfigs/lamedeform.pdf Graphic file (type pdf)
 
 <use cpfigs/lamedeform.pdf>
@@ -1301,12 +1268,12 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[41 <./cpfigs/lamevect.pdf> <./cpfigs/lamedeform.pdf>]
+[40 <./cpfigs/lamevect.pdf> <./cpfigs/lamedeform.pdf>]
 LaTeX Font Info:    Font shape `OT1/txr/b/n' in size <10> not available
-(Font)              Font shape `OT1/txr/bx/n' tried instead on input line 2359.
+(Font)              Font shape `OT1/txr/bx/n' tried instead on input line 2377.
 
 
-<cpfigs/stokes.pdf, id=1501, 444.66125pt x 422.57875pt>
+<cpfigs/stokes.pdf, id=1503, 444.66125pt x 422.57875pt>
 File: cpfigs/stokes.pdf Graphic file (type pdf)
 
 <use cpfigs/stokes.pdf>
@@ -1314,7 +1281,12 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[42 <./cpfigs/stokes.pdf>]
+[41 <./cpfigs/stokes.pdf>]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[42]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -1324,19 +1296,14 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[44]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[45] <cpfigs/rmuonde.pdf, id=1526, 421.575pt x 421.575pt>
+[44] <cpfigs/rmuonde.pdf, id=1527, 421.575pt x 421.575pt>
 File: cpfigs/rmuonde.pdf Graphic file (type pdf)
 
-<use cpfigs/rmuonde.pdf> <cpfigs/imuonde.pdf, id=1527, 421.575pt x 421.575pt>
+<use cpfigs/rmuonde.pdf> <cpfigs/imuonde.pdf, id=1528, 421.575pt x 421.575pt>
 File: cpfigs/imuonde.pdf Graphic file (type pdf)
 
 <use cpfigs/imuonde.pdf>
-<cpfigs/tempmuonde.pdf, id=1528, 421.575pt x 421.575pt>
+<cpfigs/tempmuonde.pdf, id=1529, 421.575pt x 421.575pt>
 File: cpfigs/tempmuonde.pdf Graphic file (type pdf)
 
 <use cpfigs/tempmuonde.pdf>
@@ -1344,15 +1311,22 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[46 <./cpfigs/rmuonde.pdf> <./cpfigs/imuonde.pdf> <./cpfigs/tempmuonde.pdf>]
+[45 <./cpfigs/rmuonde.pdf> <./cpfigs/imuonde.pdf> <./cpfigs/tempmuonde.pdf>]
+Overfull \hbox (9.3493pt too wide) in paragraph at lines 2793--2797
+\OT1/txr/m/n/10.95 Thanks to the func-tion \OT1/txtt/m/n/10.95 BFGS \OT1/txr/m/
+n/10.95 it is pos-si-ble to solve com-plex non-lin-ear op-ti-miza-tion prob-lem
+ within \OT1/txtt/m/n/10.95 FreeFem++\OT1/txr/m/n/10.95 .
+ []
+
+
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[47] <cpfigs/u-bfgs.pdf, id=1547, 342.27875pt x 333.245pt>
+[46] <cpfigs/u-bfgs.pdf, id=1548, 342.27875pt x 333.245pt>
 File: cpfigs/u-bfgs.pdf Graphic file (type pdf)
 
-<use cpfigs/u-bfgs.pdf> <cpfigs/J-bfgs.pdf, id=1548, 361.35pt x 252.945pt>
+<use cpfigs/u-bfgs.pdf> <cpfigs/J-bfgs.pdf, id=1549, 361.35pt x 252.945pt>
 File: cpfigs/J-bfgs.pdf Graphic file (type pdf)
 
 <use cpfigs/J-bfgs.pdf>
@@ -1360,20 +1334,25 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[48]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[49 <./cpfigs/u-bfgs.pdf> <./cpfigs/J-bfgs.pdf>]
-<cpfigs/mach2r.pdf, id=1574, 469.755pt x 460.72125pt>
+[47] <cpfigs/mach2r.pdf, id=1557, 469.755pt x 460.72125pt>
 File: cpfigs/mach2r.pdf Graphic file (type pdf)
- <use cpfigs/mach2r.pdf>
+
+<use cpfigs/mach2r.pdf>
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[50 <./cpfigs/mach2r.pdf>]
+[48 <./cpfigs/u-bfgs.pdf> <./cpfigs/J-bfgs.pdf>]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[49 <./cpfigs/mach2r.pdf>]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[50]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -1384,19 +1363,24 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [52]
+Chapter 4.
+
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[53]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[54
+[53
 
 ]
-Chapter 4.
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[54]
+Underfull \hbox (badness 10000) in paragraph at lines 3309--3310
+
+ []
+
 
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
@@ -1408,11 +1392,6 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [56]
-Underfull \hbox (badness 10000) in paragraph at lines 3291--3292
-
- []
-
-
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -1432,48 +1411,10 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[60]
-Overfull \hbox (28.47618pt too wide) in paragraph at lines 3498--3511
-[]\OT1/txr/m/n/12 are built into \OT1/txtt/m/n/12 FreeFem++ \OT1/txr/m/n/12 as 
-well as The [][]\OT1/txr/m/it/12 power func-tion  \OT1/txtt/m/n/12 x^ y =  []\O
-T1/pcr/b/n/10 p[][]o[][]w[]\OT1/txtt/m/n/12 (x,y)$[][]\OT1/txr/m/n/12 =
- []
-
-
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[61]
-Overfull \hbox (20.01984pt too wide) in paragraph at lines 3560--3563
-\OT1/txr/m/n/12 Using \OT1/txtt/m/n/12 FreeFem++ \OT1/txr/m/n/12 , we cal-cu-la
-ted  []\OT1/pcr/b/n/10 e[][]x[][]p[]\OT1/txtt/m/n/12 (1+4i)\OT1/txr/m/n/12 ,  [
-]\OT1/pcr/b/n/10 s[][]i[][]n[]\OT1/txtt/m/n/12 (pi+1i)\OT1/txr/m/n/12 ,  []\OT1
-/pcr/b/n/10 c[][]o[][]s[]\OT1/txtt/m/n/12 (pi/2-1i) \OT1/txr/m/n/12 and  []\OT1
-/pcr/b/n/10 l[][]o[][]g[]\OT1/txtt/m/n/12 (1+2i)\OT1/txr/m/n/12 ,
- []
-
-
-Overfull \hbox (8.57109pt too wide) in paragraph at lines 3599--3603
-\OT1/txr/m/n/12 The \OT1/txtt/m/n/12 erfc(x) \OT1/txr/m/n/12 = func-tion cal-cu
--lates the com-ple-men-tary er-ror func-tion of x, i.e. $[][][](\OML/txmi/m/it/
-12 x\OT1/txr/m/n/12 ) =
- []
-
-
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[62]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[63] <cpfigs/cfunc1.pdf, id=1659, 246.9225pt x 182.6825pt>
+[60] <cpfigs/cfunc1.pdf, id=1652, 246.9225pt x 182.6825pt>
 File: cpfigs/cfunc1.pdf Graphic file (type pdf)
 
-<use cpfigs/cfunc1.pdf> <cpfigs/cfunc2.pdf, id=1661, 246.9225pt x 182.6825pt>
+<use cpfigs/cfunc1.pdf> <cpfigs/cfunc2.pdf, id=1654, 246.9225pt x 182.6825pt>
 File: cpfigs/cfunc2.pdf Graphic file (type pdf)
 
 <use cpfigs/cfunc2.pdf>
@@ -1481,7 +1422,22 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[64 <./cpfigs/cfunc1.pdf> <./cpfigs/cfunc2.pdf>]
+[61]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[62 <./cpfigs/cfunc1.pdf> <./cpfigs/cfunc2.pdf>]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[63]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[64]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -1502,22 +1458,33 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [68]
+Overfull \hbox (21.64282pt too wide) in paragraph at lines 4117--4118
+[]\OT1/txr/m/n/10.95 where \OT1/txtt/m/n/10.95 Asd \OT1/txr/m/n/10.95 and \OT1/
+txtt/m/n/10.95 Csd \OT1/txr/m/n/10.95 are ar-rays of ma-tri-ces (from ex-am-ple
+ []\OT1/txtt/m/n/10.95 mortar-DN-4.edp \OT1/txr/m/n/10.95 of \OT1/txtt/m/n/10.9
+5 examples++-tuturial\OT1/txr/m/n/10.95 ). 
+ []
+
+
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
 [69]
+Overfull \hbox (66.93182pt too wide) in paragraph at lines 4159--4162
+[][]\OT1/txtt/m/n/10.95 ' * \OT1/txr/m/n/10.95 is the com-pound of trans-po-si-
+tion and ma-trix prod-uct, so it is the dot prod-uct (ex-am-ple []\OT1/txtt/m/n
+/10.95 real DotProduct=a'*b\OT1/txr/m/n/10.95 )
+ []
+
+
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
 [70]
-Overfull \hbox (65.91977pt too wide) in paragraph at lines 4099--4100
-[]\OT1/txr/m/n/12 where \OT1/txtt/m/n/12 Asd \OT1/txr/m/n/12 and \OT1/txtt/m/n/
-12 Csd \OT1/txr/m/n/12 are ar-rays of ma-tri-ces (from ex-am-ple []\OT1/txtt/m/
-n/12 mortar-DN-4.edp \OT1/txr/m/n/12 of \OT1/txtt/m/n/12 examples++-tuturial\OT
-1/txr/m/n/12 ). 
- []
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4305.
 
 
 Underfull \hbox (badness 10000) has occurred while \output is active
@@ -1535,10 +1502,6 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [73]
-
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 4287.
-
-
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -1549,6 +1512,16 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [75]
+LaTeX Font Info:    Try loading font information for OMS+txtt on input line 461
+6.
+LaTeX Font Info:    No file OMStxtt.fd. on input line 4616.
+
+
+LaTeX Font Warning: Font shape `OMS/txtt/m/it' undefined
+(Font)              using `OMS/txsy/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 4616.
+
+
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -1574,20 +1547,8 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [80]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[81]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[82
-
-]
 Chapter 5.
-<cpfigs/square.pdf, id=1770, 251.94125pt x 211.79124pt>
+<cpfigs/square.pdf, id=1768, 251.94125pt x 211.79124pt>
 File: cpfigs/square.pdf Graphic file (type pdf)
 
 <use cpfigs/square.pdf>
@@ -1595,47 +1556,42 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[83 <./cpfigs/square.pdf>]
+[81
+
+ <./cpfigs/square.pdf>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[84] <cpfigs/multiendborder.pdf, id=1788, 597.23125pt x 422.57875pt>
+[82] <cpfigs/multiendborder.pdf, id=1786, 597.23125pt x 422.57875pt>
 File: cpfigs/multiendborder.pdf Graphic file (type pdf)
 
 <use cpfigs/multiendborder.pdf>
-Overfull \hbox (11.54063pt too wide) in paragraph at lines 4757--4757
+Overfull \hbox (11.54063pt too wide) in paragraph at lines 4911--4911
  [] 
  []
 
-<cpfigs/multiendmesh.pdf, id=1790, 597.23125pt x 422.57875pt>
+<cpfigs/multiendmesh.pdf, id=1788, 597.23125pt x 422.57875pt>
 File: cpfigs/multiendmesh.pdf Graphic file (type pdf)
 
 <use cpfigs/multiendmesh.pdf>
-Overfull \hbox (11.54063pt too wide) in paragraph at lines 4757--4757
+Overfull \hbox (11.54063pt too wide) in paragraph at lines 4911--4911
  [] 
  []
 
-<cpfigs/border.pdf, id=1793, 563.10374pt x 170.6375pt>
+<cpfigs/border.pdf, id=1791, 563.10374pt x 170.6375pt>
 File: cpfigs/border.pdf Graphic file (type pdf)
  <use cpfigs/border.pdf>
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[85 <./cpfigs/multiendborder.pdf> <./cpfigs/multiendmesh.pdf> <./cpfigs/border.
-pdf>]
-Overfull \hbox (14.10022pt too wide) in paragraph at lines 4807--4808
-[]\OT1/txr/m/it/12 Notice that the ori-en-ta-tion is changed by ``\OT1/txtt/m/s
-l/12 b(-30)\OT1/txr/m/it/12 '' in 5th line. In 7th line, \OT1/txtt/m/sl/12 ps="
-fileName"
- []
-
-<cpfigs/Thwithouthole.pdf, id=1829, 345.29pt x 345.29pt>
+[83 <./cpfigs/multiendborder.pdf> <./cpfigs/multiendmesh.pdf> <./cpfigs/border.
+pdf>] <cpfigs/Thwithouthole.pdf, id=1826, 345.29pt x 345.29pt>
 File: cpfigs/Thwithouthole.pdf Graphic file (type pdf)
 
 <use cpfigs/Thwithouthole.pdf>
-<cpfigs/Thwithhole.pdf, id=1831, 345.29pt x 345.29pt>
+<cpfigs/Thwithhole.pdf, id=1828, 345.29pt x 345.29pt>
 File: cpfigs/Thwithhole.pdf Graphic file (type pdf)
 
 <use cpfigs/Thwithhole.pdf>
@@ -1643,37 +1599,37 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[86 <./cpfigs/Thwithouthole.pdf> <./cpfigs/Thwithhole.pdf>]
-<cpfigs/mesh_sample.pdf, id=1849, 322.20375pt x 300.12125pt>
+[84 <./cpfigs/Thwithouthole.pdf> <./cpfigs/Thwithhole.pdf>]
+<cpfigs/mesh_sample.pdf, id=1846, 322.20375pt x 300.12125pt>
 File: cpfigs/mesh_sample.pdf Graphic file (type pdf)
 
 <use cpfigs/mesh_sample.pdf>
-Underfull \hbox (badness 10000) in paragraph at lines 4860--4871
+Underfull \hbox (badness 10000) in paragraph at lines 5014--5025
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4860--4871
+Underfull \hbox (badness 10000) in paragraph at lines 5014--5025
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4860--4871
+Underfull \hbox (badness 10000) in paragraph at lines 5014--5025
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4860--4871
+Underfull \hbox (badness 10000) in paragraph at lines 5014--5025
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4860--4871
+Underfull \hbox (badness 10000) in paragraph at lines 5014--5025
 
  []
 
 
-Overfull \hbox (5.98262pt too wide) in paragraph at lines 4853--4872
+Overfull \hbox (5.98262pt too wide) in paragraph at lines 5007--5026
 []$[][][]$   $[][][]$ 
  []
 
@@ -1682,7 +1638,17 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[87 <./cpfigs/mesh_sample.pdf>]
+[85 <./cpfigs/mesh_sample.pdf>]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[86]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[87]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -1692,40 +1658,30 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[89]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[90]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[91] <cpfigs/Thxy.pdf, id=1884, 342.27875pt x 329.23pt>
+[89] <cpfigs/Thxy.pdf, id=1881, 342.27875pt x 329.23pt>
 File: cpfigs/Thxy.pdf Graphic file (type pdf)
  <use cpfigs/Thxy.pdf>
-<cpfigs/xyf.pdf, id=1886, 388.45125pt x 388.45125pt>
+<cpfigs/xyf.pdf, id=1883, 388.45125pt x 388.45125pt>
 File: cpfigs/xyf.pdf Graphic file (type pdf)
  <use cpfigs/xyf.pdf>
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[92 <./cpfigs/Thxy.pdf> <./cpfigs/xyf.pdf>]
-<cpfigs/emptymesh-1.pdf, id=1904, 501.875pt x 301.125pt>
+[90 <./cpfigs/Thxy.pdf> <./cpfigs/xyf.pdf>]
+<cpfigs/emptymesh-1.pdf, id=1901, 501.875pt x 301.125pt>
 File: cpfigs/emptymesh-1.pdf Graphic file (type pdf)
 
 <use cpfigs/emptymesh-1.pdf>
-Overfull \hbox (54.80489pt too wide) in paragraph at lines 5236--5236
+Overfull \hbox (54.80489pt too wide) in paragraph at lines 5390--5390
  [] 
  []
 
-<cpfigs/emptymesh-2.pdf, id=1906, 501.875pt x 301.125pt>
+<cpfigs/emptymesh-2.pdf, id=1903, 501.875pt x 301.125pt>
 File: cpfigs/emptymesh-2.pdf Graphic file (type pdf)
 
 <use cpfigs/emptymesh-2.pdf>
-Overfull \hbox (54.80489pt too wide) in paragraph at lines 5236--5236
+Overfull \hbox (54.80489pt too wide) in paragraph at lines 5390--5390
  [] 
  []
 
@@ -1734,40 +1690,46 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[93]
+[91]
+Overfull \hbox (0.80919pt too wide) in paragraph at lines 5405--5409
+\OT1/txr/m/n/10.95 spot such prob-lems one may check the min-i-mum tri-an-gle a
+rea in the trans-formed mesh with \OT1/txtt/m/n/10.95 checkmovemesh
+ []
+
+
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[94 <./cpfigs/emptymesh-1.pdf> <./cpfigs/emptymesh-2.pdf>]
-<cpfigs/lshape.pdf, id=1928, 345.29pt x 345.29pt>
+[92 <./cpfigs/emptymesh-1.pdf> <./cpfigs/emptymesh-2.pdf>]
+<cpfigs/lshape.pdf, id=1926, 345.29pt x 345.29pt>
 File: cpfigs/lshape.pdf Graphic file (type pdf)
  <use cpfigs/lshape.pdf>
-<cpfigs/movemesh.pdf, id=1930, 345.29pt x 345.29pt>
+<cpfigs/movemesh.pdf, id=1928, 345.29pt x 345.29pt>
 File: cpfigs/movemesh.pdf Graphic file (type pdf)
  <use cpfigs/movemesh.pdf>
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[95 <./cpfigs/lshape.pdf> <./cpfigs/movemesh.pdf>]
+[93 <./cpfigs/lshape.pdf> <./cpfigs/movemesh.pdf>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[96] <cpfigs/adaptmesh.pdf, id=1953, 785.93625pt x 447.6725pt>
+[94] <cpfigs/adaptmesh.pdf, id=1951, 785.93625pt x 447.6725pt>
 File: cpfigs/adaptmesh.pdf Graphic file (type pdf)
 
 <use cpfigs/adaptmesh.pdf>
-Overfull \hbox (30.06122pt too wide) in paragraph at lines 5389--5389
+Overfull \hbox (30.06122pt too wide) in paragraph at lines 5543--5543
  [] 
  []
 
-<cpfigs/L-shape2.pdf, id=1957, 227.85126pt x 230.8625pt>
+<cpfigs/L-shape2.pdf, id=1955, 227.85126pt x 230.8625pt>
 File: cpfigs/L-shape2.pdf Graphic file (type pdf)
 
 <use cpfigs/L-shape2.pdf>
-<cpfigs/lshapeSol.pdf, id=1959, 342.27875pt x 329.23pt>
+<cpfigs/lshapeSol.pdf, id=1957, 342.27875pt x 329.23pt>
 File: cpfigs/lshapeSol.pdf Graphic file (type pdf)
 
 <use cpfigs/lshapeSol.pdf>
@@ -1775,42 +1737,31 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[97 <./cpfigs/adaptmesh.pdf>]
+[95 <./cpfigs/adaptmesh.pdf>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[98 <./cpfigs/L-shape2.pdf> <./cpfigs/lshapeSol.pdf>]
+[96 <./cpfigs/L-shape2.pdf> <./cpfigs/lshapeSol.pdf>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[99]
-Overfull \hbox (15.66432pt too wide) in paragraph at lines 5565--5571
-[]\OT1/txr/m/n/12 if true, the met-ric is de-fined ex-plic-itly (false is the d
-e-fault). If the 3 func-tions $[][]\OML/txmi/m/it/12 m[]; m[]; m[]$
+[97]
+Overfull \hbox (0.18095pt too wide) in paragraph at lines 5756--5760
+\OT1/txr/m/n/10.95 sam-ple build a biperi-odic mesh of a square. (see pe-ri-odi
+c fi-nite el-e-ment spaces []6[], and see \OT1/txtt/m/n/10.95 sphere.edp
  []
 
-
-Overfull \hbox (10.25995pt too wide) in paragraph at lines 5602--5606
-[]\OT1/txr/m/n/12 Writing \OT1/txtt/m/n/12 periodic=[[4,y],[2,y],[1,x],[3,x]]; 
-\OT1/txr/m/n/12 builds an adapted pe-ri-odic mesh.
- []
-
-
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[100] <cpfigs/square-0.pdf, id=2009, 411.5375pt x 411.5375pt>
+<cpfigs/square-0.pdf, id=2002, 411.5375pt x 411.5375pt>
 File: cpfigs/square-0.pdf Graphic file (type pdf)
 
 <use cpfigs/square-0.pdf>
-<cpfigs/square-1.pdf, id=2011, 411.5375pt x 411.5375pt>
+<cpfigs/square-1.pdf, id=2004, 411.5375pt x 411.5375pt>
 File: cpfigs/square-1.pdf Graphic file (type pdf)
 
 <use cpfigs/square-1.pdf>
-<cpfigs/square-2.pdf, id=2013, 411.5375pt x 411.5375pt>
+<cpfigs/square-2.pdf, id=2006, 411.5375pt x 411.5375pt>
 File: cpfigs/square-2.pdf Graphic file (type pdf)
 
 <use cpfigs/square-2.pdf>
@@ -1818,18 +1769,17 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[101 <./cpfigs/square-0.pdf> <./cpfigs/square-1.pdf> <./cpfigs/square-2.pdf>]
-<cpfigs/trunc0.pdf, id=2031, 345.29pt x 345.29pt>
+[98] <cpfigs/trunc0.pdf, id=2013, 345.29pt x 345.29pt>
 File: cpfigs/trunc0.pdf Graphic file (type pdf)
  <use cpfigs/trunc0.pdf>
-<cpfigs/trunc6.pdf, id=2033, 345.29pt x 345.29pt>
+<cpfigs/trunc6.pdf, id=2015, 345.29pt x 345.29pt>
 File: cpfigs/trunc6.pdf Graphic file (type pdf)
  <use cpfigs/trunc6.pdf>
-<cpfigs/nosplitmesh.pdf, id=2037, 388.45125pt x 388.45125pt>
+<cpfigs/nosplitmesh.pdf, id=2019, 388.45125pt x 388.45125pt>
 File: cpfigs/nosplitmesh.pdf Graphic file (type pdf)
 
 <use cpfigs/nosplitmesh.pdf>
-<cpfigs/splitmesh.pdf, id=2039, 388.45125pt x 388.45125pt>
+<cpfigs/splitmesh.pdf, id=2021, 388.45125pt x 388.45125pt>
 File: cpfigs/splitmesh.pdf Graphic file (type pdf)
 
 <use cpfigs/splitmesh.pdf>
@@ -1837,20 +1787,25 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[102 <./cpfigs/trunc0.pdf> <./cpfigs/trunc6.pdf>]
-<cpfigs/TouchSide.pdf, id=2058, 238.8925pt x 196.735pt>
+[99 <./cpfigs/square-0.pdf> <./cpfigs/square-1.pdf> <./cpfigs/square-2.pdf>]
+<cpfigs/TouchSide.pdf, id=2043, 238.8925pt x 196.735pt>
 File: cpfigs/TouchSide.pdf Graphic file (type pdf)
 
 <use cpfigs/TouchSide.pdf>
-<cpfigs/NACA0012.pdf, id=2060, 246.9225pt x 182.6825pt>
+<cpfigs/NACA0012.pdf, id=2045, 246.9225pt x 182.6825pt>
 File: cpfigs/NACA0012.pdf Graphic file (type pdf)
 
 <use cpfigs/NACA0012.pdf>
-<cpfigs/Cardioid.pdf, id=2064, 246.9225pt x 182.6825pt>
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[100 <./cpfigs/trunc0.pdf> <./cpfigs/trunc6.pdf>]
+<cpfigs/Cardioid.pdf, id=2066, 246.9225pt x 182.6825pt>
 File: cpfigs/Cardioid.pdf Graphic file (type pdf)
 
 <use cpfigs/Cardioid.pdf>
-<cpfigs/Cassini.pdf, id=2066, 246.9225pt x 182.6825pt>
+<cpfigs/Cassini.pdf, id=2068, 246.9225pt x 182.6825pt>
 File: cpfigs/Cassini.pdf Graphic file (type pdf)
 
 <use cpfigs/Cassini.pdf>
@@ -1858,37 +1813,31 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[103 <./cpfigs/nosplitmesh.pdf> <./cpfigs/splitmesh.pdf>]
+[101 <./cpfigs/nosplitmesh.pdf> <./cpfigs/splitmesh.pdf> <./cpfigs/TouchSide.pd
+f> <./cpfigs/NACA0012.pdf>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[104 <./cpfigs/TouchSide.pdf> <./cpfigs/NACA0012.pdf> <./cpfigs/Cardioid.pdf> <
-./cpfigs/Cassini.pdf>] <cpfigs/Bezier.pdf, id=2109, 202.7575pt x 116.435pt>
+[102 <./cpfigs/Cardioid.pdf> <./cpfigs/Cassini.pdf>]
+<cpfigs/Bezier.pdf, id=2108, 202.7575pt x 116.435pt>
 File: cpfigs/Bezier.pdf Graphic file (type pdf)
-
-<use cpfigs/Bezier.pdf>
-Overfull \hbox (18.02457pt too wide) in paragraph at lines 5794--5795
+ <use cpfigs/Bezier.pdf>
+Overfull \hbox (18.02457pt too wide) in paragraph at lines 5947--5948
  [] 
  []
 
-<cpfigs/Engine.pdf, id=2111, 204.765pt x 64.24pt>
+<cpfigs/Engine.pdf, id=2110, 204.765pt x 64.24pt>
 File: cpfigs/Engine.pdf Graphic file (type pdf)
  <use cpfigs/Engine.pdf>
-Overfull \hbox (24.22696pt too wide) in paragraph at lines 5799--5800
+Overfull \hbox (24.22696pt too wide) in paragraph at lines 5952--5953
  [][] 
  []
 
-
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[105 <./cpfigs/Bezier.pdf> <./cpfigs/Engine.pdf>]
-<cpfigs/U-shape.pdf, id=2137, 262.9825pt x 202.7575pt>
+<cpfigs/U-shape.pdf, id=2114, 262.9825pt x 202.7575pt>
 File: cpfigs/U-shape.pdf Graphic file (type pdf)
 
-<use cpfigs/U-shape.pdf> <cpfigs/V-shape.pdf, id=2139, 182.6825pt x 168.63pt>
+<use cpfigs/U-shape.pdf> <cpfigs/V-shape.pdf, id=2116, 182.6825pt x 168.63pt>
 File: cpfigs/V-shape.pdf Graphic file (type pdf)
 
 <use cpfigs/V-shape.pdf>
@@ -1896,7 +1845,12 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[106 <./cpfigs/U-shape.pdf> <./cpfigs/V-shape.pdf>]
+[103 <./cpfigs/Bezier.pdf> <./cpfigs/Engine.pdf>]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[104 <./cpfigs/U-shape.pdf> <./cpfigs/V-shape.pdf>]
 <cpfigs/SmileFace.pdf, id=2165, 135.50626pt x 167.62625pt>
 File: cpfigs/SmileFace.pdf Graphic file (type pdf)
 
@@ -1905,36 +1859,24 @@ File: cpfigs/SmileFace.pdf Graphic file (type pdf)
 File: cpfigs/ThreePoint.pdf Graphic file (type pdf)
 
 <use cpfigs/ThreePoint.pdf>
+Overfull \hbox (122.40749pt too wide) has occurred while \output is active
+[][]\OT1/txr/m/sl/12 5.9.  HOW TO CHANGE THE LABEL OF ELEMENTS AND BORDER ELEME
+NTS OF A MESH IN FREEFEM++ ? \OT1/txr/m/n/12 105
+ []
+
+
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[107 <./cpfigs/SmileFace.pdf> <./cpfigs/ThreePoint.pdf>]
-Overfull \hbox (8.27815pt too wide) in paragraph at lines 5945--5945
+[105 <./cpfigs/SmileFace.pdf> <./cpfigs/ThreePoint.pdf>]
+Overfull \hbox (8.27815pt too wide) in paragraph at lines 6098--6098
 []\OT1/txtt/m/n/10 12:          << " == " << int1d(Th,1,2,3,4)(1./lenEdge) <<" 
 == " << ((10+20)+10)*2 << endl;[] 
  []
 
 
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[108]
-Overfull \hbox (6.75975pt too wide) in paragraph at lines 5972--5978
-\OT1/txr/m/n/12 coordinate and the $[][]\OML/txmi/m/it/12 z$\OT1/txr/m/n/12 -co
-ordinate. Each tetra-he-dra $[][]\OML/txmi/m/it/12 T[]; k \OT1/txr/m/n/12 = 1\O
-ML/txmi/m/it/12 ; []  ; n[]$ \OT1/txr/m/n/12 has four ver-tices $[][]\OML/txmi/
-m/it/12 q[];  q[];  q[];  q[]$\OT1/txr/m/n/12 .
- []
-
-
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[109]
-Underfull \hbox (badness 10000) in paragraph at lines 6030--6035
+Underfull \hbox (badness 10000) in paragraph at lines 6183--6188
 
  []
 
@@ -1943,8 +1885,13 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[110]
-Overfull \hbox (31.864pt too wide) in paragraph at lines 6101--6102
+[106]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[107]
+Overfull \hbox (31.864pt too wide) in paragraph at lines 6254--6255
 []\OT1/txtt/m/n/10.95 [$[][]\OT1/txr/m/n/10.95 ^^H$\OT1/txtt/m/n/10.95 1, $[][]
 \OT1/txr/m/n/10.95 ^^H$\OT1/txtt/m/n/10.95 2, $[][]\OT1/txr/m/n/10.95 ^^H$\OT1/
 txtt/m/n/10.95 3] \OT1/txr/m/n/10.95 set the dis-place-ment vec-tor of trans-fo
@@ -1959,28 +1906,28 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
+[108]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[109]
+Underfull \hbox (badness 10000) in paragraph at lines 6363--6366
+
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[110]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
 [111]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[112]
-Underfull \hbox (badness 10000) in paragraph at lines 6210--6213
-
- []
-
-
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[113]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[114]
-Overfull \hbox (24.83101pt too wide) in paragraph at lines 6324--6325
+Overfull \hbox (24.83101pt too wide) in paragraph at lines 6478--6479
 []\OT1/txtt/m/n/10.95 [$[][]\OT1/txr/m/n/10.95 ^^H$\OT1/txtt/m/n/10.95 1,$[][]\
 OT1/txr/m/n/10.95 ^^H$\OT1/txtt/m/n/10.95 2, $[][]\OT1/txr/m/n/10.95 ^^H$\OT1/t
 xtt/m/n/10.95 3] \OT1/txr/m/n/10.95 set the dis-place-ment vec-tor of 3D trans-
@@ -1990,26 +1937,16 @@ i/m/it/10.95 ; \OT1/txr/m/n/10.95 ^^H2(\OML/txmi/m/it/10.95 x; y; z\OT1/txr/m/n
 y; z\OT1/txr/m/n/10.95 )]$. 
  []
 
-<cpfigs/buillayermesh.pdf, id=2249, 924.45375pt x 473.77pt>
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[112] <cpfigs/buillayermesh.pdf, id=2249, 924.45375pt x 473.77pt>
 File: cpfigs/buillayermesh.pdf Graphic file (type pdf)
 
 <use cpfigs/buillayermesh.pdf>
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[115]
-Underfull \hbox (badness 10000) in paragraph at lines 6376--6378
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 6396--6399
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 6400--6403
+Underfull \hbox (badness 10000) in paragraph at lines 6530--6532
 
  []
 
@@ -2018,18 +1955,33 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[116 <./cpfigs/buillayermesh.pdf>]
+[113 <./cpfigs/buillayermesh.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 6550--6553
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 6554--6557
+
+ []
+
+
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[117] <cpfigs/cube.pdf, id=2277, 602.25pt x 602.25pt>
+[114]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[115] <cpfigs/cube.pdf, id=2279, 602.25pt x 602.25pt>
 File: cpfigs/cube.pdf Graphic file (type pdf)
  <use cpfigs/cube.pdf>
-<cpfigs/cone.pdf, id=2279, 605.26125pt x 510.90875pt>
+<cpfigs/cone.pdf, id=2281, 605.26125pt x 510.90875pt>
 File: cpfigs/cone.pdf Graphic file (type pdf)
  <use cpfigs/cone.pdf>
-Overfull \hbox (39.91455pt too wide) in paragraph at lines 6504--6504
+Overfull \hbox (39.91455pt too wide) in paragraph at lines 6656--6656
  [] 
  []
 
@@ -2038,23 +1990,18 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
+[116 <./cpfigs/cube.pdf> <./cpfigs/cone.pdf>]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[117]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
 [118]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[119 <./cpfigs/cube.pdf> <./cpfigs/cone.pdf>]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[120]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[121]
-Overfull \hbox (9.7788pt too wide) in paragraph at lines 6683--6683
+Overfull \hbox (9.7788pt too wide) in paragraph at lines 6835--6835
 [][]\OT1/pcr/b/n/10 f[][]u[][]n[][]c[] []m[][]e[][]s[][]h[][]3[] \OT1/txtt/m/n/
 10 SurfaceHex([]\OT1/pcr/b/n/10 i[][]n[][]t[]\OT1/txtt/m/n/10 [[]\OT1/pcr/b/n/1
 0 i[][]n[][]t[]\OT1/txtt/m/n/10 ] & N,[]\OT1/pcr/b/n/10 r[][]e[][]a[][]l[]\OT1/
@@ -2070,13 +2017,18 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[122]
-Overfull \hbox (6.77824pt too wide) in paragraph at lines 6739--6739
+[119]
+Overfull \hbox (6.77824pt too wide) in paragraph at lines 6891--6891
 []  []\OT1/pcr/b/n/10 m[][]e[][]s[][]h[][]3[]  \OT1/txtt/m/n/10 ThS= movemesh23
 (Th,transfo=[f1*R,f2*R,f3*R],orientation=orientation,refface=ref);[] 
  []
 
-<cpfigs/Hex-Sphere.pdf, id=2316, 602.25pt x 602.25pt>
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[120] <cpfigs/Hex-Sphere.pdf, id=2316, 602.25pt x 602.25pt>
 File: cpfigs/Hex-Sphere.pdf Graphic file (type pdf)
 
 <use cpfigs/Hex-Sphere.pdf>
@@ -2088,31 +2040,27 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
+[121 <./cpfigs/Hex-Sphere.pdf> <./cpfigs/Cube-With-Ball.pdf>]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[122]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
 [123]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[124 <./cpfigs/Hex-Sphere.pdf> <./cpfigs/Cube-With-Ball.pdf>]
+[124]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
 [125]
-Overfull \hbox (55.52814pt too wide) in paragraph at lines 6995--6995
-[][]\OT1/pcr/b/n/10 p[][]r[][]o[][]b[][]l[][]e[][]m[] \OT1/txtt/m/n/10 Lap2dOme
-ga(us,v,init=false)=int2d(Th)(Grad2(v)' *Grad2(us)) - int2d(Th)(f*v)+on(Gamma,u
-s=1)
- []
-
-
-Overfull \hbox (102.778pt too wide) in paragraph at lines 7010--7010
-[][]\OT1/pcr/b/n/10 p[][]r[][]o[][]b[][]l[][]e[][]m[] \OT1/txtt/m/n/10 Lap2dOme
-ga1(u1,v1,init=false)=int2d(Th1)(Grad21(v1)' *Grad21(u1)) - int2d(Th1)(f1*v1)+o
-n(Gamma,u1=1)
- []
-
-
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -2123,11 +2071,6 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [127]
-Underfull \hbox (badness 10000) in paragraph at lines 7084--7085
-
- []
-
-
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -2138,12 +2081,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [129]
-Underfull \hbox (badness 10000) in paragraph at lines 7220--7228
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 7228--7233
+Underfull \hbox (badness 10000) in paragraph at lines 7463--7464
 
  []
 
@@ -2153,49 +2091,32 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [130]
+Overfull \hbox (64.52808pt too wide) in paragraph at lines 7558--7558
+[][]\OT1/pcr/b/n/10 m[][]e[][]s[][]h[][]3[] \OT1/txtt/m/n/10 Th = tetg(ThHS,swi
+tch="pqaAAYYQ",nbofregions=1,regionlist=domaine, nbofholes=2,holelist=holes);[]
+ 
+ []
+
+
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
 [131]
-Underfull \hbox (badness 10000) in paragraph at lines 7313--7334
-
- []
-
-
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
 [132]
-Underfull \hbox (badness 10000) in paragraph at lines 7334--7347
-
- []
-
+Chapter 6.
 
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[133]
-Overfull \hbox (143.44298pt too wide) in paragraph at lines 7386--7387
-\OT1/txr/m/n/10.95 Mmg3d is a 3D remesh-ing soft-ware de-vel-opped by C. Do-brz
-yn-ski and P. Frey (http://www.math.u-bordeaux1.fr/$[][]\OMS/txsy/m/n/10.95 ^^X
-$\OT1/txr/m/n/10.95 dobj/logiciels/mmg3d.php).
- []
+[133
 
-
-Overfull \hbox (12.99654pt too wide) in paragraph at lines 7386--7387
-\OT1/txr/m/n/10.95 To ob-tain a ver-sion of li-brary send an e-mail at : ce-cil
-e.dobrzynski@math.ubordeaux1.fr or frey@ann.jussieu.fr. 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 7388--7389
-
- []
-
-
+]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -2206,85 +2127,23 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [135]
-Underfull \hbox (badness 10000) in paragraph at lines 7522--7530
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 7530--7535
-
- []
-
-
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[136]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[137]
-Underfull \hbox (badness 10000) in paragraph at lines 7616--7637
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 7637--7650
-
- []
-
-
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[138]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[139]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[140
-
-]
-Chapter 6.
-LaTeX Font Info:    Font shape `OT1/txtt/m/it' in size <10.95> not available
-(Font)              Font shape `OT1/txtt/m/sl' tried instead on input line 7754
-.
-
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[141]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[142]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[143]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[144] <cpfigs/P1P2.pdf, id=2463, 508.90125pt x 218.8175pt>
+[136] <cpfigs/P1P2.pdf, id=2433, 508.90125pt x 218.8175pt>
 File: cpfigs/P1P2.pdf Graphic file (type pdf)
 
-<use cpfigs/P1P2.pdf> <cpfigs/P0P1P2P1nc.pdf, id=2467, 342.27875pt x 329.23pt>
+<use cpfigs/P1P2.pdf>
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[137] <cpfigs/P0P1P2P1nc.pdf, id=2444, 342.27875pt x 329.23pt>
 File: cpfigs/P0P1P2P1nc.pdf Graphic file (type pdf)
 
 <use cpfigs/P0P1P2P1nc.pdf>
-<cpfigs/projP0.pdf, id=2469, 294.09875pt x 241.90375pt>
+<cpfigs/projP0.pdf, id=2446, 294.09875pt x 241.90375pt>
 File: cpfigs/projP0.pdf Graphic file (type pdf)
 
 <use cpfigs/projP0.pdf>
@@ -2292,23 +2151,23 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[145 <./cpfigs/P1P2.pdf>] <cpfigs/projP1.pdf, id=2497, 562.1pt x 456.70625pt>
+[138 <./cpfigs/P1P2.pdf> <./cpfigs/P0P1P2P1nc.pdf> <./cpfigs/projP0.pdf>]
+<cpfigs/projP1.pdf, id=2477, 562.1pt x 456.70625pt>
 File: cpfigs/projP1.pdf Graphic file (type pdf)
-
-<use cpfigs/projP1.pdf> <cpfigs/projP2.pdf, id=2499, 546.04pt x 505.89pt>
+ <use cpfigs/projP1.pdf>
+<cpfigs/projP2.pdf, id=2479, 546.04pt x 505.89pt>
 File: cpfigs/projP2.pdf Graphic file (type pdf)
-
-<use cpfigs/projP2.pdf>
+ <use cpfigs/projP2.pdf>
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[146 <./cpfigs/P0P1P2P1nc.pdf> <./cpfigs/projP0.pdf>]
-<cpfigs/projP1nc.pdf, id=2519, 514.92375pt x 588.1975pt>
+[139 <./cpfigs/projP1.pdf> <./cpfigs/projP2.pdf>]
+<cpfigs/projP1nc.pdf, id=2501, 514.92375pt x 588.1975pt>
 File: cpfigs/projP1nc.pdf Graphic file (type pdf)
 
 <use cpfigs/projP1nc.pdf>
-<cpfigs/projP1b.pdf, id=2521, 506.89375pt x 445.665pt>
+<cpfigs/projP1b.pdf, id=2503, 506.89375pt x 445.665pt>
 File: cpfigs/projP1b.pdf Graphic file (type pdf)
 
 <use cpfigs/projP1b.pdf>
@@ -2316,28 +2175,19 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[147 <./cpfigs/projP1.pdf> <./cpfigs/projP2.pdf>]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[148 <./cpfigs/projP1nc.pdf> <./cpfigs/projP1b.pdf>]
-LaTeX Font Info:    Font shape `TS1/txr/b/n' in size <10.95> not available
-(Font)              Font shape `TS1/txr/bx/n' tried instead on input line 8169.
-
-
-<cpfigs/RT0.pdf, id=2557, 200.75pt x 221.82875pt>
+[140 <./cpfigs/projP1nc.pdf> <./cpfigs/projP1b.pdf>]
+<cpfigs/RT0.pdf, id=2527, 200.75pt x 221.82875pt>
 File: cpfigs/RT0.pdf Graphic file (type pdf)
  <use cpfigs/RT0.pdf>
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[149 <./cpfigs/RT0.pdf>] <cpfigs/onoldmesh.pdf, id=2583, 345.29pt x 345.29pt>
+[141 <./cpfigs/RT0.pdf>] <cpfigs/onoldmesh.pdf, id=2553, 345.29pt x 345.29pt>
 File: cpfigs/onoldmesh.pdf Graphic file (type pdf)
 
 <use cpfigs/onoldmesh.pdf>
-<cpfigs/onnewmesh.pdf, id=2585, 345.29pt x 345.29pt>
+<cpfigs/onnewmesh.pdf, id=2555, 345.29pt x 345.29pt>
 File: cpfigs/onnewmesh.pdf Graphic file (type pdf)
 
 <use cpfigs/onnewmesh.pdf>
@@ -2345,12 +2195,12 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[150 <./cpfigs/onoldmesh.pdf> <./cpfigs/onnewmesh.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 8272--8278
+[142 <./cpfigs/onoldmesh.pdf> <./cpfigs/onnewmesh.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 8227--8233
 
  []
 
-<cpfigs/fastInterpolat.pdf, id=2600, 377.41pt x 274.02374pt>
+<cpfigs/fastInterpolat.pdf, id=2569, 377.41pt x 274.02374pt>
 File: cpfigs/fastInterpolat.pdf Graphic file (type pdf)
 
 <use cpfigs/fastInterpolat.pdf>
@@ -2358,18 +2208,18 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[151] <cpfigs/us-ug.pdf, id=2609, 598.235pt x 422.57875pt>
+[143] <cpfigs/us-ug.pdf, id=2578, 598.235pt x 422.57875pt>
 File: cpfigs/us-ug.pdf Graphic file (type pdf)
 
 <use cpfigs/us-ug.pdf>
-Overfull \hbox (11.94615pt too wide) in paragraph at lines 8344--8344
+Overfull \hbox (11.94615pt too wide) in paragraph at lines 8299--8299
  [] 
  []
 
-<cpfigs/vs-vg.pdf, id=2611, 598.235pt x 422.57875pt>
+<cpfigs/vs-vg.pdf, id=2580, 598.235pt x 422.57875pt>
 File: cpfigs/vs-vg.pdf Graphic file (type pdf)
  <use cpfigs/vs-vg.pdf>
-Overfull \hbox (11.94615pt too wide) in paragraph at lines 8344--8344
+Overfull \hbox (11.94615pt too wide) in paragraph at lines 8299--8299
  [] 
  []
 
@@ -2378,12 +2228,52 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[152 <./cpfigs/fastInterpolat.pdf>]
+[144 <./cpfigs/fastInterpolat.pdf>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[153 <./cpfigs/us-ug.pdf> <./cpfigs/vs-vg.pdf>]
+[145 <./cpfigs/us-ug.pdf> <./cpfigs/vs-vg.pdf>]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[146]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[147]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[148]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[149]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[150]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[151]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[152]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[153]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -2404,66 +2294,23 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [157]
-Underfull \vbox (badness 2837) has occurred while \output is active []
-
-
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
 [158]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[159]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[160]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[161]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[162]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[163]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[164]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[165]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[166
-
-]
 Chapter 7.
 
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[167] <cpfigs/three.pdf, id=2735, 342.27875pt x 342.27875pt>
+[159
+
+] <cpfigs/three.pdf, id=2705, 342.27875pt x 342.27875pt>
 File: cpfigs/three.pdf Graphic file (type pdf)
 
-<use cpfigs/three.pdf> <cpfigs/threeg.pdf, id=2737, 342.27875pt x 342.27875pt>
+<use cpfigs/three.pdf> <cpfigs/threeg.pdf, id=2707, 342.27875pt x 342.27875pt>
 File: cpfigs/threeg.pdf Graphic file (type pdf)
 
 <use cpfigs/threeg.pdf>
@@ -2471,7 +2318,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[168] <cpfigs/likegnu.pdf, id=2744, 345.29pt x 345.29pt>
+[160] <cpfigs/likegnu.pdf, id=2714, 345.29pt x 345.29pt>
 File: cpfigs/likegnu.pdf Graphic file (type pdf)
 
 <use cpfigs/likegnu.pdf>
@@ -2479,15 +2326,15 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[169 <./cpfigs/three.pdf> <./cpfigs/threeg.pdf> <./cpfigs/likegnu.pdf>]
-<cpfigs/hsv.pdf, id=2771, 301.125pt x 225.84375pt>
+[161 <./cpfigs/three.pdf> <./cpfigs/threeg.pdf> <./cpfigs/likegnu.pdf>]
+<cpfigs/hsv.pdf, id=2740, 301.125pt x 225.84375pt>
 File: cpfigs/hsv.pdf Graphic file (type pdf)
  <use cpfigs/hsv.pdf>
-<cpfigs/threehsv.pdf, id=2773, 501.875pt x 301.125pt>
+<cpfigs/threehsv.pdf, id=2742, 501.875pt x 301.125pt>
 File: cpfigs/threehsv.pdf Graphic file (type pdf)
 
 <use cpfigs/threehsv.pdf>
-Overfull \hbox (54.80489pt too wide) in paragraph at lines 9438--9438
+Overfull \hbox (54.80489pt too wide) in paragraph at lines 9393--9393
  [] 
  []
 
@@ -2496,50 +2343,50 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[170 <./cpfigs/hsv.pdf> <./cpfigs/threehsv.pdf>]
-<cpfigs/gnuplot.pdf, id=2793, 505.89pt x 722.7pt>
+[162 <./cpfigs/hsv.pdf> <./cpfigs/threehsv.pdf>]
+<cpfigs/gnuplot.pdf, id=2762, 505.89pt x 722.7pt>
 File: cpfigs/gnuplot.pdf Graphic file (type pdf)
  <use cpfigs/gnuplot.pdf>
-<cpfigs/medit2.pdf, id=2797, 256.96pt x 202.7575pt>
+<cpfigs/medit2.pdf, id=2766, 256.96pt x 202.7575pt>
 File: cpfigs/medit2.pdf Graphic file (type pdf)
  <use cpfigs/medit2.pdf>
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[171 <./cpfigs/gnuplot.pdf>]
+[163 <./cpfigs/gnuplot.pdf>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[172 <./cpfigs/medit2.pdf>]
+[164 <./cpfigs/medit2.pdf>]
 Chapter 8.
 
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[173
+[165
 
 ]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[174]
+[166]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[175]
+[167]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[176]
+[168]
 Chapter 9.
 
-Overfull \hbox (6.7801pt too wide) in paragraph at lines 9730--9741
+Overfull \hbox (6.7801pt too wide) in paragraph at lines 9685--9696
 \OT1/txr/m/n/10.95 We as-sume the shape of the film is de-scribed by the graph 
 $[][](\OML/txmi/m/it/10.95 x; y; u\OT1/txr/m/n/10.95 (\OML/txmi/m/it/10.95 x; y
 \OT1/txr/m/n/10.95 ))$ of the ver-ti-cal dis-place-ment $[][]\OML/txmi/m/it/10.
@@ -2547,7 +2394,7 @@ $[][](\OML/txmi/m/it/10.95 x; y; u\OT1/txr/m/n/10.95 (\OML/txmi/m/it/10.95 x; y
 i/m/it/10.95 x[] \OT1/txr/m/n/10.95 +
  []
 
-<cpfigs/soapfilm.pdf, id=2844, 597.23125pt x 198.7425pt>
+<cpfigs/soapfilm.pdf, id=2813, 597.23125pt x 198.7425pt>
 File: cpfigs/soapfilm.pdf Graphic file (type pdf)
 
 <use cpfigs/soapfilm.pdf>
@@ -2555,22 +2402,22 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[177
+[169
 
  <./cpfigs/soapfilm.pdf>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[178] <cpfigs/aTutorial.pdf, id=2872, 342.27875pt x 329.23pt>
+[170] <cpfigs/aTutorial.pdf, id=2842, 342.27875pt x 329.23pt>
 File: cpfigs/aTutorial.pdf Graphic file (type pdf)
 
 <use cpfigs/aTutorial.pdf>
-<cpfigs/soapfilm3d.pdf, id=2873, 659.46375pt x 111.41624pt>
+<cpfigs/soapfilm3d.pdf, id=2843, 659.46375pt x 111.41624pt>
 File: cpfigs/soapfilm3d.pdf Graphic file (type pdf)
 
 <use cpfigs/soapfilm3d.pdf>
-Overfull \hbox (5.9826pt too wide) in paragraph at lines 9828--9837
+Overfull \hbox (5.9826pt too wide) in paragraph at lines 9783--9792
 []$[][][]$   $[][][]$ 
  []
 
@@ -2579,12 +2426,12 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[179 <./cpfigs/aTutorial.pdf> <./cpfigs/soapfilm3d.pdf>]
-<cpfigs/electroMesh.pdf, id=2894, 246.9225pt x 182.6825pt>
+[171 <./cpfigs/aTutorial.pdf> <./cpfigs/soapfilm3d.pdf>]
+<cpfigs/electroMesh.pdf, id=2864, 246.9225pt x 182.6825pt>
 File: cpfigs/electroMesh.pdf Graphic file (type pdf)
 
 <use cpfigs/electroMesh.pdf>
-<cpfigs/electro.pdf, id=2896, 246.9225pt x 182.6825pt>
+<cpfigs/electro.pdf, id=2866, 246.9225pt x 182.6825pt>
 File: cpfigs/electro.pdf Graphic file (type pdf)
 
 <use cpfigs/electro.pdf>
@@ -2592,15 +2439,15 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[180 <./cpfigs/electroMesh.pdf> <./cpfigs/electro.pdf>]
+[172 <./cpfigs/electroMesh.pdf> <./cpfigs/electro.pdf>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[181] <cpfigs/naca1.pdf, id=2927, 246.9225pt x 182.6825pt>
+[173] <cpfigs/naca1.pdf, id=2896, 246.9225pt x 182.6825pt>
 File: cpfigs/naca1.pdf Graphic file (type pdf)
 
-<use cpfigs/naca1.pdf> <cpfigs/naca2.pdf, id=2929, 246.9225pt x 182.6825pt>
+<use cpfigs/naca1.pdf> <cpfigs/naca2.pdf, id=2898, 246.9225pt x 182.6825pt>
 File: cpfigs/naca2.pdf Graphic file (type pdf)
 
 <use cpfigs/naca2.pdf>
@@ -2608,12 +2455,12 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[182 <./cpfigs/naca1.pdf> <./cpfigs/naca2.pdf>]
+[174 <./cpfigs/naca1.pdf> <./cpfigs/naca2.pdf>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[183] <cpfigs/period.pdf, id=2956, 345.29pt x 345.29pt>
+[175] <cpfigs/period.pdf, id=2926, 345.29pt x 345.29pt>
 File: cpfigs/period.pdf Graphic file (type pdf)
 
 <use cpfigs/period.pdf>
@@ -2621,8 +2468,8 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[184 <./cpfigs/period.pdf>]
-<cpfigs/perio4.pdf, id=2972, 388.45125pt x 388.45125pt>
+[176 <./cpfigs/period.pdf>]
+<cpfigs/perio4.pdf, id=2942, 388.45125pt x 388.45125pt>
 File: cpfigs/perio4.pdf Graphic file (type pdf)
 
 <use cpfigs/perio4.pdf>
@@ -2630,20 +2477,20 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[185 <./cpfigs/perio4.pdf>]
+[177 <./cpfigs/perio4.pdf>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[186] <cpfigs/cube-bal-perio.pdf, id=2989, 843.15pt x 624.3325pt>
+[178] <cpfigs/cube-bal-perio.pdf, id=2959, 843.15pt x 624.3325pt>
 File: cpfigs/cube-bal-perio.pdf Graphic file (type pdf)
 
 <use cpfigs/cube-bal-perio.pdf>
-Overfull \hbox (39.22916pt too wide) in paragraph at lines 10294--10294
+Overfull \hbox (39.22916pt too wide) in paragraph at lines 10249--10249
  [] 
  []
 
-<cpfigs/cube-bal-perio-medit.pdf, id=2991, 284.06125pt x 255.95625pt>
+<cpfigs/cube-bal-perio-medit.pdf, id=2961, 284.06125pt x 255.95625pt>
 File: cpfigs/cube-bal-perio-medit.pdf Graphic file (type pdf)
 
 <use cpfigs/cube-bal-perio-medit.pdf>
@@ -2651,26 +2498,26 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[187]
+[179]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[188 <./cpfigs/cube-bal-perio.pdf> <./cpfigs/cube-bal-perio-medit.pdf>]
+[180 <./cpfigs/cube-bal-perio.pdf> <./cpfigs/cube-bal-perio-medit.pdf>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[189]
+[181]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[190] <cpfigs/rhoP2.pdf, id=3029, 388.45125pt x 388.45125pt>
+[182] <cpfigs/rhoP2.pdf, id=2999, 388.45125pt x 388.45125pt>
 File: cpfigs/rhoP2.pdf Graphic file (type pdf)
 
 <use cpfigs/rhoP2.pdf>
-<cpfigs/ThrhoP2.pdf, id=3030, 388.45125pt x 388.45125pt>
+<cpfigs/ThrhoP2.pdf, id=3000, 388.45125pt x 388.45125pt>
 File: cpfigs/ThrhoP2.pdf Graphic file (type pdf)
 
 <use cpfigs/ThrhoP2.pdf>
@@ -2678,20 +2525,20 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[191]
+[183]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[192 <./cpfigs/rhoP2.pdf> <./cpfigs/ThrhoP2.pdf>]
+[184 <./cpfigs/rhoP2.pdf> <./cpfigs/ThrhoP2.pdf>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[193] <cpfigs/arei-etak.pdf, id=3056, 441.65pt x 441.65pt>
+[185] <cpfigs/arei-etak.pdf, id=3025, 441.65pt x 441.65pt>
 File: cpfigs/arei-etak.pdf Graphic file (type pdf)
 
-<use cpfigs/arei-etak.pdf> <cpfigs/arei-Thu.pdf, id=3057, 441.65pt x 441.65pt>
+<use cpfigs/arei-etak.pdf> <cpfigs/arei-Thu.pdf, id=3026, 441.65pt x 441.65pt>
 File: cpfigs/arei-Thu.pdf Graphic file (type pdf)
 
 <use cpfigs/arei-Thu.pdf>
@@ -2699,13 +2546,13 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[194 <./cpfigs/arei-etak.pdf> <./cpfigs/arei-Thu.pdf>]
+[186 <./cpfigs/arei-etak.pdf> <./cpfigs/arei-Thu.pdf>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[195]
-Overfull \hbox (30.32501pt too wide) in paragraph at lines 10857--10862
+[187]
+Overfull \hbox (30.32501pt too wide) in paragraph at lines 10812--10817
 []\OT1/txr/m/it/10.95 Consider elas-tic box with the un-de-formed par-al-lelepi
 ped shape $[][]\OT1/txr/m/n/10.95 ]0\OML/txmi/m/it/10.95 ; \OT1/txr/m/n/10.95 5
 [\OMS/txsy/m/n/10.95 ^^B\OT1/txr/m/n/10.95 ]0\OML/txmi/m/it/10.95 ; \OT1/txr/m/
@@ -2718,7 +2565,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[196] <plots/beam-3d.jpg, id=3090, 770.88pt x 513.92pt>
+[188] <plots/beam-3d.jpg, id=3060, 770.88pt x 513.92pt>
 File: plots/beam-3d.jpg Graphic file (type jpg)
 
 <use plots/beam-3d.jpg>
@@ -2726,37 +2573,37 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[197]
+[189]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[198 <./plots/beam-3d.jpg>]
+[190 <./plots/beam-3d.jpg>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[199] <cpfigs/1stCOD.pdf, id=3121, 246.9225pt x 182.6825pt>
+[191] <cpfigs/1stCOD.pdf, id=3090, 246.9225pt x 182.6825pt>
 File: cpfigs/1stCOD.pdf Graphic file (type pdf)
 
 <use cpfigs/1stCOD.pdf>
-<cpfigs/1stPhoto.pdf, id=3123, 246.9225pt x 182.6825pt>
+<cpfigs/1stPhoto.pdf, id=3092, 246.9225pt x 182.6825pt>
 File: cpfigs/1stPhoto.pdf Graphic file (type pdf)
 
 <use cpfigs/1stPhoto.pdf>
-Overfull \hbox (1.01553pt too wide) in paragraph at lines 11081--11082
+Overfull \hbox (1.01553pt too wide) in paragraph at lines 11036--11037
  [][] 
  []
 
-<cpfigs/LastCOD.pdf, id=3125, 246.9225pt x 182.6825pt>
+<cpfigs/LastCOD.pdf, id=3094, 246.9225pt x 182.6825pt>
 File: cpfigs/LastCOD.pdf Graphic file (type pdf)
 
 <use cpfigs/LastCOD.pdf>
-<cpfigs/LastPhoto.pdf, id=3127, 246.9225pt x 182.6825pt>
+<cpfigs/LastPhoto.pdf, id=3096, 246.9225pt x 182.6825pt>
 File: cpfigs/LastPhoto.pdf Graphic file (type pdf)
 
 <use cpfigs/LastPhoto.pdf>
-Overfull \hbox (1.01553pt too wide) in paragraph at lines 11085--11086
+Overfull \hbox (1.01553pt too wide) in paragraph at lines 11040--11041
  [][] 
  []
 
@@ -2765,28 +2612,28 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[200 <./cpfigs/1stCOD.pdf> <./cpfigs/1stPhoto.pdf> <./cpfigs/LastCOD.pdf> <./cp
-figs/LastPhoto.pdf>] <cpfigs/1stCOD2.pdf, id=3152, 246.9225pt x 182.6825pt>
+[192 <./cpfigs/1stCOD.pdf> <./cpfigs/1stPhoto.pdf> <./cpfigs/LastCOD.pdf> <./cp
+figs/LastPhoto.pdf>] <cpfigs/1stCOD2.pdf, id=3121, 246.9225pt x 182.6825pt>
 File: cpfigs/1stCOD2.pdf Graphic file (type pdf)
 
 <use cpfigs/1stCOD2.pdf>
-<cpfigs/1stPhoto2.pdf, id=3154, 246.9225pt x 182.6825pt>
+<cpfigs/1stPhoto2.pdf, id=3123, 246.9225pt x 182.6825pt>
 File: cpfigs/1stPhoto2.pdf Graphic file (type pdf)
 
 <use cpfigs/1stPhoto2.pdf>
-Overfull \hbox (1.01553pt too wide) in paragraph at lines 11141--11142
+Overfull \hbox (1.01553pt too wide) in paragraph at lines 11096--11097
  [][] 
  []
 
-<cpfigs/LastCOD2.pdf, id=3156, 246.9225pt x 182.6825pt>
+<cpfigs/LastCOD2.pdf, id=3125, 246.9225pt x 182.6825pt>
 File: cpfigs/LastCOD2.pdf Graphic file (type pdf)
 
 <use cpfigs/LastCOD2.pdf>
-<cpfigs/LastPhoto2.pdf, id=3158, 246.9225pt x 182.6825pt>
+<cpfigs/LastPhoto2.pdf, id=3127, 246.9225pt x 182.6825pt>
 File: cpfigs/LastPhoto2.pdf Graphic file (type pdf)
 
 <use cpfigs/LastPhoto2.pdf>
-Overfull \hbox (1.01553pt too wide) in paragraph at lines 11145--11146
+Overfull \hbox (1.01553pt too wide) in paragraph at lines 11100--11101
  [][] 
  []
 
@@ -2795,32 +2642,32 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[201 <./cpfigs/1stCOD2.pdf> <./cpfigs/1stPhoto2.pdf> <./cpfigs/LastCOD2.pdf> <.
+[193 <./cpfigs/1stCOD2.pdf> <./cpfigs/1stPhoto2.pdf> <./cpfigs/LastCOD2.pdf> <.
 /cpfigs/LastPhoto2.pdf>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[202]
+[194]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[203]
+[195]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[204]
+[196]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[205] <cpfigs/eigen11.pdf, id=3204, 388.45125pt x 388.45125pt>
+[197] <cpfigs/eigen11.pdf, id=3173, 388.45125pt x 388.45125pt>
 File: cpfigs/eigen11.pdf Graphic file (type pdf)
 
 <use cpfigs/eigen11.pdf>
-<cpfigs/eigen12.pdf, id=3206, 388.45125pt x 388.45125pt>
+<cpfigs/eigen12.pdf, id=3175, 388.45125pt x 388.45125pt>
 File: cpfigs/eigen12.pdf Graphic file (type pdf)
 
 <use cpfigs/eigen12.pdf>
@@ -2828,24 +2675,91 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[206 <./cpfigs/eigen11.pdf> <./cpfigs/eigen12.pdf>]
+[198 <./cpfigs/eigen11.pdf> <./cpfigs/eigen12.pdf>]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[199]
+LaTeX Font Info:    Font shape `OT1/txr/b/it' in size <10.95> not available
+(Font)              Font shape `OT1/txr/bx/it' tried instead on input line 1146
+2.
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[200] <cpfigs/err02.pdf, id=3224, 524.96124pt x 373.395pt>
+File: cpfigs/err02.pdf Graphic file (type pdf)
+
+<use cpfigs/err02.pdf>
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[201]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[202 <./cpfigs/err02.pdf>]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[203] <cpfigs/BellInit.pdf, id=3263, 246.9225pt x 182.6825pt>
+File: cpfigs/BellInit.pdf Graphic file (type pdf)
+
+<use cpfigs/BellInit.pdf>
+<cpfigs/BellLast.pdf, id=3265, 246.9225pt x 182.6825pt>
+File: cpfigs/BellLast.pdf Graphic file (type pdf)
+
+<use cpfigs/BellLast.pdf>
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[204 <./cpfigs/BellInit.pdf> <./cpfigs/BellLast.pdf>]
+<cpfigs/BSth.pdf, id=3294, 469.755pt x 460.72125pt>
+File: cpfigs/BSth.pdf Graphic file (type pdf)
+ <use cpfigs/BSth.pdf>
+Overfull \hbox (2.34622pt too wide) in paragraph at lines 11809--11809
+ [] 
+ []
+
+<cpfigs/BSval.pdf, id=3296, 469.755pt x 460.72125pt>
+File: cpfigs/BSval.pdf Graphic file (type pdf)
+ <use cpfigs/BSval.pdf>
+Overfull \hbox (2.34622pt too wide) in paragraph at lines 11809--11809
+ [] 
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[205]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[206 <./cpfigs/BSth.pdf> <./cpfigs/BSval.pdf>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
 [207]
-LaTeX Font Info:    Font shape `OT1/txr/b/it' in size <10.95> not available
-(Font)              Font shape `OT1/txr/bx/it' tried instead on input line 1150
-7.
-
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[208] <cpfigs/err02.pdf, id=3254, 524.96124pt x 373.395pt>
-File: cpfigs/err02.pdf Graphic file (type pdf)
+[208]
+Underfull \hbox (badness 10000) in paragraph at lines 12091--12093
 
-<use cpfigs/err02.pdf>
+ []
+
+
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -2855,49 +2769,33 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[210 <./cpfigs/err02.pdf>]
+[210]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[211] <cpfigs/BellInit.pdf, id=3294, 246.9225pt x 182.6825pt>
-File: cpfigs/BellInit.pdf Graphic file (type pdf)
+[211] <cpfigs/NScahouetChabart.pdf, id=3377, 469.755pt x 460.72125pt>
+File: cpfigs/NScahouetChabart.pdf Graphic file (type pdf)
 
-<use cpfigs/BellInit.pdf>
-<cpfigs/BellLast.pdf, id=3296, 246.9225pt x 182.6825pt>
-File: cpfigs/BellLast.pdf Graphic file (type pdf)
-
-<use cpfigs/BellLast.pdf>
+<use cpfigs/NScahouetChabart.pdf>
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[212 <./cpfigs/BellInit.pdf> <./cpfigs/BellLast.pdf>]
-<cpfigs/BSth.pdf, id=3325, 469.755pt x 460.72125pt>
-File: cpfigs/BSth.pdf Graphic file (type pdf)
- <use cpfigs/BSth.pdf>
-Overfull \hbox (2.34622pt too wide) in paragraph at lines 11854--11854
- [] 
- []
-
-<cpfigs/BSval.pdf, id=3327, 469.755pt x 460.72125pt>
-File: cpfigs/BSval.pdf Graphic file (type pdf)
- <use cpfigs/BSval.pdf>
-Overfull \hbox (2.34622pt too wide) in paragraph at lines 11854--11854
- [] 
- []
-
-
+[212]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[213]
+[213 <./cpfigs/NScahouetChabart.pdf>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[214 <./cpfigs/BSth.pdf> <./cpfigs/BSval.pdf>]
+[214] <cpfigs/schwarz-th.pdf, id=3406, 345.29pt x 345.29pt>
+File: cpfigs/schwarz-th.pdf Graphic file (type pdf)
+
+<use cpfigs/schwarz-th.pdf>
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -2907,17 +2805,32 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[216]
-Underfull \hbox (badness 10000) in paragraph at lines 12136--12138
+[216 <./cpfigs/schwarz-th.pdf>]
+<cpfigs/schwarz-u0.pdf, id=3419, 345.29pt x 345.29pt>
+File: cpfigs/schwarz-u0.pdf Graphic file (type pdf)
 
- []
+<use cpfigs/schwarz-u0.pdf>
+<cpfigs/schwarz-u.pdf, id=3420, 345.29pt x 345.29pt>
+File: cpfigs/schwarz-u.pdf Graphic file (type pdf)
 
+<use cpfigs/schwarz-u.pdf>
+<cpfigs/schwarz-no-th.pdf, id=3421, 345.29pt x 345.29pt>
+File: cpfigs/schwarz-no-th.pdf Graphic file (type pdf)
 
+<use cpfigs/schwarz-no-th.pdf>
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[217]
+[217 <./cpfigs/schwarz-u0.pdf> <./cpfigs/schwarz-u.pdf> <./cpfigs/schwarz-no-th
+.pdf>] <cpfigs/schwarz-no-u0.pdf, id=3435, 345.29pt x 345.29pt>
+File: cpfigs/schwarz-no-u0.pdf Graphic file (type pdf)
+
+<use cpfigs/schwarz-no-u0.pdf>
+<cpfigs/schwarz-no-u.pdf, id=3436, 345.29pt x 345.29pt>
+File: cpfigs/schwarz-no-u.pdf Graphic file (type pdf)
+
+<use cpfigs/schwarz-no-u.pdf>
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -2927,10 +2840,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[219] <cpfigs/NScahouetChabart.pdf, id=3407, 469.755pt x 460.72125pt>
-File: cpfigs/NScahouetChabart.pdf Graphic file (type pdf)
-
-<use cpfigs/NScahouetChabart.pdf>
+[219 <./cpfigs/schwarz-no-u0.pdf> <./cpfigs/schwarz-no-u.pdf>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -2940,15 +2850,28 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[221 <./cpfigs/NScahouetChabart.pdf>]
+[221]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[222] <cpfigs/schwarz-th.pdf, id=3436, 345.29pt x 345.29pt>
-File: cpfigs/schwarz-th.pdf Graphic file (type pdf)
+[222] <cpfigs/fluidstruct1.pdf, id=3468, 469.755pt x 460.72125pt>
+File: cpfigs/fluidstruct1.pdf Graphic file (type pdf)
 
-<use cpfigs/schwarz-th.pdf>
+<use cpfigs/fluidstruct1.pdf>
+<cpfigs/fluidstruct2.pdf, id=3469, 421.575pt x 110.4125pt>
+File: cpfigs/fluidstruct2.pdf Graphic file (type pdf)
+
+<use cpfigs/fluidstruct2.pdf>
+<cpfigs/fluidstruct3.pdf, id=3470, 427.5975pt x 99.37125pt>
+File: cpfigs/fluidstruct3.pdf Graphic file (type pdf)
+
+<use cpfigs/fluidstruct3.pdf>
+Overfull \hbox (298.75394pt too wide) detected at line 12952
+[][][]
+ []
+
+
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -2958,87 +2881,11 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[224 <./cpfigs/schwarz-th.pdf>]
-<cpfigs/schwarz-u0.pdf, id=3450, 345.29pt x 345.29pt>
-File: cpfigs/schwarz-u0.pdf Graphic file (type pdf)
-
-<use cpfigs/schwarz-u0.pdf>
-<cpfigs/schwarz-u.pdf, id=3451, 345.29pt x 345.29pt>
-File: cpfigs/schwarz-u.pdf Graphic file (type pdf)
-
-<use cpfigs/schwarz-u.pdf>
-<cpfigs/schwarz-no-th.pdf, id=3452, 345.29pt x 345.29pt>
-File: cpfigs/schwarz-no-th.pdf Graphic file (type pdf)
-
-<use cpfigs/schwarz-no-th.pdf>
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[225 <./cpfigs/schwarz-u0.pdf> <./cpfigs/schwarz-u.pdf> <./cpfigs/schwarz-no-th
-.pdf>] <cpfigs/schwarz-no-u0.pdf, id=3465, 345.29pt x 345.29pt>
-File: cpfigs/schwarz-no-u0.pdf Graphic file (type pdf)
-
-<use cpfigs/schwarz-no-u0.pdf>
-<cpfigs/schwarz-no-u.pdf, id=3466, 345.29pt x 345.29pt>
-File: cpfigs/schwarz-no-u.pdf Graphic file (type pdf)
-
-<use cpfigs/schwarz-no-u.pdf>
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[226]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[227 <./cpfigs/schwarz-no-u0.pdf> <./cpfigs/schwarz-no-u.pdf>]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[228]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[229]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[230] <cpfigs/fluidstruct1.pdf, id=3499, 469.755pt x 460.72125pt>
-File: cpfigs/fluidstruct1.pdf Graphic file (type pdf)
-
-<use cpfigs/fluidstruct1.pdf>
-<cpfigs/fluidstruct2.pdf, id=3500, 421.575pt x 110.4125pt>
-File: cpfigs/fluidstruct2.pdf Graphic file (type pdf)
-
-<use cpfigs/fluidstruct2.pdf>
-<cpfigs/fluidstruct3.pdf, id=3501, 427.5975pt x 99.37125pt>
-File: cpfigs/fluidstruct3.pdf Graphic file (type pdf)
-
-<use cpfigs/fluidstruct3.pdf>
-Overfull \hbox (298.75394pt too wide) detected at line 12997
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[231]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[232 <./cpfigs/fluidstruct1.pdf> <./cpfigs/fluidstruct2.pdf> <./cpfigs/fluidstr
-uct3.pdf>] <cpfigs/region.pdf, id=3526, 345.29pt x 345.29pt>
+[224 <./cpfigs/fluidstruct1.pdf> <./cpfigs/fluidstruct2.pdf> <./cpfigs/fluidstr
+uct3.pdf>] <cpfigs/region.pdf, id=3496, 345.29pt x 345.29pt>
 File: cpfigs/region.pdf Graphic file (type pdf)
 
-<use cpfigs/region.pdf> <cpfigs/region_nu.pdf, id=3528, 345.29pt x 345.29pt>
+<use cpfigs/region.pdf> <cpfigs/region_nu.pdf, id=3498, 345.29pt x 345.29pt>
 File: cpfigs/region_nu.pdf Graphic file (type pdf)
 
 <use cpfigs/region_nu.pdf>
@@ -3046,15 +2893,15 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[233 <./cpfigs/region.pdf> <./cpfigs/region_nu.pdf>]
-<cpfigs/region_u.pdf, id=3548, 345.29pt x 345.29pt>
+[225 <./cpfigs/region.pdf> <./cpfigs/region_nu.pdf>]
+<cpfigs/region_u.pdf, id=3518, 345.29pt x 345.29pt>
 File: cpfigs/region_u.pdf Graphic file (type pdf)
  <use cpfigs/region_u.pdf>
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[234 <./cpfigs/region_u.pdf>] <cpfigs/dTh.pdf, id=3561, 355.3275pt x 76.285pt>
+[226 <./cpfigs/region_u.pdf>] <cpfigs/dTh.pdf, id=3531, 355.3275pt x 76.285pt>
 File: cpfigs/dTh.pdf Graphic file (type pdf)
 
 <use cpfigs/dTh.pdf>
@@ -3062,27 +2909,27 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[235 <./cpfigs/dTh.pdf>]
+[227 <./cpfigs/dTh.pdf>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[236] <cpfigs/d_u.pdf, id=3575, 354.32375pt x 77.28876pt>
+[228] <cpfigs/d_u.pdf, id=3544, 354.32375pt x 77.28876pt>
 File: cpfigs/d_u.pdf Graphic file (type pdf)
  <use cpfigs/d_u.pdf>
-<cpfigs/d_Thf.pdf, id=3576, 355.3275pt x 78.2925pt>
+<cpfigs/d_Thf.pdf, id=3545, 355.3275pt x 78.2925pt>
 File: cpfigs/d_Thf.pdf Graphic file (type pdf)
  <use cpfigs/d_Thf.pdf>
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[237 <./cpfigs/d_u.pdf> <./cpfigs/d_Thf.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 13315--13316
+[229 <./cpfigs/d_u.pdf> <./cpfigs/d_Thf.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 13270--13271
 
  []
 
-<cpfigs/nl-elas.pdf, id=3587, 359.3425pt x 126.4725pt>
+<cpfigs/nl-elas.pdf, id=3557, 359.3425pt x 126.4725pt>
 File: cpfigs/nl-elas.pdf Graphic file (type pdf)
 
 <use cpfigs/nl-elas.pdf>
@@ -3090,18 +2937,18 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[238]
+[230]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[239 <./cpfigs/nl-elas.pdf>]
+[231 <./cpfigs/nl-elas.pdf>]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[240]
-Overfull \hbox (5.98845pt too wide) in paragraph at lines 13445--13445
+[232]
+Overfull \hbox (5.98845pt too wide) in paragraph at lines 13400--13400
 []\OT1/txr/bx/n/17.28 Compressible Neo-Hookean Ma-te-ri-als: Com-pu-ta-tional S
 o-
  []
@@ -3109,10 +2956,77 @@ o-
 
 Overfull \hbox (2.5114pt too wide) has occurred while \output is active
 [][]\OT1/txr/m/sl/12 9.13.  COMPRESSIBLE NEO-HOOKEAN MATERIALS: COMPUTATIONAL S
-OLUTIONS \OT1/txr/m/n/12 241
+OLUTIONS \OT1/txr/m/n/12 233
  []
 
 
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[233]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[234]
+Overfull \hbox (2.5114pt too wide) has occurred while \output is active
+[][]\OT1/txr/m/sl/12 9.13.  COMPRESSIBLE NEO-HOOKEAN MATERIALS: COMPUTATIONAL S
+OLUTIONS \OT1/txr/m/n/12 235
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[235]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[236
+
+]
+Chapter 10.
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[237]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[238]
+Overfull \hbox (10.56522pt too wide) in paragraph at lines 13864--13868
+\OT1/txtt/m/n/10.95 int[int,int]\OT1/txr/m/n/10.95 , \OT1/txtt/m/n/10.95 double
+[int,int]\OT1/txr/m/n/10.95 , \OT1/txtt/m/n/10.95 complex[int,int]\OT1/txr/m/n/
+10.95 , \OT1/txtt/m/n/10.95 mesh\OT1/txr/m/n/10.95 , \OT1/txtt/m/n/10.95 mesh3\
+OT1/txr/m/n/10.95 , \OT1/txtt/m/n/10.95 mesh[int]\OT1/txr/m/n/10.95 , \OT1/txtt
+/m/n/10.95 mesh3[int]\OT1/txr/m/n/10.95 , \OT1/txtt/m/n/10.95 matrix\OT1/txr/m/
+n/10.95 ,
+ []
+
+
+Overfull \hbox (0.61194pt too wide) in paragraph at lines 13886--13889
+[]\OT1/txr/m/n/10.95 See the \OT1/txtt/m/n/10.95 examples++-mpi/essai.edp \OT1/
+txr/m/n/10.95 to test of all this func-tion-al-ity and Thank, to Guy-Antoine At
+enekeng
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[239]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[240]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -3123,10 +3037,8 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [242]
-Overfull \hbox (2.5114pt too wide) has occurred while \output is active
-[][]\OT1/txr/m/sl/12 9.13.  COMPRESSIBLE NEO-HOOKEAN MATERIALS: COMPUTATIONAL S
-OLUTIONS \OT1/txr/m/n/12 243
- []
+
+LaTeX Warning: Citation `metis' on page 243 undefined on input line 14139.
 
 
 Underfull \hbox (badness 10000) has occurred while \output is active
@@ -3138,41 +3050,10 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[244
-
-]
-Chapter 10.
-
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[245]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[246]
-Overfull \hbox (0.61194pt too wide) in paragraph at lines 13931--13934
-[]\OT1/txr/m/n/10.95 See the \OT1/txtt/m/n/10.95 examples++-mpi/essai.edp \OT1/
-txr/m/n/10.95 to test of all this func-tion-al-ity and Thank, to Guy-Antoine At
-enekeng
- []
-
-
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[247]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[248]
+[244]
 Chapter 11.
 
-Overfull \hbox (6.38213pt too wide) in paragraph at lines 14039--14045
+Overfull \hbox (6.38213pt too wide) in paragraph at lines 14267--14273
 \OT1/txr/m/n/10.95 ex-am-ple to use MUMPS solver as par-al-lel solver in FreeFe
 m, write in the .edp file \OT1/txr/bx/n/10.95 load "MUMPS[]FreeFem"\OT1/txr/m/n
 /10.95 . 
@@ -3183,102 +3064,102 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[249
+[245
 
 ]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[250]
+[246]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[251]
+[247]
 
-LaTeX Warning: Citation `mumpspubl1' on page 252 undefined on input line 14189.
-
-
-
-LaTeX Warning: Citation `mumpspubl2' on page 252 undefined on input line 14189.
+LaTeX Warning: Citation `mumpspubl1' on page 248 undefined on input line 14417.
 
 
 
-LaTeX Warning: Citation `mumpspubl3' on page 252 undefined on input line 14189.
+LaTeX Warning: Citation `mumpspubl2' on page 248 undefined on input line 14417.
 
 
 
-LaTeX Warning: Citation `mumpspubl1' on page 252 undefined on input line 14191.
+LaTeX Warning: Citation `mumpspubl3' on page 248 undefined on input line 14417.
 
 
 
-LaTeX Warning: Citation `blas1' on page 252 undefined on input line 14192.
+LaTeX Warning: Citation `mumpspubl1' on page 248 undefined on input line 14419.
 
 
-LaTeX Warning: Citation `blas2' on page 252 undefined on input line 14192.
+
+LaTeX Warning: Citation `blas1' on page 248 undefined on input line 14420.
 
 
-LaTeX Warning: Citation `scalapackuserguide' on page 252 undefined on input lin
-e 14192.
+LaTeX Warning: Citation `blas2' on page 248 undefined on input line 14420.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 14194--14195
+LaTeX Warning: Citation `scalapackuserguide' on page 248 undefined on input lin
+e 14420.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 14422--14423
 
  []
 
 
-LaTeX Warning: Citation `mpi' on page 252 undefined on input line 14200.
+LaTeX Warning: Citation `mpi' on page 248 undefined on input line 14428.
 
 
-LaTeX Warning: Citation `blas1' on page 252 undefined on input line 14200.
+LaTeX Warning: Citation `blas1' on page 248 undefined on input line 14428.
 
 
-LaTeX Warning: Citation `blas2' on page 252 undefined on input line 14200.
+LaTeX Warning: Citation `blas2' on page 248 undefined on input line 14428.
 
 
-LaTeX Warning: Citation `scalapackuserguide' on page 252 undefined on input lin
-e 14201.
+LaTeX Warning: Citation `scalapackuserguide' on page 248 undefined on input lin
+e 14429.
 
 
-LaTeX Warning: Citation `mumpsuserguide' on page 252 undefined on input line 14
-231.
+LaTeX Warning: Citation `mumpsuserguide' on page 248 undefined on input line 14
+459.
 
 
-LaTeX Warning: Citation `mumpsuserguide' on page 252 undefined on input line 14
-234.
+LaTeX Warning: Citation `mumpsuserguide' on page 248 undefined on input line 14
+462.
 
 
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[252]
-Underfull \hbox (badness 10000) in paragraph at lines 14236--14237
+[248]
+Underfull \hbox (badness 10000) in paragraph at lines 14464--14465
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 14245--14246
+Underfull \hbox (badness 10000) in paragraph at lines 14473--14474
 
  []
 
 
-LaTeX Warning: Citation `mumpsuserguide' on page 253 undefined on input line 14
-254.
+LaTeX Warning: Citation `mumpsuserguide' on page 249 undefined on input line 14
+482.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 14270--14272
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 14284--14286
+Underfull \hbox (badness 10000) in paragraph at lines 14498--14500
 
  []
 
 
-Overfull \hbox (18.77812pt too wide) in paragraph at lines 14288--14288
+Underfull \hbox (badness 10000) in paragraph at lines 14512--14514
+
+ []
+
+
+Overfull \hbox (18.77812pt too wide) in paragraph at lines 14516--14516
 []\OT1/txtt/m/n/10 0          /* SYM :: 0 for non symmetric matrix, 1 for symme
 tric definite positive matrix and
  []
@@ -3288,62 +3169,62 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[253]
-Overfull \hbox (18.77812pt too wide) in paragraph at lines 14289--14289
+[249]
+Overfull \hbox (18.77812pt too wide) in paragraph at lines 14517--14517
 []\OT1/txtt/m/n/10 1          /* PAR :: 0 host not working during factorization
  and solves steps, 1 host working
  []
 
 
-Overfull \hbox (13.52814pt too wide) in paragraph at lines 14295--14295
+Overfull \hbox (13.52814pt too wide) in paragraph at lines 14523--14523
 [] \OT1/txtt/m/n/10 7         /* ICNTL(6) :: control option for permuting and/o
 r scaling the matrix in analysis
  []
 
 
-Overfull \hbox (29.27809pt too wide) in paragraph at lines 14298--14298
+Overfull \hbox (29.27809pt too wide) in paragraph at lines 14526--14526
 [] \OT1/txtt/m/n/10 1         /* ICNTL(9) :: 0 solve Ax = b, 1 solve the transp
 osed system  A^t x = b :  parameter
  []
 
 
-Overfull \hbox (18.77812pt too wide) in paragraph at lines 14303--14303
+Overfull \hbox (18.77812pt too wide) in paragraph at lines 14531--14531
 [] \OT1/txtt/m/n/10 20        /* ICNTL(14) :: percentage increase in the estima
 ted working space (default 20%)*/[] 
  []
 
 
-Overfull \hbox (3.02817pt too wide) in paragraph at lines 14309--14309
+Overfull \hbox (3.02817pt too wide) in paragraph at lines 14537--14537
 [] \OT1/txtt/m/n/10 0         /* ICNTL(20) :: right hand side form ( 0 dense fo
 rm, 1 sparse form) : parameter
  []
 
 
-Overfull \hbox (3.02817pt too wide) in paragraph at lines 14310--14310
+Overfull \hbox (3.02817pt too wide) in paragraph at lines 14538--14538
 [] \OT1/txtt/m/n/10 0         /* ICNTL(21) :: 0, 1 kept distributed solution : 
 parameter is not considered in
  []
 
 
-Overfull \hbox (39.77806pt too wide) in paragraph at lines 14312--14312
+Overfull \hbox (39.77806pt too wide) in paragraph at lines 14540--14540
 [] \OT1/txtt/m/n/10 0         /* ICNTL(23) :: maximum size of the working memor
 y in Megabyte than MUMPS can allocate
  []
 
 
-Overfull \hbox (3.02817pt too wide) in paragraph at lines 14315--14315
+Overfull \hbox (3.02817pt too wide) in paragraph at lines 14543--14543
 [] \OT1/txtt/m/n/10 0         /* ICNTL(26) :: This parameter is only significan
 t with Schur option (ICNTL(19)
  []
 
 
-Overfull \hbox (8.27815pt too wide) in paragraph at lines 14316--14316
+Overfull \hbox (8.27815pt too wide) in paragraph at lines 14544--14544
 [] \OT1/txtt/m/n/10 -8        /* ICNTL(27) (Experimental parameter subject to c
 hange in next release of MUMPS)
  []
 
 
-Overfull \hbox (34.52808pt too wide) in paragraph at lines 14316--14316
+Overfull \hbox (34.52808pt too wide) in paragraph at lines 14544--14544
 \OT1/txtt/m/n/10 :: control the blocking factor for multiple righthand side dur
 ing the solution phase : parameter
  []
@@ -3353,28 +3234,28 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[254]
+[250]
 
-LaTeX Warning: Citation `slu2' on page 255 undefined on input line 14356.
-
-
-LaTeX Warning: Citation `slu1' on page 255 undefined on input line 14356.
+LaTeX Warning: Citation `slu2' on page 251 undefined on input line 14584.
 
 
-LaTeX Warning: Citation `slu1' on page 255 undefined on input line 14358.
+LaTeX Warning: Citation `slu1' on page 251 undefined on input line 14584.
 
 
-LaTeX Warning: Citation `slu2' on page 255 undefined on input line 14358.
+LaTeX Warning: Citation `slu1' on page 251 undefined on input line 14586.
 
 
-Overfull \hbox (19.81438pt too wide) in paragraph at lines 14364--14368
+LaTeX Warning: Citation `slu2' on page 251 undefined on input line 14586.
+
+
+Overfull \hbox (19.81438pt too wide) in paragraph at lines 14592--14596
  \OT1/txr/bx/n/12 In-stal-la-tion of Su-perLU[]DIST:[] \OT1/txr/m/n/10.95 To us
 e Su-perLU[]DIST in \OT1/txtt/m/n/10.95 FreeFem++ \OT1/txr/m/n/10.95 , you have
  to in-stall Su-perLU[]DIST
  []
 
 
-Overfull \hbox (11.5206pt too wide) in paragraph at lines 14381--14382
+Overfull \hbox (11.5206pt too wide) in paragraph at lines 14609--14610
  \OT1/txr/bx/n/12 Su-perLU[]DIST pa-ram-e-ters: [] \OT1/txr/m/n/10.95 We de-scr
 ibe now some pa-ram-e-ters of Su-perLU[]DIST. The Su-perLU[]DIST
  []
@@ -3384,33 +3265,33 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[255]
+[251]
 
-LaTeX Warning: Citation `sluuserguide' on page 256 undefined on input line 1439
-0.
-
-
-LaTeX Warning: Citation `parmetis' on page 256 undefined on input line 14400.
+LaTeX Warning: Citation `sluuserguide' on page 252 undefined on input line 1461
+8.
 
 
-Overfull \hbox (10.72989pt too wide) in paragraph at lines 14405--14407
+LaTeX Warning: Citation `parmetis' on page 252 undefined on input line 14628.
+
+
+Overfull \hbox (10.72989pt too wide) in paragraph at lines 14633--14635
 \OT1/txr/m/n/10.95 li-brary dy-namic cor-re-spond to in-ter-face. This done by 
 the fol-low-ing line \OT1/txr/bx/n/10.95 load "real[]superlu []DIST[]FreeFem"
  []
 
 
-Overfull \hbox (15.90697pt too wide) in paragraph at lines 14411--14419
+Overfull \hbox (15.90697pt too wide) in paragraph at lines 14639--14647
 [] \OT1/txr/m/n/10.95 This value
  []
 
 
-Overfull \hbox (13.52814pt too wide) in paragraph at lines 14428--14428
+Overfull \hbox (13.52814pt too wide) in paragraph at lines 14656--14656
 []\OT1/txtt/m/n/10 DOFACT                  /* Fact  : DOFACT, SamePattern, Same
 Pattern_SameRowPerm, FACTORED */[] 
  []
 
 
-Overfull \hbox (34.52808pt too wide) in paragraph at lines 14431--14431
+Overfull \hbox (34.52808pt too wide) in paragraph at lines 14659--14659
 []\OT1/txtt/m/n/10 MMD_AT_PLUS_A  /* ColPerm : NATURAL, MMD_AT_PLUS_A, MMD_ATA,
  METIS_AT_PLUS_A, PARMETIS, MY_PERMC
  []
@@ -3420,29 +3301,29 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[256]
+[252]
 
-LaTeX Warning: Citation `pastix' on page 257 undefined on input line 14452.
-
-
-LaTeX Warning: Citation `scotch' on page 257 undefined on input line 14456.
+LaTeX Warning: Citation `pastix' on page 253 undefined on input line 14680.
 
 
-LaTeX Warning: Citation `metis' on page 257 undefined on input line 14456.
+LaTeX Warning: Citation `scotch' on page 253 undefined on input line 14684.
 
 
-Overfull \hbox (7.40103pt too wide) in paragraph at lines 14469--14470
+LaTeX Warning: Citation `metis' on page 253 undefined on input line 14684.
+
+
+Overfull \hbox (7.40103pt too wide) in paragraph at lines 14697--14698
 []\OT1/txr/m/n/10.95 Now we give a short de-scrip-tion of pastix pa-ram-e-ters 
 be-fore de-scrib-ing the method to call pastix in \OT1/txtt/m/n/10.95 FreeFem++
 
  []
 
 
-LaTeX Warning: Citation `pastixrefcard' on page 257 undefined on input line 144
-74.
+LaTeX Warning: Citation `pastixrefcard' on page 253 undefined on input line 147
+02.
 
 
-Overfull \hbox (42.50719pt too wide) in paragraph at lines 14473--14477
+Overfull \hbox (42.50719pt too wide) in paragraph at lines 14701--14705
  \OT1/txr/bx/n/12 Pastix pa-ram-e-ters: [] \OT1/txr/m/n/10.95 The in-put \OT1/t
 xtt/m/n/10.95 matrix \OT1/txr/m/n/10.95 pa-ram-e-ter of \OT1/txtt/m/n/10.95 Fre
 eFem++ \OT1/txr/m/n/10.95 de-pend on pastix in-ter-face. \OT1/txtt/m/n/10.95 ma
@@ -3450,7 +3331,7 @@ trix\OT1/txr/m/n/10.95 =assembled
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 14480--14481
+Underfull \hbox (badness 10000) in paragraph at lines 14708--14709
 
  []
 
@@ -3459,101 +3340,101 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[257]
-Underfull \hbox (badness 10000) in paragraph at lines 14505--14507
+[253]
+Underfull \hbox (badness 10000) in paragraph at lines 14733--14735
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 14511--14513
+Underfull \hbox (badness 10000) in paragraph at lines 14739--14741
 
  []
 
 
-LaTeX Warning: Citation `spARMS' on page 258 undefined on input line 14533.
+LaTeX Warning: Citation `spARMS' on page 254 undefined on input line 14761.
 
 
-LaTeX Warning: Citation `HIPS' on page 258 undefined on input line 14533.
+LaTeX Warning: Citation `HIPS' on page 254 undefined on input line 14761.
 
 
-LaTeX Warning: Citation `HYPRE' on page 258 undefined on input line 14534.
+LaTeX Warning: Citation `HYPRE' on page 254 undefined on input line 14762.
 
 
-LaTeX Warning: Citation `CAI89' on page 258 undefined on input line 14537.
+LaTeX Warning: Citation `CAI89' on page 254 undefined on input line 14765.
 
 
-LaTeX Warning: Citation `LISAAD' on page 258 undefined on input line 14538.
+LaTeX Warning: Citation `LISAAD' on page 254 undefined on input line 14766.
 
 
-LaTeX Warning: Citation `A:LaBRI::sisc06' on page 258 undefined on input line 1
-4539.
+LaTeX Warning: Citation `A:LaBRI::sisc06' on page 254 undefined on input line 1
+4767.
 
 
-LaTeX Warning: Citation `A:AMG::sisc00' on page 258 undefined on input line 145
-42.
+LaTeX Warning: Citation `A:AMG::sisc00' on page 254 undefined on input line 147
+70.
 
 
-LaTeX Warning: Citation `A:PASA::sisc00' on page 258 undefined on input line 14
-542.
+LaTeX Warning: Citation `A:PASA::sisc00' on page 254 undefined on input line 14
+770.
 
 
-LaTeX Warning: Citation `metis' on page 258 undefined on input line 14549.
+LaTeX Warning: Citation `metis' on page 254 undefined on input line 14777.
 
 
-LaTeX Warning: Citation `scotch' on page 258 undefined on input line 14549.
+LaTeX Warning: Citation `scotch' on page 254 undefined on input line 14777.
 
 
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[258]
+[254]
 
-LaTeX Warning: Citation `spARMS' on page 259 undefined on input line 14571.
-
-
-LaTeX Warning: Citation `SAAD03' on page 259 undefined on input line 14576.
+LaTeX Warning: Citation `spARMS' on page 255 undefined on input line 14799.
 
 
-LaTeX Warning: Citation `CAI89' on page 259 undefined on input line 14578.
+LaTeX Warning: Citation `SAAD03' on page 255 undefined on input line 14804.
 
 
-LaTeX Warning: Citation `LISAAD' on page 259 undefined on input line 14579.
+LaTeX Warning: Citation `CAI89' on page 255 undefined on input line 14806.
 
 
-LaTeX Warning: Citation `Smith96' on page 259 undefined on input line 14589.
+LaTeX Warning: Citation `LISAAD' on page 255 undefined on input line 14807.
 
 
-LaTeX Warning: Citation `spARMS' on page 259 undefined on input line 14599.
+LaTeX Warning: Citation `Smith96' on page 255 undefined on input line 14817.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 14605--14610
+LaTeX Warning: Citation `spARMS' on page 255 undefined on input line 14827.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 14833--14838
 
  []
 
 LaTeX Font Info:    Font shape `OT1/txr/b/n' in size <8> not available
-(Font)              Font shape `OT1/txr/bx/n' tried instead on input line 14614
+(Font)              Font shape `OT1/txr/bx/n' tried instead on input line 14842
 .
 LaTeX Font Info:    Font shape `OT1/txr/b/n' in size <6> not available
-(Font)              Font shape `OT1/txr/bx/n' tried instead on input line 14614
+(Font)              Font shape `OT1/txr/bx/n' tried instead on input line 14842
 .
 
-LaTeX Warning: Citation `ufreefem' on page 259 undefined on input line 14630.
+LaTeX Warning: Citation `ufreefem' on page 255 undefined on input line 14858.
 
 
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[259]
+[255]
 
-LaTeX Warning: Citation `SAAD03' on page 260 undefined on input line 14664.
-
-
-LaTeX Warning: Citation `CAI89' on page 260 undefined on input line 14666.
+LaTeX Warning: Citation `SAAD03' on page 256 undefined on input line 14892.
 
 
-Overfull \hbox (0.54637pt too wide) in paragraph at lines 14661--14675
+LaTeX Warning: Citation `CAI89' on page 256 undefined on input line 14894.
+
+
+Overfull \hbox (0.54637pt too wide) in paragraph at lines 14889--14903
 \OT1/txr/bx/n/10.95 preconditionner\OT1/txr/m/n/10.95 =Restricted Ad-di-tif Sch
 warz [[]], \OT1/txr/bx/n/10.95 In-ner Krylov di-men-sion\OT1/txr/m/n/10.95 =5, 
 \OT1/txr/bx/n/10.95 Max-i-mum of in-ner Krylov
@@ -3564,8 +3445,8 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[260]
-Overfull \hbox (4.42159pt too wide) in paragraph at lines 14793--14824
+[256]
+Overfull \hbox (4.42159pt too wide) in paragraph at lines 15021--15052
 [][] 
  []
 
@@ -3574,20 +3455,20 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[261]
+[257]
 
-LaTeX Warning: Citation `A:LaBRI::sisc06' on page 262 undefined on input line 1
-4893.
-
-
-LaTeX Warning: Citation `A:LaBRI::HRR07' on page 262 undefined on input line 14
-893.
+LaTeX Warning: Citation `A:LaBRI::sisc06' on page 258 undefined on input line 1
+5121.
 
 
-LaTeX Warning: Citation `HIPS' on page 262 undefined on input line 14895.
+LaTeX Warning: Citation `A:LaBRI::HRR07' on page 258 undefined on input line 15
+121.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 14905--14909
+LaTeX Warning: Citation `HIPS' on page 258 undefined on input line 15123.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15133--15137
 
  []
 
@@ -3596,34 +3477,78 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[262]
+[258]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[263]
+[259]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[264]
+[260]
 
-LaTeX Warning: Citation `HYPRE' on page 265 undefined on input line 15100.
+LaTeX Warning: Citation `HYPRE' on page 261 undefined on input line 15328.
 
 
-Overfull \hbox (5.30411pt too wide) in paragraph at lines 15106--15118
+Overfull \hbox (5.30411pt too wide) in paragraph at lines 15334--15346
 []\OT1/txr/m/n/10.95 Now, sup-pose we want to solve $[][]\OML/txmi/m/it/10.95 A
 x \OT1/txr/m/n/10.95 = \OML/txmi/m/it/10.95 b$\OT1/txr/m/n/10.95 . At the heart
  of AMG there is a se-ries of pro-gres-sively coarser(smaller)
  []
 
 
-LaTeX Warning: Citation `chow' on page 265 undefined on input line 15123.
+LaTeX Warning: Citation `chow' on page 261 undefined on input line 15351.
 
 
-LaTeX Warning: Citation `HYPRE' on page 265 undefined on input line 15128.
+LaTeX Warning: Citation `HYPRE' on page 261 undefined on input line 15356.
 
 
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[261]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[262]
+Underfull \hbox (badness 10000) in paragraph at lines 15397--15402
+
+ []
+
+
+LaTeX Warning: Reference `hyprelabel' on page 263 undefined on input line 15403
+.
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[263]
+Overfull \hbox (15.82156pt too wide) in paragraph at lines 15454--15492
+[][] 
+ []
+
+
+Overfull \hbox (9.82156pt too wide) in paragraph at lines 15531--15549
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15616--15619
+
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[264]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -3634,61 +3559,17 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [266]
-Underfull \hbox (badness 10000) in paragraph at lines 15169--15174
+Underfull \hbox (badness 10000) in paragraph at lines 15620--15625
 
  []
 
 
-LaTeX Warning: Reference `hyprelabel' on page 267 undefined on input line 15175
-.
-
-
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[267]
-Overfull \hbox (15.82156pt too wide) in paragraph at lines 15226--15264
-[][] 
- []
-
-
-Overfull \hbox (9.82156pt too wide) in paragraph at lines 15303--15321
-[][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 15388--15391
+Underfull \hbox (badness 10000) in paragraph at lines 15628--15631
 
  []
 
 
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[268]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[269]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[270]
-Underfull \hbox (badness 10000) in paragraph at lines 15392--15397
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 15400--15403
-
- []
-
-
-Overfull \hbox (8.39763pt too wide) in paragraph at lines 15404--15406
+Overfull \hbox (8.39763pt too wide) in paragraph at lines 15632--15634
 []\OT1/txr/bx/n/10.95 mpiComm cc(mpiGroup gp)\OT1/txr/m/n/10.95 : Same as pre-v
 i-ous con-struc-tor but de-fault \OT1/txr/m/it/10.95 comm \OT1/txr/m/n/10.95 he
 re is MPI[]COMM[]WORLD. 
@@ -3699,55 +3580,87 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[271]
-Overfull \hbox (2.76926pt too wide) in paragraph at lines 15473--15475
+[267]
+Overfull \hbox (2.76926pt too wide) in paragraph at lines 15701--15703
 []\OT1/txr/bx/n/10.95 processorblock(int rk, mpi-Comm cc) \OT1/txr/m/n/10.95 : 
 This func-tion is ex-actlly the same than \OT1/txr/bx/n/10.95 pro-ces-sor(int r
 k,mpiComm
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 15507--15511
+Underfull \hbox (badness 10000) in paragraph at lines 15735--15739
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 15516--15518
+Underfull \hbox (badness 10000) in paragraph at lines 15744--15746
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 15520--15523
+Underfull \hbox (badness 10000) in paragraph at lines 15748--15751
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 15525--15528
+Underfull \hbox (badness 10000) in paragraph at lines 15753--15756
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 15530--15533
+Underfull \hbox (badness 10000) in paragraph at lines 15758--15761
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 15535--15538
+Underfull \hbox (badness 10000) in paragraph at lines 15763--15766
 
  []
 
 
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[268]
+Underfull \hbox (badness 10000) in paragraph at lines 15767--15770
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15773--15776
+
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[269]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[270]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[271]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
 [272]
-Underfull \hbox (badness 10000) in paragraph at lines 15539--15542
+Chapter 12.
+
+Underfull \hbox (badness 10000) in paragraph at lines 16040--16042
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 15545--15548
+Underfull \hbox (badness 10000) in paragraph at lines 16064--16066
 
  []
 
@@ -3756,7 +3669,19 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[273]
+[273
+
+]
+Underfull \hbox (badness 10000) detected at line 16080
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 16087
+[][]
+ []
+
+
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -3772,40 +3697,24 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [276]
-Chapter 12.
-
-Underfull \hbox (badness 10000) in paragraph at lines 15812--15814
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 15836--15838
-
- []
-
-
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[277
+[277]
+\openout2 = `addfe.aux'.
+
+ (./addfe.tex
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[278
+
 
 ]
-Underfull \hbox (badness 10000) detected at line 15852
-[][]
- []
+Chapter 13.
 
-
-Underfull \hbox (badness 10000) detected at line 15859
-[][]
- []
-
-
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[278]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -3821,34 +3730,39 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [281]
-\openout2 = `addfe.aux'.
-
- (./addfe.tex
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[282
-
-
-]
-Chapter 13.
-
+[282]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[283]
+[283])
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
 [284]
+Appendix A.
+
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[285]
+[285
+
+
+]
+
+LaTeX Warning: Reference `sec:One Variable Functions' on page 286 undefined on 
+input line 16295.
+
+LaTeX Font Info:    Font shape `TS1/txr/b/n' in size <12> not available
+(Font)              Font shape `TS1/txr/bx/n' tried instead on input line 16317
+.
+
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -3858,13 +3772,13 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[287])
+[287]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
 [288]
-Appendix A.
+Appendix B.
 
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
@@ -3872,13 +3786,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [289
 
-
 ]
-
-LaTeX Warning: Reference `sec:One Variable Functions' on page 290 undefined on 
-input line 16067.
-
-
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -3894,30 +3802,6 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [292]
-Appendix B.
-
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[293
-
-]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[294]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[295]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[296]
 Underfull \vbox (badness 2735) has occurred while \output is active []
 
 
@@ -3925,7 +3809,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[297]
+[293]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -3933,8 +3817,45 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[298]
+[294]
 Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[295]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[296]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[297]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[298
+
+]
+Appendix C.
+LaTeX Font Info:    Font shape `OT1/txtt/m/it' in size <12> not available
+(Font)              Font shape `OT1/txtt/m/sl' tried instead on input line 1708
+1.
+
+Overfull \hbox (3.95332pt too wide) in paragraph at lines 17094--17102
+[]\OT1/txr/bx/n/12 The com-pi-la-tion of your mod-ule\OT1/txr/m/n/12 : the scri
+pt \OT1/txtt/m/n/12 ff-c++ \OT1/txr/m/n/12 com-piles and makes the link with \O
+T1/txtt/m/n/12 FreeFem++\OT1/txr/m/n/12 ,
+ []
 
 
 Underfull \hbox (badness 10000) has occurred while \output is active
@@ -3942,9 +3863,6 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [299]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -3959,44 +3877,13 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[302
-
-]
-Appendix C.
-
-Overfull \hbox (3.95332pt too wide) in paragraph at lines 16866--16874
-[]\OT1/txr/bx/n/12 The com-pi-la-tion of your mod-ule\OT1/txr/m/n/12 : the scri
-pt \OT1/txtt/m/n/12 ff-c++ \OT1/txr/m/n/12 com-piles and makes the link with \O
-T1/txtt/m/n/12 FreeFem++\OT1/txr/m/n/12 ,
- []
-
-
+[302]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
 [303]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[304]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[305]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[306]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[307]
-Overfull \hbox (13.52814pt too wide) in paragraph at lines 17132--17132
+Overfull \hbox (13.52814pt too wide) in paragraph at lines 17360--17360
 []\OT1/txtt/m/n/10 ----------CheckPtr:-----end execution -- ------ NbUndelPtr  
 2815  Alloc: 111320  NbPtr 26950[] 
  []
@@ -4006,8 +3893,8 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[308]
-Overfull \hbox (6.77873pt too wide) in paragraph at lines 17194--17194
+[304]
+Overfull \hbox (6.77873pt too wide) in paragraph at lines 17422--17422
 [][]\OT1/pcr/b/n/10 i[][]n[][]t[]   \OT1/txtt/m/n/10 fvmP1P0([]\OT1/pcr/b/n/10 
 d[][]o[][]u[][]b[][]l[][]e[] \OT1/txtt/m/n/10 q[3][2], []\OT1/pcr/b/n/10 d[][]o
 [][]u[][]b[][]l[][]e[] \OT1/txtt/m/n/10 u[2],[]\OT1/pcr/b/n/10 d[][]o[][]u[][]b
@@ -4021,8 +3908,8 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[309]
-Overfull \hbox (181.52765pt too wide) in paragraph at lines 17264--17264
+[305]
+Overfull \hbox (181.52765pt too wide) in paragraph at lines 17492--17492
 []  \OT1/txtt/m/n/10 sparse_mat->typemat=(amorse->n == amorse->m) ? TypeSolveMa
 t(TypeSolveMat::GMRES) : TypeSolveMat(TypeSolveMat::NONESQUARE);
  []
@@ -4032,25 +3919,25 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[310]
+[306]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[311]
-Overfull \hbox (16.5282pt too wide) in paragraph at lines 17343--17343
+[307]
+Overfull \hbox (16.5282pt too wide) in paragraph at lines 17571--17571
 []    []\OT1/pcr/b/n/10 v[][]o[][]i[][]d[] \OT1/txtt/m/n/10 FB(const bool * wha
 td, const Mesh & Th,const Triangle & K,const R2 &P, RNMK_ & val)
  []
 
 
-Overfull \hbox (0.77824pt too wide) in paragraph at lines 17344--17344
+Overfull \hbox (0.77824pt too wide) in paragraph at lines 17572--17572
 []    []\OT1/pcr/b/n/10 v[][]o[][]i[][]d[] \OT1/txtt/m/n/10 TypeOfFE_P2BRLagran
 ge::Pi_h_alpha(const baseFElement & K,KN_<double> & v) const;[] 
  []
 
 
-Overfull \hbox (6.02823pt too wide) in paragraph at lines 17376--17376
+Overfull \hbox (6.02823pt too wide) in paragraph at lines 17604--17604
 []  []\OT1/pcr/b/n/10 v[][]o[][]i[][]d[] \OT1/txtt/m/n/10 TypeOfFE_P2BRLagrange
 ::FB(const bool * whatd,const Mesh & ,const Triangle & K,const
  []
@@ -4060,25 +3947,25 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[312]
+[308]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[313]
+[309]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[314]
-Overfull \hbox (222.77763pt too wide) in paragraph at lines 17539--17539
+[310]
+Overfull \hbox (222.77763pt too wide) in paragraph at lines 17767--17767
 []    []\OT1/pcr/b/n/10 r[][]e[][]t[][]u[][]r[][]n[] \OT1/txtt/m/n/10 new Solve
 SuperLU<double>(*A,ds.strategy,ds.tgv,ds.epsilon,ds.tol_pivot,ds.tol_pivot_sym,
 ds.sparams,ds.perm_r,ds.perm_c);[] 
  []
 
 
-Overfull \hbox (217.52765pt too wide) in paragraph at lines 17547--17547
+Overfull \hbox (217.52765pt too wide) in paragraph at lines 17775--17775
 []  []\OT1/pcr/b/n/10 r[][]e[][]t[][]u[][]r[][]n[] \OT1/txtt/m/n/10 new SolveSu
 perLU<Complex>(*A,ds.strategy,ds.tgv,ds.epsilon,ds.tol_pivot,ds.tol_pivot_sym,d
 s.sparams,ds.perm_r,ds.perm_c);[] 
@@ -4089,8 +3976,8 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[315]
-Overfull \hbox (82.80322pt too wide) in paragraph at lines 17626--17626
+[311]
+Overfull \hbox (82.80322pt too wide) in paragraph at lines 17854--17854
  []\OT1/txtt/m/n/12 curl   http://crd.lbl.gov/~xiaoye/SuperLU/superlu_3.0.tar.g
 z  -o superlu_3.0.tar.gz 
  []
@@ -4100,8 +3987,8 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[316]
-Overfull \hbox (13.50336pt too wide) in paragraph at lines 17645--17645
+[312]
+Overfull \hbox (13.50336pt too wide) in paragraph at lines 17873--17873
  []\OT1/txtt/m/n/12 ff-c++ SuperLU.cpp  -L$HOME/work/LinearSolver/SuperLU_3.0/ 
 -lsuperlu_3.0[] 
  []
@@ -4111,14 +3998,46 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
+[313]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[314
+
+]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[315]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
+[316]
+Underfull \hbox (badness 10000) has occurred while \output is active
+[][]
+ []
+
 [317]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[318
+[318]
+Overfull \hbox (2.93834pt too wide) in paragraph at lines 18266--18275
+\OT1/txr/m/n/12 OTHER PAR-TIES PRO-VIDE THE LI-BRARY "AS IS" WITH-OUT WAR-RANTY
+ OF ANY KIND,
+ []
 
-]
+
+Overfull \hbox (1.51393pt too wide) in paragraph at lines 18276--18286
+\OT1/txr/m/n/12 FOR DAM-AGES, IN-CLUD-ING ANY GEN-ERAL, SPE-CIAL, IN-CI-DEN-TAL
+ OR CON-SE-QUEN-
+ []
+
+
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -4129,25 +4048,27 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [320]
+Appendix D.
+
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[321]
+[321
+
+
+]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[322]
-Overfull \hbox (2.93834pt too wide) in paragraph at lines 18038--18047
-\OT1/txr/m/n/12 OTHER PAR-TIES PRO-VIDE THE LI-BRARY "AS IS" WITH-OUT WAR-RANTY
- OF ANY KIND,
- []
+[322
 
 
-Overfull \hbox (1.51393pt too wide) in paragraph at lines 18048--18058
-\OT1/txr/m/n/12 FOR DAM-AGES, IN-CLUD-ING ANY GEN-ERAL, SPE-CIAL, IN-CI-DEN-TAL
- OR CON-SE-QUEN-
+]
+Underfull \hbox (badness 1383) in paragraph at lines 18405--18409
+[]\OT1/txr/m/sc/12 T.A. Davis\OT1/txr/m/n/12 : Al-go-rithm 8xx: UMF-PACK V4.1, 
+an unsymmetric-pattern mul-ti-frontal
  []
 
 
@@ -4161,30 +4082,24 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [324]
-Appendix D.
+Underfull \hbox (badness 1147) in paragraph at lines 18516--18519
+[]\OT1/txr/m/sc/12 Hang Si\OT1/txr/m/n/12 , \OT1/txr/m/it/12 Tet-Gen Users' Gui
+de: A qual-ity Tetra-he-dral Mesh Gen-er-a-tor and Three-
+ []
 
+(./freefem++doc.ind
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[325
-
-
-]
+[325]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
 [326
 
-
 ]
-Underfull \hbox (badness 1383) in paragraph at lines 18177--18181
-[]\OT1/txr/m/sc/12 T.A. Davis\OT1/txr/m/n/12 : Al-go-rithm 8xx: UMF-PACK V4.1, 
-an unsymmetric-pattern mul-ti-frontal
- []
-
-
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -4195,30 +4110,16 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [328]
-Underfull \hbox (badness 1147) in paragraph at lines 18288--18291
-[]\OT1/txr/m/sc/12 Hang Si\OT1/txr/m/n/12 , \OT1/txr/m/it/12 Tet-Gen Users' Gui
-de: A qual-ity Tetra-he-dral Mesh Gen-er-a-tor and Three-
- []
-
-(./freefem++doc.ind
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[329pdfTeX warning (ext4): destination with the same identifier (name{cite.tech
-.freeyams}) has been already used, duplicate ignored
-
-\PDFSYNC@@output ...DFSYNC@oldshipout \box \@cclv 
-                                                  
-l.1 \begin{theindex}
-                    ]
+[329]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[330
-
-]
+[330]
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -4228,27 +4129,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[332]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[333]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[334]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[335]
-Underfull \hbox (badness 10000) has occurred while \output is active
-[][]
- []
-
-[336])
+[332])
 Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
@@ -4258,28 +4139,28 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[337
+[333
 
 
 ]
-LaTeX Font Info:    Try loading font information for OT1+pag on input line 1832
-0.
+LaTeX Font Info:    Try loading font information for OT1+pag on input line 1854
+4.
  (/usr/share/texmf-texlive/tex/latex/psnfss/ot1pag.fd
 File: ot1pag.fd 2001/06/04 font definitions for OT1/pag.
 )
 LaTeX Font Info:    Font shape `OT1/pag/b/n' in size <12> not available
-(Font)              Font shape `OT1/pag/db/n' tried instead on input line 18322
+(Font)              Font shape `OT1/pag/db/n' tried instead on input line 18546
 .
 
-<plots/BG-russe.pdf, id=4813, 240.66963pt x 27.39334pt>
+<plots/BG-russe.pdf, id=4823, 240.66963pt x 27.39334pt>
 File: plots/BG-russe.pdf Graphic file (type pdf)
 
 <use plots/BG-russe.pdf>
-Overfull \vbox (8.05092pt too high) detected at line 18345
+Overfull \vbox (8.05092pt too high) detected at line 18569
  []
 
 
-Overfull \hbox (298.75394pt too wide) detected at line 18345
+Overfull \hbox (298.75394pt too wide) detected at line 18569
 [][][]
  []
 
@@ -4293,7 +4174,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [][]
  []
 
-[338 <./plots/BG-russe.pdf>] (./freefem++doc.aux (./addfe.aux))
+[334 <./plots/BG-russe.pdf>] (./freefem++doc.aux (./addfe.aux))
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -4303,40 +4184,44 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
- ) 
+ )
+(\end occurred inside a group at level 1)
+
+### simple group (level 1) entered at line 423 ({)
+### bottom level 
 Here is how much of TeX's memory you used:
- 9416 strings out of 494745
- 130685 string characters out of 1177153
- 223349 words of memory out of 3000000
- 11121 multiletter control sequences out of 15000+50000
- 119552 words of font info for 296 fonts, out of 3000000 for 9000
+ 9443 strings out of 494745
+ 130895 string characters out of 1177153
+ 218115 words of memory out of 3000000
+ 11140 multiletter control sequences out of 15000+50000
+ 120868 words of font info for 298 fonts, out of 3000000 for 9000
  257 hyphenation exceptions out of 8191
- 45i,17n,41p,779b,565s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texli
-ve/fonts/type1/public/txfonts/rtcxi.pfb></usr/share/texmf-texlive/fonts/type1/p
-ublic/txfonts/rtcxr.pfb></usr/share/texmf-texlive/fonts/type1/public/txfonts/rt
-xb.pfb></usr/share/texmf-texlive/fonts/type1/public/txfonts/rtxbmi.pfb></usr/sh
-are/texmf-texlive/fonts/type1/public/txfonts/rtxi.pfb></usr/share/texmf-texlive
-/fonts/type1/public/txfonts/rtxmi.pfb></usr/share/texmf-texlive/fonts/type1/pub
-lic/txfonts/rtxr.pfb></usr/share/texmf-texlive/fonts/type1/public/txfonts/rtxr.
-pfb></usr/share/texmf-texlive/fonts/type1/public/txfonts/rtxsc.pfb></usr/share/
-texmf-texlive/fonts/type1/public/txfonts/txbsy.pfb></usr/share/texmf-texlive/fo
-nts/type1/public/txfonts/txbtt.pfb></usr/share/texmf-texlive/fonts/type1/public
-/txfonts/txex.pfb></usr/share/texmf-texlive/fonts/type1/public/txfonts/txsy.pfb
-></usr/share/texmf-texlive/fonts/type1/public/txfonts/txsyb.pfb></usr/share/tex
-mf-texlive/fonts/type1/public/txfonts/txsyc.pfb></usr/share/texmf-texlive/fonts
-/type1/public/txfonts/txtt.pfb></usr/share/texmf-texlive/fonts/type1/public/txf
-onts/txtt.pfb></usr/share/texmf-texlive/fonts/type1/urw/avantgar/uagd8a.pfb></u
-sr/share/texmf-texlive/fonts/type1/urw/avantgar/uagk8a.pfb></usr/share/texmf-te
-xlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texlive/fonts/type1/
-urw/ncntrsbk/uncr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.
-pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.pfb></usr/share/tex
-mf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/typ
-e1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a
-.pfb>
-Output written on freefem++doc.pdf (350 pages, 8783468 bytes).
+ 45i,17n,41p,767b,732s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/sha
+re/texmf-texlive/fonts/type1/public/txfonts/rtcxi.pfb></usr/share/texmf-texlive
+/fonts/type1/public/txfonts/rtcxr.pfb></usr/share/texmf-texlive/fonts/type1/pub
+lic/txfonts/rtxb.pfb></usr/share/texmf-texlive/fonts/type1/public/txfonts/rtxbm
+i.pfb></usr/share/texmf-texlive/fonts/type1/public/txfonts/rtxi.pfb></usr/share
+/texmf-texlive/fonts/type1/public/txfonts/rtxmi.pfb></usr/share/texmf-texlive/f
+onts/type1/public/txfonts/rtxr.pfb></usr/share/texmf-texlive/fonts/type1/public
+/txfonts/rtxr.pfb></usr/share/texmf-texlive/fonts/type1/public/txfonts/rtxsc.pf
+b></usr/share/texmf-texlive/fonts/type1/public/txfonts/txbsy.pfb></usr/share/te
+xmf-texlive/fonts/type1/public/txfonts/txbtt.pfb></usr/share/texmf-texlive/font
+s/type1/public/txfonts/txex.pfb></usr/share/texmf-texlive/fonts/type1/public/tx
+fonts/txsy.pfb></usr/share/texmf-texlive/fonts/type1/public/txfonts/txsyb.pfb><
+/usr/share/texmf-texlive/fonts/type1/public/txfonts/txsyc.pfb></usr/share/texmf
+-texlive/fonts/type1/public/txfonts/txtt.pfb></usr/share/texmf-texlive/fonts/ty
+pe1/public/txfonts/txtt.pfb></usr/share/texmf-texlive/fonts/type1/urw/avantgar/
+uagd8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/avantgar/uagk8a.pfb></usr/
+share/texmf-texlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texliv
+e/fonts/type1/urw/ncntrsbk/uncr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
+/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.pfb><
+/usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-tex
+live/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw
+/times/utmri8a.pfb>
+Output written on freefem++doc.pdf (346 pages, 8795824 bytes).
 PDF statistics:
- 5181 PDF objects out of 6186 (max. 8388607)
- 1087 named destinations out of 1200 (max. 500000)
- 2784 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 5191 PDF objects out of 6186 (max. 8388607)
+ 1091 named destinations out of 1200 (max. 500000)
+ 2792 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -75,7 +75,7 @@ EXTRA_DIST= \
 
 
 MPI_SOFT=blacs parmetis  scalapack scotch superludist MUMPS pastix hypre hips parms 
-
+LIST_SOFT=tetgen superlu fftw metis yams mshmet mmg3d gmm 
 all-recursive: bin lib include pkg
 
 lib: 
@@ -87,22 +87,47 @@ include:
 pkg:
 	mkdir pkg
 
-clean-local:
-	-rm -rf  lib include bin 
-	-rm */FAIT 
-	for d in tetgen superlu fftw; do \
-	  ( cd "$$d";$(MAKE) clean ) ; \
-	done 
+
+
 all-local:bin lib include pkg  $(DOWNLOADCOMPILE) 
 
-compile-pkg: bin lib include pkg
+WHERE-LD: tag-compile-pkg
+	touch ../examples++-load/WHERE_LIBRARY-config ../examples++-load/WHERE_LIBRARY		
+	grep LD ../examples++-load/WHERE_LIBRARY ../examples++-load/WHERE_LIBRARY-config >WHERE-LD
+
+compile-dir: 
+	@echo "\n\n ****** $(COMPILEDIR) ****** \n\n";
+	-@if [ 0 -eq `egrep ':$(COMPILEDIR)' WHERE-LD | wc -l` ] ;then \
+	  cd $(COMPILEDIR) && $(MAKE) $(DIRTARGET) ; \
+	else \
+	 echo $(COMPILEDIR) is in WHERE- files ;\
+	fi 
+compile-pkg: tag-compile-pkg WHERE-LD
+tag-compile-pkg: bin lib include pkg FORCE
+	-@if [ -n "$(WGET)" ] ; then \
+	for d in $(LIST_SOFT) ; do $(MAKE) compile-dir COMPILEDIR=$$d ;done ;\
+	if [ -n "$(MPICC)" ] ; then \
+	for d in $(MPI_SOFT) ; do 	$(MAKE) compile-dir COMPILEDIR=$$d ; done;\
+	fi;fi
+	touch tag-compile-pkg
+FORCE:
+
+re-install: 
+	$(MAKE) compile-pkg DIRTARGET=install
+WHERE:
+	$(MAKE) compile-pkg DIRTARGET=WHERE
+
+clean-local:
+	-rm -rf	 tag-* include lib bin 
+	mkdir   include lib bin 	
+	-rm */FAIT */FAIRE 
 	-if [ -n "$(WGET)" ] ; then \
-	for d in tetgen superlu fftw metis yams mshmet mmg3d gmm ; do \
-	if [ -d "$$d" ] ; then  echo "(cd $$d;$(MAKE) ) " ;   ( cd "$$d";$(MAKE) ) ; else echo ** missing "$$d" directory ; fi; \
+	for d in  $(LIST_SOFT)  ; do \
+	if [ -d "$$d" ] ; then  echo "$(MAKE) clean -C $$d  " ;   $(MAKE) clean -C $$d  ; else echo ** missing "$$d" directory ; fi; \
 	done ;\
 	if [ -n "$(MPICC)" ] ; then \
 	for d in $(MPI_SOFT) ; do \
-	if [ -d "$$d" ] ; then  echo "(cd $$d;$(MAKE) ) " ;   ( cd "$$d";$(MAKE) ) ; else echo ** missing "$$d" directory ;  fi; \
+	if [ -d "$$d" ] ; then  echo "$(MAKE) clean  -C $$d  " ;   $(MAKE) clean  -C $$d  ; else echo ** missing "$$d" directory ;  fi; \
 	done ;\
 	fi; \
 	fi 

@@ -44,7 +44,9 @@
 \BOOKMARK [2][-]{subsection.4.8.4}{Other arrays}{section.4.8}
 \BOOKMARK [1][-]{section.4.9}{Loops}{chapter.4}
 \BOOKMARK [1][-]{section.4.10}{Input/Output}{chapter.4}
-\BOOKMARK [1][-]{section.4.11}{Exception handling}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.10.1}{Script arguments}{section.4.10}
+\BOOKMARK [1][-]{section.4.11}{preprocessor}{chapter.4}
+\BOOKMARK [1][-]{section.4.12}{Exception handling}{chapter.4}
 \BOOKMARK [0][-]{chapter.5}{Mesh Generation}{}
 \BOOKMARK [1][-]{section.5.1}{Commands for Mesh Generation}{chapter.5}
 \BOOKMARK [2][-]{subsection.5.1.1}{Square}{section.5.1}
@@ -68,15 +70,13 @@
 \BOOKMARK [2][-]{subsection.5.10.4}{Moving mesh in three dimensions }{section.5.10}
 \BOOKMARK [2][-]{subsection.5.10.5}{Layer mesh}{section.5.10}
 \BOOKMARK [1][-]{section.5.11}{Meshing examples}{chapter.5}
-\BOOKMARK [2][-]{subsection.5.11.1}{Build a 3d mesh of a cube with a balloon incrust}{section.5.11}
+\BOOKMARK [2][-]{subsection.5.11.1}{Build a 3d mesh of a cube with a balloon}{section.5.11}
 \BOOKMARK [1][-]{section.5.12}{The output solution formats .sol and .solb}{chapter.5}
 \BOOKMARK [1][-]{section.5.13}{medit}{chapter.5}
-\BOOKMARK [2][-]{subsection.5.13.1}{mmg3d}{section.5.13}
-\BOOKMARK [2][-]{subsection.5.13.2}{Mshmet}{section.5.13}
-\BOOKMARK [2][-]{subsection.5.13.3}{FreeYams}{section.5.13}
-\BOOKMARK [2][-]{subsection.5.13.4}{mmg3d}{section.5.13}
-\BOOKMARK [2][-]{subsection.5.13.5}{Mshmet}{section.5.13}
-\BOOKMARK [2][-]{subsection.5.13.6}{FreeYams}{section.5.13}
+\BOOKMARK [1][-]{section.5.14}{Mshmet}{chapter.5}
+\BOOKMARK [1][-]{section.5.15}{FreeYams}{chapter.5}
+\BOOKMARK [1][-]{section.5.16}{mmg3d}{chapter.5}
+\BOOKMARK [1][-]{section.5.17}{A first 3d isotope mesh adaptation process}{chapter.5}
 \BOOKMARK [0][-]{chapter.6}{Finite Elements}{}
 \BOOKMARK [1][-]{section.6.1}{Use of ``fespace" in 2d}{chapter.6}
 \BOOKMARK [1][-]{section.6.2}{Use of fespace in 3d}{chapter.6}
@@ -148,6 +148,7 @@
 \BOOKMARK [1][-]{section.10.4}{MPI functions}{chapter.10}
 \BOOKMARK [1][-]{section.10.5}{MPI communicator operator}{chapter.10}
 \BOOKMARK [1][-]{section.10.6}{Schwarz example in parallel}{chapter.10}
+\BOOKMARK [2][-]{subsection.10.6.1}{True parallel Schwarz example}{section.10.6}
 \BOOKMARK [0][-]{chapter.11}{Parallel sparse solvers}{}
 \BOOKMARK [1][-]{section.11.1}{Using parallel sparse solvers in FreeFem++ }{chapter.11}
 \BOOKMARK [1][-]{section.11.2}{Sparse direct solver}{chapter.11}

@@ -7,7 +7,7 @@
 // AUTHOR   : Jacques Morice
 // E-MAIL   : jacques.morice@ann.jussieu.fr
 //
-//ff-c++-LIBRARY-dep: metis mumps  blas ptscotch blacs scalapack mpifc  fc  
+//ff-c++-LIBRARY-dep:  mumps parmetis ptscotch  scalapack blacs blas  mpifc  fc  
 //ff-c++-cpp-dep: 
 
 /* 
@@ -32,7 +32,7 @@
  */
 
 
-
+#include <mpi.h>
 #include  <iostream>
 using namespace std;
 
@@ -46,7 +46,7 @@ using namespace std;
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "mpi.h"
+
 #include "dmumps_c.h"
 #include "zmumps_c.h"
 

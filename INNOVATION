@@ -1,10 +1,49 @@
+v 3.11 9 dec 2010 
+   - update the documentation of 3d adaption process
+     and / correct  freeyams,mshmet, mmg3d  interface and associaded  example
+   - configure is compatible with MKL lib (on gnome)
+   - add quoting argument in macro argument with { } for mpi  plot .. 
+v 3.10-2
+   - try to compile with MKL libs.
+   - correct MPIGMRES[23]d.edp example 
+     add doc on this example.  
+v 3.10-2
+ - add operator to inverse permuation to set or initial int[int] array
+   I=J^-1; 
+   if J is a permuation of 0:n-1  then we have :   I[j[i]]=i 
+ - correct comment problem of periodic bounary condition in 3D
+    see examples++-3d/periodic-3d.edp
+ - correct configure to scotch compilation on gnone (phtread) 
+v 3.10-1
+  - at convection function form formal array to int,real,complex array
+   (resp.     toZarray, toRarray, toCarray)
+  - correct ffrandom.cpp to read /dev/random to get a true random seed
+    srandomdev 
+  - add ff-mpirun script to simplify the launch of FreeFem++-mpi version
+  - correct MPI for MPI icc on gnome 
+  - correct pb of computation of area, lenbord in mesh type in some case .
+  - correct WHERE_LIBRARY-config  for blas find in configure
+  - correct atof 
+v 3.10 
+  - add true Domain Decomposition example in 2d and 3d. 
+      see    MPIGMRES2D.edp	  MPIGMRES3D.edp in MPI  examples 
+  - add mpi Isend/Irevd for complex struct like matix, meshes 
+     for send/recv Huge objet 
+  - add named parameter verbosity= in add GMRES and GC function 
+     for show algo evolution .
+  - add MPIGC dynamic LIB for // GC and GMRES , add fully // scharwz RAS
+     in MPIGMRES2d.edp 
+  - correct  problem of  a=A^-1*b when a, or b is not consecutive array
+   ie. expression like  M(2,:)  
+  - correct problem of Makefile in download  clean,install,WHERE target
 v 3.10 ( 5 oct 2010)
+  - add install of missing MPI  dynamics lib. 
   add argument  "-cd"  to FreeFem++ command to change  current directory  to edp script directory 
-  - clear configure.ac 
-  - do correction for g++-4.6 compiler 
+  - clean configure.ac 
+  - do correction for g++-4.6 compiler (lambda expressions , and trap ..)
   - add  MPICG  for Parallel Conjugate Gradient for full split matrix
      see MPICG
-  - correct Makefiles in dowload ( add WHERE interface) 
+  - correct Makefiles in download ( add WHERE interface) 
   - remove wait option in medit because the code is wrong , always waiting  now 
   - correct bug renumbering  of matrix :  B= A(I,J),
     the last term N,M was force to zero  =+ -> += (line 1885 of file lgmat.cpp) 
