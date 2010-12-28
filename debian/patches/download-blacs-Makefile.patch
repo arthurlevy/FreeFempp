@@ -1,0 +1,19 @@
+Comment out removal of non-existent files and dirs in download/blacs dir
+--- a/download/blacs/Makefile
++++ b/download/blacs/Makefile
+@@ -72,11 +72,11 @@
+ 	cd $(DIRPKG);$(WGET) $(SERVER)/`basename $(PACKAGE3)`
+ 
+ clean-local:
+-	-cd $(SRCDIR)/SRC/MPI; make clean 
++#	-cd $(SRCDIR)/SRC/MPI; make clean 
+ 
+ clean: clean-local
+-	-rm Bmake.inc FAIRE
+-	-rm $(SRCDIR)/$(INSTALL)/lib/blacs/*.a
++#	-rm Bmake.inc FAIRE
++#	-rm $(SRCDIR)/$(INSTALL)/lib/blacs/*.a
+ 	-rm -rf $(SRCDIR)
+ 
+ .PHONY:$(SRCDIR)/$(INSTALL)  compile install
+\ No newline at end of file

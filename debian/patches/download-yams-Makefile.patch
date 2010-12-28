@@ -1,0 +1,14 @@
+Comment out yeams clean process that runs indefinitely
+--- a/download/yams/Makefile
++++ b/download/yams/Makefile
+@@ -64,8 +64,8 @@
+ 	cd $(DIRPKG);$(WGET)   $(SERVER)/`basename $(PACKAGE)`
+ 
+ clean-local: 
+-	-rm FAIRE FAIT
+-	cd $(YAMS_DIR); make  clean;
++#	-rm FAIRE FAIT
++#	cd $(YAMS_DIR); make  clean;
+ 	-rm $(YAMS_OBJDIR)/libyams.a
+ 
+ clean: clean-local

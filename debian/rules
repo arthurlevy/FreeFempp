@@ -16,16 +16,13 @@ export DH_OPTIONS=-v
 clean:
 	dh_testdir
 	rm -f examples++-mpi/MPICG.o examples++-mpi/MPICG.so DOC/cpfigs/*.pdf
-	rm -rf debian/freefem++ debian/freefem++-doc debian/tmp
 	rm -f examples++-load/WHERE_LIBRARY-download-new DOC/freefem++doc.pdf
-	rm -rf download/yams/FAIRE download/yams/FAIT
-	rm -rf download/yams/./freeyams.2010.05.20
-#	rm -f stamp-h1 config-version.h configure.param config.h config.log
-#	rm -f config_LIB_INFO Makefile config.status download/Makefile
-#	rm -f download/yams/ff-flags download/tetgen/cxxflags 
-#	rm -f download/metis/Makefile.in download/metis/config.log
-#	rm -f download/fftw/cxxflags examples++-load/WHERE_LIBRARY-config
-#	rm -f src/mpi/ff-mpirun src/mpi/config.log src/medit/compil.date
+	rm -f download/parms/config.log download/hypre/config.log 
+	rm -f download/pastix/config.log download/parmetis/config.log
+	rm -f download/scotch/config.log download/superludist/config.log
+	rm -f download/blacs/config.log download/scalapack/config.log
+	rm -f download/hips/config.log download/metis/config.log
+	rm -f examples++-load/config.log src/mpi/config.log
 	dh_auto_clean
 	dh_clean
 
@@ -33,7 +30,6 @@ build:
 	dh_testdir
 	./configure  CFLAGS=-lm CNOFLAGS=-lm --prefix=/usr
 	make -j4 --ignore-errors
-	make -j4
 #	dh_auto_test
 
 binary-indep:

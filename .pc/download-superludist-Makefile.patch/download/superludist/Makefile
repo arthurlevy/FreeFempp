@@ -61,12 +61,12 @@ $(PACKAGE_PATH):
 	cd $(DIRPKG);$(WGET)  $(SERVER)$(PACKAGE)
 
 clean-local:
-#	-cd $(SRCDIR); $(MAKE) clean
+	-cd $(SRCDIR); $(MAKE) clean
 
 clean: clean-local
 	-rm -rf $(SRCDIR)
-#	-rm  $(SRCDIR)/$(INSTALL)/include/superludist/*.h
-#	-rm -r $(SRCDIR)/$(INSTALL)/include/superludist/
-#	-rm -r $(SRCDIR)/$(INSTALL)/lib/libsuperlu_dist*.a
+	-rm  $(SRCDIR)/$(INSTALL)/include/superludist/*.h
+	-rm -r $(SRCDIR)/$(INSTALL)/include/superludist/
+	-rm -r $(SRCDIR)/$(INSTALL)/lib/libsuperlu_dist*.a
 	-rm -r make.inc
-#	-rm -rf FAIT
+	-rm -rf FAIT

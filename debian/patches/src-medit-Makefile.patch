@@ -1,0 +1,50 @@
+Comment out pinking no opt part
+--- a/src/medit/Makefile.am
++++ b/src/medit/Makefile.am
+@@ -23,13 +23,13 @@
+ compil.date: $(ffmedit_SOURCES)
+ 	echo "#define COMPIL " '"' `date` '(with ff++ $(VERSION))''"' > compil.date
+ #.PHONY: compil.date
+-all-local: pinking.no-opt
+-
+-pinking.no-opt:picking.c
+-	rm picking.$(OBJEXT)
+-	$(MAKE) picking.o ffmedit CFLAGS="$(CNOFLAGS)"
+-	touch pinking.no-opt
+-clean-local:
+-	-rm pinking.no-opt
++# all-local: pinking.no-opt
++# 
++# pinking.no-opt:picking.c
++# 	rm picking.$(OBJEXT)
++# 	$(MAKE) picking.o ffmedit CFLAGS="$(CNOFLAGS)"
++# 	touch pinking.no-opt
++# clean-local:
++# 	-rm pinking.no-opt
+ 
+ 
+--- a/src/medit/Makefile.in
++++ b/src/medit/Makefile.in
+@@ -658,14 +658,14 @@
+ compil.date: $(ffmedit_SOURCES)
+ 	echo "#define COMPIL " '"' `date` '(with ff++ $(VERSION))''"' > compil.date
+ #.PHONY: compil.date
+-all-local: pinking.no-opt
+-
+-pinking.no-opt:picking.c
+-	rm picking.$(OBJEXT)
+-	$(MAKE) picking.o ffmedit CFLAGS="$(CNOFLAGS)"
+-	touch pinking.no-opt
+-clean-local:
+-	-rm pinking.no-opt
++# all-local: pinking.no-opt
++# 
++# pinking.no-opt:picking.c
++# 	rm picking.$(OBJEXT)
++# 	$(MAKE) picking.o ffmedit CFLAGS="$(CNOFLAGS)"
++# 	touch pinking.no-opt
++# clean-local:
++# 	-rm pinking.no-opt
+ 
+ # Tell versions [3.59,3.63) of GNU make to not export all variables.
+ # Otherwise a system limit (for SysV at least) may be exceeded.

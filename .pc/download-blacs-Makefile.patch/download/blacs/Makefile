@@ -72,11 +72,11 @@ $(PACKAGE3):
 	cd $(DIRPKG);$(WGET) $(SERVER)/`basename $(PACKAGE3)`
 
 clean-local:
-#	-cd $(SRCDIR)/SRC/MPI; make clean 
+	-cd $(SRCDIR)/SRC/MPI; make clean 
 
 clean: clean-local
-#	-rm Bmake.inc FAIRE
-#	-rm $(SRCDIR)/$(INSTALL)/lib/blacs/*.a
+	-rm Bmake.inc FAIRE
+	-rm $(SRCDIR)/$(INSTALL)/lib/blacs/*.a
 	-rm -rf $(SRCDIR)
 
 .PHONY:$(SRCDIR)/$(INSTALL)  compile install
