@@ -1,8 +1,7 @@
-examples-load-WHERE-LIBRARY.patch
 src-medit-Makefile.patch
 download-yams-Makefile.patch
 download-blacs-Makefile.patch
-debian-changes-3.11-1
 download-superludist-Makefile.patch
 download-pastix-Makefile.patch
 download-hips-Makefile.patch
+debian-changes-3.11-1

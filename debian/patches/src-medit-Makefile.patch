@@ -14,7 +14,7 @@ Comment out pinking no opt part
 -clean-local:
 -	-rm pinking.no-opt
 +# all-local: pinking.no-opt
-+# 
++#
 +# pinking.no-opt:picking.c
 +# 	rm picking.$(OBJEXT)
 +# 	$(MAKE) picking.o ffmedit CFLAGS="$(CNOFLAGS)"
@@ -38,7 +38,7 @@ Comment out pinking no opt part
 -clean-local:
 -	-rm pinking.no-opt
 +# all-local: pinking.no-opt
-+# 
++#
 +# pinking.no-opt:picking.c
 +# 	rm picking.$(OBJEXT)
 +# 	$(MAKE) picking.o ffmedit CFLAGS="$(CNOFLAGS)"
