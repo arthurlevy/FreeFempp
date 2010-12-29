@@ -4,4 +4,4 @@ download-blacs-Makefile.patch
 download-superludist-Makefile.patch
 download-pastix-Makefile.patch
 download-hips-Makefile.patch
-debian-changes-3.11-1
+examples-load-WHERE-LIBRARY.patch
