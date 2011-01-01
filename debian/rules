@@ -10,9 +10,6 @@
 export DH_VERBOSE=1
 export DH_OPTIONS=-v
 
-#%:
-#	dh $@
-
 clean:
 	dh_testdir
 	rm -f DOC/cpfigs/*.pdf DOC/freefem++doc.log DOC/freefem++doc.aux
@@ -38,7 +35,8 @@ clean:
 
 build:
 	dh_testdir
-	./configure  CFLAGS=-lm CNOFLAGS=-lm --prefix=/usr
+	./configure  CFLAGS=-lm CNOFLAGS=-lm --prefix=/usr --without-cadna \
+			--disable-download
 	make -j4 --ignore-errors
 #	dh_auto_test
 
@@ -60,7 +58,7 @@ binary-arch:
 	dh_installemacsen
 	dh_installifupdown
 	dh_installinfo
-	dh_pysupport
+#	dh_pysupport
 	dh_installinit
 	dh_installmenu
 	dh_installmime
