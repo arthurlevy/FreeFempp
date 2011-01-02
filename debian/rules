@@ -12,26 +12,28 @@ export DH_OPTIONS=-v
 
 clean:
 	dh_testdir
-	rm -f DOC/cpfigs/*.pdf DOC/freefem++doc.log DOC/freefem++doc.aux
+	dh_auto_clean
+	dh_clean
+	rm -f examples++-mpi/MPICG.o examples++-mpi/MPICG.so D
 	rm -f download/parms/config.log download/hypre/config.log 
 	rm -f download/pastix/config.log download/parmetis/config.log
 	rm -f download/scotch/config.log download/superludist/config.log
 	rm -f download/blacs/config.log download/scalapack/config.log
 	rm -f download/hips/config.log download/metis/config.log
 	rm -f examples++-load/config.log src/mpi/config.log
-	rm -f examples++-mpi/MPICG.o examples++-mpi/MPICG.so
-	rm -f DOC/freefem++doc.idx freefem++doc.ilg DOC/freefem++doc.ind
-	rm -f DOC/freefem++doc.out DOC/freefem++doc.pdfsync configure.param
-	rm -f DOC/freefem++doc.toc config-version.h config_LIB_INFO
+	rm -rf DOC/cpfigs
+	rm -f DOC/freefem++doc.pdf 
+	rm -f DOC/addfe.aux DOC/freefem++doc.aux DOC/freefem++doc.idx
+	rm -f DOC/freefem++doc.ilg DOC/freefem++doc.ind DOC/freefem++doc.log
+	rm -f DOC/freefem++doc.out DOC/freefem++doc.pdfsync DOC/freefem++doc.toc
+	rm -f config-version.h config_LIB_INFO configure.param
 	rm -f download/blacs/Bmake.inc download/fftw/cxxflags
-	rm -f download/metis/Makefile.in download/pastix/config-complex.in
-	rm -f download/pastix/config.in download/tetgen/cxxflags
-	rm -f examples++-3d/freefem++.pref examples++-load/WHERE_LIBRARY-config
+	rm -f download/gmm/cxxflags download/metis/Makefile.in
+	rm -f download/pastix/config-complex.in download/pastix/config.in
+	rm -f download/tetgen/cxxflags examples++-3d/freefem++.pref
+	rm -f examples++-load/WHERE_LIBRARY-config 
 	rm -f examples++-load/freefem++.pref examples++-mpi/freefem++.pref
-	rm -f src/medit/compil.date DOC/freefem++doc.pdf DOC/addfe.aux
-	rm -f DOC/freefem++doc.ilg src/mpi/ff-mpirun download/gmm/cxxflags
-	dh_auto_clean
-	dh_clean
+	rm -f src/medit/compil.date src/mpi/ff-mpirun
 
 build:
 	dh_testdir
@@ -47,6 +49,7 @@ binary-arch:
 	dh_prep
 	dh_installdirs
 	dh_auto_install
+	rm -f debian/tmp/usr/bin/ff-pkg-download
 	dh_install
 	dh_installdocs
 	dh_installchangelogs
