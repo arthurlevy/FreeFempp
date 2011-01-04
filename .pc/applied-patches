@@ -5,3 +5,4 @@ download-superludist-Makefile.patch
 download-pastix-Makefile.patch
 download-hips-Makefile.patch
 examples-load-WHERE-LIBRARY.patch
+examples-load-ff-pkg-download.patch

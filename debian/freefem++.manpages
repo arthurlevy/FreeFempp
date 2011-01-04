@@ -3,7 +3,10 @@ debian/cvmsh2.1
 debian/drawbdmesh.1
 debian/ff-c++.1
 debian/ff-get-dep.1
+debian/ff-pkg-download.1
+debian/ff-mpirun.1
 debian/ffmedit.1
+debian/ffglut.1
 debian/FreeFem++.1
 debian/FreeFem++-glx.1
 debian/FreeFem++-mpi.1

@@ -49,7 +49,7 @@ binary-arch:
 	dh_prep
 	dh_installdirs
 	dh_auto_install
-	rm -f debian/tmp/usr/bin/ff-pkg-download
+#	rm -f debian/tmp/usr/bin/ff-pkg-download
 	dh_install
 	dh_installdocs
 	dh_installchangelogs
