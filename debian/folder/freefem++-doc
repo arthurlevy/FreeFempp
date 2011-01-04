@@ -1,0 +1,10 @@
+Document: freefem++-doc
+Title: Debian FreeFem++ Manual
+Author: Frederic Hecht
+Abstract: This manual describes the usage
+ of the FreeFem++ suite for the solution of PDE's via the 
+ Finite Element method.
+Section: Science/Mathematics
+
+Format: PDF
+Files: /usr/share/doc/freefem++-doc/freefem++doc.pdf.gz

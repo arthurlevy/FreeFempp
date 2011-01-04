@@ -7,7 +7,7 @@ Uploaders: Christophe Trophime <christophe.trophime@grenoble.cnrs.fr>,
 DM-Upload-Allowed: yes
 Build-Depends: debhelper (>= 7.2.3~), autotools-dev, gfortran, gawk,
  gfortran, flex, bison, libxt-dev, libxext-dev, libxxf86vm-dev,
- libxpm-dev, openmpi-bin, libfftw3-dev, libblas-dev, libparmetis-dev,
+ libxpm-dev, openmpi-bin, libfftw3-dev, libblas-dev,
  libarpack2-dev, libsuitesparse-dev, libsuperlu3-dev, imagemagick, 
  libfltk1.1-dev, freeglut3-dev, texlive, texlive-extra-utils, 
  texlive-latex-extra, libtool, libglut3-dev, texlive-font-utils,
@@ -44,7 +44,7 @@ Package: libfreefem++
 Architecture: any
 Section: libs
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: PDE solution oriented language using the Finite Element Method
+Description: The shared libraries of the FreeFem++ suite
  FreeFem++ is an implementation of a language dedicated to the finite
  element method. It enables you to solve Partial Differential
  Equations (PDE) easily.
@@ -66,7 +66,7 @@ Package: libfreefem++-dev
 Architecture: any
 Section: libdevel
 Depends: libfreefem++, ${shlibs:Depends}, ${misc:Depends}
-Description: A computer language using the Finite Element Method
+Description: The development files of the FreeFem++ suite
  FreeFem++ is an implementation of a language dedicated to the finite
  element method. It enables you to solve Partial Differential
  Equations (PDE) easily.
@@ -88,7 +88,7 @@ Package: freefem++-doc
 Architecture: all
 Section: doc
 Depends: ${misc:Depends}
-Description: An integrated Finite Element Method environment
+Description: The documentation files of the FreeFem++ suite
  FreeFem++ is an implementation of a language dedicated to the finite
  element method. It enables you to solve Partial Differential
  Equations (PDE) easily.
