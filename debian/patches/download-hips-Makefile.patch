@@ -1,0 +1,22 @@
+Comment out removal of non existent stuff in download/hips/Makefile
+--- a/download/hips/Makefile
++++ b/download/hips/Makefile
+@@ -194,14 +194,14 @@
+ 	cd $(DIRPKG);$(WGET)   $(SERVER)/`basename $(PACKAGE)`
+ 
+ clean-local:
+-	-cd $(SRCDIR); $(MAKE) clean 
++#	-cd $(SRCDIR); $(MAKE) clean 
+ 
+ clean: clean-local
+ 	rm makefile.inc
+-	-rm $(SRCDIR)/$(INSTALL)/WHERE/hips
+-	-rm $(SRCDIR)/$(INSTALL)/lib/hips/*
++#	-rm $(SRCDIR)/$(INSTALL)/WHERE/hips
++#	-rm $(SRCDIR)/$(INSTALL)/lib/hips/*
+ 	-rm -rf $(SRCDIR)/$(INSTALL)/lib/hips/
+-	-rm $(SRCDIR)/$(INSTALL)/include/hips/*
++#	-rm $(SRCDIR)/$(INSTALL)/include/hips/*
+ 	-rm -rf $(SRCDIR)/$(INSTALL)/include/hips/
+ 	-rm -rf $(SRCDIR)
+ 	rm FAIT

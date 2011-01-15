@@ -1,0 +1,9 @@
+Make examples++-load/ff-pkg-download a script
+--- a/examples++-load/ff-pkg-download.in
++++ b/examples++-load/ff-pkg-download.in
+@@ -1,3 +1,5 @@
++#!/bin/sh
++# /ff-pkg-download script creation
+ ff=$0;
+ bb=`basename $0`
+ DIR=`dirname $ff`

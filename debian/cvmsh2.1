@@ -1,0 +1,66 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH CVMSH2 1 "January 3, 2011"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+cvmsh2 \- a 2D mesh converter
+.SH SYNOPSIS
+.B cvmsh2
+.RI "Inmeshfile  OutBdmeshfile  [-g OutGeomfile ] [ -thetamax theta ] [ -v level ]"
+.br
+.SH DESCRIPTION
+This manual page documents briefly the scope of the 
+.B cvmsh2
+command.
+.PP
+.\" TeX users may be more comfortable with the \fB<whatever>\fP and
+.\" \fI<whatever>\fP escape sequences to invode bold face and italics,
+.\" respectively.
+\fBcvmsh2\fP is a converter of 2d meshes. It accepts .am_fmt, .amdba, .am, .nopo, .msh, .ftq + bd mesh types as input and converts them to .am_fmt, .amdba, .am, .nopo, .msh, .ftq + bd output types. It is part of the FreeFem++ suite which is used for the solution of Partial Differential Equations (PDE's) via the Finite Element Method (FEM).
+.SH OPTIONS
+A summary of options is included below.
+.br
+.\".B \-h, \-\-help
+.B \-thetamax  theta : theta is the angular limit for smooth curve in degrees
+.br 
+.B \-v  level :  level is the level of verbosity in the range [0..99] 0 => no message, 99 too many
+.\" .br
+.\" .B \-fglut  filepath  :  the file name for saving all the plots (replot with ffglut command)
+.\" .br
+.\" .B \-glut  command  :  the command name of glut (default is ffglut)
+.\" .br
+.\" .B \-nowait  :  do not wait after launching a window
+.\" .br
+.\" .B \-wait  :  wait after launching a window
+.\" .br
+.\" .B \-nw  :  no ffglut (=> no graphics windows)
+.\" .br
+.\" .B \-ne  :  no edp script output
+.\" .br
+.\" .B \-cd  :  change dir to script dir
+.\" .BR 
+.\" .TP
+.\" .SH SEE ALSO
+.\" .BR FreeFem++-x11 (1),
+.\" .BR FreeFem++-nw (1),
+.\" .BR FreeFem++-glx (1),
+.\" .BR FreeFem++-mpi
+.br
+.SH AUTHOR
+FreeFem++ was written by Frédéric Hecht<hecht@ann.jussieu.fr>.
+.PP
+This manual page was created by Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>,
+for the Debian project (and may be used by others).

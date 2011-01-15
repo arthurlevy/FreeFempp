@@ -1,9 +1,8 @@
 freefem++ (3.11-1) experimental; urgency=low
 
-  * New upstream release
-  * Moved to git
+  * Initial release (Closes: #500755)
 
- -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Thu, 23 Dec 2010 17:20:16 +0200
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Fri, 24 Dec 2010 17:50:44 +0200
 
 freefem++ (3.9-2-1.1) unstable; urgency=low
 
@@ -144,4 +143,3 @@ freefem++ (2.7-1) unstable; urgency=low
   * Added freefem++ to pkg-scicomp on Alioth
 
  -- Christophe Prud'homme <prudhomm@debian.org>  Wed, 26 Apr 2006 11:36:10 +0200
-

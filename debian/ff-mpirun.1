@@ -1,0 +1,58 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH FF-MPIRUN 1 "January 2, 2011"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+ff-mpirun \- a tool for running jobs in parallel within FreeFem++
+.SH SYNOPSIS
+.B ff-mpirun
+.\" .RI "[ -v  verbosity ] [ -fglut filepath ] [ -glut command ] [ -nw ] [ -f ] script.edp"
+.\" .br
+.SH DESCRIPTION
+This manual page documents briefly the scope of the 
+.B ff-mpirun
+command.
+.PP
+.\" TeX users may be more comfortable with the \fB<whatever>\fP and
+.\" \fI<whatever>\fP escape sequences to invode bold face and italics,
+.\" respectively.
+\fBff-mpirun\fP is a script that facilitates the process of running jobs in parallel within FreeFem++. It is part of the FreeFem++ suite which is used for the solution of Partial Differential Equations (PDE's) via the Finite Element Method (FEM). 
+.\" .SH OPTIONS
+.\" A summary of options is included below.
+.\" .br
+.\" .\".B \-h, \-\-help
+.\" .B \-v  verbosity : 0 -- 1000000 levels of FreeFem++ output
+.\" .br
+.\" .B \-fglut  filepath  :  the file name for saving all the plots (replot with ffglut command)
+.\" .br
+.\" .B \-glut  command  :  the command name of glut (default is ffglut)
+.\" .br
+.\" .B \-nowait  :  do not wait after launching a window
+.\" .br
+.\" .B \-wait  :  wait after launching a window
+.\" .br
+.\" .B \-nw  :  no ffglut (=> no graphics windows)
+.\" .br
+.\" .B \-ne  :  no edp script output
+.\" .br
+.\" .B \-cd  :  change dir to script dir
+.\" .BR 
+.\" .TP
+.SH AUTHOR
+ff-mpitun was written by Frédéric Hecht<hecht@ann.jussieu.fr>.
+.PP
+This manual page was created by Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>,
+for the Debian project (and may be used by others).
