@@ -10,13 +10,13 @@ Build-Depends: debhelper (>= 7.2.3~), autotools-dev, gfortran, gawk,
  libxpm-dev, openmpi-bin, libfftw3-dev, libblas-dev,
  libarpack2-dev, libsuitesparse-dev, libsuperlu3-dev, imagemagick, 
  libfltk1.1-dev, freeglut3-dev, texlive, texlive-extra-utils, 
- texlive-latex-extra, libtool, libglut3-dev, texlive-font-utils,
+ texlive-latex-extra, libglut3-dev, texlive-font-utils,
  libmumps-dev,  libsuperlu3-dev, libblacs-mpi-dev, libscalapack-mpi-dev,
  libscotch-dev, ghostscript, libptscotch-dev
 Standards-Version: 3.9.1
 Homepage: http://www.freefem.org/ff++/
-Vcs-Git: git://git.debian.org/debian-science/packages/freefem++.git
-Vcs-Browser: http://git.debian.org/?p=debian-science/packages/freefem++.git
+Vcs-Git: git://git.debian.org/debian-science/packages/freefempp.git
+Vcs-Browser: http://git.debian.org/?p=debian-science/packages/freefempp.git
 
 Package: freefem++
 Architecture: any
