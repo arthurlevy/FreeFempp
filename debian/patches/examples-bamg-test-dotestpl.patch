@@ -1,0 +1,9 @@
+Fix location of perl interpreter
+--- a/examples-bamg/test/dotest.pl
++++ b/examples-bamg/test/dotest.pl
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/perl
++#!/usr/bin/perl
+ # -----  clean ---
+ unlink <*.mesh>;
+ unlink <*.am_fmt>;
