@@ -1,8 +1,10 @@
-freefem++ (3.11-1) experimental; urgency=low
+freefem++ (3.12-1) experimental; urgency=low
 
-  * Initial release (Closes: #500755)
+  * Initial release (Closes: #500755).
+  * Create packages libfreefem++ and libfreefem++-dev.
+  * Complete the man pages.
 
- -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Fri, 24 Dec 2010 17:50:44 +0200
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Sat, 22 Jan 2011 04:56:44 +0200
 
 freefem++ (3.9-2-1.1) unstable; urgency=low
 
