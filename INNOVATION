@@ -1,3 +1,37 @@
+v 3.12    17 jan 2011
+    - coorect probleme of comm world on SuperLuDist (complex version)
+    - correct medit Makefile.am in case of no compilation of medit ..
+    - correct a lot of MPI parallel solver example 
+        a bug pastix interface ???
+	MUMPS, superludist, hypre , hips works 
+    - correct link proble in hips and hypre under linux
+    - Add thresholdings.cpp	thresholdings.edp in examples++-load to remove to small coef
+       in a matrix . 
+    - Add lots of DDM Schwarz GMRES precondionned with a coarse grid solver por overlapping : 
+      DDM-Schwarz-Lame-2d.edp		DDM-Schwarz-Lap-2dd.edp		DDM-Schwarz-Stokes-2d.edp	
+      DDM-funcs-v2.idp DDM-Schwarz-Lame-3d.edp  			DDM-Schwarz-Lap-3d.edp			
+      DDM-Schwarz-macro.idp
+      I will add the explanation in the doc in the future; 
+      
+
+    - Add a true exemple to buld mesh form a image (lg.pgm) ,  Leman-mesh.edp 
+    - Add New syntaxe in macro generation
+        NewMacro a(i) 
+        EndMacro <
+       with // comment and macro definition, first trik
+     - Add interface with special function  og gls  http://www.gnu.org/software/gsl/
+        the full list is in the example examples++-loal/gsl.edp  
+     
+v 3.11-1     25 dec 2010
+     - Add coarse preconditioner in MPIGMRES[23]d.edp (to be optimal)
+       now the number of iteration is close to 10.  
+     - Show ff++ line number in case of  assertion  in RNM class. 
+     - add Coarse Preconditionner for  MPIGMRES[23]d.edp (Good)
+     - solve bug For MPIGMRES2D.edp  due to interpolation bug in rare case
+       by Add brute force for seach of point in 2d like in 3d in the seach in find ouside 
+       set global variable :  searchMethod=1;  // more safe seach algo (can be expensive in case of lot of ouside point) 
+      -   add hack of ILU precond, if tgv is < 0 then
+        we remove all the line and put 1 on the diag term ..
 v 3.11 9 dec 2010 
    - update the documentation of 3d adaption process
      and / correct  freeyams,mshmet, mmg3d  interface and associaded  example
