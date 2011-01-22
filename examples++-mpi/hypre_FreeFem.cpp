@@ -8,7 +8,7 @@
 // AUTHOR   : Guy Atenekeng
 // E-MAIL   : Guy_Antoine_Atenekeng_Kahou@lri.fr
 //
-//ff-c++-LIBRARY-dep: metis hypre  blas 
+//ff-c++-LIBRARY-dep: hypre  metis  blas 
 //ff-c++-cpp-dep: 
 
 /* 
