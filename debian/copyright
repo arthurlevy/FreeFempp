@@ -13,52 +13,54 @@ Upstream Author(s):
      Antoine Le Hyaric <lehyaric@ann.jussieu.fr> 
      Albert Ly <ly@ann.jussieu.fr>
 
+Files: *
+
 Copyright:
 
-    Copyright (C) 2010 Frederic Hecht
+    (C) 2010 Frederic Hecht, Olivier Pironneau, Antoine Le Hyaric    
 
 License:
 
     usr/share/common-licenses/LGPL-2.1
 
- All its programs may be redistributed under the terms of the
+ All programs may be redistributed under the terms of the
  GNU LESSER GENERAL PUBLIC LICENSE Version 2.1, February 1999.
 
-    Except files :
-    Coming from COOOL sofware (all files in directory src/Algo,
-    mailto:coool@coool.mines.edu),  no license.
-    and the file mt19937ar.cpp ( mailto:m-mat@math.sci.hiroshima-u.ac.jp )
-    with they own like license.
-
-The Debian packaging is:
-
-    Copyright (C) 2010 Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr
-and is licensed under the GPL version 3,
-see "/usr/share/common-licenses/GPL-3".
+    Excepted are the following files which have their own licences:
 
 
-    src/Algo: extracted from the COOOL software by the FreeFem++ authors
+    src/Algo
+
+    COOOL is a package of tools for writing optimization code and solving optimization problems. Our special interest is in solving inverse problems, but the library should be useful for many different kinds of problems.
+taken from the COOOL software by the FreeFem++ authors
 	      (http://coool.mines.edu/)
 
- The COOOL library is a free software. You can do anything you want
- with it including make a fortune.  However, neither the authors,
- the Center for Wave Phenomena, nor anyone else you can think of
- makes any guarantees about anything in this package or any aspect
- of its functionality.
+Licence:
 
- Since you've got the source code you can also modify the
- library to suit your own purposes. We would appreciate it 
- if the headers that identify the authors are kept in the 
- source code.
+    Copyright (C) 2003, Lydia Deng, Wences Gouveia
 
-    src/fflib/mt19937ar.cpp 
- 
+    The COOOL library is a free software. You can do anything you want
+    with it including make a fortune.  However, neither the authors,
+    the Center for Wave Phenomena, nor anyone else you can think of
+    makes any guarantees about anything in this package or any aspect
+    of its functionality.
+
+    Since you've got the source code you can also modify the
+    library to suit your own purposes. We would appreciate it 
+    if the headers that identify the authors are kept in the 
+    source code.
+
+
+    src/fflib/mt19937ar.cpp
+
     A C-program for MT19937, with initialization improved 2002/1/26.
-    Coded by Takuji Nishimura and Makoto Matsumoto.
+    Coded by Takuji Nishimura and Makoto Matsumoto 
+    (mailto:m-mat@math.sci.hiroshima-u.ac.jp).
+    Before using, initialize the state by using init_genrand(seed)
+    or init_by_array(init_key, key_length). 
 
-   Before using, initialize the state by using init_genrand(seed)
-   or init_by_array(init_key, key_length).
-
+Licence:
+ 
    Copyright (C) 1997 - 2002, Makoto Matsumoto and Takuji Nishimura,
    All rights reserved.
 
@@ -89,4 +91,12 @@ see "/usr/share/common-licenses/GPL-3".
    NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+
+The Debian packaging is:
+
+    Copyright (C) 2010 Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr
+                  2009-2010 Cristophe Trophime <christophe.trophime@grenoble.cnrs.fr>
+                  2006-2010 Christophe Prud'homme <prudhomm@debian.org> 
+and is licensed under the GPL version 3,
+see "/usr/share/common-licenses/GPL-3".
 
