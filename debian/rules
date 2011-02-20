@@ -20,6 +20,7 @@ clean:
 	rm -f download/scotch/config.log download/superludist/config.log
 	rm -f download/blacs/config.log download/scalapack/config.log
 	rm -f download/hips/config.log download/metis/config.log
+	rm -f download/mumps/config.log
 	rm -f examples++-load/config.log src/mpi/config.log
 	rm -rf DOC/cpfigs
 	rm -f DOC/freefem++doc.pdf 

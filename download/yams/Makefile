@@ -64,8 +64,8 @@ $(PACKAGE):
 	cd $(DIRPKG);$(WGET)   $(SERVER)/`basename $(PACKAGE)`
 
 clean-local: 
-	-rm FAIRE FAIT
-	cd $(YAMS_DIR); make  clean;
+#	-rm FAIRE FAIT
+#	cd $(YAMS_DIR); make  clean;
 	-rm $(YAMS_OBJDIR)/libyams.a
 
 clean: clean-local

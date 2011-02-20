@@ -1,48 +1,58 @@
-Comment out pinking no opt part
+Fix medit not install patch
 --- a/src/medit/Makefile.am
 +++ b/src/medit/Makefile.am
-@@ -23,13 +23,13 @@
+@@ -23,15 +23,15 @@
  compil.date: $(ffmedit_SOURCES)
  	echo "#define COMPIL " '"' `date` '(with ff++ $(VERSION))''"' > compil.date
  #.PHONY: compil.date
--all-local: pinking.no-opt
+-all-local: pinking.no-opt$(MEDITPROG)
 -
--pinking.no-opt:picking.c
+-pinking.no-optffmedit$(EXEEXT):picking.c
 -	rm picking.$(OBJEXT)
--	$(MAKE) picking.o ffmedit CFLAGS="$(CNOFLAGS)"
+-	$(MAKE) picking.o $(MEDITPROG) CFLAGS="$(CNOFLAGS)"
+-	touch pinking.no-optffmedit$(EXEEXT)
+-pinking.no-opt:picking.c
 -	touch pinking.no-opt
 -clean-local:
--	-rm pinking.no-opt
-+# all-local: pinking.no-opt
+-	-rm pinking.no-opt pinking.no-optffmedit$(EXEEXT)
++# all-local: pinking.no-opt$(MEDITPROG)
 +#
-+# pinking.no-opt:picking.c
++# pinking.no-optffmedit$(EXEEXT):picking.c
 +# 	rm picking.$(OBJEXT)
-+# 	$(MAKE) picking.o ffmedit CFLAGS="$(CNOFLAGS)"
++# 	$(MAKE) picking.o $(MEDITPROG) CFLAGS="$(CNOFLAGS)"
++# 	touch pinking.no-optffmedit$(EXEEXT)
++# pinking.no-opt:picking.c
 +# 	touch pinking.no-opt
 +# clean-local:
-+# 	-rm pinking.no-opt
++# 	-rm pinking.no-opt pinking.no-optffmedit$(EXEEXT)
  
  
 --- a/src/medit/Makefile.in
 +++ b/src/medit/Makefile.in
-@@ -658,14 +658,14 @@
- compil.date: $(ffmedit_SOURCES)
+@@ -659,17 +659,17 @@
  	echo "#define COMPIL " '"' `date` '(with ff++ $(VERSION))''"' > compil.date
  #.PHONY: compil.date
--all-local: pinking.no-opt
+ 
+-all-local: pinking.no-opt$(MEDITPROG)
 -
--pinking.no-opt:picking.c
+-pinking.no-optffmedit$(EXEEXT):picking.c
 -	rm picking.$(OBJEXT)
--	$(MAKE) picking.o ffmedit CFLAGS="$(CNOFLAGS)"
+-	$(MAKE) picking.o $(MEDITPROG) CFLAGS="$(CNOFLAGS)"
+-	touch pinking.no-optffmedit$(EXEEXT)
+-pinking.no-opt:picking.c
 -	touch pinking.no-opt
+-
 -clean-local:
 -	-rm pinking.no-opt
-+# all-local: pinking.no-opt
++# all-local: pinking.no-opt$(MEDITPROG)
 +#
-+# pinking.no-opt:picking.c
++# pinking.no-optffmedit$(EXEEXT):picking.c
 +# 	rm picking.$(OBJEXT)
-+# 	$(MAKE) picking.o ffmedit CFLAGS="$(CNOFLAGS)"
++# 	$(MAKE) picking.o $(MEDITPROG) CFLAGS="$(CNOFLAGS)"
++# 	touch pinking.no-optffmedit$(EXEEXT)
++# pinking.no-opt:picking.c
 +# 	touch pinking.no-opt
++#
 +# clean-local:
 +# 	-rm pinking.no-opt
  

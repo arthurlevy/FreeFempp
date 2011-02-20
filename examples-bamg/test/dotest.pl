@@ -1,4 +1,4 @@
-#!/usr/local/bin/perl
+#!/usr/bin/perl
 # -----  clean ---
 unlink <*.mesh>;
 unlink <*.am_fmt>;

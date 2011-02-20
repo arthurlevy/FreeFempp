@@ -7,3 +7,4 @@ download-hips-Makefile.patch
 examples-load-WHERE-LIBRARY.patch
 examples-load-ff-pkg-download.patch
 examples-bamg-test-dotestpl.patch
+download-mumps-Makefile.patch

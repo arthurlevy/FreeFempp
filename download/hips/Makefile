@@ -194,14 +194,14 @@ $(PACKAGE):
 	cd $(DIRPKG);$(WGET)   $(SERVER)/`basename $(PACKAGE)`
 
 clean-local:
-	-cd $(SRCDIR); $(MAKE) clean 
+#	-cd $(SRCDIR); $(MAKE) clean 
 
 clean: clean-local
 	rm makefile.inc
-	-rm $(SRCDIR)/$(INSTALL)/WHERE/hips
-	-rm $(SRCDIR)/$(INSTALL)/lib/hips/*
+#	-rm $(SRCDIR)/$(INSTALL)/WHERE/hips
+#	-rm $(SRCDIR)/$(INSTALL)/lib/hips/*
 	-rm -rf $(SRCDIR)/$(INSTALL)/lib/hips/
-	-rm $(SRCDIR)/$(INSTALL)/include/hips/*
+#	-rm $(SRCDIR)/$(INSTALL)/include/hips/*
 	-rm -rf $(SRCDIR)/$(INSTALL)/include/hips/
 	-rm -rf $(SRCDIR)
 	rm FAIT

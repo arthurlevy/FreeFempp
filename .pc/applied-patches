@@ -1,0 +1,10 @@
+src-medit-Makefile.patch
+download-yams-Makefile.patch
+download-blacs-Makefile.patch
+download-superludist-Makefile.patch
+download-pastix-Makefile.patch
+download-hips-Makefile.patch
+examples-load-WHERE-LIBRARY.patch
+examples-load-ff-pkg-download.patch
+examples-bamg-test-dotestpl.patch
+download-mumps-Makefile.patch
