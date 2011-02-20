@@ -2053,11 +2053,11 @@ yyreduce:
                         if(ThePlotStream) fwrite(magicffglut,strlen(magicffglut),1,ThePlotStream);	            
                         size_t sizestack = currentblock->size()+1024 ; //  before close 
                         (yyvsp[(1) - (2)].cinst)+=currentblock->close(currentblock);
-                        if(verbosity>2 && mpirank==0) cout << " sizestack + 1024 =" << sizestack << "  ( " << sizestack-1024 <<" )\n" ;   
+                        if(verbosity>2 || mpirank==0) cout << " sizestack + 1024 =" << sizestack << "  ( " << sizestack-1024 <<" )\n" ;   
                         size_t lg0,lg1;                       
                         int NbPtr = ShowAlloc("init execution ",lg0); // number of un delele ptr
 			UnShowAlloc =0;// add FH for parallee
-                        if(verbosity) cout << endl;  
+                        if(verbosity>2  || mpirank==0) cout << endl;  
                         { Stack stack = newStack(sizestack);
                         double CPUcompile= CPUtime();
                         try {                  
@@ -3324,7 +3324,7 @@ int mainff (int  argc, char **argv)
       return 1; 
     }
    
-  if(verbosity && mpirank) { 
+  if(verbosity && (mpirank==0)) { 
       cout << "-- FreeFem++ v" << StrVersionNumber() << endl;
       if(verbosity>1) cout << "   file :" << cc << " " << " verbosity= " << verbosity << endl;
   }
@@ -3363,7 +3363,7 @@ int mainff (int  argc, char **argv)
    zzzfff->Add("catch",CATCH);
    zzzfff->Add("throw",THROW);
    Init_map_type();
-   if(verbosity && (mpirank==0 ) ) cout << " Load: ";
+   if(verbosity>2 || (mpirank==0 ) ) cout << " Load: ";
    init_lgfem() ;
    init_lgmesh() ;
    init_lgmesh3() ;
@@ -3375,7 +3375,7 @@ int mainff (int  argc, char **argv)
 
    if(init_lgparallele)  init_lgparallele(); 
 
-   if(verbosity)  cout << endl;
+   if(verbosity>2 || mpirank==0)  cout << endl;
   zzzfff->input(cc);
   EnvironmentLoad(); // just before compile
   verbosity=vvold; 
