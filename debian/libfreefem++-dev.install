@@ -1,1 +1,1 @@
-debian/tmp/usr/lib/ff++/3.12/include/* /usr/include/freefem++/
+debian/tmp/usr/lib/ff++/3.*/include/* /usr/include/freefem++/
