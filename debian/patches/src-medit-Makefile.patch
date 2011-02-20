@@ -1,7 +1,7 @@
 Fix medit not install patch
 --- a/src/medit/Makefile.am
 +++ b/src/medit/Makefile.am
-@@ -23,15 +23,15 @@
+@@ -23,15 +23,14 @@
  compil.date: $(ffmedit_SOURCES)
  	echo "#define COMPIL " '"' `date` '(with ff++ $(VERSION))''"' > compil.date
  #.PHONY: compil.date
@@ -15,6 +15,8 @@ Fix medit not install patch
 -	touch pinking.no-opt
 -clean-local:
 -	-rm pinking.no-opt pinking.no-optffmedit$(EXEEXT)
+-
+ 
 +# all-local: pinking.no-opt$(MEDITPROG)
 +#
 +# pinking.no-optffmedit$(EXEEXT):picking.c
@@ -25,8 +27,6 @@ Fix medit not install patch
 +# 	touch pinking.no-opt
 +# clean-local:
 +# 	-rm pinking.no-opt pinking.no-optffmedit$(EXEEXT)
- 
- 
 --- a/src/medit/Makefile.in
 +++ b/src/medit/Makefile.in
 @@ -659,17 +659,17 @@
