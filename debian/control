@@ -22,7 +22,7 @@ Package: freefem++
 Architecture: any
 Section: contrib/math
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: A PDE solution oriented language using the Finite Element Method
+Description: freefem++ provides the executables
  FreeFem++ is an implementation of a language dedicated to the finite
  element method. It enables you to solve Partial Differential
  Equations (PDE) easily.
@@ -38,13 +38,13 @@ Description: A PDE solution oriented language using the Finite Element Method
  FreeFem++ is written in C++ and the FreeFem++ language is a C++ idiom
  allowing for a smooth learning curve.
  .
- This package contains the executables.
+ This package contains the executables of FreeFem++.
 
 Package: libfreefem++
 Architecture: any
 Section: contrib/libs
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: The shared libraries of the FreeFem++ suite
+Description: libfreefem++ provides the shared libraries
  FreeFem++ is an implementation of a language dedicated to the finite
  element method. It enables you to solve Partial Differential
  Equations (PDE) easily.
@@ -60,13 +60,13 @@ Description: The shared libraries of the FreeFem++ suite
  FreeFem++ is written in C++ and the FreeFem++ language is a C++ idiom
  allowing for a smooth learning curve.
  .
- This package contains the shared objects.
+ This package contains the shared libraries of FreeFem++.
 
 Package: libfreefem++-dev
 Architecture: any
 Section: contrib/libdevel
 Depends: libfreefem++, ${shlibs:Depends}, ${misc:Depends}
-Description: The development files of the FreeFem++ suite
+Description: Provides the development files
  FreeFem++ is an implementation of a language dedicated to the finite
  element method. It enables you to solve Partial Differential
  Equations (PDE) easily.
@@ -82,13 +82,13 @@ Description: The development files of the FreeFem++ suite
  FreeFem++ is written in C++ and the FreeFem++ language is a C++ idiom
  allowing for a smooth learning curve.
  .
- This package contains the development files.
+ This package contains the development files of FreeFem++.
 
 Package: freefem++-doc
 Architecture: all
 Section: contrib/doc
 Depends: ${misc:Depends}
-Description: The documentation files of the FreeFem++ suite
+Description: Provides the documentation
  FreeFem++ is an implementation of a language dedicated to the finite
  element method. It enables you to solve Partial Differential
  Equations (PDE) easily.
@@ -104,4 +104,4 @@ Description: The documentation files of the FreeFem++ suite
  FreeFem++ is written in C++ and the FreeFem++ language is a C++ idiom
  allowing for a smooth learning curve. 
  .
- This package contains the documentation files for freefem++. 
+ This package contains the documentation files of FreeFem++. 
