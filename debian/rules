@@ -39,7 +39,7 @@ clean:
 build:
 	dh_testdir
 	dh_auto_configure -- CFLAGS=-lm CNOFLAGS=-lm --without-cadna
-	dh_auto_build -- -j4 --ignore-errors
+	dh_auto_build -- -j4
 #	dh_auto_test
 
 binary-indep:

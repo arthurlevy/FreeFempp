@@ -674,7 +674,7 @@ all.edp:
 regtests.edp: regtests.m4 ../regtests.m4
 	m4 -DASSERT regtests.m4 > regtests.edp
 
-$(LIST_COMPILE) $(LIST_COMPILE_PKG):ff-c++ include Makefile
+$(LIST_COMPILE):ff-c++ include Makefile 
 
 clean-local:
 	-rm *.o  load.link WHERE_LIBRARY-download ff-get-dep ff-c++ ff-pkg-download \
