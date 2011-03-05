@@ -10,6 +10,17 @@ Fix ff-c++ compile error
  
  clean-local:
  	-rm *.o  load.link WHERE_LIBRARY-download ff-get-dep ff-c++ ff-pkg-download \
+@@ -135,8 +135,8 @@
+ 	$(INSTALL_DATA)  clapack.h ppmimg.h include/* $(DESTDIR)$(ff_prefix_dir)/include
+ 	$(INSTALL)  -m 555 $(LIST_COMPILE) $(DESTDIR)$(ff_prefix_dir)/lib
+ 	echo loadpath += \"./\"  >$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
+-	echo loadpath += \"$(ff_prefix_dir)/lib\"  >>$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
+-	echo includepath += \"$(ff_prefix_dir)/idp\"  >>$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
++	echo loadpath += \"$(libdir)/freefem++\"  >>$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
++#	echo includepath += \"$(libdir)/freefem++/idp\"  >>$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
+ 	$(INSTALL_SCRIPT) ff-c++  $(DESTDIR)${bindir}
+ 	$(INSTALL_SCRIPT) ff-pkg-download  $(DESTDIR)${bindir}
+ 	$(INSTALL_SCRIPT) ff-get-dep  $(DESTDIR)${bindir}
 --- a/examples++-load/Makefile.in
 +++ b/examples++-load/Makefile.in
 @@ -674,7 +674,7 @@
@@ -21,3 +32,14 @@ Fix ff-c++ compile error
  
  clean-local:
  	-rm *.o  load.link WHERE_LIBRARY-download ff-get-dep ff-c++ ff-pkg-download \
+@@ -707,8 +707,8 @@
+ 	$(INSTALL_DATA)  clapack.h ppmimg.h include/* $(DESTDIR)$(ff_prefix_dir)/include
+ 	$(INSTALL)  -m 555 $(LIST_COMPILE) $(DESTDIR)$(ff_prefix_dir)/lib
+ 	echo loadpath += \"./\"  >$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
+-	echo loadpath += \"$(ff_prefix_dir)/lib\"  >>$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
+-	echo includepath += \"$(ff_prefix_dir)/idp\"  >>$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
++	echo loadpath += \"$(libdir)/freefem++\"  >>$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
++#	echo includepath += \"$(libdir)/freefem++/idp\"  >>$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
+ 	$(INSTALL_SCRIPT) ff-c++  $(DESTDIR)${bindir}
+ 	$(INSTALL_SCRIPT) ff-pkg-download  $(DESTDIR)${bindir}
+ 	$(INSTALL_SCRIPT) ff-get-dep  $(DESTDIR)${bindir}
