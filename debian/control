@@ -22,7 +22,7 @@ Package: freefem++
 Architecture: any
 Section: contrib/math
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: freefem++ provides the executables
+Description: Provides the binaries of the FreeFem++ FE suite
  FreeFem++ is an implementation of a language dedicated to the finite
  element method. It enables you to solve Partial Differential
  Equations (PDE) easily.
@@ -44,7 +44,7 @@ Package: libfreefem++
 Architecture: any
 Section: contrib/libs
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: libfreefem++ provides the shared libraries
+Description: Provides the shared libraries of the FreeFem++ FE suite
  FreeFem++ is an implementation of a language dedicated to the finite
  element method. It enables you to solve Partial Differential
  Equations (PDE) easily.
@@ -66,7 +66,7 @@ Package: libfreefem++-dev
 Architecture: any
 Section: contrib/libdevel
 Depends: libfreefem++, ${shlibs:Depends}, ${misc:Depends}
-Description: Provides the development files
+Description: Provides the development files of the FreeFem++ FE suite
  FreeFem++ is an implementation of a language dedicated to the finite
  element method. It enables you to solve Partial Differential
  Equations (PDE) easily.
@@ -88,7 +88,7 @@ Package: freefem++-doc
 Architecture: all
 Section: contrib/doc
 Depends: ${misc:Depends}
-Description: Provides the documentation
+Description: Provides the documentation of the FreeFem++ FE suite
  FreeFem++ is an implementation of a language dedicated to the finite
  element method. It enables you to solve Partial Differential
  Equations (PDE) easily.

@@ -4,7 +4,7 @@ freefem++ (3.12-1) unstable; urgency=low
   * Create packages libfreefem++ and libfreefem++-dev.
   * Complete the man pages.
 
- -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Sun, 20 Feb 2011 16:21:00 +0200
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Fri, 1 Apr 2011 23:10:00 +0200
 
 freefem++ (3.11-1) unreleased; urgency=low
 

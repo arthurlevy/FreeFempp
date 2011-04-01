@@ -1,18 +1,3 @@
-This work was packaged for Debian by:
-
-    Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr> on Fri, 24 Dec 2010 17:50:44 +0200
-
-It was downloaded from:
-
-    http://www.freefem.org/ff++/ftp/
-
-Upstream Author(s):
-
-     Frédéric Hecht <hecht@ann.jussieu.fr>
-     Olivier Pironneau <pironneau@ann.jussieu.fr>
-     Antoine Le Hyaric <lehyaric@ann.jussieu.fr> 
-     Albert Ly <ly@ann.jussieu.fr>
-
 Files: *
 
 Copyright:
@@ -27,12 +12,8 @@ License:
 
 Excepted are the following files which have their own licences:
 
-Files: src/Algo
 
-     COOOL is a package of tools for writing optimization code and solving 
-     optimization problems. Our special interest is in solving inverse problems,
-     but the library should be useful for many different kinds of problems.
-     taken from the COOOL software by the FreeFem++ authors (http://coool.mines.edu/)
+Files: src/Algo
 
 Copyright: 
 
@@ -52,13 +33,7 @@ Licence:
     source code.
 
 
-Files: src/fflib/mt19937ar.cpp
-
-    A C-program for MT19937, with initialization improved 2002/1/26.
-    Coded by Takuji Nishimura and Makoto Matsumoto 
-    (mailto:m-mat@math.sci.hiroshima-u.ac.jp).
-    Before using, initialize the state by using init_genrand(seed)
-    or init_by_array(init_key, key_length). 
+Files: src/fflib/mt19937ar.cpp 
 
 Copyright:
     
