@@ -1,5 +1,3 @@
 # Compulsory line, this is a version 3 file
 version=3
-
-# Uncomment to examine a Webserver directory
-http://www.freefem.org/ff++/ftp/freefem++-(.*)\.tar\.gz
+http://www.freefem.org/ff++/ftp/ freefem\+\+-(.*)\.tar\.gz
