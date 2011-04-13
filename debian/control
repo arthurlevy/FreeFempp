@@ -10,7 +10,7 @@ Build-Depends: debhelper (>= 7.2.3~), autotools-dev, gawk,
  libxpm-dev, openmpi-bin, libfftw3-dev, libblas-dev, libgsl0-dev,
  libarpack2-dev, libsuitesparse-dev, libsuperlu3-dev, imagemagick, 
  libfltk1.1-dev, freeglut3-dev, texlive, texlive-extra-utils, 
- texlive-latex-extra, libglut3-dev, texlive-font-utils,
+ texlive-latex-extra, texlive-font-utils,
  libmumps-dev, libblacs-mpi-dev, libscalapack-mpi-dev,
  libscotch-dev, ghostscript, libptscotch-dev
 Standards-Version: 3.9.1
