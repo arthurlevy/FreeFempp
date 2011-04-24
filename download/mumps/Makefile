@@ -49,12 +49,12 @@ $(SRCDIR)/tag-tar:
 	touch $(SRCDIR)/tag-tar
 
 clean-local:
-# 	-cd $(SRCDIR); make clean
+	-cd $(SRCDIR); make clean
 
 clean: clean-local
 	rm Makefile.inc FAIRE
-# 	-rm -rf $(SRCDIR)/$(INSTALL)/include/*mumps*
-# 	-rm -rf $(SRCDIR)/$(INSTALL)/lib/lib*mumps* $(SRCDIR)/$(INSTALL)/lib/libpord*.a
-# 	-rm -rf $(SRCDIR)
+	-rm -rf $(SRCDIR)/$(INSTALL)/include/*mumps*
+	-rm -rf $(SRCDIR)/$(INSTALL)/lib/lib*mumps* $(SRCDIR)/$(INSTALL)/lib/libpord*.a
+	-rm -rf $(SRCDIR)
 
 .PHONY:$(SRCDIR)/$(INSTALL)

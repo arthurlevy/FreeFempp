@@ -128,11 +128,11 @@ $(PACKAGE1):
 	cd $(DIRPKG);$(WGET)   $(SERVER)/`basename $(PACKAGE1)`
 
 clean-local:
-#	-cd $(SRCDIR)/src/; $(MAKE) clean
+	-cd $(SRCDIR)/src/; $(MAKE) clean
 
 clean: clean-local
-#	-rm config.in FAIRE 
-#	-rm $(SRCDIR)/FAIT
+	-rm config.in FAIRE 
+	-rm $(SRCDIR)/FAIT
 	-rm -rf $(SRCDIR)/$(INSTALL)/include/pastix/double
 	-rm -rf $(SRCDIR)/$(INSTALL)/lib/pastix/double
 	-rm -rf $(SRCDIR)/$(INSTALL)/include/pastix/complex
