@@ -1,4 +1,4 @@
-
+#include <config.h>
 #include <fstream>
 #include <iostream>
 #include <cfloat>
@@ -50,7 +50,7 @@ using namespace std;
 // Remark on mipich  MPI_Comm, MPI_Resquest, MPI_Group, MPI_Op are int 
 //  => encapsulation
 
-
+//static long verbosity=1000;
 template<class MPI_type,int DIFF>
 struct fMPI { 
   MPI_type v; 
@@ -100,7 +100,7 @@ template<> struct MPI_TYPE<int>      {static const MPI_Datatype TYPE(){return MP
 template<> struct MPI_TYPE<double>    {static const MPI_Datatype TYPE(){return MPI_DOUBLE;}};
 template<> struct MPI_TYPE<char>    {static const MPI_Datatype TYPE(){return MPI_BYTE;}};
 
-#ifdef MPI_DOUBLE_COMPLEX_
+#ifdef HAVE_MPI_DOUBLE_COMPLEX
 template<> struct MPI_TYPE<Complex>   {static const MPI_Datatype TYPE(){return MPI_DOUBLE_COMPLEX;}};
 #endif
 template<class T> struct MPI_WHAT {};
@@ -132,7 +132,7 @@ extern long mpisize ;
 //  for syncro communication
 MPI_Request *  Syncro_block = reinterpret_cast<MPI_Request * > (1); 
 
-const size_t sizempibuf = 1024*32;
+const size_t sizempibuf = 1024*320;
 
 template<class R> 
 long  WSend( R * v,int l,int who,int tag,MPI_Comm comm,MPI_Request *rq)
@@ -160,7 +160,7 @@ long  WSend<Complex> ( Complex * v,int n,int who,int tag,MPI_Comm comm,MPI_Reque
     cout << mpirank<< " send to " << who << " tag " << tag << " " << rq << " " <<  comm << " syncro "<<  (rq == Syncro_block) << endl;
   if(rq == Syncro_block) 
     {
-#ifdef MPI_DOUBLE_COMPLEX
+#ifdef HAVE_MPI_DOUBLE_COMPLEX
       ret=MPI_Send(reinterpret_cast<void*> (v) , n, MPI_DOUBLE_COMPLEX, who, tag,comm);
 #else
       n *=2;
@@ -169,7 +169,7 @@ long  WSend<Complex> ( Complex * v,int n,int who,int tag,MPI_Comm comm,MPI_Reque
     }
   else
     {
-#ifdef MPI_DOUBLE_COMPLEX
+#ifdef HAVE_MPI_DOUBLE_COMPLEX
       ret=MPI_Isend(reinterpret_cast<void*> (v) , n, MPI_DOUBLE_COMPLEX, who, tag,comm,request);
 #else
       n *=2;
@@ -196,7 +196,7 @@ template<>
 long  WRecv<Complex> (Complex * v,int n,int who,int tag,MPI_Comm comm,MPI_Request *rq)
 {
   MPI_Status status;
-#ifdef MPI_DOUBLE_COMPLEX_
+#ifdef HAVE_MPI_DOUBLE_COMPLEX
   if(rq && (rq != Syncro_block)) 
     return MPI_Irecv(reinterpret_cast<void*> (v), n, MPI_DOUBLE_COMPLEX, who, tag,comm,rq);
   else 
@@ -221,8 +221,8 @@ template<>
 void  WBcast<Complex>(Complex * v,int  n,int who,MPI_Comm comm)  
 {
   assert(v && n>0);
-#ifdef MPI_DOUBLE_COMPLEX_
-  MPI_Bcast(reinterpret_cast<void*> (v), n, MPI_TYPE<R>::TYPE(), who,comm);
+#ifdef HAVE_MPI_DOUBLE_COMPLEX
+    MPI_Bcast(reinterpret_cast<void*> (v), n, MPI_DOUBLE_COMPLEX /*MPI_TYPE<R>::TYPE()*/, who,comm);
 #else
   n *=2;
   MPI_Bcast(reinterpret_cast<void*> (v), n, MPI_DOUBLE, who,comm);
@@ -477,9 +477,12 @@ void DoOnWaitMPIRequest(MPI_Request *rq)
 
 void DeSerialize(Serialize * sTh,Fem2D::Mesh ** ppTh)
 {
-      if (*ppTh) (**ppTh).decrement();
+      if ( *ppTh ) (**ppTh).decrement();
+   // cout << " ####"<< sTh << endl;
       Fem2D::Mesh * pTh= new Fem2D::Mesh(*sTh);
+   // cout << " ####\n";
       *ppTh=pTh;
+ 
       Fem2D::R2 Pn,Px;
       pTh->BoundingBox(Pn,Px);
       pTh->quadtree=new Fem2D::FQuadTree(pTh,Pn,Px,pTh->nv);
@@ -487,7 +490,7 @@ void DeSerialize(Serialize * sTh,Fem2D::Mesh ** ppTh)
 
 void DeSerialize(Serialize * sTh,Fem2D::Mesh3 ** ppTh)
 {
-      if (*ppTh) (**ppTh).decrement();
+      if ( *ppTh )  (**ppTh).decrement();
       Fem2D::Mesh3 * pTh= new Fem2D::Mesh3(*sTh);
       pTh->BuildGTree();
       *ppTh=pTh;
@@ -1246,6 +1249,15 @@ struct Op_AllReduce  : public   quad_function<KN_<R>,KN_<R>,fMPI_Comm,fMPI_Op,lo
     return MPI_Allreduce( (void *) (R*) s,(void *) (R*) r, chunk , MPI_TYPE<R>::TYPE(),op,comm);	
   }
 };
+
+template<class R>
+struct Op_AllReduce1  : public   quad_function<R *,R *,fMPI_Comm,fMPI_Op,long> {
+    static long  f(Stack, R *  const  & s, R *  const  &r,  fMPI_Comm const & comm,fMPI_Op const &op)  
+    { 
+	int chunk = 1;
+	return MPI_Allreduce( (void *) (R*) s,(void *) (R*) r, 1 , MPI_TYPE<R>::TYPE(),op,comm);	
+    }
+};
 /*
 template<class R>
 struct Op_Reducescatter  : public   quad_function<KN_<R>,KN_<R>,fMPI_Comm,fMPI_Op,long> {
@@ -1347,13 +1359,13 @@ struct Op_All2All<Complex> : public binary_function<KN_<Complex>,KN_<Complex>,lo
     int chunk = s.N()/mpisizew;
     ffassert(s.N()==mpisizew*chunk && r.N()==s.N());
    
-#ifdef MPI_DOUBLE_COMPLEX 
+#ifdef HAVE_MPI_DOUBLE_COMPLEX 
     return MPI_Alltoall( (void *) (Complex*) s, chunk, MPI_DOUBLE_COMPLEX,
 			 (void *) (Complex*) r, chunk, MPI_DOUBLE_COMPLEX, comm);	
 #else
     chunk*=2;
-    return MPI_Alltoall( reinterpret_cast<void*> (s), chunk, MPI_DOUBLE,
-			 reinterpret_cast<void*> (r), chunk, MPI_DOUBLE, comm);	
+    return MPI_Alltoall( reinterpret_cast<void*> ( (Complex*) s), chunk, MPI_DOUBLE,
+			 reinterpret_cast<void*> ( (Complex*) r), chunk, MPI_DOUBLE, comm);	
 #endif
   }
 };
@@ -1367,13 +1379,13 @@ struct Op_Allgather1<Complex> : public binary_function<Complex *,KN_<Complex>,lo
     MPI_Comm_size(comm, &mpisizew); /* local */ 
     int chunk = 1;    
     ffassert( r.N()== mpisizew);
-#ifdef MPI_DOUBLE_COMPLEX
+#ifdef HAVE_MPI_DOUBLE_COMPLEX
     return MPI_Allgather( (void *) (Complex*) s, chunk, MPI_DOUBLE_COMPLEX,
 			  (void *) (Complex*) r, chunk, MPI_DOUBLE_COMPLEX, comm);
 #else
-    chunk*2=;
-    return MPI_Allgather( reinterpret_cast<void*> (s), chunk, MPI_DOUBLE,
-			  reinterpret_cast<void*> (r), chunk, MPI_DOUBLE, comm);
+    chunk*=2;
+    return MPI_Allgather( reinterpret_cast<void*> ( (Complex*) s), chunk, MPI_DOUBLE,
+			  reinterpret_cast<void*> ( (Complex*) r), chunk, MPI_DOUBLE, comm);
 #endif
   }
 };
@@ -1388,13 +1400,13 @@ struct Op_Allgather<Complex> : public binary_function<KN_<Complex>,KN_<Complex>,
       MPI_Comm_size(comm, &mpisizew); /* local */ 
       int chunk = r.N()/mpisizew;
       ffassert( r.N()==chunk*mpisizew && chunk==s.N() );
-#ifdef MPI_DOUBLE_COMPLEX 
+#ifdef HAVE_MPI_DOUBLE_COMPLEX 
       return MPI_Allgather( (void *) (Complex*) s, chunk, MPI_DOUBLE_COMPLEX,
 			    (void *) (Complex*) r, chunk, MPI_DOUBLE_COMPLEX, comm);
 #else
       chunk*=2;
-      return MPI_Allgather( reinterpret_cast<void*> (s), chunk, MPI_DOUBLE,
-			     reinterpret_cast<void*> (r), chunk, MPI_DOUBLE, comm);
+      return MPI_Allgather( reinterpret_cast<void*> (  (Complex*) s), chunk, MPI_DOUBLE,
+			    reinterpret_cast<void*> ( (Complex*) r), chunk, MPI_DOUBLE, comm);
 #endif
     }
 };
@@ -1408,7 +1420,7 @@ struct Op_All2All3<Complex> : public ternary_function<KN_<Complex>,KN_<Complex>,
       MPI_Comm_size(comm, &mpisizew); /* local */ 
       int chunk = s.N()/mpisizew;
       ffassert(s.N()==mpisizew*chunk && r.N()==s.N());
-#ifdef MPI_DOUBLE_COMPLEX       
+#ifdef HAVE_MPI_DOUBLE_COMPLEX       
       return MPI_Alltoall( (void *) (Complex*) s, chunk, MPI_DOUBLE_COMPLEX,
 			   (void *) (Complex*) r, chunk, MPI_DOUBLE_COMPLEX, comm);
 #else
@@ -1429,7 +1441,7 @@ struct Op_Allgather3<Complex> : public ternary_function<KN_<Complex>,KN_<Complex
     int chunk = r.N()/mpisizew;    // bug corrected by J. Morice
     //ffassert(s.N()==mpisizew*chunk && r.N()==s.N());
     ffassert(s.N()==chunk && r.N()==s.N()*mpisizew);
-#ifdef MPI_DOUBLE_COMPLEX
+#ifdef HAVE_MPI_DOUBLE_COMPLEX
     return MPI_Allgather( (void *) (Complex*) s, chunk, MPI_DOUBLE_COMPLEX,
 			  (void *) (Complex*) r, chunk, MPI_DOUBLE_COMPLEX, comm);
 #else
@@ -1449,7 +1461,7 @@ struct Op_Allgather13<Complex> : public ternary_function<Complex *,KN_<Complex>,
     MPI_Comm_size(comm, &mpisizew); /* local */ 
     int chunk = 1;    
     ffassert( r.N()==mpisizew);
-#ifdef MPI_DOUBLE_COMPLEX
+#ifdef HAVE_MPI_DOUBLE_COMPLEX
     return MPI_Allgather( (void *) (Complex*) s, chunk, MPI_DOUBLE_COMPLEX,
 			  (void *) (Complex*) r, chunk, MPI_DOUBLE_COMPLEX, comm);
 #else
@@ -1478,7 +1490,7 @@ long  Op_All2Allv<Complex>( KN_<Complex>  const  & s, KN_<Complex>  const  &r, K
   KN<int> INTrdispls(rdispls.N());
   
   
-#ifdef MPI_DOUBLE_COMPLEX
+#ifdef HAVE_MPI_DOUBLE_COMPLEX
   for(int ii=0; ii< sendcnts.N(); ii++){
     INTsendcnts[ii] = sendcnts[ii];
     INTsdispls[ii]  = sdispls[ii];
@@ -1494,8 +1506,8 @@ long  Op_All2Allv<Complex>( KN_<Complex>  const  & s, KN_<Complex>  const  &r, K
     INTrecvcnts[ii] = 2*recvcnts[ii];
     INTrdispls[ii]  = 2*rdispls[ii];
   }
-  return MPI_Alltoallv( reinterpret_cast<void*> (s), INTsendcnts, INTsdispls, MPI_DOUBLE,
-			reinterpret_cast<void*> (r), INTrecvcnts, INTrdispls, MPI_DOUBLE, comm);
+  return MPI_Alltoallv( reinterpret_cast<void*> ( (Complex*) s), INTsendcnts, INTsdispls, MPI_DOUBLE,
+			reinterpret_cast<void*> ( (Complex*) r), INTrecvcnts, INTrdispls, MPI_DOUBLE, comm);
 #endif
 }
 
@@ -1517,7 +1529,7 @@ struct Op_Allgatherv<Complex> : public quad_function<KN_<Complex>,KN_<Complex>,K
   
     KN<int> INTrecvcount(recvcount.N());
     KN<int> INTdispls(displs.N());
-#ifdef MPI_DOUBLE_COMPLEX
+#ifdef HAVE_MPI_DOUBLE_COMPLEX
     for(int ii=0; ii< recvcount.N(); ii++){
       INTrecvcount[ii]= recvcount[ii];
       INTdispls[ii]= displs[ii];
@@ -1529,8 +1541,8 @@ struct Op_Allgatherv<Complex> : public quad_function<KN_<Complex>,KN_<Complex>,K
       INTrecvcount[ii]= 2*recvcount[ii];
       INTdispls[ii]= 2*displs[ii];
     }
-    return MPI_Allgatherv( reinterpret_cast<void*> (s), 2*s.N(), MPI_DOUBLE,
-			   reinterpret_cast<void*> (r), INTrecvcount, INTdispls,MPI_DOUBLE, comm);
+    return MPI_Allgatherv( reinterpret_cast<void*> ( (Complex*) s), 2*s.N(), MPI_DOUBLE,
+			   reinterpret_cast<void*> ( (Complex*) r), INTrecvcount, INTdispls,MPI_DOUBLE, comm);
 #endif	
   }
 };
@@ -1553,7 +1565,7 @@ long  Op_All2All3v<Complex>(KN_<Complex>  const  & s, KN_<Complex>  const  &r,fM
   KN<int> INTrecvcnts(recvcnts.N());
   KN<int> INTrdispls(rdispls.N());
     
-#ifdef MPI_DOUBLE_COMPLEX  
+#ifdef HAVE_MPI_DOUBLE_COMPLEX  
   for(int ii=0; ii< sendcnts.N(); ii++){
     INTsendcnts[ii] = sendcnts[ii];
     INTsdispls[ii]  = sdispls[ii];
@@ -1571,8 +1583,8 @@ long  Op_All2All3v<Complex>(KN_<Complex>  const  & s, KN_<Complex>  const  &r,fM
     INTrdispls[ii]  = 2*rdispls[ii];
   }
 
-  return MPI_Alltoallv( reinterpret_cast<void*> (s), INTsendcnts, INTsdispls, MPI_DOUBLE,
-			reinterpret_cast<void*> (r), INTrecvcnts, INTrdispls, MPI_DOUBLE, comm);
+  return MPI_Alltoallv( reinterpret_cast<void*> ( (Complex*) s), INTsendcnts, INTsdispls, MPI_DOUBLE,
+			reinterpret_cast<void*> ( (Complex*) r), INTrecvcnts, INTrdispls, MPI_DOUBLE, comm);
 #endif
 }
 
@@ -1591,7 +1603,7 @@ long Op_Allgatherv3<Complex>(KN_<Complex>  const  & s, KN_<Complex>  const  &r,f
   KN<int> INTrecvcount(recvcount.N());
   KN<int> INTdispls(displs.N());
   
-#ifdef MPI_DOUBLE_COMPLEX 
+#ifdef HAVE_MPI_DOUBLE_COMPLEX 
   for(int ii=0; ii< recvcount.N(); ii++){
     INTrecvcount[ii]= recvcount[ii];
     INTdispls[ii]= displs[ii];
@@ -1606,8 +1618,8 @@ long Op_Allgatherv3<Complex>(KN_<Complex>  const  & s, KN_<Complex>  const  &r,f
     INTdispls[ii]= 2*displs[ii];
   }
 
-  return MPI_Allgatherv( reinterpret_cast<void*> (s), 2*s.N(), MPI_DOUBLE,
-			 reinterpret_cast<void*> (r), INTrecvcount, INTdispls,MPI_DOUBLE, comm);
+  return MPI_Allgatherv( reinterpret_cast<void*> ( (Complex*) s), 2*s.N(), MPI_DOUBLE,
+			 reinterpret_cast<void*> ( (Complex*) r), INTrecvcount, INTdispls,MPI_DOUBLE, comm);
 #endif
 
 }
@@ -1621,13 +1633,13 @@ struct Op_Scatter1<Complex> : public   ternary_function<KN_<Complex>,Complex *,M
     MPI_Comm_size(root.comm, &mpisizew); 
     int chunk = 1;
     ffassert(s.N()==mpisizew*chunk );
-#ifdef MPI_DOUBLE_COMPLEX      
+#ifdef HAVE_MPI_DOUBLE_COMPLEX      
     return MPI_Scatter( (void *) (Complex*)s, chunk, MPI_DOUBLE_COMPLEX,
 			(void *) (Complex*)r, chunk, MPI_DOUBLE_COMPLEX,root.who,root.comm);	
 #else
     chunk*=2;
-    return MPI_Scatter( reinterpret_cast<void*> (s), chunk, MPI_DOUBLE,
-			reinterpret_cast<void*> (r), chunk, MPI_DOUBLE,root.who,root.comm);
+    return MPI_Scatter( reinterpret_cast<void*> ( (Complex*) s), chunk, MPI_DOUBLE,
+			reinterpret_cast<void*> ( (Complex*) r), chunk, MPI_DOUBLE,root.who,root.comm);
 #endif
   }
 };
@@ -1642,13 +1654,13 @@ struct Op_Scatter3<Complex> : public   ternary_function<KN_<Complex>,KN_<Complex
     MPI_Comm_size(root.comm, &mpisizew); 
     int chunk = s.N()/mpisizew;
     ffassert(s.N()==mpisizew*chunk && r.N()==chunk);
-#ifdef MPI_DOUBLE_COMPLEX      
+#ifdef HAVE_MPI_DOUBLE_COMPLEX      
     return MPI_Scatter( (void *) (Complex*)s, chunk, MPI_DOUBLE_COMPLEX,
 			(void *) (Complex*)r, chunk, MPI_DOUBLE_COMPLEX,root.who,root.comm);	
 #else
     chunk*=2;
-    return MPI_Scatter( reinterpret_cast<void*> (s), chunk, MPI_DOUBLE,
-			reinterpret_cast<void*> (r), chunk, MPI_DOUBLE,root.who,root.comm);
+    return MPI_Scatter( reinterpret_cast<void*> ( (Complex*) s), chunk, MPI_DOUBLE,
+			reinterpret_cast<void*> ( (Complex*) r), chunk, MPI_DOUBLE,root.who,root.comm);
 #endif
   }
 };
@@ -1674,7 +1686,7 @@ long Op_Scatterv3<Complex>( KN_<Complex>  const  & s, KN_<Complex>  const  &r,  
   
   KN<int> INTsendcnts(sendcnts.N());
   KN<int> INTdispls(displs.N());
-#ifdef MPI_DOUBLE_COMPLEX  
+#ifdef HAVE_MPI_DOUBLE_COMPLEX  
   for(int ii=0; ii< sendcnts.N(); ii++){
     INTsendcnts[ii]= sendcnts[ii];
     INTdispls[ii]= displs[ii];
@@ -1688,8 +1700,8 @@ long Op_Scatterv3<Complex>( KN_<Complex>  const  & s, KN_<Complex>  const  &r,  
     INTdispls[ii]= 2*displs[ii];
   }
 
-  return MPI_Scatterv( reinterpret_cast<void*> (s), INTsendcnts, INTdispls, MPI_DOUBLE,
-		       reinterpret_cast<void*> (r), 2*r.N(), MPI_DOUBLE,root.who,root.comm);
+  return MPI_Scatterv( reinterpret_cast<void*> ( (Complex*) s), INTsendcnts, INTdispls, MPI_DOUBLE,
+		       reinterpret_cast<void*> ( (Complex*) r), 2*r.N(), MPI_DOUBLE,root.who,root.comm);
 #endif
 
 }
@@ -1701,11 +1713,11 @@ struct Op_Reduce<Complex>  : public   quad_function<KN_<Complex>,KN_<Complex>,MP
   { 
     int chunk = s.N();
     ffassert(chunk==r.N());
-#ifdef MPI_DOUBLE_COMPLEX     
+#ifdef HAVE_MPI_DOUBLE_COMPLEX     
     return MPI_Reduce( (void *) (Complex*)s,(void *) (Complex*)r, chunk , MPI_DOUBLE_COMPLEX,op,root.who,root.comm);
 #else
     chunk*=2;
-    return MPI_Reduce( reinterpret_cast<void*> (s), reinterpret_cast<void*> (r), chunk , MPI_DOUBLE,op,root.who,root.comm);
+    return MPI_Reduce( reinterpret_cast<void*> ( (Complex*) s), reinterpret_cast<void*> ( (Complex*) r), chunk , MPI_DOUBLE,op,root.who,root.comm);
 #endif	
   }
 };
@@ -1716,11 +1728,11 @@ struct Op_AllReduce<Complex>  : public   quad_function<KN_<Complex>,KN_<Complex>
   { 
     int chunk = s.N();
     ffassert(chunk==r.N());
-#ifdef MPI_DOUBLE_COMPLEX
+#ifdef HAVE_MPI_DOUBLE_COMPLEX
     return MPI_Allreduce( (void *) (Complex*)s,(void *) (Complex*)r, chunk , MPI_DOUBLE_COMPLEX,op,comm);
 #else
     chunk *=2;
-    return MPI_Allreduce( reinterpret_cast<void*> (s), reinterpret_cast<void*> (r), chunk , MPI_DOUBLE,op,comm);
+    return MPI_Allreduce( reinterpret_cast<void*> ( (Complex*) s), reinterpret_cast<void*> ( (Complex*) r), chunk , MPI_DOUBLE,op,comm);
 #endif	
   }
 };
@@ -1738,15 +1750,15 @@ struct Op_AllReduce<Complex>  : public   quad_function<KN_<Complex>,KN_<Complex>
 // };*/
 
 template<>
-struct Op_Reduce1<Complex>  : public   quad_function<R*,R*,MPIrank,fMPI_Op,long> {
-  static long  f(Stack, R*  const  & s, R*  const  &r,  MPIrank const & root, fMPI_Op const &op)  
+struct Op_Reduce1<Complex>  : public   quad_function<Complex*,Complex*,MPIrank,fMPI_Op,long> {
+  static long  f(Stack, Complex*  const  & s, Complex*  const  &r,  MPIrank const & root, fMPI_Op const &op)  
   { 
-#ifdef MPI_DOUBLE_COMPLEX
+#ifdef HAVE_MPI_DOUBLE_COMPLEX
     int chunk = 1;
-    return MPI_Reduce( (void *) (Complex*)s, (void *) (Complex*)r, chunk , MPI_DOUBLE_COMPLEX,op,root.who,root.comm);
+    return MPI_Reduce( (void *) s, (void *) r, chunk , MPI_DOUBLE_COMPLEX,op,root.who,root.comm);
 #else
     int chunk = 2;
-    return MPI_Reduce( reinterpret_cast<void*> (s), reinterpret_cast<void*> (r), chunk , MPI_DOUBLE,op,root.who,root.comm);
+    return MPI_Reduce( reinterpret_cast<void*> ( (Complex*) s), reinterpret_cast<void*> ( (Complex*) r), chunk , MPI_DOUBLE,op,root.who,root.comm);
 #endif
   }
 };
@@ -1761,14 +1773,14 @@ struct Op_Gather1<Complex> : public   ternary_function<Complex* ,KN_<Complex>,MP
     MPI_Comm_size(root.comm, &mpisizew); 
     int chunk = 1;
     ffassert(r.N()==mpisizew*chunk );
-#ifdef MPI_DOUBLE_COMPLEX  
+#ifdef HAVE_MPI_DOUBLE_COMPLEX  
    
     return MPI_Gather( (void *) (Complex*) s, chunk, MPI_DOUBLE_COMPLEX,
 			   (void *) (Complex*) r, chunk, MPI_DOUBLE_COMPLEX, root.who, root.comm);
 #else
     chunk = 2;
-    return MPI_Gather( reinterpret_cast<void*> (s), chunk, MPI_DOUBLE,
-			   reinterpret_cast<void*> (r), chunk, MPI_DOUBLE, root.who, root.comm);
+    return MPI_Gather( reinterpret_cast<void*> ( (Complex*) s), chunk, MPI_DOUBLE,
+		       reinterpret_cast<void*> ( (Complex*) r), chunk, MPI_DOUBLE, root.who, root.comm);
 #endif	
   }
 };
@@ -1785,13 +1797,13 @@ struct Op_Gather3<Complex> : public   ternary_function<KN_<Complex>,KN_<Complex>
     MPI_Comm_size(root.comm, &mpisizew); 
     int chunk = r.N()/mpisizew;
     ffassert(r.N()==mpisizew*chunk && chunk==s.N());
-#ifdef MPI_DOUBLE_COMPLEX     
+#ifdef HAVE_MPI_DOUBLE_COMPLEX     
     return MPI_Gather( (void *) (Complex*)s, chunk, MPI_DOUBLE_COMPLEX,
 			   (void *) (Complex*)r, chunk, MPI_DOUBLE_COMPLEX,root.who,root.comm);	
 #else
     chunk *= 2; 
-    return MPI_Gather( reinterpret_cast<void*> (s), chunk, MPI_DOUBLE,
-		       reinterpret_cast<void*> (r), chunk, MPI_DOUBLE,root.who,root.comm);
+    return MPI_Gather( reinterpret_cast<void*> ( (Complex*) s), chunk, MPI_DOUBLE,
+		       reinterpret_cast<void*> ( (Complex*) r), chunk, MPI_DOUBLE,root.who,root.comm);
 #endif
   }
 };
@@ -1816,7 +1828,7 @@ long  Op_Gatherv3<Complex>(KN_<Complex>  const  & s, KN_<Complex>  const  &r,  M
   }
   KN<int> INTrecvcount(recvcount.N());
   KN<int> INTdispls(displs.N());
-#ifdef MPI_DOUBLE_COMPLEX   
+#ifdef HAVE_MPI_DOUBLE_COMPLEX   
   for(int ii=0; ii< recvcount.N(); ii++){
     INTrecvcount[ii]= recvcount[ii];
     INTdispls[ii]= displs[ii];
@@ -1828,8 +1840,8 @@ long  Op_Gatherv3<Complex>(KN_<Complex>  const  & s, KN_<Complex>  const  &r,  M
     INTrecvcount[ii]= 2*recvcount[ii];
     INTdispls[ii]= 2*displs[ii];
   }
-  return MPI_Gatherv( reinterpret_cast<void*> (s), 2*s.N(), MPI_DOUBLE,
-		      reinterpret_cast<void*> (r), INTrecvcount, INTdispls,MPI_DOUBLE,root.who,root.comm);
+  return MPI_Gatherv( reinterpret_cast<void*> ( (Complex*) s), 2*s.N(), MPI_DOUBLE,
+		      reinterpret_cast<void*> ( (Complex*) r), INTrecvcount, INTdispls,MPI_DOUBLE,root.who,root.comm);
 #endif
 }
 
@@ -1884,13 +1896,13 @@ MPIrank * set_copympi( MPIrank* const & a,const MPIrank & b){ *a=b;return a;}
 long mpiSize(fMPI_Comm  cmm) { 
     int s=0;
  //   fMPI_Comm_rank(MPI_COMM_WORLD, &s); /* local */ 
-    if(cmm != MPI_COMM_NULL)
+    if(cmm !=  (MPI_Comm) MPI_COMM_NULL)
     MPI_Comm_size(cmm, &s); /* local */ 
     return s;
 }
 long mpiRank(fMPI_Comm  cmm) { 
     int s=MPI_UNDEFINED;
-    if(cmm != MPI_COMM_NULL)
+    if(cmm != (MPI_Comm)MPI_COMM_NULL)
     MPI_Comm_rank(cmm, &s); /* local */ 
  //   MPI_Comm_size(MPI_COMM_WORLD, &s); /* local */ 
     return s;
@@ -2089,7 +2101,7 @@ KN<MPI_Request> * set_init0( KN<MPI_Request> * const & a,const long & b)
    }
 bool toBool(fMPI_Comm *comm)
 {
-  return (comm && (*comm !=MPI_COMM_NULL)); 
+  return (comm && (*comm != (MPI_Comm)MPI_COMM_NULL)); 
 }
 void * topVoid(fMPI_Comm *comm) {    return comm; }
 
@@ -2335,12 +2347,14 @@ void f_init_lgparallele()
       Global.Add("mpiReduce","(",new OneQuadOperator<Op_Reduce< double >, Quad_Op<Op_Reduce< double > > >);
       Global.Add("mpiReduce","(",new OneQuadOperator<Op_Reduce1< double >, Quad_Op<Op_Reduce1< double > > >);
       Global.Add("mpiAllReduce","(",new OneQuadOperator<Op_AllReduce< double >, Quad_Op<Op_AllReduce< double > > >);
+      Global.Add("mpiAllReduce","(",new OneQuadOperator<Op_AllReduce1< double >, Quad_Op<Op_AllReduce1< double > > >); // add FH jan 2011 
       //    Global.Add("mpiReduceScatter","(",new OneQuadOperator<Op_Reducescatter< double >, Quad_Op<Op_Reducescatter< double > > >);
 
       // Add J. Morice
       Global.Add("mpiReduce","(",new OneQuadOperator<Op_Reduce< long >, Quad_Op<Op_Reduce< long > > >);
       Global.Add("mpiReduce","(",new OneQuadOperator<Op_Reduce1< long >, Quad_Op<Op_Reduce1< long > > >);
       Global.Add("mpiAllReduce","(",new OneQuadOperator<Op_AllReduce< long >, Quad_Op<Op_AllReduce< long > > >);
+      Global.Add("mpiAllReduce","(",new OneQuadOperator<Op_AllReduce1< long >, Quad_Op<Op_AllReduce1< long > > >); // add FH jan 2011 
       //    Global.Add("mpiReduceScatter","(",new OneQuadOperator<Op_Reducescatter< long >, Quad_Op<Op_Reducescatter< long > > >);
       // fin Add J. Morice
 
@@ -2371,6 +2385,9 @@ void f_init_lgparallele()
       Global.Add("mpiReduce","(",new OneQuadOperator<Op_Reduce< Complex >, Quad_Op<Op_Reduce< Complex > > >);
       Global.Add("mpiReduce","(",new OneQuadOperator<Op_Reduce1< Complex >, Quad_Op<Op_Reduce1< Complex > > >);
       Global.Add("mpiAllReduce","(",new OneQuadOperator<Op_AllReduce< Complex >, Quad_Op<Op_AllReduce< Complex > > >);
+#ifdef HAVE_MPI_DOUBLE_COMPLEX
+    Global.Add("mpiAllReduce","(",new OneQuadOperator<Op_AllReduce1< Complex >, Quad_Op<Op_AllReduce1< Complex > > >);// add FH jan 2011 
+#endif
       // Fin Add J. Morice :: complex communication between processor 
       
       Global.New("mpirank",CConstant<long>(mpirank));

@@ -166,8 +166,8 @@ verbosity=verbosityy;
 	real TESTconvectXapt=error;
 		cout<<"convect-apt reference value = "<<REFconvectXapt
 				<<" test value ="<<TESTconvectXapt<<endl;
-			assert(TESTconvectXapt<REFconvectXapt+1e-2);
-				assert(TESTconvectXapt>REFconvectXapt-0);
+			assert(TESTconvectXapt<REFconvectXapt*(1+1e-2));
+				assert(TESTconvectXapt>REFconvectXapt*(1-1e-2));
 };
 
 cout << "--------- file : convect.edp -----------------" << endl;

@@ -342,6 +342,7 @@ INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 KERNEL_VERSION = @KERNEL_VERSION@
 LAPACKLIB = @LAPACKLIB@
+LAPACKLIBS = @LAPACKLIBS@
 LDFLAGS = @LDFLAGS@
 LEX = @LEX@
 LEXLIB = @LEXLIB@
@@ -370,6 +371,7 @@ MPISCRIPT = @MPISCRIPT@
 MPI_INCLUDE = @MPI_INCLUDE@
 MPI_INC_DIR = @MPI_INC_DIR@
 MPI_LIB = @MPI_LIB@
+MPI_LIBFC = @MPI_LIBFC@
 MPI_LIB_DIRS = @MPI_LIB_DIRS@
 OBJEXT = @OBJEXT@
 OPTIM_TYPE = @OPTIM_TYPE@
@@ -432,6 +434,7 @@ datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
 exec_prefix = @exec_prefix@
+ff_bison = @ff_bison@
 ff_convert = @ff_convert@
 ff_curl = @ff_curl@
 ff_dvips = @ff_dvips@
@@ -440,6 +443,7 @@ ff_gzip = @ff_gzip@
 ff_history = @ff_history@
 ff_latex = @ff_latex@
 ff_libtool = @ff_libtool@
+ff_m4 = @ff_m4@
 ff_makeindex = @ff_makeindex@
 ff_pdf2ps = @ff_pdf2ps@
 ff_pdflatex = @ff_pdflatex@
@@ -592,7 +596,7 @@ CBLAS/src/cblas_sgbmv.c CBLAS/src/cblas_zhemv.c CBLAS/src/zdotusub.f
 nodist_libf77blas_a_SOURCES = $(F77BLAS_SOURCES)
 nodist_libcblas_a_SOURCES = $(CBLAS_SOURCES)
 BUILT_SOURCES = @GENERIC_BLAS_BUILT_SOURCES@
-libcblas_a_CFLAGS = -DADD_
+libcblas_a_CFLAGS = -DADD_ -ICBLAS/include 
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 

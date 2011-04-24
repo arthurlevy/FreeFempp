@@ -33,6 +33,7 @@ examples++-tutorial/aile.msh examples++-tutorial/xyf \
 examples++-3d/dodecaedre01.mesh  \
 examples++-3d/lac-leman-v4.msh \
 examples++-load/load.link \
+examples++-load/fig.pgm	examples++-load/lg.pgm \
 ./examples++-mpi/regtests.sh ./examples++-other/speedtest.sh  \
 ./download/fftw/Makefile ./download/fftw/Makefile.am \
 examples++*/*.[ie]dp  CheckAllEdp
@@ -52,7 +53,7 @@ all-local:: @HISTORY@
 # uses fakeroot.
 history:
 	if test "$$FAKED_MODE" = ""; then\
-		cvs2cl --hide-filenames -l "-d>01/01/2005" --file HISTORY;\
+		hg log >HISTORY ;\
 		fi
 
 documentation:
