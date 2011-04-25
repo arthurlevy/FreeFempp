@@ -38,7 +38,7 @@ clean:
 
 build:
 	dh_testdir
-	dh_auto_configure -- CFLAGS=-lm CNOFLAGS=-lm --without-cadna
+	dh_auto_configure -- CFLAGS=-lm
 	dh_auto_build
 #	dh_auto_test
 
