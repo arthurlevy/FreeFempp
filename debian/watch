@@ -1,3 +1,5 @@
 # Compulsory line, this is a version 3 file
 version=3
-http://www.freefem.org/ff++/ftp/ freefem\+\+-(.*)\.tar\.gz
+#http://www.freefem.org/ff++/ftp/ freefem\+\+-(.*)\.tar\.gz
+opts=uversionmangle=s/-([^-]+)/.$1/,dversionmangle=s/\.dfsg$// \
+  http://www.freefem.org/ff++/ftp/ freefem\+\+-([\d.-]+)\.tar\.gz
