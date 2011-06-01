@@ -38,7 +38,7 @@ clean:
 
 build:
 	dh_testdir
-	dh_auto_configure -- CFLAGS=-lm CXX=g++-4.5 CC=gcc-4.5 FC=gfortran-4.5 
+	dh_auto_configure -- CFLAGS=-lm CXX=g++-4.5 CC=gcc-4.5 FC=gfortran-4.5
 	dh_auto_build
 #	dh_auto_test
 
