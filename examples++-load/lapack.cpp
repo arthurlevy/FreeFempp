@@ -229,6 +229,21 @@ class Inverse{ public:
   operator const T & () const {return t;}
 };
 
+template<class T>
+class Mult{ public:
+    T  a;bool ta;
+  T  b;bool tb;
+  Mult( T  aa,T bb)
+    : a(aa),b(bb),ta(0),tb(0) {}
+    // Transpose<
+  Mult( Transpose<T>  aa,T bb)   
+    : a(aa),b(bb),ta(1),tb(0) {}
+  Mult( Transpose<T>  aa,Transpose<T> bb)   
+    : a(aa),b(bb),ta(1),tb(1) {}
+    Mult( T  aa,Transpose<T> bb)   
+    : a(aa),b(bb),ta(1),tb(1) {}
+    
+};
 
 template<class K>
 class OneBinaryOperatorRNM_inv : public OneOperator { public:  
@@ -249,6 +264,8 @@ class OneBinaryOperatorRNM_inv : public OneOperator { public:
     return  new E_F_F0<Inverse< KNM<K>* > ,KNM<K> *>(Build<Inverse< KNM<K>* > ,KNM<K> *>,t[0]->CastTo(args[0])); 
   }
 };
+
+
 /* 
 class Init { public:
   Init();
@@ -310,6 +327,83 @@ KNM<R>* Solve(KNM<R>* a,Inverse<KNM<R >*> b)
   return a;
 }
 
+// Template interface 
+inline int gemm(char *transa, char *transb, integer *m, integer *
+	   n, integer *k, double *alpha, double *a, integer *lda, 
+	   double *b, integer *ldb, double *beta, double *c, integer 
+	   *ldc) {
+   return  dgemm_(transa,transb,m,n,k,alpha,a,lda,b,ldb,beta,c,ldc);
+}
+inline int gemm(char *transa, char *transb, integer *m, integer *
+		 n, integer *k, Complex *alpha, Complex *a, integer *lda, 
+		 Complex *b, integer *ldb, Complex *beta, Complex *c, integer 
+		 *ldc) {
+    return  zgemm_(transa,transb,m,n,k,alpha,a,lda,b,ldb,beta,c,ldc);
+}
+
+
+template<class R,bool init, int ibeta> 
+KNM<R>* mult(KNM<R >* a,const KNM_<R> & A,const KNM_<R> & B) 
+{ // C=A*B 
+   
+    R alpha=1.,beta=R(ibeta);
+    char tA, tB;
+    if(init) a->init();
+    int N= A.N();
+    int M=B.M();
+    int K=A.M();
+    KNM<R> & C= *a;
+    C.resize(N,M); 
+    ffassert(K==B.N());
+    R *A00=&A(0,0), *A10= &A(1,0), *A01= &A(0,1); 
+    R *B00=&B(0,0), *B10= &B(1,0), *B01= &B(0,1); 
+    R *C00=&C(0,0), *C10= &C(1,0), *C01= &C(0,1); 
+    int lsa=A10-A00 ,lsb=B10-B00,lsc=C10-C00;
+    int lda=A01-A00 ,ldb=B01-B00,ldc=C01-C00;
+    if(verbosity>10) {
+	cout << lsa << " " << lsb << " "<< lsc << " init " << init <<  endl;
+	cout << lda << " " << ldb << " "<< ldc << endl;	
+    }
+    tA=lda==1?'T':'N';
+    tB=ldb==1?'T':'N';
+    
+    if(lda==1) lda=lsa;
+    if(ldb==1) ldb=lsb;
+    if(beta==0.)
+     C=R(); 
+#ifdef XXXXXXXXXXXXXX
+    
+    for(int i=0;i<N;++i)
+	 for(int j=0;j<M;++j)
+	      for(int k=0;k<K;++k)
+		  C(i,j) += A(i,k)*B(k,j)  ;
+#else    
+    gemm(&tB,&tA,&N,&M,&K,&alpha,A00,&lda,B00,&ldb,&beta,C00,&ldc);
+#endif
+    return a;
+    /*
+     The Fortran interface for these procedures are:
+     SUBROUTINE xGEMM ( TRANSA, TRANSB, M, N, K, ALPHA, A, LDA, B, LDB, BETA, C, LDC )
+     where TRANSA and TRANSB determines if the matrices A and B are to be transposed.
+     M is the number of rows in matrix A and C. N is the number of columns in matrix B and C. 
+     K is the number of columns in matrix A and rows in matrix B. 
+     LDA, LDB and LDC specifies the size of the first dimension of the matrices, as laid out in memory;
+     meaning the memory distance between the start of each row/column, depending on the memory structure (Dongarra et al. 1990).
+     */
+}
+template<class R,bool init, int ibeta> 
+KNM<R>* mult(KNM<R >* a,Mult<KNM<R >*> bc) 
+{
+    if( (bc.ta == 0) && (bc.tb == 0))
+     return  mult<R,init,ibeta>(a,*bc.a,*bc.b) ;
+    else if((bc.ta == 1 )&& (bc.tb == 0))
+     return  mult<R,init,ibeta>(a,bc.a->t(),*bc.b) ;
+    else if((bc.ta == 0) && (bc.tb == 1))
+	return  mult<R,init,ibeta>(a,*bc.a,bc.b->t()) ;
+    else if((bc.ta == 1) && (bc.tb == 1))
+	return  mult<R,init,ibeta>(a,bc.a->t(),bc.b->t()) ;
+
+}
 
 KNM<Complex>* SolveC(KNM<Complex>* a,Inverse<KNM<Complex >*> b) 
 {
@@ -387,6 +481,9 @@ Init::Init(){  // le constructeur qui ajoute la fonction "splitmesh3"  a freefem
 */
 static Init init;  //  une variable globale qui serat construite  au chargement dynamique 
 
+template<class R,class A,class B> R Build2(A a,B b) {
+    return R(a,b);
+}
 Init::Init(){  // le constructeur qui ajoute la fonction "splitmesh3"  a freefem++ 
 
   if( map_type.find(typeid(Inverse<KNM<double >* >).name() ) == map_type.end() )
@@ -395,11 +492,27 @@ Init::Init(){  // le constructeur qui ajoute la fonction "splitmesh3"  a freefem
 	cout << " Add lapack interface ..." ;
       Dcl_Type< Inverse<KNM<double >* > > ();
       Dcl_Type< Inverse<KNM<Complex >* > > ();
+      Dcl_Type< Mult<KNM<Complex >* > > ();
+      Dcl_Type< Mult<KNM<double >* > > ();
       
       TheOperators->Add("^", new OneBinaryOperatorRNM_inv<double>());
+      TheOperators->Add("*", new OneOperator2< Mult< KNM<double>* >,KNM<double>*,KNM<double>*>(Build2));
+      TheOperators->Add("*", new OneOperator2< Mult< KNM<Complex>* >,KNM<Complex>*,KNM<Complex>*>(Build2));
+      
       TheOperators->Add("^", new OneBinaryOperatorRNM_inv<Complex>());
       TheOperators->Add("=", new OneOperator2<KNM<double>*,KNM<double>*,Inverse<KNM<double >*> >( Solve) );
       TheOperators->Add("=", new OneOperator2<KNM<Complex>*,KNM<Complex>*,Inverse<KNM<Complex >*> >( SolveC) );
+      TheOperators->Add("=", new OneOperator2<KNM<double>*,KNM<double>*,Mult<KNM<double >*> >( mult<double,false,0> ) );
+      TheOperators->Add("=", new OneOperator2<KNM<Complex>*,KNM<Complex>*,Mult<KNM<Complex >*> >( mult<Complex,false,0> ) );
+      
+      TheOperators->Add("+=", new OneOperator2<KNM<double>*,KNM<double>*,Mult<KNM<double >*> >( mult<double,false,1> ) );
+      TheOperators->Add("+=", new OneOperator2<KNM<Complex>*,KNM<Complex>*,Mult<KNM<Complex >*> >( mult<Complex,false,1> ) );
+      
+      TheOperators->Add("-=", new OneOperator2<KNM<double>*,KNM<double>*,Mult<KNM<double >*> >( mult<double,false,-1> ) );
+      TheOperators->Add("-=", new OneOperator2<KNM<Complex>*,KNM<Complex>*,Mult<KNM<Complex >*> >( mult<Complex,false,-1> ) );
+      
+      TheOperators->Add("<-", new OneOperator2<KNM<double>*,KNM<double>*,Mult<KNM<double >*> >( mult<double,true,0> ) );
+      TheOperators->Add("<-", new OneOperator2<KNM<Complex>*,KNM<Complex>*,Mult<KNM<Complex >*> >( mult<Complex,true,0> ) );
       
       Global.Add("inv","(",new  OneOperator1<bool,KNM<double>*>(lapack_inv));  
       Global.Add("dgeev","(",new  OneOperator3_<long,KNM<double>*,KN<Complex>*,KNM<Complex>*>(lapack_dgeev));  
@@ -407,7 +520,8 @@ Init::Init(){  // le constructeur qui ajoute la fonction "splitmesh3"  a freefem
       Global.Add("dggev","(",new  OneOperator5_<long,KNM<double>*,KNM<double>*,KN<Complex>*,KN<double>*,KNM<Complex>*>(lapack_dggev));  
 
     }
- else
-   cout << "( load: lapack <=> fflapack , skeep ) ";
+  else
+    if(verbosity)
+      cout << "( load: lapack <=> fflapack , skeep ) ";
 }
 
