@@ -1,0 +1,5 @@
+freefem++ (3.12.1-1) unstable; urgency=low
+
+  * Initial release (Closes: #500755).
+
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Sun, 24 Apr 2011 22:00:00 +0200
