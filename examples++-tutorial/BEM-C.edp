@@ -1,0 +1,95 @@
+//  compute the solution of a Laplace operator in a Semi infini domain.
+//  with coupling of Boundary element with periodicity BC in x . 
+// -------------------------------------------------------------
+real eps0=0.1;
+int labup=3;
+int nharm= 50; // Number of  Harmonique
+
+ 
+
+macro Grad(u) [dx(u),dy(u)] // eom
+real R=0.75;
+border C00(t=0,2*pi) { x=0.5+0.2*cos(t); y=0.2*sin(t); label=1;}
+border C01(t=0,2*pi) { x=-0.5+0.2*cos(t); y=0.2*sin(t); label=2;}
+border C1(t=0,2*pi) { x=R*cos(t); y=R*sin(t); label=3;}
+border C2(t=0,2*pi) { x=30*cos(t); y=30*sin(t); label=4;}
+
+mesh Th=buildmesh(C1(100)+C01(100)+C00(100));
+fespace Vh(Th,P1);
+
+Vh uref; // la solution de reference. 
+
+{ // calcule de la solution de reference in  Huge Domaine.
+mesh Th1=buildmesh(C2(100)+C1(100)+C01(100)+C00(100));; // pour la solution de reference 
+fespace Uh(Th1,P1);
+Uh uu,vv;
+solve Pref(uu,vv)=int2d(Th1)(eps0*(Grad(uu)'*Grad(vv)))+on(1,uu=1)+on(2,uu=-1);
+ uref=uu; 
+ plot(uu,wait=1,cmm=" ref sol / large Th ");
+} // pour nettoyer la memoire
+
+plot(uref,wait=1,cmm=" ref sol / Th");
+
+
+varf vP(u,v)=int2d(Th)(eps0*(Grad(u)'*Grad(v)))+on(1,u=1)+on(2,u=-1);
+matrix<complex> A=vP(Vh,Vh);  // la matrice sans BEM. 
+complex[int] b=vP(0,Vh);
+Vh<complex> u;
+
+{// for cleanning all local varaible at end of block.
+ // computation of the matrice BEM
+ int kdfBEM=0; // nb of  DoF on border 
+ int[int] IdfB2Vh(0:Vh.ndof-1); // for numbering IdfB2Vh[i]==i 
+ {
+ int lbord = labup; // label of the BEM border
+ varf vbord(u1,v1) = on(lbord,u1= atan(y,-x)-2*pi);//  negative value ..
+ real[int] xb=vbord(0,Vh,tgv=1);
+ sort(xb,IdfB2Vh); // sort of  array  xb and IdfB2Vh
+ xb = xb ? 1 : 0;//  put 1 if none zero
+ kdfBEM = xb.sum +0.5; //  number of DoF on border 
+ IdfB2Vh.resize(kdfBEM);  // IdfB2Vh[i] -> number DoF of border 
+ }
+//  end of the numbering computation
+ // so  IdfB2Vh[ibem] = iVh where ibem is a df of on bem , and iVh is a df in Vh space. 
+
+   complex  cci=1i;
+   int n=0;// 
+   // Use of higher order Quadarture formular ...
+   varf vWn(u,w)=int1d(Th,3,qforder=7)(exp(-cci*n*atan2(y,x))*w);
+   // Lap  polar :  1/r^2 u_tt + u_rr + 1/u u_r  (t = theta ) 
+   // see http://www.medphys.ucl.ac.uk/~mbanaji/MATH6502/LaplacePolar.pdf
+   //   f_n = exp( i ( n  theta) )  gn(r) , a mode .. 
+   //  -  n^2 gn + gn'r + r^2 gn'' = 0
+   // find gn = r^l =>  l = ± n  so gn = c1 r^n + c2 r^-n
+   // if n = 0;  then g0 = c1 + c2 log(r)  => g0 = 1 
+   //   BC 0 a infinity , gn =1 on R 
+   // gives           
+   //  gn = R^|n| r^-|n|
+   //  gn'   =   -R^|n| |n| gn / r 
+   //  gn''  =   -R^|n| |n|(-|n|-1) gn / r^2   => OK 
+   
+   
+   complex[int,int] ABemFull(kdfBEM,kdfBEM);// the full bem matrix in Bem numbering.
+   ABemFull=0;//  set of 0 
+   for ( n=-nharm;n<=nharm;++n)
+    {
+    	complex[int] wwn(kdfBEM);
+    	complex[int] wn=vWn(0,Vh);
+    	wwn=wn(IdfB2Vh);
+        complex Gn=abs(n)*eps0/(2*pi)/R^2; 
+    	ABemFull += Gn*wwn*wwn';
+    }
+    
+ 
+  matrix<complex> ABem=ABemFull(IdfB2Vh^-1,IdfB2Vh^-1); // Build the sparse BEm matrix
+  A = A + ABem;
+  }// for cleanning all local varaible at end of block. ABem ABemFull
+  set(A,solver=UMFPACK);
+  u[]=A^-1*b;
+  Vh ur=real(u),ui=imag(u);
+  Vh  err=ur-uref;
+  cout << " err Linty=" << err[].linfty << " /  " <<  uref[].linfty << endl; 
+
+  plot(ur,uref,wait=1,cmm="ur + uref ");
+
+    

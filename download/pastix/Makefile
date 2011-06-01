@@ -32,10 +32,10 @@ pastix: FAIRE
 
 WHERE: 
 	if [ -f $(SRCDIR)/FAIT  ] ;then \
-	echo "double_pastix LD '-L@DIR@/lib/pastix/double   -lpastix'"  >$(SRCDIR)/$(INSTALL)/lib/WHERE.pastix ;\
-	echo "double_pastix INCLUDE '-I@DIR@/include/pastix/double'">> $(SRCDIR)/$(INSTALL)/lib/WHERE.pastix ;\
-	echo "complex_pastix LD '-L@DIR@/lib/pastix/complex   -lpastix'"  >>$(SRCDIR)/$(INSTALL)/lib/WHERE.pastix ;\
-	echo "complex_pastix INCLUDE '-I@DIR@/include/pastix/complex'">> $(SRCDIR)/$(INSTALL)/lib/WHERE.pastix ;\
+	echo double_pastix LD -L@DIR@/lib/pastix/double   -lpastix   >$(SRCDIR)/$(INSTALL)/lib/WHERE.pastix ;\
+	echo double_pastix INCLUDE -I@DIR@/include/pastix/double >> $(SRCDIR)/$(INSTALL)/lib/WHERE.pastix ;\
+	echo complex_pastix LD -L@DIR@/lib/pastix/complex   -lpastix   >>$(SRCDIR)/$(INSTALL)/lib/WHERE.pastix ;\
+	echo complex_pastix INCLUDE -I@DIR@/include/pastix/complex >> $(SRCDIR)/$(INSTALL)/lib/WHERE.pastix ;\
 	fi
 
 FAIRE:$(SRCDIR)/FAIT 
@@ -79,7 +79,7 @@ $(SRCDIR)/FAIT: $(SRCDIR)
 	cp $(SRCDIR)/install/*.h $(SRCDIR)/$(INSTALL)/include/pastix/double/
 	mkdir -p $(SRCDIR)/$(INSTALL)/lib/pastix/double
 	cp $(SRCDIR)/install/*.a $(SRCDIR)/$(INSTALL)/lib/pastix/double/
-	cd $(SRCDIR)/src/ &&  $(MAKE) clean -C $(SRCDIR)/src
+	cd $(SRCDIR)/src/ &&  $(MAKE) clean 
 	#complex version
 	cp config-complex.in $(SRCDIR)/src/config.in	
 	cd $(SRCDIR)/src/;$(MAKE) expor
@@ -128,7 +128,7 @@ $(PACKAGE1):
 	cd $(DIRPKG);$(WGET)   $(SERVER)/`basename $(PACKAGE1)`
 
 clean-local:
-	-cd $(SRCDIR)/src &&  $(MAKE) clean -C $(SRCDIR)/src
+	-cd $(SRCDIR)/src &&  $(MAKE) clean 
 
 clean: clean-local
 	-rm config.in FAIRE 
