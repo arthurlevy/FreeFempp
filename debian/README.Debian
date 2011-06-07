@@ -1,0 +1,7 @@
+
+Please note that gcc 4.5.X instead of gcc 4.6 is forced because of the bug:
+http://gcc.gnu.org/bugzilla/show_bug.cgi?id=49264
+We will update the dependency once a new release of gcc 4.6 is released.
+
+ -- Sylvestre Ledru <sylvestre@debian.org>  Tue, 07 Jun 2011 17:50:04 +0200
+
