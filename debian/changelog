@@ -1,4 +1,4 @@
-freefem++ (3.13.1-1) unstable; urgency=low
+freefem++ (3.13-1) unstable; urgency=low
 
   * Initial release (Closes: #500755).
   * Built with gcc-4.5 (see bug report 49264 submitted to the gcc bugzilla 
