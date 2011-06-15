@@ -1,11 +1,3 @@
-Please note that upstream release 3.13.1 does not exist as yet. Upstream 
-authors made changes to upstream release 3.13 of 3-6-11, on 9-6-11,
-without changing the version number. Since the initial 3.13 release was
-packaged in git.debian.org, a new version number 3.13.1 was used for
-Debian solely.
-
- -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Mon, 13 Jun 16:40:00 +0200
-
 Please note that gcc 4.5.3 instead of gcc 4.6 is forced because of the bug:
 http://gcc.gnu.org/bugzilla/show_bug.cgi?id=49264
 We will update the dependency once gcc 4.6.1 is released and uploaded to

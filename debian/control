@@ -1,5 +1,5 @@
 Source: freefem++
-Section: contrib/science
+Section: science
 Priority: optional
 Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
 Uploaders: Christophe Trophime <christophe.trophime@grenoble.cnrs.fr>, 
@@ -22,7 +22,7 @@ Vcs-Browser: http://git.debian.org/?p=debian-science/packages/freefempp.git
 
 Package: freefem++
 Architecture: any
-Section: contrib/math
+Section: math
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Provides the binaries of the FreeFem++ FE suite
  FreeFem++ is an implementation of a language dedicated to the finite
@@ -44,7 +44,7 @@ Description: Provides the binaries of the FreeFem++ FE suite
 
 Package: libfreefem++
 Architecture: any
-Section: contrib/libs
+Section: libs
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Provides the shared libraries of the FreeFem++ FE suite
  FreeFem++ is an implementation of a language dedicated to the finite
@@ -66,7 +66,7 @@ Description: Provides the shared libraries of the FreeFem++ FE suite
 
 Package: libfreefem++-dev
 Architecture: any
-Section: contrib/libdevel
+Section: libdevel
 Depends: libfreefem++, ${shlibs:Depends}, ${misc:Depends}
 Description: Provides the development files of the FreeFem++ FE suite
  FreeFem++ is an implementation of a language dedicated to the finite
@@ -88,7 +88,7 @@ Description: Provides the development files of the FreeFem++ FE suite
 
 Package: freefem++-doc
 Architecture: all
-Section: contrib/doc
+Section: doc
 Depends: ${misc:Depends}
 Description: Provides the documentation of the FreeFem++ FE suite
  FreeFem++ is an implementation of a language dedicated to the finite
