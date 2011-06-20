@@ -1,3 +1,9 @@
+Note that the executable file /usr/bin/bamg has been renamed /user/bin/ffbamg
+to avoid double occurence of the former, in both freefem++ and rheolef 
+packages.
+
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otent.gr>  Mon, 20 Jun 2011 22:49:00 +0200
+
 Please note that gcc 4.5.3 instead of gcc 4.6 is forced because of the bug:
 http://gcc.gnu.org/bugzilla/show_bug.cgi?id=49264
 We will update the dependency once gcc 4.6.1 is released and uploaded to

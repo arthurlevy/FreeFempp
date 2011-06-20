@@ -7,7 +7,7 @@ Uploaders: Christophe Trophime <christophe.trophime@grenoble.cnrs.fr>,
 DM-Upload-Allowed: yes
 Build-Depends: debhelper (>= 7.2.3~), autotools-dev, gawk, 
  flex, bison, libxt-dev, libxext-dev, libxxf86vm-dev,
- libxpm-dev, openmpi-bin, libfftw3-dev, libblas-dev, libgsl0-dev,
+ libxpm-dev, mpich2, libfftw3-dev, libblas-dev, libgsl0-dev,
  libarpack2-dev, libsuitesparse-dev, libsuperlu3-dev, imagemagick, 
  libfltk1.1-dev, freeglut3-dev, texlive, texlive-extra-utils, 
  texlive-latex-extra, texlive-font-utils,
