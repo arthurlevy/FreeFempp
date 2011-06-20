@@ -1,9 +1,11 @@
 freefem++ (3.13-2) unstable; urgency=low
 
+  * Change build-dep from openmpi-bin to mpich2 to effect build on more arches.
+  * Apply patch kfreebsd.patch to fix build failure on kfreebsd arches.
   * Rename /usr/bin/bamg to /usr/bin/ffbamg to fix double occurence of the 
     former, in both rheolef and freefem++ packages (Closes: #630864).
 
- -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Mon, 20 Jun 2011 19:50:00 +0200
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Mon, 20 Jun 2011 23:00:00 +0200
 
 freefem++ (3.13-1) unstable; urgency=low
 
