@@ -3,15 +3,16 @@
 #clean up the upstream tarball
 
 PACKAGE=freefem++
-VERSION=3.13
+VERSION=3.13-2
+VERSION1=3.13.2
 
 mkdir tmp
 mv $PACKAGE-$VERSION.tar.gz tmp
 cd tmp
 tar zxf $PACKAGE-$VERSION.tar.gz
 rm $(find $PACKAGE-$VERSION -iname '._*')
-tar -czf $PACKAGE-$VERSION.tar.gz $PACKAGE-$VERSION
-mv $PACKAGE-$VERSION.tar.gz ..
+tar -czf $PACKAGE-$VERSION1.tar.gz $PACKAGE-$VERSION
+mv $PACKAGE-$VERSION1.tar.gz ..
 cd ..
 rm -rf tmp 
 
