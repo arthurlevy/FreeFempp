@@ -14,7 +14,7 @@ clean:
 	dh_testdir
 	dh_auto_clean
 	dh_clean
-	rm -f examples++-mpi/MPICG.o examples++-mpi/MPICG.so D
+	dh_autoreconf_clean
 	rm -f download/parms/config.log download/hypre/config.log 
 	rm -f download/pastix/config.log download/parmetis/config.log
 	rm -f download/scotch/config.log download/superludist/config.log
@@ -22,19 +22,23 @@ clean:
 	rm -f download/hips/config.log download/metis/config.log
 	rm -f download/mumps/config.log
 	rm -f examples++-load/config.log src/mpi/config.log
-	rm -rf DOC/cpfigs
-	rm -f DOC/freefem++doc.pdf 
-	rm -f DOC/addfe.aux DOC/freefem++doc.aux DOC/freefem++doc.idx
+	rm -rf DOC/cpfigs 
+	rm -f DOC/addfe.aux 
+	rm -f DOC/freefem++doc.aux DOC/freefem++doc.idx
 	rm -f DOC/freefem++doc.ilg DOC/freefem++doc.ind DOC/freefem++doc.log
-	rm -f DOC/freefem++doc.out DOC/freefem++doc.pdfsync DOC/freefem++doc.toc
+	rm -f DOC/freefem++doc.out DOC/freefem++doc.pdf DOC/freefem++doc.pdfsync 
+	rm -f DOC/freefem++doc.toc
 	rm -f config-version.h config_LIB_INFO configure.param
-	rm -f download/blacs/Bmake.inc download/fftw/cxxflags
+# 	rm -f download/blacs/Bmake.inc 
+	rm -f download/fftw/cxxflags
 	rm -f download/gmm/cxxflags download/metis/Makefile.in
-	rm -f download/pastix/config-complex.in download/pastix/config.in
+	rm -f download/pastix/config-complex.in 
+#       rm -f download/pastix/config.in
 	rm -f download/tetgen/cxxflags examples++-3d/freefem++.pref
 	rm -f examples++-load/WHERE_LIBRARY-config 
 	rm -f examples++-load/freefem++.pref examples++-mpi/freefem++.pref
-	rm -f src/medit/compil.date src/mpi/ff-mpirun
+	rm -f examples++-mpi/MPICG.o examples++-mpi/MPICG.so
+	rm -f src/mpi/config.log src/mpi/ff-mpirun src/medit/compil.date
 
 build: build-arch build-indep
 build-arch: build-stamp
@@ -44,6 +48,7 @@ build-stamp:
 	dh_auto_configure -- CFLAGS=-lm
 	dh_auto_build
 #	dh_auto_test
+	dh_autoreconf
 
 binary-indep:
 	dh_testroot -i
