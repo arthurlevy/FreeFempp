@@ -5,16 +5,14 @@ Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.
 Uploaders: Christophe Trophime <christophe.trophime@grenoble.cnrs.fr>, 
  Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>
 DM-Upload-Allowed: yes
-Build-Depends: debhelper (>= 7.2.3~), autotools-dev, gawk, 
+Build-Depends: debhelper (>= 7.2.3~), autotools-dev, gawk, gfortran, 
  flex, bison, libxt-dev, libxext-dev, libxxf86vm-dev,
  libxpm-dev, mpi-default-dev, libfftw3-dev, libblas-dev, libgsl0-dev,
  libarpack2-dev, libsuitesparse-dev, libsuperlu3-dev, imagemagick, 
  libfltk1.1-dev, freeglut3-dev, texlive, texlive-extra-utils, 
  texlive-latex-extra, texlive-font-utils,
  libmumps-dev, libblacs-mpi-dev, libscalapack-mpi-dev,
- libscotch-dev, ghostscript, libptscotch-dev,
-# See README.Debian for the rational on the gcc version.
- g++-4.5, gfortran-4.5
+ libscotch-dev, ghostscript, libptscotch-dev
 Standards-Version: 3.9.2
 Homepage: http://www.freefem.org/ff++/
 Vcs-Git: git://git.debian.org/debian-science/packages/freefempp.git

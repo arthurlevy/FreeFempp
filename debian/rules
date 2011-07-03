@@ -41,8 +41,7 @@ build-arch: build-stamp
 build-indep: build-stamp
 build-stamp:
 	dh_testdir
-# See README.Debian for the rational on the gcc version.
-	dh_auto_configure -- CFLAGS=-lm CXX=g++-4.5 CC=gcc-4.5 FC=gfortran-4.5
+	dh_auto_configure -- CFLAGS=-lm
 	dh_auto_build
 #	dh_auto_test
 
