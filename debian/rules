@@ -14,7 +14,6 @@ clean:
 	dh_testdir
 	dh_auto_clean
 	dh_clean
-	dh_autoreconf_clean
 	rm -f download/parms/config.log download/hypre/config.log 
 	rm -f download/pastix/config.log download/parmetis/config.log
 	rm -f download/scotch/config.log download/superludist/config.log
@@ -48,7 +47,6 @@ build-stamp:
 	dh_auto_configure -- CFLAGS=-lm
 	dh_auto_build
 #	dh_auto_test
-	dh_autoreconf
 
 binary-indep:
 	dh_testroot -i
