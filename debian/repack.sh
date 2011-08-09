@@ -3,9 +3,10 @@
 #clean up the upstream tarball
 
 PACKAGE=freefem++
-VERSION=3.13-2
-VERSION1=3.13.2
+VERSION=3.13-3
+VERSION1=3.13.3
 
+cd ../..
 mkdir tmp
 mv $PACKAGE-$VERSION.tar.gz tmp
 cd tmp
