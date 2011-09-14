@@ -1,3 +1,12 @@
+freefem++ (3.14-1) unstable; urgency=low
+
+  * Add build-deps for mumps_ptscotch, mumps_scotch and hypre.
+  * Change build-dep libfltk1.1-dev to libfltk1.3-dev | libfltk-dev in debian/
+    control file.
+  * New upstream release.
+
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Wed, 14 Sep 2011 19:11:00 +0300
+
 freefem++ (3.13.3-1) unstable; urgency=low
 
   * Add patch for the location of file freefem++.pref.
