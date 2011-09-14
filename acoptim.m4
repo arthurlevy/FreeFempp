@@ -51,7 +51,15 @@ AC_ARG_ENABLE(optim,[  --enable-optim	Turn on compiler optimization])
 
 if test "$enable_debug" = yes;
 then
+
 	AC_MSG_RESULT(yes)
+	CFLAGS="`echo $CFLAGS | sed 's/-O2//g'`"
+	FFLAGS="`echo $FFLAGS | sed 's/-O2//g'`"
+	CXXFLAGS="`echo $CXXFLAGS | sed 's/-O2//g'`"
+        CHECK_COMPILE_FLAG(C,-g,CFLAGS)
+	CHECK_COMPILE_FLAG(C++,-g,CXXFLAGS)
+	CHECK_COMPILE_FLAG(Fortran 77,-g,FFLAGS)	
+
 else
 	AC_MSG_RESULT(no)
 
@@ -142,7 +150,7 @@ CXXFLAGS="`echo $CXXFLAGS | sed 's/-O2//g'`"
           ppc*) # G3 ????
 	       ff_fast="-O3";;
 	  i486)
-	    ff_fast="-O3 -march=pentium4";;
+	    ff_fast="-O3 $ff_fast";;
 	  *)
 	    AC_MSG_ERROR(cannot determine apple cpu type )
 	    ff_fast="-O3";;

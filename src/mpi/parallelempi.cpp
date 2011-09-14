@@ -45,7 +45,7 @@ using namespace std;
 #define  MPICH_SKIP_MPICXX
 #undef MPICH_IGNORE_CXX_SEEK
 #define MPICH_IGNORE_CXX_SEEK
-#include "mpi.h"
+#include <mpi.h>
 
 // Remark on mipich  MPI_Comm, MPI_Resquest, MPI_Group, MPI_Op are int 
 //  => encapsulation
@@ -94,7 +94,7 @@ map<MPI_Request*,DoOnWaitMPI_Request *> ToDoOnWaitMPI_Request;
 void GetPendingWait() ;
 
 
-template<class T> struct MPI_TYPE {};
+template<class T> struct MPI_TYPE {static const MPI_Datatype  TYPE(){return MPI_BYTE;}};;
 template<> struct MPI_TYPE<long>      {static const MPI_Datatype  TYPE(){return MPI_LONG;}};
 template<> struct MPI_TYPE<int>      {static const MPI_Datatype TYPE(){return MPI_INT;}};
 template<> struct MPI_TYPE<double>    {static const MPI_Datatype TYPE(){return MPI_DOUBLE;}};
@@ -149,6 +149,7 @@ long  WSend( R * v,int l,int who,int tag,MPI_Comm comm,MPI_Request *rq)
       if(rq) *rq=*request;
       else MPI_Request_free(request); 
     }
+    return ret;
 }
 
 template<class T>
@@ -1017,10 +1018,10 @@ struct Op_Allgather : public binary_function<KN_<R>,KN_<R>,long> {
       int mpisizew;
       MPI_Comm_size(comm, &mpisizew); /* local */ 
       int chunk = r.N()/mpisizew;
-      if( ! 	     (r.N()==mpisizew*chunk && chunk==s.N()) )
+      if( ! 	     (r.N()==mpisizew*chunk && chunk*mpisizew==s.N()) )
 	{
 	  cout << " ???? Error size buf  r.N " << r.N() << " s.N = " << s.N() << " mpisizew " << mpisizew << endl; 
-	  ffassert(r.N()==mpisizew*chunk && chunk==s.N());
+	  ffassert(r.N()==mpisizew*chunk && chunk*mpisizew==s.N());
 	}
       return MPI_Allgather( (void *) (R*) s, chunk, MPI_TYPE<R>::TYPE(),
 			    (void *) (R*) r, chunk, MPI_TYPE<R>::TYPE(), comm);	
@@ -1413,7 +1414,7 @@ struct Op_Gather3 : public   ternary_function<KN_<R>,KN_<R>,MPIrank,long> {
     int mpisizew;
     MPI_Comm_size(root.comm, &mpisizew); 
     int chunk = r.N()/mpisizew;
-    ffassert(r.N()==mpisizew*chunk && chunk==s.N());
+    ffassert(r.N()==mpisizew*chunk && chunk*mpisizew==s.N());
     
     return MPI_Gather( (void *) (R*) s, chunk, MPI_TYPE<R>::TYPE(),
 			   (void *) (R*) r, chunk, MPI_TYPE<R>::TYPE(),root.who,root.comm);	
@@ -1546,8 +1547,8 @@ struct Op_All2All3<Complex> : public ternary_function<KN_<Complex>,KN_<Complex>,
 			   (void *) (Complex*) r, chunk, MPI_DOUBLE_COMPLEX, comm);
 #else
       chunk*=2;
-      return MPI_Alltoall( reinterpret_cast<void*> (s), chunk, MPI_DOUBLE,
-			   reinterpret_cast<void*> (r), chunk, MPI_DOUBLE, comm);
+      return MPI_Alltoall( (void *) (Complex*) s, chunk, MPI_DOUBLE,
+			   (void *) (Complex*)  (r), chunk, MPI_DOUBLE, comm);
 #endif	
     }
 };
@@ -1569,9 +1570,9 @@ struct Op_Allgather3<Complex> : public ternary_function<KN_<Complex>,KN_<Complex
     return MPI_Allgather( (void *) (Complex*) s, chunk, MPI_DOUBLE_COMPLEX,
 			  (void *) (Complex*) r, chunk, MPI_DOUBLE_COMPLEX, comm);
 #else
-    chunk*2=;
-    return MPI_Allgather( reinterpret_cast<void*> (s), chunk, MPI_DOUBLE,
-			  reinterpret_cast<void*> (r), chunk, MPI_DOUBLE, comm);
+    chunk*=2;
+    return MPI_Allgather( (void *) (Complex*) (s), chunk, MPI_DOUBLE,
+			 (void *) (Complex*) (r), chunk, MPI_DOUBLE, comm);
 #endif
   }
 };
@@ -1592,9 +1593,9 @@ struct Op_Allgather13<Complex> : public ternary_function<Complex *,KN_<Complex>,
     return MPI_Allgather( (void *) (Complex*) s, chunk, MPI_DOUBLE_COMPLEX,
 			  (void *) (Complex*) r, chunk, MPI_DOUBLE_COMPLEX, comm);
 #else
-    chunk*2=;
-    return MPI_Allgather( reinterpret_cast<void*> (s), chunk, MPI_DOUBLE,
-			  reinterpret_cast<void*> (r), chunk, MPI_DOUBLE, comm);
+    chunk*=2;
+    return MPI_Allgather((void *) (Complex*)(s), chunk, MPI_DOUBLE,
+			   (void *) (Complex*) (r), chunk, MPI_DOUBLE, comm);
 #endif
   }
 };
@@ -2021,10 +2022,10 @@ long mpiWait(fMPI_Request * frq) {
  long res=MPI_SUCCESS;
   while(rq && *rq!=MPI_REQUEST_NULL)
     {
-      res == MPI_Wait(rq,&status); 
+      res = MPI_Wait(rq,&status); 
       DoOnWaitMPIRequest(rq);
     }
-   
+    return res;  
 
 }
 
