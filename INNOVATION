@@ -1,3 +1,16 @@
+v 3.15 
+  - correct all examples++  load and 3d rebuilde the all.edp 
+    and test this examples. 
+  - correct version old bug when full matrix (arry)
+    A=A;' is now coorect (set and  initialization )
+    and add  A+=A';    A-=A';
+
+  - reput metis 4.0 form netlib ... (pb of compatibilite with other // soft hips)
+v 3.14-1
+  -   change interface with metis 5.0.1 
+  -   Complete writing of mmg3d interface with version 4 of mmg3d
+      le plugin is "mmg3d-v4.0", the parametre are the same have 
+      command line mmg3d , execpt the file name are not given. 
   -   remove old bug 3D in interpolation P1 operator 
       correct bug 29/08/2011 (thanks to rychet@fzu.cz)
       remove wrong bulid of KHat (memory out of bound)

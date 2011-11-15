@@ -25,7 +25,7 @@ EXTRA_DIST=ff-get-dep.in ff-pkg-download.in load.link.in  include.tar.gz \
   all.edp                 makeref.edp             testFE-P3dc.edp \
   bilapMorley.edp         myType.edp              testFE.edp \
   convect_dervieux.edp    testFEMorley.edp \
-  testFE-PkEdge.edp \
+  testFE-PkEdge.edp metis.edp schwarz-nm.edp \
   splitmesh3.cpp  splitmesh3.edp  splitmesh6.cpp  splitmesh6.edp \
   README_SuperLU \
   tetgen.cpp\
@@ -38,11 +38,12 @@ EXTRA_DIST=ff-get-dep.in ff-pkg-download.in load.link.in  include.tar.gz \
  DxWriter.cpp  metis.cpp pcm.cpp pcm.hpp pcm2rnm.cpp \
  UMFPACK64.cpp iovtk.cpp gmsh.cpp MetricKuate.cpp  \
  ffnewuoa.cpp	ffnewuoa.edp	newuoa.f Element_P1dc1.cpp ilut.cpp ilut.edp \
- freeyams.cpp mmg3d.cpp  mshmet.cpp \
+ freeyams.cpp mmg3d-v4.0.cpp  mshmet.cpp \
  BinaryIO.cpp	gsl.cpp gsl.awk ff_gsl_awk.hpp isolineP1.cpp lg.pgm Leman-mesh.edp \
 thresholdings.cpp	thresholdings.edp \
 VTK_writer_3d.cpp VTK_writer.cpp splitedges.cpp splitedges.edp \
-Element_Mixte.cpp LaplaceRT1.edp lame-TD-NSS.edp test-ElementMixte.edp
+Element_Mixte.cpp LaplaceRT1.edp lame-TD-NSS.edp test-ElementMixte.edp \
+myfunction2.cpp myfunction2.edp ttestio.edp
 
 
 LIST_COMPILE=myfunction.$(DYLIB_SUFFIX)  BernadiRaugel.$(DYLIB_SUFFIX) \
@@ -60,12 +61,13 @@ LIST_COMPILE=myfunction.$(DYLIB_SUFFIX)  BernadiRaugel.$(DYLIB_SUFFIX) \
 	Element_P1dc1.$(DYLIB_SUFFIX) BinaryIO.$(DYLIB_SUFFIX) \
         isolineP1.$(DYLIB_SUFFIX)  thresholdings.$(DYLIB_SUFFIX) \
         VTK_writer_3d.$(DYLIB_SUFFIX)  VTK_writer.$(DYLIB_SUFFIX) \
-	splitedges.$(DYLIB_SUFFIX) Element_Mixte.$(DYLIB_SUFFIX)
+	splitedges.$(DYLIB_SUFFIX) Element_Mixte.$(DYLIB_SUFFIX) \
+	myfunction2.$(DYLIB_SUFFIX)
 
 LIST_COMPILE_PKG= 	tetgen.$(DYLIB_SUFFIX) SuperLu.$(DYLIB_SUFFIX) dfft.$(DYLIB_SUFFIX) \
 	metis.$(DYLIB_SUFFIX) UMFPACK64.$(DYLIB_SUFFIX) NewSolver.$(DYLIB_SUFFIX) \
 	lapack.$(DYLIB_SUFFIX)  fflapack.$(DYLIB_SUFFIX) ffnewuoa.$(DYLIB_SUFFIX) ilut.$(DYLIB_SUFFIX) \
-	freeyams.$(DYLIB_SUFFIX) mmg3d.$(DYLIB_SUFFIX) mshmet.$(DYLIB_SUFFIX) \
+	freeyams.$(DYLIB_SUFFIX) mmg3d-v4.0.$(DYLIB_SUFFIX) mshmet.$(DYLIB_SUFFIX) \
        gsl.$(DYLIB_SUFFIX)	
 bin_PROGRAMS=
 
@@ -94,8 +96,8 @@ makeref.edp: regtests.m4 ../regtests.m4
 
 all-local: all.edp regtests.edp load_compile
 
-all.edp: 
-	(echo "NoUseOfWait=true;int verbosityy=verbosity;"; \
+all.edp: Makefile
+	(echo "NoGraphicWindow=true;NoUseOfWait=true;int verbosityy=verbosity;"; \
 	for i in *`ls *.edp|grep -v -E '^(all|regtests|makeref|ref)\.edp$$'` ; do  \
 		echo ' cout << "--------- file : '$$i' --------------------------------------------------------" << endl;' ;\
 		echo "verbosity=verbosityy;" ; \
@@ -130,6 +132,8 @@ ff-get-dep:ff-get-dep.in Makefile
 WHERE_LIBRARY-download:ff-pkg-download FORCE  WHERE_LIBRARY-config WHERE_LIBRARY
 	@./ff-pkg-download >$@-new
 	@diff $@-new $@  || (cp $@-new $@ ;touch WHERE_LIBRARY)
+WHERE_LIBRARY:
+	touch $@
 FORCE: ;
 freefem++.pref:
 	echo loadpath = \"./\" >freefem++.pref

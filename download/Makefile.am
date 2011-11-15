@@ -30,7 +30,7 @@ EXTRA_DIST= \
 ./metis/Makefile-metis.in \
 ./metis/patch-metis \
 ./mmg3d/Makefile \
-./mmg3d/makefile-mmg3d.inc \
+./mmg3d/patch-mmg3dv4.diff \
 ./mshmet/Makefile \
 ./mshmet/Makefile-mshmet.inc \
 ./mshmet/mshmet.2009.09.16.patch \
@@ -76,7 +76,7 @@ EXTRA_DIST= \
 
 
 MPI_SOFT=blacs parmetis  scalapack scotch superludist mumps pastix hypre hips parms 
-LIST_SOFT=tetgen superlu fftw metis yams mshmet mmg3d gmm 
+LIST_SOFT=tetgen superlu fftw metis mshmet yams mmg3d gmm 
 all-recursive: bin lib include pkg
 
 lib: 

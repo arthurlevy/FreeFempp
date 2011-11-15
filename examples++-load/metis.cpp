@@ -17,8 +17,15 @@ typedef string * pstring;
 extern "C" {
 #include <metis.h>
 }
-//  METIS_PartMeshDual(&ne, &nn, elmnts, &etype, &numflag, &nparts, &edgecut, epart, npart);
 
+#ifdef  METIS_VER_MAJOR 
+//  METIS_PartMeshDual(&ne, &nn, elmnts, &etype, &numflag, &nparts, &edgecut, epart, npart);
+extern "C" {
+real_t libmetis__ComputeElementBalance(idx_t ne, idx_t nparts, idx_t *where); 
+}
+#else 
+typedef idxtype idx_t ;
+#endif
 template<class Mesh,int NO>
 KN<long> * partmetis(Stack s,KN<long> * const & part,Mesh * const & pTh,long const & lparts)
 {
@@ -27,20 +34,34 @@ KN<long> * partmetis(Stack s,KN<long> * const & part,Mesh * const & pTh,long con
     int nt=Th.nt,nv=Th.nv;
     int nve = Mesh::Rd::d+1;
     
-    KN<idxtype> elmnts(nve*nt), epart(nt), npart(nv);
+    KN<idx_t> eptr(nt+1),elmnts(nve*nt), epart(nt), npart(nv);
     for(int k=0,i=0;k<nt;++k)
-      for(int j=0;j<nve;j++)
-	elmnts[i++] = Th(k,j);
+      {
+	eptr[k]=i;
+	for(int j=0;j<nve;j++)
+	  elmnts[i++] = Th(k,j);
+	eptr[k+1]=i;
+      }
     int numflag=0;
     int nparts=lparts;
     int edgecut;
     int etype =nve-2; // triangle or tet .  change FH fevr 2010 
+    idx_t ncommon = 1; 
+#ifdef  METIS_VER_MAJOR 
+    if(NO==0)
+      METIS_PartMeshNodal(&nt, &nv, eptr, (idx_t *) elmnts,  0,0, &nparts, 0,0, &edgecut, (idx_t  *) epart, (idx_t  *) npart);
+    else
+      METIS_PartMeshDual(&nt, &nv, eptr, (idx_t *) elmnts , 0,0, &ncommon,  &nparts, 0,0, &edgecut, (idx_t  *) epart,(idx_t  *)  npart);
+    if(verbosity)
+      printf("  --metisOA: %d-way Edge-Cut: %7d, Balance: %5.2f Nodal=0/Dual %d\n", nparts, nve, libmetis__ComputeElementBalance(nt, nparts, epart),NO);
+#else
     if(NO==0)
      METIS_PartMeshNodal(&nt, &nv, elmnts, &etype , &numflag, &nparts, &edgecut, epart, npart);
     else
      METIS_PartMeshDual(&nt, &nv, elmnts, &etype , &numflag, &nparts, &edgecut, epart, npart);
     if(verbosity)
       printf("  --metis: %d-way Edge-Cut: %7d, Balance: %5.2f Nodal=0/Dual %d\n", nparts, nve, ComputeElementBalance(nt, nparts, epart),NO);
+#endif 
     part->resize(nt);
     *part=epart;
     return part;
@@ -52,7 +73,7 @@ KN<long> * partmetisd(Stack s,KN<long> * const & part,Mesh * const & pTh,long co
     int nt=Th.nt,nv=Th.nv;
     int nve = Mesh::Element::NbV;
     
-    KN<idxtype> elmnts(nve*nt), epart(nt), npart(nv);
+    KN<idx_t> elmnts(nve*nt), epart(nt), npart(nv);
     for(int k=0,i=0;k<nt;++k)
 	for(int j=0;j<nve;j++)
 	    elmnts[i++] = Th(k,j);
@@ -60,8 +81,11 @@ KN<long> * partmetisd(Stack s,KN<long> * const & part,Mesh * const & pTh,long co
     int nparts=lparts;
     int edgecut;
     int etype =nve-2; // triangle
-   
+#ifdef  METIS_VER_MAJOR    
+    printf("  %d-way Edge-Cut: %7d, Balance: %5.2f\n", nparts, nve, libmetis__ComputeElementBalance(nt, nparts, epart));
+#else
     printf("  %d-way Edge-Cut: %7d, Balance: %5.2f\n", nparts, nve, ComputeElementBalance(nt, nparts, epart));
+#endif
     part->resize(nt);
     *part=epart;
     return part;

@@ -143,7 +143,13 @@ deb:
 
 nativeX: $(FF_MAC_PREFIX)_MacOsX.tgz 
 	echo "done"
-
+MacOsX: 
+	-rm -rf  OsXxx
+	mkdir -p  OsXxx/Applications/
+	make install DESTDIR="`pwd`/OsXxx"
+	tar zxvf FreeFem++.app.tgz -C OsXxx/Applications/
+	cd OsXxx;tar cvfz  ../$(FF_MAC_PREFIX)_MacOsX.tgz .
+	rm -rf OsXxx
 clean-local::
 	-rm freefem++-$(VERSION).tar.gz
 	-rm -rf FreeFem++v*_MacOS
