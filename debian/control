@@ -11,7 +11,7 @@ Build-Depends: debhelper (>= 7.2.3~), autotools-dev, gawk, gfortran,
  libarpack2-dev, libsuitesparse-dev, libsuperlu3-dev, imagemagick, 
  libfltk1.3-dev | libfltk-dev, freeglut3-dev, texlive, texlive-extra-utils, 
  texlive-latex-extra, texlive-font-utils, libmumps-ptscotch-dev,
- libmumps-dev, libblacs-mpi-dev, libscalapack-mpi-dev, 
+ libmumps-dev, libblacs-mpi-dev, libscalapack-mpi-dev, libgmm++-dev, 
  libscotch-dev, ghostscript, libptscotch-dev, libmumps-scotch-dev
 Standards-Version: 3.9.2
 Homepage: http://www.freefem.org/ff++/
