@@ -222,6 +222,7 @@ docdir = @docdir@
 dvidir = @dvidir@
 exec_prefix = @exec_prefix@
 ff_bison = @ff_bison@
+ff_cmake = @ff_cmake@
 ff_convert = @ff_convert@
 ff_curl = @ff_curl@
 ff_dvips = @ff_dvips@
@@ -546,8 +547,8 @@ uninstall-am:
 
 all-local: all.edp regtests.edp  freefem++.pref
 
-all.edp: 
-	(echo "NoUseOfWait=true;int verbosityy=verbosity;"; \
+all.edp: Makefile
+	(echo "NoGraphicWindow=true;NoUseOfWait=true;int verbosityy=verbosity;"; \
 	for i in *`ls *.edp|grep -v -E '^(all|regtests|makeref|ref)\.edp$$'` ; do  \
 		echo ' cout << "--------- file : '$$i' --------------------------------------------------------" << endl;' ;\
 		echo "verbosity=verbosityy;" ; \

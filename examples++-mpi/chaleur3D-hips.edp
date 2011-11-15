@@ -4,6 +4,6 @@
 load "hips_FreeFem"
 real ttgv=1e10;
 string ssparams="";//"nprow=1, npcol="+mpisize; 
-verbosity=2; include "Heat3d.idp"
+verbosity=4; include "Heat3d.idp"
 
 

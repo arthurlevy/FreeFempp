@@ -13,7 +13,8 @@ all-local: metis
 DIRPKG=../pkg
 SRCDIR=metis-$(metis_VERSION)
 PACKAGE=$(DIRPKG)/metis-$(metis_VERSION).tar.gz
-SERVER=http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis
+SERVER=http://www.netlib.org/linalg/
+#//http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/OLD
 INSTALL=../..
 metis_VERSION=4.0
 
@@ -25,13 +26,13 @@ $(SRCDIR)/FAIT:
 	touch $(SRCDIR)/FAIT
 
 install:$(SRCDIR)/tag-compile
-#	$(MAKE) install
+	cd $(SRCDIR);$(MAKE) install
 	mkdir -p $(SRCDIR)/$(INSTALL)/include/metis
 	cp $(SRCDIR)/Lib/*.h $(SRCDIR)/$(INSTALL)/include/metis
 
 
 FAIRE: $(SRCDIR)/FAIT 
-	touch fAIRE
+	touch FAIRE
 
 Makefile.in: ../../config.status Makefile-metis.in
 	../../config.status  --file="Makefile.in:Makefile-metis.in"
