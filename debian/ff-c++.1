@@ -1,0 +1,65 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH FF-C++ 1 "March 29, 2004"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+ff-c++ \- tool for automatic compilation with FreeFem++ library
+.SH SYNOPSIS
+.B ff-c++
+[\fIOPTIONS\fR] \fIFILE\fR \fI'LDFLAGS'\fR \fI'CPPFLAGS'\fR 
+The following extensions cpp,cp,cxx,c,f,F may be dropped in \fIFILE\fR.
+.SH DESCRIPTION
+.PP
+Compile FILE with freefem+ library with additionnal
+LDFLAGS and CPPFLAGS options
+.PP
+Mandatory arguments to long options are mandatory for short options too.
+.TP
+\fB\-auto\fR build automatically the dependence
+.TP
+\fB\-n\fR  do nothing just print
+.TP
+\fB\-g\fR  compile with \-g option
+.TP
+\fB\-c\fR compile only
+.TP
+\fB\-mpi\fR  with  mpi
+.TP
+\fB\-O*\fR  compile with \-O* option
+.TP
+\fB\-cygwin\fR compile for cygwin/win32 OS (Window XP, ...)
+.TP
+\fB\-win32\fR  compile for win32 OS (Window XP, ...) default under cygwin
+.TP
+\fB\-l\fR \fIfiles\fR  add files to the ld process (link)
+.TP
+\fB\-I\fR \fIdir\fR  add dir in include seach dir for compilation
+.TP
+\fB\-b\fR \fIdir\fR  to change the default install  dir 
+.TP
+\fB\-dll\fR \fIfile\fR  add  dll and this file copy in the install dir
+.TP
+\fB\-o\fR \fIoutputfile\fR without suffix
+.PP
+This manual page was written for the Debian distribution
+because the original program does not have a manual page.
+Instead, it has detailed documentation in the manual; see below.
+.SH SEE ALSO
+The extensive manual of FreeFem++ is written in LaTeX and it is available in
+Postscript format in /usr/share/doc/freefem++/ on your hard disc.
+.SH AUTHOR
+This manual page was written by Christophe Trophime <christophe.trophime@grenoble.cnrs.fr>,
+for the Debian project (but may be used by others).

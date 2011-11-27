@@ -1,0 +1,2 @@
+debian/tmp/usr/lib/ff++/3.*/lib/* /usr/lib/freefem++/
+debian/tmp/usr/lib/ff++/3.*/etc/freefem++.pref /etc/

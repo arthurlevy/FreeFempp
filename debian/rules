@@ -1,0 +1,142 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# This file was originally written by Joey Hess and Craig Small.
+# As a special exception, when this file is copied by dh-make into a
+# dh-make output file, you may use that output file without restriction.
+# This special exception was added by Craig Small in version 0.37 of dh-make.
+
+# Uncomment this to turn on verbose mode.
+export DH_VERBOSE=1
+export DH_OPTIONS=-v
+
+clean:
+	dh_testdir
+	dh_auto_clean
+	dh_clean
+	rm -f download/parms/config.log download/hypre/config.log 
+	rm -f download/pastix/config.log download/parmetis/config.log
+	rm -f download/scotch/config.log download/superludist/config.log
+	rm -f download/blacs/config.log download/scalapack/config.log
+	rm -f download/hips/config.log download/metis/config.log
+	rm -f download/mumps/config.log
+	rm -f examples++-load/config.log src/mpi/config.log
+	rm -rf DOC/cpfigs 
+	rm -f DOC/addfe.aux 
+	rm -f DOC/freefem++doc.aux DOC/freefem++doc.idx
+	rm -f DOC/freefem++doc.ilg DOC/freefem++doc.ind DOC/freefem++doc.log
+	rm -f DOC/freefem++doc.out DOC/freefem++doc.pdf DOC/freefem++doc.pdfsync 
+	rm -f DOC/freefem++doc.toc
+	rm -f config-version.h config_LIB_INFO configure.param
+# 	rm -f download/blacs/Bmake.inc 
+	rm -f download/fftw/cxxflags
+	rm -f download/gmm/cxxflags download/metis/Makefile.in
+	rm -f download/pastix/config-complex.in 
+#       rm -f download/pastix/config.in
+	rm -f download/tetgen/cxxflags examples++-3d/freefem++.pref
+	rm -f examples++-load/WHERE_LIBRARY-config 
+	rm -f examples++-load/freefem++.pref examples++-mpi/freefem++.pref
+	rm -f examples++-mpi/MPICG.o examples++-mpi/MPICG.so
+	rm -f src/mpi/config.log src/mpi/ff-mpirun src/medit/compil.date
+
+build: build-arch build-indep
+build-arch: build-stamp
+build-indep: build-stamp
+build-stamp:
+	dh_testdir
+	dh_auto_configure -- CFLAGS=-lm
+	dh_auto_build
+#	dh_auto_test
+
+binary-indep:
+	dh_testroot -i
+	dh_prep -i
+	dh_installdirs -i
+	dh_auto_install -i
+	dh_install -i
+	dh_installdocs -i
+	dh_installchangelogs -i
+	dh_installexamples -i
+	dh_installman -i
+	dh_installcatalogs -i
+	dh_installcron -i
+	dh_installdebconf -i
+	dh_installemacsen -i
+	dh_installifupdown -i
+	dh_installinfo -i
+#	dh_pysupport -i
+	dh_installinit -i
+	dh_installmenu -i
+	dh_installmime -i
+	dh_installmodules -i
+	dh_installlogcheck -i
+	dh_installlogrotate -i
+	dh_installpam -i
+	dh_installppp -i
+	dh_installudev -i
+	dh_installwm -i
+	dh_installxfonts -i
+	dh_bugfiles -i
+	dh_lintian -i
+	dh_gconf -i
+	dh_icons -i
+	dh_perl -i
+	dh_usrlocal -i
+	dh_link -i
+	dh_compress -i
+	dh_fixperms -i
+# 	dh_strip -i
+# 	dh_makeshlibs -i
+# 	dh_shlibdeps -i
+	dh_installdeb -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+binary-arch: 
+	dh_testroot -a
+	dh_prep -a
+	dh_installdirs -a
+	dh_auto_install -a
+	dh_install -a
+	mv debian/freefem++/usr/bin/bamg debian/freefem++/usr/bin/ffbamg
+	dh_installdocs -a
+	dh_installchangelogs -a
+	dh_installexamples -a
+	dh_installman -a
+	dh_installcatalogs -a
+	dh_installcron -a
+	dh_installdebconf -a
+	dh_installemacsen -a
+	dh_installifupdown -a
+	dh_installinfo -a
+#	dh_pysupport -a
+	dh_installinit -a
+	dh_installmenu -a
+	dh_installmime -a
+	dh_installmodules -a
+	dh_installlogcheck -a
+	dh_installlogrotate -a
+	dh_installpam -a
+	dh_installppp -a
+	dh_installudev -a
+	dh_installwm -a
+	dh_installxfonts -a
+	dh_bugfiles -a
+	dh_lintian -a
+	dh_gconf -a
+	dh_icons -a
+	dh_perl -a
+	dh_usrlocal -a
+	dh_link -a
+	dh_compress -a
+	dh_fixperms -a
+	dh_strip -a
+	dh_makeshlibs -a
+	dh_shlibdeps -a
+	dh_installdeb -a
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
+
+binary: binary-arch binary-indep

@@ -1,0 +1,47 @@
+freefem++ (3.16-1) unstable; urgency=low
+
+  * New upstream release.
+  * Add build-deps for libgmm++-dev.
+
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Wed, 15 Nov 2011 13:31:00 +0200
+
+freefem++ (3.14-1) unstable; urgency=low
+
+  * Add build-deps for mumps_ptscotch, mumps_scotch and hypre.
+  * Change build-dep libfltk1.1-dev to libfltk1.3-dev | libfltk-dev in debian/
+    control file.
+  * New upstream release.
+
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Wed, 14 Sep 2011 19:11:00 +0300
+
+freefem++ (3.13.3-1) unstable; urgency=low
+
+  * Add patch for the location of file freefem++.pref.
+  * New upstream release.
+
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Tue, 9 Aug 2011 15:31:00 +0300
+
+freefem++ (3.13.2-1) unreleased; urgency=low
+
+  * Revert to gcc-4.6 for building.
+  * New upstream release.
+
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Sun, 3 Jul 2011 21:51:00 +0300
+
+freefem++ (3.13-2) unstable; urgency=low
+
+  * Change build-dep from openmpi-bin to mpi-default-dev to effect build on 
+    more arches.
+  * Apply patch kfreebsd.patch to fix build failure on kfreebsd arches.
+  * Rename /usr/bin/bamg to /usr/bin/ffbamg to fix double occurence of the 
+    former, in both rheolef and freefem++ packages (Closes: #630864).
+
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Mon, 20 Jun 2011 23:00:00 +0200
+
+freefem++ (3.13-1) unstable; urgency=low
+
+  * Initial release (Closes: #500755).
+  * Built with gcc-4.5 (see bug report 49264 submitted to the gcc bugzilla 
+    upstream).
+
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Mon, 13 Jun 2011 11:10:00 +0200
