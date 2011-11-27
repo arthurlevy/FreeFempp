@@ -1,1 +1,1 @@
- extend-diff-ignore = "(^|/)(INSTALL|configure|depcomp|install-sh|missing|mkinstalldirs|src/fflib/strversionnumber\.cpp|examples\+\+-load/all\.edp)$"
+ extend-diff-ignore = "(^|/)(INSTALL|configure|depcomp|install-sh|missing|mkinstalldirs|src/fflib/strversionnumber\.cpp|examples\+\+-load/all\.edp|src/lglib/lg\.output|src/lglib/lg\.tab\.cpp|src/lglib/lg\.tab\.hpp)$"

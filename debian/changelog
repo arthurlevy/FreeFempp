@@ -1,4 +1,10 @@
-freefem++ (3.16-1) unstable; urgency=low
+freefem++ (3.17-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Sun, 27 Nov 2011 14:17:00 +0200
+
+freefem++ (3.16-1) unreleased; urgency=low
 
   * New upstream release.
   * Add build-deps for libgmm++-dev.
