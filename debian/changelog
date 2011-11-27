@@ -1,4 +1,11 @@
-freefem++ (3.17-1) unstable; urgency=low
+freefem++ (3.17-2) unstable; urgency=low
+
+  * Fix build failure due to creation of file examples++-mpi/cmaes.o and 
+    modification of file download/nlopt/config.log in the source tree.
+
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Sun, 27 Nov 2011 18:29:00 +0200
+
+freefem++ (3.17-1) unreleased; urgency=low
 
   * New upstream release.
 
