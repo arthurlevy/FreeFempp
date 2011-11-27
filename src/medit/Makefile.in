@@ -177,7 +177,6 @@ MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MEDITPROG = @MEDITPROG@
 MKDIR_P = @MKDIR_P@
-MMG3DLIB_TAR = @MMG3DLIB_TAR@
 MPICC = @MPICC@
 MPICXX = @MPICXX@
 MPIF77 = @MPIF77@
@@ -312,7 +311,7 @@ chrono.h	extern.h	image.h		mesh.h \
 eigenv.h	grafic.h	medit.h		sproto.h 
 
 LDADD = ../libMesh/libMesh.a $(LIBSGLUT) -lm
-INCLUDES = -I../libMesh
+INCLUDES = -I$(srcdir)/../libMesh
 BUILT_SOURCES = compil.date
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am

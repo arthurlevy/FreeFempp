@@ -18,6 +18,6 @@ string StrVersionNumber(){
 //  buffer.precision(8);
 //  buffer<<VersionNumber();
   static char buffer[100];
-  sprintf(buffer," %9f (date Ven  7 oct 2011 17:37:55 CEST)",VersionNumber());
-  return buffer; //.str()+" (date Ven  7 oct 2011 17:37:55 CEST)" ;
+  sprintf(buffer," %9f (date Jeu 17 nov 2011 15:12:39 CET)",VersionNumber());
+  return buffer; //.str()+" (date Jeu 17 nov 2011 15:12:39 CET)" ;
 }

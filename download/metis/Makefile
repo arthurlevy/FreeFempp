@@ -22,16 +22,17 @@ metis: FAIRE
 
 
 $(SRCDIR)/FAIT:
-	$(MAKE) install WHERE
+	$(MAKE) install
 	touch $(SRCDIR)/FAIT
 
 install:$(SRCDIR)/tag-compile
-	cd $(SRCDIR);$(MAKE) install
-	mkdir -p $(SRCDIR)/$(INSTALL)/include/metis
-	cp $(SRCDIR)/Lib/*.h $(SRCDIR)/$(INSTALL)/include/metis
+	cd $(SRCDIR)/Programs ;$(MAKE) 
+	-mkdir -p ../include/metis
+	cp $(SRCDIR)/Lib/*.h ../include/metis
 
 
 FAIRE: $(SRCDIR)/FAIT 
+	$(MAKE) WHERE
 	touch FAIRE
 
 Makefile.in: ../../config.status Makefile-metis.in

@@ -164,7 +164,6 @@ MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MEDITPROG = @MEDITPROG@
 MKDIR_P = @MKDIR_P@
-MMG3DLIB_TAR = @MMG3DLIB_TAR@
 MPICC = @MPICC@
 MPICXX = @MPICXX@
 MPIF77 = @MPIF77@
@@ -290,7 +289,7 @@ FreeFem___glx_DEPENDENCIES = ../fflib/libff.a ../lglib/liblg.a
 LDADD = ../lglib/liblg.a ../fflib/libff.a @UMFPACKLIBS@ @ARPACKLIBS@	\
 	@BLASLIBS@ -lGLU -lGL @X11_LIBS@
 
-INCLUDES = -I../fflib
+INCLUDES = -I$(srcdir)/../fflib
 all: all-am
 
 .SUFFIXES:

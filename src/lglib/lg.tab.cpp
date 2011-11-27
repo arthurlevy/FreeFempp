@@ -119,7 +119,7 @@
 #include "error.hpp"
 class Iden;
 #include "strversionnumber.hpp"
-
+#include "InitFunct.hpp"
 #ifdef __MWERKS__
 #ifdef __INTEL__
 #include <malloc.h>
@@ -3638,7 +3638,7 @@ extern  bool echo_edp;
 int mainff (int  argc, char **argv)
 {
     
-
+   ffapi::init(); 
   if(argc)  
     prognamearg=argv[0];
 
@@ -3708,9 +3708,10 @@ int mainff (int  argc, char **argv)
    zzzfff->Add("try",TRY);
    zzzfff->Add("catch",CATCH);
    zzzfff->Add("throw",THROW);
-   Init_map_type();
+//   Init_map_type();
    if(verbosity>2 || (mpirank==0 ) ) cout << " Load: ";
-   init_lgfem() ;
+   callInitsFunct() ; //  init for dynamique libs ...
+  // init_lgfem() ;
    init_lgmesh() ;
    init_lgmesh3() ;
    init_algo();
@@ -3720,6 +3721,7 @@ int mainff (int  argc, char **argv)
 #endif   
 
    if(init_lgparallele)  init_lgparallele(); 
+  //  callInitsFunct() ; //  init for dynamique libs ...
 
    if(verbosity>2 || mpirank==0)  cout << endl;
   zzzfff->input(cc);

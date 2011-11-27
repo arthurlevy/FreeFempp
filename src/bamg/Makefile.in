@@ -166,7 +166,6 @@ MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MEDITPROG = @MEDITPROG@
 MKDIR_P = @MKDIR_P@
-MMG3DLIB_TAR = @MMG3DLIB_TAR@
 MPICC = @MPICC@
 MPICXX = @MPICXX@
 MPIF77 = @MPIF77@
@@ -298,7 +297,7 @@ drawbdmesh_DEPENDENCIES = ../fflib/libff.a  @STD_GRAPH_OBJ@
 drawbdmesh_SOURCES = drawbdmesh.cpp 
 drawbdmesh_LDADD = @STD_GRAPH_OBJ@ $(LDADD)  @STD_LIBS@ @LIBSNOCONSOLE@
 LDADD = ../fflib/libff.a
-INCLUDES = -I../fflib -I../bamglib -I../Graphics
+INCLUDES = -I$(srcdir)/../fflib -I$(srcdir)/../bamglib -I$(srcdir)/../Graphics
 all: all-am
 
 .SUFFIXES:
