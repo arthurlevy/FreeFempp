@@ -146,7 +146,6 @@ MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MEDITPROG = @MEDITPROG@
 MKDIR_P = @MKDIR_P@
-MMG3DLIB_TAR = @MMG3DLIB_TAR@
 MPICC = @MPICC@
 MPICXX = @MPICXX@
 MPIF77 = @MPIF77@
@@ -282,14 +281,15 @@ hypre_FreeFem.cpp \
 interfacepastix.cpp \
 parms_FreeFem.cpp \
 real_SuperLU_DIST_FreeFem.cpp \
-real_pastix_FreeFem.cpp 
+real_pastix_FreeFem.cpp mpi-cmaes.cpp 
 
 LIST_COMPILE = MUMPS_FreeFem.$(DYLIB_SUFFIX) hips_FreeFem.$(DYLIB_SUFFIX) \
  hypre_FreeFem.$(DYLIB_SUFFIX) \
  interfacepastix.$(DYLIB_SUFFIX) \
 complex_SuperLU_DIST_FreeFem.$(DYLIB_SUFFIX) real_SuperLU_DIST_FreeFem.$(DYLIB_SUFFIX) \
 complex_pastix_FreeFem.$(DYLIB_SUFFIX) real_pastix_FreeFem.$(DYLIB_SUFFIX) \
-dSuperLU_DIST.$(DYLIB_SUFFIX) MPICG.$(DYLIB_SUFFIX) parms_FreeFem.$(DYLIB_SUFFIX)
+dSuperLU_DIST.$(DYLIB_SUFFIX) MPICG.$(DYLIB_SUFFIX) parms_FreeFem.$(DYLIB_SUFFIX) \
+mpi-cmaes.$(DYLIB_SUFFIX) 
 
 all: all-am
 

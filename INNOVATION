@@ -1,8 +1,29 @@
+v 3.17  (17/11/2011) 
+ - correct PB of pugins: MUMPS, parmetis, metis, mmg34, mshmet 
+ - the new load interface  (for more safe IO)
+ - build mpi for windows with msmpi ( begin) 
+    memory error after end .. 
+ - remove add by default $LIB_MPI in ff-c++ 
+ - change the way add thing in freefem++ in case of  dynamics load 
+   to be  compatible   plugin with freefem++cs  ( solve pb with
+     cin,cout, cerr in  dll may be..).
+   LOADINIT(Init); // where init is a class 
+or do 
+   addingInitFunct FFinit(100,ffinit,"MUMPS_FreeFem"); // where ffinit the init function ...
+v 3.16-1
+ - cmaes interface in scalar and MPI case  (thank to S. Auliac)
+    see doc and examples : cmaes-mpi-VarIneq.edp , cmaes--VarIneq.edp
+ - add NLopt interface (thank to S. Auliac)
+v 3.16 
+  technical stuff: 
+  - correct auto load of mumps
+  - add tool to do automatic load or static load (for testing)
+    see MUMPS_*cpp example 
 v 3.15 
   - correct all examples++  load and 3d rebuilde the all.edp 
     and test this examples. 
   - correct version old bug when full matrix (arry)
-    A=A;' is now coorect (set and  initialization )
+    A=A;' is now correct (set and  initialization )
     and add  A+=A';    A-=A';
 
   - reput metis 4.0 form netlib ... (pb of compatibilite with other // soft hips)

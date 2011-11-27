@@ -146,7 +146,6 @@ MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MEDITPROG = @MEDITPROG@
 MKDIR_P = @MKDIR_P@
-MMG3DLIB_TAR = @MMG3DLIB_TAR@
 MPICC = @MPICC@
 MPICXX = @MPICXX@
 MPIF77 = @MPIF77@
@@ -547,7 +546,7 @@ uninstall-am:
 
 all-local: all.edp regtests.edp  freefem++.pref
 
-all.edp: Makefile
+all.edp:  Makefile
 	(echo "NoGraphicWindow=true;NoUseOfWait=true;int verbosityy=verbosity;"; \
 	for i in *`ls *.edp|grep -v -E '^(all|regtests|makeref|ref)\.edp$$'` ; do  \
 		echo ' cout << "--------- file : '$$i' --------------------------------------------------------" << endl;' ;\

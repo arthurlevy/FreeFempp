@@ -10,7 +10,7 @@ g# Configuration script using Automake + Autoconf for FreeFem++
 # number in debian/changelog.
 # add check of FLIBS and X11_LIBS  v2.24-2
 
-AC_INIT(FreeFem++,3.16,hecht@ann.jussieu.fr,freefem++)
+AC_INIT(FreeFem++,3.17,hecht@ann.jussieu.fr,freefem++)
 dnl : ${CFLAGS=""}
 dnl : ${CXXFLAGS=""}
 dnl : ${FCFLAGS=""}
@@ -369,7 +369,7 @@ CYGWIN*|MINGW*)
 
 	ff_suffix_dylib="dll";
         ff_win32=yes;
-	AC_SUBST(FFMETIS_CFLAGS,"-D__VC__")
+	AC_SUBST(FFMETIS_CFLAGS,"-D__VC__ -D_MSC_VER")
 	# We need Mingw to avoid Cygwin's extra DLLs
 	if test "$enable_cygwindll" != yes
 	then
@@ -377,7 +377,7 @@ CYGWIN*|MINGW*)
 	        ff_glut_ok=yes
                 ff_mingw=yes 
                 enable_cygwindll=no;
-		ff_pthread="-mthread"
+		#ff_pthread="-mthread"
 		CXXFLAGS="$CXXFLAGS $ff_nocygwin -I/usr/include/mingw"		
 		FFLAGS="$FFLAGS $ff_nocygwin"
 		CFLAGS="$CFLAGS $ff_nocygwin -I/usr/include/mingw"
@@ -391,6 +391,7 @@ CYGWIN*|MINGW*)
 		CNOFLAGS="$CNOFLAGS $ff_nocygwin -I/usr/include/mingw"
 		LIBS="$LIBS $ff_nocygwin -mthreads -lws2_32 -lcomdlg32" 
 		LIBSNOCONSOLE="-mwindows"
+		test -z "$MPIRUN" &&  MPIRUN=`which mpiexe.exe` 
 		if test "$enable_fortran" != no  -o  "$with_flib" != no ;   then
 		    case "$F77" in
 	 		*gfortran) FLIBS="$ff_nocygwin -lgfortran";;
@@ -717,7 +718,7 @@ fi
 dnl m4_include(ax_mpi.m4)
 ff_save_path="$PATH"
 # We need to choose between mpich, openmpi  and lam for the Debian package
-AC_ARG_WITH(mpipath,[  --with-mpipach= the path of mpich under windows (no command  mpic++, ... )])
+AC_ARG_WITH(mpipath,[  --with-mpipath= the path of mpich under windows (no command  mpic++, ... )])
 AC_ARG_WITH(mpilibs,[  --with-mpilibs= the libs to add to c++,fc, ... (to link with c++ - ex:   -L/usr/local/lib -lmpi_f90  -lmpi_cxx -lmpi -lopen-rte -lopen-pal -lutil) ])
 AC_ARG_WITH(mpilibsc,[  --with-mpilibsc= the libs to add to c  ... (to link with cc (for pastix lib)  ex:   -L/usr/local/lib -lmpi -lopen-rte -lopen-pal -lutil) ])
 AC_ARG_WITH(mpiinc,[  --with-mpiinc= the include directory directive and preprocess directive  (no mpicc++, just use the compiler)) ])
@@ -763,7 +764,7 @@ AC_ARG_VAR(MPIRUN,[MPI run command ])
 AC_MSG_CHECKING(for MPIRUN)
 
 if test -z "$MPIRUN" ; then
-    AC_PATH_PROGS(MPIRUN,mpirun mpiexec,no,$ff_mpi_path)
+    AC_PATH_PROGS(MPIRUN,mpirun mpiexec mpiexec.exe,no)
     if test "$MPIRUN" = no
     then
 	ff_mpi=no
@@ -773,10 +774,15 @@ AC_MSG_RESULT($MPIRUN)
 
 AC_MSG_CHECKING(for mpipath )
 	
-if test "$with_mpi" != no -a ! -d  "$with_mpipath" -a "$ff_win32" = yes ; then 
-    for i in '/c/Program Files (x86)/MPICH2' '/c/Program Files/MPICH2' 'c:\Program Files (x86)\MPICH2' 'c:\Program Files\MPICH2' ; do
-	test -d "$i" &&  with_mpipath="$i" && break 
-    done
+if test "$with_mpi" != no -a ! -d  "$with_mpipath" -a "$ff_win32" = yes -a "$MPIRUN" != no ; then 
+#   if "$MPIRUN" != no ; tehn 
+    with_mpipath=`AS_DIRNAME(["$MPIRUN"])`
+    with_mpipath=`AS_DIRNAME(["$with_mpipath"])`
+#    else 
+#    for i in '/c/Program Files (x86)/MPICH2' '/c/Program Files/MPICH2' 'c:\Program Files (x86)\MPICH2' 'c:\Program Files\MPICH2' ; do
+#	test -d "$i" &&  with_mpipath="$i" && break 
+#    done
+#    fi
 fi
 
 dnl if test "$with_mpilibs" != "no" ; then
@@ -792,19 +798,34 @@ if test  -d "$with_mpipath" -a "$ff_win32" = yes  ; then
  #   MPICXX="$ff_pwd/mpic++"
  #   MPIF77="$ff_pwd/mpif77"
  #   MPIFC="$ff_pwd/mpif90"
- #   MPICC="$ff_pwd/mpicc"   
-    ff_MPI_INCLUDE_DIR="$with_mpipath/include"
-    ff_MPI_INCLUDE="-I'$ff_MPI_INCLUDE_DIR'"
-    with_mpiinc="$ff_MPI_INCLUDE"
-    with_mpilibs="-L'$with_mpipath'/lib -lmpicxx -lfmpich2g -lmpi"
-    test -z "$MPIRUN" && MPIRUN="$with_mpipath/bin/mpirun.exe"
-    ff_MPI_LIBC="-L'$with_mpipath'/lib -lmpi"
-    ff_MPI_LIB="-L'$with_mpipath'/lib -lmpicxx -lmpi"
-    ff_MPI_LIBFC="-L'$with_mpipath'/lib -lmpicxx -lfmpich2g -lmpi"
-    test -z "$MPICXX" && MPICXX="$CXX $ff_MPI_INCLUDE"
-    test -z "$MPIF77" && MPIF77="$F77 $ff_MPI_INCLUDE"
-    test -z "$MPIFC"  && MPIFC="$FC  $ff_MPI_INCLUDE"
-    test -z "$MPICC"  && MPICC="$CC  $ff_MPI_INCLUDE"
+ #   MPICC="$ff_pwd/mpicc" zzzzzzzzzzz   
+    if  with_mpilibs=`which msmpi.dll` 
+    then
+	case "$ff_size_ptr"  in 
+	    4) with_mpipathlib="$with_mpipath/Lib/i386";;
+	    8) with_mpipathlib="$with_mpipath/Lib/amd64";;
+	    *) with_mpipath=no;;
+	esac
+	
+	
+	test -d "$with_mpipath/Inc" &&  ff_MPI_INCLUDE_DIR="$with_mpipath/Inc"
+	test -d "$with_mpipath/Include" &&  ff_MPI_INCLUDE_DIR="$with_mpipath/Include"
+	ff_MPI_INCLUDE="-I'$ff_MPI_INCLUDE_DIR' '-D_MSC_VER' '-D__int64=long long'"
+	with_mpiinc="$ff_MPI_INCLUDE"
+	test -z "$MPIRUN" && MPIRUN="$with_mpipath/bin/mpiexe.exe"
+	ff_MPI_LIBC="$with_mpilibs"
+	ff_MPI_LIB="$with_mpilibs"
+	ff_MPI_LIBFC="$with_mpilibs"
+	test -z "$MPICXX" && MPICXX="$CXX $ff_MPI_INCLUDE"
+	test -z "$MPIF77" && MPIF77="$F77 $ff_MPI_INCLUDE"
+	test -z "$MPIFC"  && MPIFC="$FC  $ff_MPI_INCLUDE"
+	test -z "$MPICC"  && MPICC="$CC  $ff_MPI_INCLUDE"
+    else
+	echo " #### no msmpi.dll  => no mpi under windows .... (FH) " >&AS_MESSAGE_LOG_FD
+	echo " #### no msmpi.dll  => no mpi under windows .... (FH) " >&AS_MESSAGE_FD
+	with_mpipath=no
+	with_mpi=no
+    fi
 else 
     with_mpipath=no	   
 fi
@@ -1156,14 +1177,15 @@ if test "$ff_mkl_libpath" != "not" ; then
 	if test  -f $ff_mkl_root/lib/$ff_mkl_arch/libmkl_rt.so ; then
 	  mkl_blas=rt
 	  mkk_lapack=rt 
-          ff_mkl_blas="-L$ff_mkl_root/lib/$ff_mkl_arch -lmkl_rt  -liomp5 -lpthread"
-          ff_mkl_lapack="-L$ff_mkl_root/lib/$ff_mkl_arch -lmkl_rt -liomp5 -lpthread"
+          ff_mkl_blas="-L$ff_mkl_root/lib/$ff_mkl_arch -lmkl_rt -lmkl_sequential -lmkl_core  -liomp5 -lpthread"
+          ff_mkl_lapack="-L$ff_mkl_root/lib/$ff_mkl_arch -lmkl_rt -lmkl_sequential -lmkl_core -liomp5 -lpthread"
 	else
-	  ff_mkl_blas="-L$ff_mkl_root/lib/$ff_mkl_arch -lmkl_${ff_mkl_cc}${ff_mkl_lp} -lmkl_lapack -lmkl_intel${ff_mkl_lp} -lmkl_intel_thread -lmkl_core -lguide -lm -lpthread"
+	  ff_mkl_blas="-L$ff_mkl_root/lib/$ff_mkl_arch -lmkl_${ff_mkl_cc}${ff_mkl_lp} -lmkl_lapack -lmkl_intel${ff_mkl_lp} -lmkl_intel_thread -lmkl_sequential -lmkl_core -lguide -lm -lpthread"
 	  ff_mkl_lapack="-L$ff_mkl_root/lib/$ff_mkl_arch -llibmkl_lapack"
 	fi
-        ff_mkl_scalapack="-L$ff_mkl_root/lib/$ff_mkl_arch -lmkl_scalapack${ff_mkl_lp}"
-        ff_mkl_blacs="-L$ff_mkl_root/lib/$ff_mkl_arch -lmkl_blacs${ff_mkl_mpi}${ff_mkl_lp}"
+
+        ff_mkl_scalapack="-L$ff_mkl_root/lib/$ff_mkl_arch -lmkl_blacs${ff_mkl_mpi}${ff_mkl_lp} -lmkl_scalapack${ff_mkl_lp} "
+        ff_mkl_blacs="-L$ff_mkl_root/lib/$ff_mkl_arch -lmkl_blacs${ff_mkl_mpi}${ff_mkl_lp} -lmkl_scalapack${ff_mkl_lp}"
 	ff_blas_ok=yes
 	ff_lapack_ok=yes
 	ff_blas_libs="$ff_mkl_blas"
@@ -1974,55 +1996,55 @@ ff_progs="$ff_stdprog FreeFem++-nw $ff_bamgprog $ff_glxprog $ff_aglprog $ff_x11p
 # mmg3d INCLUDE '-I/Users/hecht/work/freefem++/download/include'
 
 
-if test -f download/pkg/mmg3dlib.tar.gz  ;then
-    AC_MSG_NOTICE([      Compile : download/pkg/mmg3dlib.tar.gz  (3d mesh adapaton)])
-else
-    ff_MACOS=`expr "xx $CXXFLAGS" : '.*-mmacosx-version-min=\([0-9.]*\).*'`
+#if test -f download/pkg/mmg3dlib.tar.gz  ;then
+#    AC_MSG_NOTICE([      Compile : download/pkg/mmg3dlib.tar.gz  (3d mesh adapaton)])
+#else
+#    ff_MACOS=`expr "xx $CXXFLAGS" : '.*-mmacosx-version-min=\([0-9.]*\).*'`
+#    
+#    ff_mmg3dlib=""
+#    if test "$ff_mac" = yes ; then
+#        case $ff_MACOS  in
+#	     [0-9.]*) ff_MACOS="$ff_MACOS";;
+#	     *) ff_MACOS=`sw_vers -productVersion| awk -F. '{print $1"."$2}'`
+#    	esac
+#	MACOS=10.4
+#	ff_mmg3dlib="libmmg3d-1001-OSX-$ff_MACOS.tar.gz"
+#    elif test "$ff_win32" = yes ; then
+#        case `uname` in 
+#	 MINGW32*)    	ff_mmg3dlib="libmmg3d-1001-MINGW32.tar.gz";;
+#	 MINGW64*)    	ff_mmg3dlib="libmmg3d-1001-MINGW64.tar.gz";;
+#	 CYWIN*)    	ff_mmg3dlib="libmmg3d-1001-WIN32.tar.gz";;
+#	 esac 
+#    else 
+#	ff_mmg3dlib="libmmg3d-1001-LINUX-$ff_size_ptr.tar.gz"
+#    fi
     
-    ff_mmg3dlib=""
-    if test "$ff_mac" = yes ; then
-        case $ff_MACOS  in
-	     [0-9.]*) ff_MACOS="$ff_MACOS";;
-	     *) ff_MACOS=`sw_vers -productVersion| awk -F. '{print $1"."$2}'`
-    	esac
-	MACOS=10.4
-	ff_mmg3dlib="libmmg3d-1001-OSX-$ff_MACOS.tar.gz"
-    elif test "$ff_win32" = yes ; then
-        case `uname` in 
-	 MINGW32*)    	ff_mmg3dlib="libmmg3d-1001-MINGW32.tar.gz";;
-	 MINGW64*)    	ff_mmg3dlib="libmmg3d-1001-MINGW64.tar.gz";;
-	 CYWIN*)    	ff_mmg3dlib="libmmg3d-1001-WIN32.tar.gz";;
-	 esac 
-    else 
-	ff_mmg3dlib="libmmg3d-1001-LINUX-$ff_size_ptr.tar.gz"
-    fi
-    
-    if test -f  download/pkg/$ff_mmg3dlib ; then 
-        tar zxf download/pkg/$ff_mmg3dlib -C download
-    elif test "enable_download" = yes ; then
-	mkdir download/pkg 
-	( cd download/pkg
-	    $ff_wget_command  http://www.freefem.org/ff++/ftp/libmmg3d/$ff_mmg3dlib
-	    tar zxf $ff_mmg3dlib -C .. 	
-	    )
-    fi
-    if test -f "download/lib/libmmg3d.a" ; then
-	AC_MSG_CHECKING(for MMG_mmg3dlib in mmg3dlib )
-	    ff_save_libs="$LIBS"
-	    LIBS="$LIBS -Ldownload/lib -lmmg3d"
-	    AC_LINK_IFELSE(
-		[AC_LANG_CALL(,MMG_mmg3dlib)],
-		ff_mmg3d_ok=yes 
-		,
-		ff_mmg3d_ok=no
-		rm download/lib/libmmg3d.a download/include/libmmg3d.a
-                ff_mmg3d_ok=
-		)
-	    LIBS="$ff_save_libs"
-	    AC_MSG_RESULT($ff_mmg3d_ok)
-    fi
-    AC_SUBST(MMG3DLIB_TAR,$ff_mmg3dlib) 
-fi
+#    if test -f  download/pkg/$ff_mmg3dlib ; then 
+#        tar zxf download/pkg/$ff_mmg3dlib -C download
+#    elif test "enable_download" = yes ; then
+#	mkdir download/pkg 
+#	( cd download/pkg
+#	    $ff_wget_command  http://www.freefem.org/ff++/ftp/libmmg3d/$ff_mmg3dlib
+#	    tar zxf $ff_mmg3dlib -C .. 	
+#	    )
+#    fi
+#    if test -f "download/lib/libmmg3d.a" ; then
+#	AC_MSG_CHECKING(for MMG_mmg3dlib in mmg3dlib )
+#	    ff_save_libs="$LIBS"
+#	    LIBS="$LIBS -Ldownload/lib -lmmg3d"
+#	    AC_LINK_IFELSE(
+#		[AC_LANG_CALL(,MMG_mmg3dlib)],
+#		ff_mmg3d_ok=yes 
+#		,
+#		ff_mmg3d_ok=no
+#		rm download/lib/libmmg3d.a download/include/libmmg3d.a
+#                ff_mmg3d_ok=
+#		)
+#	    LIBS="$ff_save_libs"
+#	    AC_MSG_RESULT($ff_mmg3d_ok)
+#    fi
+#    AC_SUBST(MMG3DLIB_TAR,$ff_mmg3dlib) 
+#fi
 
 ff_with_mpi=-openmpi; 
 
@@ -2112,23 +2134,20 @@ fi
 if test "$enable_download" = yes  ;then
     AC_MSG_NOTICE([      use of download fftw   see  download/fftw/fftw-3.2/COPYRIGHT ])
     AC_MSG_NOTICE([      use of download tetgen  see download/tetgen/tetgen1.4.3/LICENSE ])
-    AC_MSG_NOTICE([      use of download freeyams  see download/yams/freeyams.2010.02.22 (suface mesh adaptation)  ])
+    AC_MSG_NOTICE([      use of download freeyams  see download/yams/freeyams.2011.02.22 (suface mesh adaptation)  ])
+    AC_MSG_NOTICE([      use of download mmg3d (v4)   see download/mmg3d/mmg3d4/LICENCE.txt  ])
     AC_MSG_NOTICE([      use of download superlu, metis])
     if test -n "$MPICC" ; then
    	AC_MSG_NOTICE([      try to download: blacs parmetis  scalapack scotch superludist pastix hypre hips library])
     fi
-    if test -f download/pkg/MUMPS_4.9.2.tar.gz  ;then
-	AC_MSG_NOTICE([      try to compile : MUMPS parallele software ])
-    else
-	AC_MSG_NOTICE([     missing download/pkg/MUMPS_4.9.2.tar.gz, see http://mumps.enseeiht.fr/ to download by hand ])
-    fi
-    if test -f download/lib/libmmg3d.a ; then
-        AC_FF_ADDWHERELIB(mmg3d,-L`pwd`/download/lib,-I`pwd`/download/include)
+
+dnl    if test -f download/lib/libmmg3d.a ; then
+dnl        AC_FF_ADDWHERELIB(mmg3d,-L`pwd`/download/lib,-I`pwd`/download/include)
 dnl	echo "mmg3d LD '-L`pwd`/download/lib' '-lmmg3d'" >>$ff_where_lib_conf
 dnl	echo "mmg3d INCLUDE '-I`pwd`/download/include'" >>$ff_where_lib_conf
-    else 
-	AC_MSG_NOTICE([   sorry no download/pkg/mmg3dlib.tar.gz 3d mesh adapaton see Dobrzynski Cecile <cecile.dobrzynski@math.u-bordeaux1.fr> ])
-    fi
+dnl    else 
+dnl 	AC_MSG_NOTICE([   sorry no download/pkg/mmg3dlib.tar.gz 3d mesh adapaton see Dobrzynski Cecile <cecile.dobrzynski@math.u-bordeaux1.fr> ])
+dnl    fi
     
     if test "$ff_download_blas" = "generic"  ; then
         AC_MSG_NOTICE([      use of download generic blas and cblas freefem may be slow  ])
@@ -2137,13 +2156,13 @@ dnl	echo "mmg3d INCLUDE '-I`pwd`/download/include'" >>$ff_where_lib_conf
         AC_MSG_NOTICE([      or try to download/compile the altas blas .])
     fi
 
-    if test -f download/pkg/mmg3dlib.tar.gz  ; then
-	AC_MSG_NOTICE([      Compile : download/pkg/mmg3dlib.tar.gz  (3d mesh adapaton)])
-    elif test 	  "$ff_mmg3d_ok" = yes ; then
-	AC_MSG_NOTICE([      Use of precompile version : download/pkg/$ff_mmg3dlib  (3d mesh adapaton)])
-    else
-	AC_MSG_NOTICE([   sorry no download/pkg/mmg3dlib.tar.gz 3d mesh adapaton see Dobrzynski Cecile <cecile.dobrzynski@math.u-bordeaux1.fr> ])
-    fi	
+dnl    if test -f download/pkg/mmg3dlib.tar.gz  ; then
+dnl	AC_MSG_NOTICE([      Compile : download/pkg/mmg3dlib.tar.gz  (3d mesh adapaton)])
+dnl    elif test 	  "$ff_mmg3d_ok" = yes ; then
+dnl	AC_MSG_NOTICE([      Use of precompile version : download/pkg/$ff_mmg3dlib  (3d mesh adapaton)])
+dnl    else
+dnl	AC_MSG_NOTICE([   sorry no download/pkg/mmg3dlib.tar.gz 3d mesh adapaton see Dobrzynski Cecile <cecile.dobrzynski@math.u-bordeaux1.fr> ])
+dnl    fi	
 fi  # ---  test "$enable_download" = yes  ;then
 
 

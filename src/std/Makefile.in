@@ -163,7 +163,6 @@ MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MEDITPROG = @MEDITPROG@
 MKDIR_P = @MKDIR_P@
-MMG3DLIB_TAR = @MMG3DLIB_TAR@
 MPICC = @MPICC@
 MPICXX = @MPICXX@
 MPIF77 = @MPIF77@
@@ -290,7 +289,7 @@ FreeFem___std_DEPENDENCIES = ../fflib/libff.a ../lglib/liblg.a @STD_GRAPH_OBJ@
 LDADD = @STD_GRAPH_OBJ@ ../lglib/liblg.a ../fflib/libff.a \
 	@UMFPACKLIBS@ @ARPACKLIBS@ @BLASLIBS@ @STD_LIBS@ @LIBSNOCONSOLE@
 
-INCLUDES = -I../fflib
+INCLUDES = -I$(srcdir)/../fflib
 AM_LDFLAGS = @STD_LDFLAGS@
 all: all-am
 

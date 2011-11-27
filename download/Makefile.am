@@ -5,6 +5,7 @@
 
 SUBDIRS=blas arpack umfpack  
 EXTRA_DIST= \
+./nlopt/Make.inc ./nlopt/Makefile \
 ./blacs/BLACS.patch \
 ./blacs/Bmake-blacs.inc \
 ./blacs/Makefile \
@@ -33,7 +34,7 @@ EXTRA_DIST= \
 ./mmg3d/patch-mmg3dv4.diff \
 ./mshmet/Makefile \
 ./mshmet/Makefile-mshmet.inc \
-./mshmet/mshmet.2009.09.16.patch \
+./mshmet/mshmet.2011.03.06.patch \
 ./mshmet/mshmetlib-internal.h \
 ./mshmet/mshmetlib.c \
 ./mshmet/mshmetlib.h \
@@ -66,7 +67,7 @@ EXTRA_DIST= \
 ./tetgen/Makefile \
 ./tetgen/tetgen1.4.2.patch \
 ./yams/Makefile \
-./yams/freeyams.2010.05.20.patch \
+./yams/freeyams.2011.09.23.patch \
 ./yams/makefile-yams.inc \
 ./yams/yamslib.c \
 ./yams/yamslib.h \
@@ -76,7 +77,7 @@ EXTRA_DIST= \
 
 
 MPI_SOFT=blacs parmetis  scalapack scotch superludist mumps pastix hypre hips parms 
-LIST_SOFT=tetgen superlu fftw metis mshmet yams mmg3d gmm 
+LIST_SOFT=tetgen superlu fftw metis mshmet yams mmg3d gmm  nlopt
 all-recursive: bin lib include pkg
 
 lib: 
