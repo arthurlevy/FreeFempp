@@ -155,15 +155,15 @@ public:
   Mesh3(){}
   Mesh3(const string); 
   Mesh3(const string, const long); // Add J. Morice 11/10
-  Mesh3(FILE *f);     
+  Mesh3(FILE *f,int offset=0);     
   Mesh3(const  Serialize &);     
   Mesh3(int nnv, int nnt, int nnbe, Vertex3 *vv, Tet *tt, Triangle3 *bb); 
   Mesh3(int nnv, int nnbe, Vertex3 *vv, Triangle3 *bb);  // surface mesh 
   
   double hmin() const; // Add J. Morice 11/10
 
-  void GSave(FILE * f) const ;
-  void GRead(FILE * f);
+  void GSave(FILE * f,int offset=0) const ;
+  void GRead(FILE * f,int offset);
     
   int Save(const string & filename) const ;  
     
@@ -171,7 +171,7 @@ public:
   int SaveSurface(const string & filename1, const string & filename2) const ;  
   void flipSurfaceMesh3(int surface_orientation);
   void read(istream &);
-  void readmsh(ifstream & f);
+  void readmsh(ifstream & f,int offset);
   void TrueVertex();
 	
 private:

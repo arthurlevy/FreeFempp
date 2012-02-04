@@ -71,6 +71,7 @@ namespace Fem2D { void DrawIsoT(const R2 Pt[3],const R ff[3],const RN_ & Viso);
    extern GTypeOfFE<Mesh3> &P1bLagrange3d;
    extern GTypeOfFE<Mesh3> &RT03d;
     extern GTypeOfFE<Mesh3> &Edge03d;
+void  Expandsetoflab(Stack stack,const CDomainOfIntegration & di,set<int> & setoflab,bool &all);
 }
 
 #include "BamgFreeFem.hpp"
@@ -2693,6 +2694,9 @@ struct set_eqvect_fl: public binary_function<KN<K>*,const  FormLinear *,KN<K>*> 
    else if (kind==CDomainOfIntegration::intalledges) cout << "  -- boundary int all edges " ;
    else if (kind==CDomainOfIntegration::intallVFedges) cout << "  -- boundary int all VF  edges " ;
    else cout << "  -- boundary int  " ;*/
+      
+ Expandsetoflab(stack,*di, setoflab,all); 
+/*
  for (size_t i=0;i<what.size();i++)
    {
      long  lab  = GetAny<long>( (*what[i])(stack));
@@ -2700,7 +2704,7 @@ struct set_eqvect_fl: public binary_function<KN<K>*,const  FormLinear *,KN<K>*> 
      if ( verbosity>3) cout << lab << " ";
      all=false;
    }
- 
+ */
  if(dim==2)
    {
      const Mesh  & Th = * GetAny<pmesh>( (*di->Th)(stack) );
@@ -4401,7 +4405,7 @@ Type_Expr CConstantTFE3(const EConstantTypeOfFE3::T & v)
 
 //  end --- call meth be .. 
 
-
+R3 * set_eqp(R3 *a,R3 *b) { *a=*b; return a;}
 void  init_lgfem() 
 {
  // ThePlotStream = new ofstream("ttttt.plot");
@@ -4664,7 +4668,7 @@ TheOperators->Add("^", new OneBinaryOperatorA_inv<R>());
 		   new OpMake_pfes<pfes,Mesh,TypeOfFE,pfes_tefk>,
 		   new OpMake_pfes<pfes3,Mesh3,TypeOfFE3,pfes3_tefk>
         );
-      
+    TheOperators->Add("=",new OneOperator2<R3*,R3*,R3* >(&set_eqp));
  
  Add<MeshPoint*>("P",".", new OneOperator_Ptr_o_R<R3,MeshPoint>(  & MeshPoint::P));
  Add<MeshPoint*>("N",".", new OneOperator_Ptr_o_R<R3,MeshPoint>(  & MeshPoint::N));
@@ -5511,6 +5515,55 @@ C_F0 NewFEarray(const char * id,Block *currentblock,C_F0 & fespacetype,CC_F0 siz
   lid->push_back(UnId(id));
   return NewFEarray(lid,currentblock,fespacetype,sizeofarray,cplx,dim);
 }
+
+namespace Fem2D {
+void  Expandsetoflab(Stack stack,const BC_set & bc,set<long> & setoflab)
+{
+    for (size_t i=0;i<bc.on.size();i++)
+        if(bc.onis[i] ==0)
+	    {
+            long  lab  = GetAny<long>( (*bc.on[i])(stack));
+            setoflab.insert(lab);
+            if ( verbosity>99) cout << lab << " ";
+            
+	    }
+        else 
+	    {
+            KN<long>  labs( GetAny<KN_<long> >( (*bc.on[i])(stack)));
+            for (long j=0; j<labs.N(); ++j) {	      
+                setoflab.insert(labs[j]);
+                if ( verbosity>99) cout << labs[j] << " ";
+            }	  
+            
+	    }
+    if(verbosity>99) 
+        cout << endl;
+    
+}
+
+void  Expandsetoflab(Stack stack,const CDomainOfIntegration & di,set<int> & setoflab,bool &all)
+{
+    for (size_t i=0;i<di.what.size();i++)
+        if(di.whatis[i] ==0)
+	    {
+            long  lab  = GetAny<long>( (*di.what[i])(stack));
+            setoflab.insert(lab);
+            if ( verbosity>3) cout << lab << " ";
+            all=false;
+	    }
+        else 
+	    {
+            KN<long>  labs( GetAny<KN_<long> >( (*di.what[i])(stack)));
+            for (long j=0; j<labs.N(); ++j) {	      
+                setoflab.insert(labs[j]);
+                if ( verbosity>3) cout << labs[j] << " ";
+            }	  
+            all=false;	  
+	    }
+    
+}
+}
+
 
 #include "InitFunct.hpp"
 
