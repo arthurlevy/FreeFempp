@@ -1,3 +1,9 @@
+freefem++ (3.18-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Sat, 4 Feb 2012 21:10:00 +0200
+
 freefem++ (3.17-2) unstable; urgency=low
 
   * Fix build failure on hurd-i386 architecture.

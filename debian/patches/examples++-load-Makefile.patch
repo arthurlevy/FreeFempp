@@ -2,11 +2,11 @@ Locate freefem++.pref and ignore nlopt from building
 --- a/examples++-load/Makefile.am
 +++ b/examples++-load/Makefile.am
 @@ -65,9 +65,9 @@
-         isolineP1.$(DYLIB_SUFFIX)  thresholdings.$(DYLIB_SUFFIX) \
+         isolineP1.$(DYLIB_SUFFIX) isoline.$(DYLIB_SUFFIX)  thresholdings.$(DYLIB_SUFFIX) \
          VTK_writer_3d.$(DYLIB_SUFFIX)  VTK_writer.$(DYLIB_SUFFIX) \
  	splitedges.$(DYLIB_SUFFIX) Element_Mixte.$(DYLIB_SUFFIX) \
 -	myfunction2.$(DYLIB_SUFFIX) ff-NLopt.$(DYLIB_SUFFIX)  ff-cmaes.$(DYLIB_SUFFIX)
-+	myfunction2.$(DYLIB_SUFFIX) ff-cmaes.$(DYLIB_SUFFIX)
++	myfunction2.$(DYLIB_SUFFIX)   ff-cmaes.$(DYLIB_SUFFIX)
  
 -LIST_COMPILE_PKG= 	tetgen.$(DYLIB_SUFFIX) SuperLu.$(DYLIB_SUFFIX) dfft.$(DYLIB_SUFFIX) \
 +LIST_COMPILE_PKG= 	tetgen.$(DYLIB_SUFFIX) ff-NLopt.$(DYLIB_SUFFIX) SuperLu.$(DYLIB_SUFFIX) dfft.$(DYLIB_SUFFIX) \
@@ -26,11 +26,11 @@ Locate freefem++.pref and ignore nlopt from building
 --- a/examples++-load/Makefile.in
 +++ b/examples++-load/Makefile.in
 @@ -330,9 +330,9 @@
-         isolineP1.$(DYLIB_SUFFIX)  thresholdings.$(DYLIB_SUFFIX) \
+         isolineP1.$(DYLIB_SUFFIX) isoline.$(DYLIB_SUFFIX)  thresholdings.$(DYLIB_SUFFIX) \
          VTK_writer_3d.$(DYLIB_SUFFIX)  VTK_writer.$(DYLIB_SUFFIX) \
  	splitedges.$(DYLIB_SUFFIX) Element_Mixte.$(DYLIB_SUFFIX) \
 -	myfunction2.$(DYLIB_SUFFIX) ff-NLopt.$(DYLIB_SUFFIX)  ff-cmaes.$(DYLIB_SUFFIX)
-+	myfunction2.$(DYLIB_SUFFIX) ff-cmaes.$(DYLIB_SUFFIX)
++	myfunction2.$(DYLIB_SUFFIX)  ff-cmaes.$(DYLIB_SUFFIX)
  
 -LIST_COMPILE_PKG = tetgen.$(DYLIB_SUFFIX) SuperLu.$(DYLIB_SUFFIX) dfft.$(DYLIB_SUFFIX) \
 +LIST_COMPILE_PKG = tetgen.$(DYLIB_SUFFIX) ff-NLopt.$(DYLIB_SUFFIX) SuperLu.$(DYLIB_SUFFIX) dfft.$(DYLIB_SUFFIX) \
