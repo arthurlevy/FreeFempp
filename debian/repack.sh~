@@ -3,8 +3,8 @@
 #clean up the upstream tarball
 
 PACKAGE=freefem++
-VERSION=3.18-1
-VERSION1=3.18.1
+VERSION=3.18
+VERSION1=3.18
 
 cd ../..
 mkdir tmp
