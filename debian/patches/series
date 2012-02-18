@@ -1,4 +1,5 @@
+DOC-freefem++-doc.patch
+examples++-load-Makefile.patch
 examples++-load-load-link-in.patch
 examples-bamg-test-dotest-pl.patch
 examples-load-WHERE-LIBRARY.patch
-examples++-load-Makefile.patch

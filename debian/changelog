@@ -1,3 +1,10 @@
+freefem++ (3.18.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * Create new patch for documentation build.
+
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Fri, 17 Feb 2012 21:29:00 +0200
+
 freefem++ (3.18-1) unstable; urgency=low
 
   * New upstream release.

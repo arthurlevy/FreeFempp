@@ -1,0 +1,14 @@
+Correct figure names NSNewtonTh.jpg and NSNewtonUP.jpg
+--- a/DOC/freefem++doc.tex
++++ b/DOC/freefem++doc.tex
+@@ -2771,8 +2771,8 @@
+ 
+ \begin{figure}[htbp]
+ \begin{center}
+-\includegraphics[width=8cm]{NSnewtonTh}
+-\includegraphics[width=8cm]{NSnewtonUP}
++\includegraphics[width=8cm]{NSNewtonTh}
++\includegraphics[width=8cm]{NSNewtonUP}
+ \caption{\label{NSnewton} Mesh and the velocity and pressure at Reynolds  $ 200$ }
+ \end{center}
+ \end{figure}
