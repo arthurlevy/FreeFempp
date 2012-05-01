@@ -1,3 +1,25 @@
+version 3.19 (20 april 2012) 
+ - scotch partionner interface see scotch.edp in examples++-load
+ - add isNaN(x),  isInf(x), IsNormal(x)  function to check floatting point
+      of real value x, see ISO C99. 
+ - add function : NaN() and  NaN("") to build NaN real number (double in C) . 
+ - correct error in macro with operator ./=  and .*= 
+ - add Ipopt doc (thanks to Sylvain  Auliac)
+ - add Ipopt interface (thanks to Sylvain  Auliac)
+ - correct 3d trunc bug in case of internal boundary
+      thank to Yoshihiro Tomita <tomita.yoshihiro@gmail.com>. 
+  - add new type of array , array of array
+    see taboftab:edp in  examples++-tuturial
+    real[int] a;  
+    real[int,int][int] m(10);
+    real[int][int] v(10);
+   not well tested.
+version 3.18-2
+ - add plugins with sequentiel  mumps without mpi 
+ - add conversion of re and im part of complex sparse matrix
+   A = C.im; 
+   A = C.re; 
+version 3.18-1
  - correct Typo error in example 
  - add generation of error in case of periodic boundary condition 
    non scalar problem. 
@@ -6,9 +28,8 @@
     APk-ExplicitPkTest.edp	       APk-LaplaceDirac.edp
 
  - New example in in Chapter 3 Navier Stokes Newton NSNewton.edp
- - add codo to build matrix and vector form varf in 3d in case of
-      different meshes
-    in test 
+ - add cod to build matrix and vector form varf in 3d in case of
+      different meshes (in test )
  - correct NSprojection.edp chap3 example (PB in out flow BC.) 
  - correct compile of mmg3d v4 plugins (small change un distrib archive) 
 v 3.18 (11/01/2012)

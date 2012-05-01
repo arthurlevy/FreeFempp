@@ -49,8 +49,12 @@ cmaes.h cmaes_interface.h ff-cmaes.cpp \
 VarIneq2.edp ff-NLopt.cpp \
 APk-AdaptEpsDeltaPk.edp APk-ExplicitPkTest.edp APk-FreeFemQA.edp  APk-MetricPk.edp \
 MetricPk.cpp GeometryQA.cpp  FreeFemQA.cpp BasicMath.h  TensorK.hpp  Geometry.hpp  \
-GeoDiff.h Polynomial.h RZ.h SortedList.h ExampleMetrics.h 
-
+ RZ.h SortedList.h ExampleMetrics.h  \
+cube.msh  \
+LapMUMPS_seq.edp MUMPS_seq.cpp \
+ff-Ipopt.cpp \
+IpoptLap.edp IpoptVI.edp IpoptVI2.edp IpoptMinSurfVol.edp  \
+scotch.cpp scotch.edp 
 
 LIST_COMPILE=myfunction.$(DYLIB_SUFFIX)  BernadiRaugel.$(DYLIB_SUFFIX) \
          Morley.$(DYLIB_SUFFIX) funcTemplate.$(DYLIB_SUFFIX) addNewType.$(DYLIB_SUFFIX) \
@@ -68,15 +72,16 @@ LIST_COMPILE=myfunction.$(DYLIB_SUFFIX)  BernadiRaugel.$(DYLIB_SUFFIX) \
         isolineP1.$(DYLIB_SUFFIX) isoline.$(DYLIB_SUFFIX)  thresholdings.$(DYLIB_SUFFIX) \
         VTK_writer_3d.$(DYLIB_SUFFIX)  VTK_writer.$(DYLIB_SUFFIX) \
 	splitedges.$(DYLIB_SUFFIX) Element_Mixte.$(DYLIB_SUFFIX) \
-	myfunction2.$(DYLIB_SUFFIX)  ff-cmaes.$(DYLIB_SUFFIX) \
+	myfunction2.$(DYLIB_SUFFIX) \
 	MetricPk.$(DYLIB_SUFFIX) FreeFemQA.$(DYLIB_SUFFIX)
 
 
-LIST_COMPILE_PKG= 	tetgen.$(DYLIB_SUFFIX)  ff-NLopt.$(DYLIB_SUFFIX) SuperLu.$(DYLIB_SUFFIX) dfft.$(DYLIB_SUFFIX) \
+LIST_COMPILE_PKG= 	tetgen.$(DYLIB_SUFFIX) SuperLu.$(DYLIB_SUFFIX) dfft.$(DYLIB_SUFFIX) \
 	metis.$(DYLIB_SUFFIX) UMFPACK64.$(DYLIB_SUFFIX) NewSolver.$(DYLIB_SUFFIX) \
 	lapack.$(DYLIB_SUFFIX)  fflapack.$(DYLIB_SUFFIX) ffnewuoa.$(DYLIB_SUFFIX) ilut.$(DYLIB_SUFFIX) \
 	freeyams.$(DYLIB_SUFFIX) mmg3d-v4.0.$(DYLIB_SUFFIX) mshmet.$(DYLIB_SUFFIX) \
-       gsl.$(DYLIB_SUFFIX)	
+	gsl.$(DYLIB_SUFFIX) MUMPS_seq.$(DYLIB_SUFFIX) 	 ff-Ipopt.$(DYLIB_SUFFIX) \
+	ff-NLopt.$(DYLIB_SUFFIX)  ff-cmaes.$(DYLIB_SUFFIX) scotch.$(DYLIB_SUFFIX)	
 bin_PROGRAMS=
 
 
@@ -152,7 +157,8 @@ install-exec-local:: load_compile
 	$(INSTALL_DATA)  clapack.h ppmimg.h  bmo.hpp msh3.hpp pcm.hpp  include/*   $(DESTDIR)$(ff_prefix_dir)/include
 	$(INSTALL)  -m 555 $(LIST_COMPILE) $(DESTDIR)$(ff_prefix_dir)/lib
 	echo loadpath += \"./\"  >$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
-	echo loadpath += \"$(libdir)/freefem++\"  >>$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
+	echo loadpath += \"$(ff_prefix_dir)/lib\"  >>$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
+	echo includepath += \"$(ff_prefix_dir)/idp\"  >>$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
 	$(INSTALL_SCRIPT) ff-c++  $(DESTDIR)${bindir}
 	$(INSTALL_SCRIPT) ff-pkg-download  $(DESTDIR)${bindir}
 	$(INSTALL_SCRIPT) ff-get-dep  $(DESTDIR)${bindir}

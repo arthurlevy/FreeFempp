@@ -10,7 +10,7 @@ g# Configuration script using Automake + Autoconf for FreeFem++
 # number in debian/changelog.
 # add check of FLIBS and X11_LIBS  v2.24-2
 
-AC_INIT(FreeFem++,3.18-1,hecht@ann.jussieu.fr,freefem++)
+AC_INIT(FreeFem++,3.19,hecht@ann.jussieu.fr,freefem++)
 dnl : ${CFLAGS=""}
 dnl : ${CXXFLAGS=""}
 dnl : ${FCFLAGS=""}
@@ -255,13 +255,13 @@ then
 	*) ;;
     esac
     AC_SUBST(CFLAGSF77,$ff_cfagsf77)
-    if test $ff_f77intsize -eq  8
+    if test $ff_f77intsize -ne  4
     then
-	AC_MSG_ERROR([ Fatal Error: Your fortran 77  compiler have by 8 bytes integer ],1);  
+	AC_MSG_ERROR([ Fatal Error: Your fortran 77  compiler have by not 4 bytes integer ( $ff_f77intsize bytes) ],1);  
     fi
-
-    AC_FF_ADDWHERELIB(f77,$FLIBS,$ff_cfagsf77)
-    AC_FF_ADDWHERELIB(fc,$FLIBS,$ff_cfagsf77)
+    test -f /mingw/bin/libpthread-2.dll && ff_pthread_dll=/mingw/bin/libpthread-2.dll ; \
+    AC_FF_ADDWHERELIB(f77,$FLIBS,$ff_cfagsf77 $ff_pthread_dll)
+    AC_FF_ADDWHERELIB(fc,$FLIBS,$ff_cfagsf77 $ff_pthread_dll)
 
 dnl    [echo f77 LD  $FLIBS  >>$ff_where_lib_conf]
 dnl    [echo f77 INCLUDE $ff_cfagsf77  >>$ff_where_lib_conf]
@@ -295,6 +295,10 @@ AC_LANG(C++)
 # Some useful libraries
 
 AC_CHECK_LIB(pthread,pthread_create,ff_pthread="-lpthread",ff_pthread="")
+
+if test -n "$ff_pthread"  ; then
+    AC_FF_ADDWHERELIB(pthread,$ff_pthread,)
+fi
 
 # Necessary absolute pathname for local directory when some libraries
 # are used from several different locations (for instance locally in
@@ -1140,10 +1144,19 @@ ff_blas_ok=no
 ff_blas_inc=""
 # User-specified location
 # add MKL  seach dec 2010  FH ....
+
+ff_mkl_flags=""
+if test "$ff_mkl_libpath" != "not" ; then
+   ff_CFLAGS="$CFLAGS"
+   CHECK_COMPILE_FLAG(C,-mkl,CFLAGS)
+   if test  "$ff_CFLAGS" != "$CFLAGS" ; then
+     ff_mkl_flags="-mkl"
+   fi
+fi
+
 AC_MSG_CHECKING(for MKL )
 ff_mkl_root=""
-if test "$ff_mkl_libpath" != "not" ; then
-    
+if test "$ff_mkl_libpath" != "not" -a -z "$ff_mkl_flags" ; then
     if test "$ff_mkl_libpath"  = "yes"  -a  -n "$MKLROOT" ; then
 	ff_IFS="$IFS"
 	IFS=":"
@@ -1478,7 +1491,8 @@ then
 		AC_SUBST(DOWNLOAD_ARPACK,arpack)
 		AC_SUBST(FF_LAPACKdir,$ff_lapackdir)
 		AC_SUBST(ARPACKLIB,${curdir}/download/lib/libarpack.a)
-		AC_SUBST(LAPACKLIB,${curdir}/download/lib/liblapack.a)
+		AC_SUBST(LAPACK_arpack_LIB,${curdir}/download/lib/liblapack.a)
+
 		# Do not update $LIBS, but create an extra LIB variable,
 		# because this lib does not exist yet, and this could make the
 		# following tests fail.

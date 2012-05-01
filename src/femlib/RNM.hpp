@@ -633,7 +633,12 @@ class KNM_: public KN_<R> {
   R & operator()(int i,int j)     const   
             { return this->v[indexij(i,j)];}
             
-            
+   KN_<R> operator()(const SubArray & sa,long j) const 
+    { return this->operator()(':',j)(sa);}  // sub array 
+   
+  KN_<R> operator()(long i,const SubArray & sb) const 
+    { return  this->operator()(i,':')(sb);} 
+    
   KN_<R> operator()(const char,long j    )  const   // une colonne j  ('.',j)
             { return KN_<R>(&this->v[this->index(shapej.index(j))],shapei*this->step);} 
   KN_<R> operator()(long i    ,const char)  const   // une ligne i  (i,'.')
@@ -1123,7 +1128,8 @@ class KN :public KN_<R> { public:
 //          { return   (KN<const_R> &) *this;}
 //    operator KN<const_R> const & ()  const 
 //          { return (const KN<const_R>& ) *this;}
-  void init(long nn) {this->n=nn;this->step=1;this->next=-1;this->v=new R[nn];}
+    static void fill0(R *v,int n) { if(n && v) for(int i=0;i<n;++i) v[i]=R();} 
+    void init(long nn) {this->n=nn;this->step=1;this->next=-1;this->v=new R[nn];fill0(this->v,this->n) ;}
   void init() {this->n=0;this->step=1;this->next=-1;this->v=0;}
   void init(const KN_<R> & a){init(a.N()); operator=(a);}
   void resize(long nn) {
@@ -1147,7 +1153,7 @@ class KN :public KN_<R> { public:
 
 template<class R>
 class KNM: public KNM_<R>{ public:
-
+  KNM() :KNM_<R>(0,0,0){}
   KNM(long nn,long mm) 
         :KNM_<R>(new R[nn*mm],nn,mm){}
    KNM(const KNM<R> & u)  // PB si stepi ou stepj nulle

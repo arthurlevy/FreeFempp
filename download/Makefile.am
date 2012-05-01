@@ -38,9 +38,9 @@ EXTRA_DIST= \
 ./mshmet/mshmetlib-internal.h \
 ./mshmet/mshmetlib.c \
 ./mshmet/mshmetlib.h \
-./mumps/MUMPS_4.9.2.patch \
 ./mumps/Makefile \
-./mumps/Makefile-mumps-4.9.2.inc \
+./mumps-seq/Makefile-mumps-4.10.0.inc \
+./mumps-seq/Makefile \
 ./mumps/Makefile-mumps-4.10.0.inc \
 ./parmetis/Makefile-parmetis.in \
 ./parmetis/ParMetis-3.1.1-ok/stdheaders.h \
@@ -67,17 +67,18 @@ EXTRA_DIST= \
 ./tetgen/Makefile \
 ./tetgen/tetgen1.4.2.patch \
 ./yams/Makefile \
-./yams/freeyams.2011.09.23.patch \
+./yams/freeyams.2012.02.05.patch \
 ./yams/makefile-yams.inc \
 ./yams/yamslib.c \
 ./yams/yamslib.h \
-./yams/yamslib_internal.h 
+./yams/yamslib_internal.h \
+ipopt/Makefile	\
+ipopt/Makefile.inc.in \
+ipopt/patch-IpBlas 
 
 
-
-
-MPI_SOFT=blacs parmetis  scalapack scotch superludist mumps pastix hypre hips parms 
-LIST_SOFT=tetgen superlu fftw metis mshmet yams mmg3d gmm  nlopt
+MPI_SOFT=blacs parmetis  scalapack scotch superludist mumps pastix  hips parms 
+LIST_SOFT=tetgen superlu fftw metis mshmet yams mmg3d gmm  nlopt mumps-seq ipopt 
 all-recursive: bin lib include pkg
 
 lib: 
