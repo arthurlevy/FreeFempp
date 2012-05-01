@@ -1,9 +1,9 @@
-abs_top_builddir=/Volumes/Ike/cazeaux/ff++/
-include $(abs_top_builddir)/download/headers-sparsesolver.inc
+
+abs_top_builddir=@abs_top_builddir@
 DOWNLOADFF= $(abs_top_builddir)/download
-###############################################################################
+
 #
-#  This file is part of MUMPS 4.9.2, built on Thu Nov  5 07:05:08 UTC 2009
+#  This file is part of MUMPS 4.10.0, built on Tue May 10 12:56:32 UTC 2011
 #
 ################################################################################
 #
@@ -44,7 +44,7 @@ DOWNLOADFF= $(abs_top_builddir)/download
 #
 
 SCOTCHDIR  = $(DOWNLOADFF)/
-ISCOTCH    = -I$(SCOTCHDIR)/include/scotch
+ISCOTCH    = #-I$(SCOTCHDIR)/include/scotch
 # You have to choose one among the following two lines depending on
 # the type of analysis you want to perform. If you want to perform only
 # sequential analysis choose the first (remember to add -Dscotch in the ORDERINGSF
@@ -52,7 +52,7 @@ ISCOTCH    = -I$(SCOTCHDIR)/include/scotch
 # line (remember to add -Dptscotch in the ORDERINGSF variable below)
 
 #LSCOTCH    = -L$(SCOTCHDIR)/lib/scotch/ -lesmumps -lscotch -lscotcherr
-LSCOTCH    = -L$(SCOTCHDIR)/lib -lptesmumps -lptscotch -lptscotcherr
+LSCOTCH    = #-L$(SCOTCHDIR)/lib -lptesmumps -lptscotch -lptscotcherr
 
 
 LPORDDIR = $(topdir)/PORD/lib/
@@ -68,13 +68,12 @@ LMETISDIR = $(DOWNLOADFF)
 # variable below); for both parallel and sequential analysis choose the second 
 # line (remember to add -Dparmetis in the ORDERINGSF variable below)
 
-#LMETIS    = -L$(LMETISDIR) -lmetis
-LMETIS    = -L$(LMETISDIR)/lib -lparmetis -lmetis
+LMETIS    = # -L$(LMETISDIR)/lib -lparmetis -lmetis
 
 # The following variables will be used in the compilation process.
 # Please note that -Dptscotch and -Dparmetis imply -Dscotch and -Dmetis respectively.
-ORDERINGSF = -Dscotch -Dmetis -Dpord -Dptscotch -Dparmetis
-#ORDERINGSF  = -Dpord
+#ORDERINGSF = -Dscotch -Dmetis -Dpord -Dptscotch -Dparmetis
+ORDERINGSF  = -Dpord
 ORDERINGSC  = $(ORDERINGSF)
 
 LORDERINGS = $(LMETIS) $(LPORD) $(LSCOTCH)
@@ -86,37 +85,43 @@ IORDERINGSC = $(IMETIS) $(IPORD) $(ISCOTCH)
 # DEFINE HERE SOME COMMON COMMANDS, THE COMPILER NAMES, ETC...
 
 # PLAT : use it to add a default suffix to the generated libraries
-PLAT    =  FREEFEM
+PLAT    = FREEFEM-SEQ
+# Library extension, + C and Fortran "-o" option
+# may be different under Windows
+LIBEXT  = .a
+OUTC    = -o 
+OUTF    = -o 
 # RM : remove files
 RM      = /bin/rm -f
 # CC : C compiler
 CC      = @CC@
 # FC : Fortran 90 compiler
-FC      = @FC@
+FC      = @FC@ 
 # FL : Fortran linker
-FL      = @FC@
+FL      = @FC@ 
 # AR : Archive object in a library
-AR      = @AR@ @ARFLAGS@ #ar vr
+#      keep a space at the end if options have to be separated from lib name
+AR      =   @AR@ @ARFLAGS@ 
 # RANLIB : generate index of an archive file
 #   (optionnal use "RANLIB = echo" in case of problem)
 RANLIB  = @RANLIB@
 #RANLIB  = echo
 
 # SCALAP should define the SCALAPACK and  BLACS libraries.
-SCALAPDIR = $(DOWNLOADFF)/lib/scalapack/
-SCALAP    = $(FFBLASLIB) -L$(SCALAPDIR) -lscalapack -L$(DOWNLOADFF)/lib/blacs/ -lblacs_MPI-$(PLAT)-0 -lblacsF77init_MPI-$(PLAT)-0 -lblacsCinit_MPI-$(PLAT)-0
+#SCALAPDIR = $(DOWNLOADFF)/lib/scalapack/
+#SCALAP    = $(FFBLASLIB) -L$(SCALAPDIR) -lscalapack -L$(DOWNLOADFF)/lib/blacs/ -lblacs_MPI-$(PLAT)-0 -lblacsF77init_MPI-$(PLAT)-0 -lblacsCinit_MPI-$(PLAT)-0
 
 # INCLUDE DIRECTORY FOR MPI
-INCPAR  = $(FFMPIINCLUDE)
+#INCPAR  = $(FFMPIINCLUDE)
 
 # LIBRARIES USED BY THE PARALLEL VERSION OF MUMPS: $(SCALAP) and MPI
-LIBPAR  = $(SCALAP) $(FFMPILIB)
+LIBPAR  = #$(SCALAP) $(FFMPILIB)
 
 # The parallel version is not concerned by the next two lines.
 # They are related to the sequential library provided by MUMPS,
-# to use instead of ScaLAPACK and MPI.
-INCSEQ  = -I$(topdir)/libseq
-LIBSEQ  = -L$(topdir)/libseq -lmpiseq
+# to use instead of ScaLAPACK and MPI.l
+INCSEQ  = -I$(DOWNLOADFF)/mumps-seq/MUMPS_4.10.0/libseq
+LIBSEQ  = -L$(DOWNLOADFF)//mumps-seq/MUMPS_4.10.0/libseq  -lmpiseq$(PLAT)
 
 # DEFINE HERE YOUR BLAS LIBRARY
 
@@ -136,22 +141,25 @@ LIBOTHERS = @LIBSPTHREAD@ @FLIBS@ $(FFLIBOTHERSMUMPS)
 #     leave empty if your Fortran compiler does not change the symbols.
 #
 
+
 CDEFS = @CFLAGSF77@
 
 #COMPILER OPTIONS
-OPTF    = -O3 @FFLAGS@ @MPI_INCLUDE@
-OPTC    = -O3 -I. @CFLAGS@  @MPI_INCLUDE@
-OPTL    = -O3 @FFLAGS@ @MPI_LIBFC@ 
+OPTF    = -O @FFLAGS@ 
+OPTC    = -O -I. @CFLAGS@  
+OPTL    = -O @FFLAGS@ 
+
 
 # CHOOSE BETWEEN USING THE SEQUENTIAL OR THE PARALLEL VERSION.
 
 #Sequential:
-#INC = $(INCSEQ)
-#LIB = $(LIBSEQ)
-#LIBSEQNEEDED = libseqneeded
-
-#Parallel:
-INC = $(INCPAR)
-LIB = $(LIBPAR)
+INCS = $(INCSEQ)
+LIBS = $(LIBSEQ)
 LIBSEQNEEDED = libseqneeded
 
+#Parallel:
+#INCS = $(INCPAR)
+#LIBS = $(LIBPAR)
+#LIBSEQNEEDED = libseqneeded
+
+WGET = @WGET@

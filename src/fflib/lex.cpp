@@ -356,8 +356,19 @@ int mylex::basescan()
         cerr << "'" << (char) c << (char) nc << "' <=> " << (int) c << " is " ;
         erreur (" Unexpected character");
       }
-      
-      if (ret!=c) source().get() ;
+      if( (ret == DOTSTAR) || (ret==DOTSLASH))
+      {
+          source().get();
+          nc = source().peek();
+          if(nc == '=' )
+          {
+              buf[2]='=';// ad FH 19 april 2012 (bug in macro ) 
+              buf[3]=0; 
+              source().get();
+              ret = (ret == DOTSTAR) ?DOTMULEQ : DOTDIVEQ;
+          }
+      }
+      else if (ret!=c) source().get();
       else buf[1] = 0;
       strcpy(plglval->oper,buf);
       if(lexdebug)  cout << "Special '" <<  plglval->oper << "' " << ret << " ";
