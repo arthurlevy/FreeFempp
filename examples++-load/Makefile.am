@@ -157,8 +157,7 @@ install-exec-local:: load_compile
 	$(INSTALL_DATA)  clapack.h ppmimg.h  bmo.hpp msh3.hpp pcm.hpp  include/*   $(DESTDIR)$(ff_prefix_dir)/include
 	$(INSTALL)  -m 555 $(LIST_COMPILE) $(DESTDIR)$(ff_prefix_dir)/lib
 	echo loadpath += \"./\"  >$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
-	echo loadpath += \"$(ff_prefix_dir)/lib\"  >>$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
-	echo includepath += \"$(ff_prefix_dir)/idp\"  >>$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
+	echo loadpath += \"$(libdir)/freefem++\"  >>$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
 	$(INSTALL_SCRIPT) ff-c++  $(DESTDIR)${bindir}
 	$(INSTALL_SCRIPT) ff-pkg-download  $(DESTDIR)${bindir}
 	$(INSTALL_SCRIPT) ff-get-dep  $(DESTDIR)${bindir}
