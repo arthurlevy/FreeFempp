@@ -1,0 +1,11 @@
+Fix FTBFS due to recent g++-4.7
+--- a/src/Graphics/sansrgraph.cpp
++++ b/src/Graphics/sansrgraph.cpp
+@@ -34,6 +34,7 @@
+ #include <iostream>
+ #include <cassert>
+ #include "rgraph.hpp"
++#include <unistd.h>
+ 
+ #include "error.hpp"
+ #ifdef macintoshxx

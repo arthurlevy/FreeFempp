@@ -34,6 +34,7 @@ using namespace std;
 #include <iostream>
 #include <cassert>
 #include "rgraph.hpp"
+#include <unistd.h>
 
 #include "error.hpp"
 #ifdef macintoshxx

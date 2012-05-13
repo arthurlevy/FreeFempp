@@ -3,8 +3,9 @@ freefem++ (3.19-1) unstable; urgency=low
   * New upstream release.
   * Add libmumps-seq-dev to build-deps.
   * Update standards version to 3.9.3.
+  * Fix FTBFS due to new g++-4.7 (Closes: #672612).
 
- -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Sun, 1 May 2012 18:52:00 +0200
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Sun, 12 May 2012 03:59:00 +0200
 
 freefem++ (3.18.1-1) unstable; urgency=low
 
