@@ -10,7 +10,7 @@ g# Configuration script using Automake + Autoconf for FreeFem++
 # number in debian/changelog.
 # add check of FLIBS and X11_LIBS  v2.24-2
 
-AC_INIT(FreeFem++,3.19,hecht@ann.jussieu.fr,freefem++)
+AC_INIT(FreeFem++,3.19-1,hecht@ann.jussieu.fr,freefem++)
 dnl : ${CFLAGS=""}
 dnl : ${CXXFLAGS=""}
 dnl : ${FCFLAGS=""}
@@ -76,12 +76,12 @@ AC_LANG(C++)
 
 AC_CHECK_PROG(ff_m4,m4,yes,no)
 AC_CHECK_PROG(ff_bison,bison,yes,no)
-AC_CHECK_PROG(ff_cmake,cmake,yes,no)
+dnl AC_CHECK_PROG(ff_cmake,cmake,yes,no)
 AC_CHECK_PROG(ff_patch,patch,yes,no)
 case "$ff_m4 $ff_bison $ff_patch "  in 
 *no*)
     AC_MSG_NOTICE([ to install missing package  under debian or ubuntu, try: sudo apt-get install m4 bison patch cmake ])	
-    AC_MSG_ERROR([ Sorry missing  m4,bison,patch,cmake command !]);;
+    AC_MSG_ERROR([ Sorry missing  m4,bison,patch command !]);;
 esac
 
 
@@ -1150,14 +1150,15 @@ if test "$ff_mkl_libpath" != "not" ; then
    ff_CFLAGS="$CFLAGS"
    CHECK_COMPILE_FLAG(C,-mkl,CFLAGS)
    if test  "$ff_CFLAGS" != "$CFLAGS" ; then
-     ff_mkl_flags="-mkl"
+     ff_ff_mkl_flags="-mkl"
    fi
+   CFLAGS="$ff_CFLAGS"
 fi
 
 AC_MSG_CHECKING(for MKL )
 ff_mkl_root=""
 if test "$ff_mkl_libpath" != "not" -a -z "$ff_mkl_flags" ; then
-    if test "$ff_mkl_libpath"  = "yes"  -a  -n "$MKLROOT" ; then
+    if test "$ff_mkl_libpath"  = "yes"  ; then
 	ff_IFS="$IFS"
 	IFS=":"
 	for i in $LD_LIBRARY_PATH:$LIBRARY_PATH ; do 
@@ -1203,8 +1204,13 @@ if test "$ff_mkl_libpath" != "not" -a -z "$ff_mkl_flags" ; then
 	ff_lapack_ok=yes
 	ff_blas_libs="$ff_mkl_blas"
 	ff_blas_inc="-I$ff_mkl_root/include"
+dnl  scalapack, and blacs don not work with mlk and sgi 
+     if test "$ff_mkl_mpi" != "_sgimpt" ; then  
         AC_FF_ADDWHERELIB(scalapack,$ff_mkl_scalapack,$ff_blas_inc)
         AC_FF_ADDWHERELIB(blacs,$ff_mkl_blacs,$ff_blas_inc)
+     else
+       ff_warm=" (We do not use MKL scalapack and blacs with sgi MPI),  " 
+     fi
         AC_FF_ADDWHERELIB(lapack,$ff_mkl_lapack,$ff_blas_inc)
         
 dnl	echo scalapack  LD  \'$ff_mkl_scalapack\'  >>$ff_where_lib_conf	
@@ -1220,7 +1226,7 @@ dnl	echo lapack INCLUDE  \'$ff_blas_inc\' >>$ff_where_lib_conf
 fi
 
 
-AC_MSG_RESULT( root: $ff_mkl_root , arch: $ff_mkl_arch , $ff_mkl_lp ...)
+AC_MSG_RESULT( [ $ff_warm  root: $ff_mkl_root , arch: $ff_mkl_arch , $ff_mkl_lp ...  ])
 
 AC_ARG_WITH(blas,
     [  --with-blas=library	Use a specific version of the Blas],
