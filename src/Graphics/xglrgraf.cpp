@@ -27,5 +27,4 @@
  */
 #define XGL
 #define FF_GRAPH_SET_PTR
-#include <unistd.h>
 #include "glrgraph.hpp"

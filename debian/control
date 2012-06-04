@@ -5,7 +5,7 @@ Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.
 Uploaders: Christophe Trophime <christophe.trophime@grenoble.cnrs.fr>, 
  Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>
 DM-Upload-Allowed: yes
-Build-Depends: debhelper (>= 7.2.3~), autotools-dev, gawk, gfortran, 
+Build-Depends: debhelper (>= 9~), autotools-dev, gawk, gfortran, 
  flex, bison, libxt-dev, libxext-dev, libxxf86vm-dev, libhypre-dev, 
  libxpm-dev, mpi-default-dev, libfftw3-dev, libblas-dev, libgsl0-dev,
  libarpack2-dev, libsuitesparse-dev, libsuperlu3-dev, imagemagick, 

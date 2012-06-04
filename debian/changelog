@@ -1,3 +1,11 @@
+freefem++ (3.19.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * Make debian/compat=9.
+  * Make debhelper (>= 9~) in Build-Depends in debian/control.
+
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Sun, 03 Jun 2012 22:16:18 +0300
+
 freefem++ (3.19-1) unstable; urgency=low
 
   * New upstream release.
