@@ -13,7 +13,7 @@ Build-Depends: debhelper (>= 9~), autotools-dev, gawk, gfortran,
  texlive-latex-extra, texlive-font-utils, libmumps-ptscotch-dev,
  libmumps-dev, libblacs-mpi-dev, libscalapack-mpi-dev, libgmm++-dev, 
  libscotch-dev, ghostscript, libptscotch-dev, libmumps-scotch-dev,
- libmumps-seq-dev
+ libmumps-seq-dev, libnlopt-dev, coinor-libipopt-dev
 Standards-Version: 3.9.3
 Homepage: http://www.freefem.org/ff++/
 Vcs-Git: git://git.debian.org/debian-science/packages/freefempp.git
