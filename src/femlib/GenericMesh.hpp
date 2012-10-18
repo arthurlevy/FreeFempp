@@ -116,8 +116,8 @@ const int TypeVolume =3;
 	return (k%2)+ ((j[0]+3)%3)*2; // signe + depart*2
     }    
     // build de permutation     
-    template<int d> inline void SetNumPerm(int n,int *p) { ffassert(0);return 0; }// a error}    
-    template<int d> inline void SetNumPerm1(int n,int *p) { ffassert(0);return 0; }// a error}    
+    template<int d> inline void SetNumPerm(int n,int *p) { ffassert(0); }// a error}    
+    template<int d> inline void SetNumPerm1(int n,int *p) { ffassert(0); }// a error}    
     
     template<> inline void SetNumPerm<1>(int ,int *p) { p[0]=0;} // a error}    
     template<> inline void SetNumPerm<2>(int n,int *p) { p[0]=n;p[1]=1-n;} // a error}    
@@ -1311,11 +1311,13 @@ DataFENodeDF GenericMesh<T,B,V>::BuildDFNumbering(int ndfon[NbTypeItemElement],i
 	      for(int i=0;i<nke;++i)
 		keysdim[m]=1,keys[m++]=Key(Th(K[T::nvedge[i][0]]),Th(K[T::nvedge[i][1]]));
 	    if(  ndfon[2])//  node on Face
+	      {
 	      if (nkf==1) 
 		keysdim[m]=2,keys[m++]=Key(k+of,tinfty);
 	      else
 		for(int ii,i=0;i<nkf;++i)
 		  keysdim[m]=2,keys[m++]=Key(k+of,ElementAdj(k,ii=i) +of);
+	      }
 	    if(  ndfon[3] )//  node on Tet
 	      if(nkt==1)
 		keysdim[m]=3,keys[m++]=Key(k+of,tinfty);

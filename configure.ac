@@ -10,7 +10,7 @@ g# Configuration script using Automake + Autoconf for FreeFem++
 # number in debian/changelog.
 # add check of FLIBS and X11_LIBS  v2.24-2
 
-AC_INIT(FreeFem++,3.19-1,hecht@ann.jussieu.fr,freefem++)
+AC_INIT(FreeFem++,3.20,hecht@ann.jussieu.fr,freefem++)
 dnl : ${CFLAGS=""}
 dnl : ${CXXFLAGS=""}
 dnl : ${FCFLAGS=""}
@@ -90,7 +90,7 @@ if test -z "$CXX"; then
   AC_MSG_ERROR([ Sorry no c++ compiler !])
 fi
 
-AC_COMPUTE_INT(ff_size_long,[sizeof(long])
+AC_COMPUTE_INT(ff_size_long,[sizeof(long)])
 AC_COMPUTE_INT(ff_size_int,[sizeof(int)])
 AC_COMPUTE_INT(ff_size_ptr,[sizeof(int*)])
 
@@ -500,13 +500,13 @@ m4_include(acoptim.m4)
 # FreeFrem++-specific optimizations -fpascal-strings 
 if test "$enable_debug" = yes;
 then
-	CXXFLAGS="$CXXFLAGS -DDRAWING -DBAMG_LONG_LONG -DCHECK_KN"
+	CXXFLAGS="$CXXFLAGS  -DBAMG_LONG_LONG -DCHECK_KN"
 	if test "$ff_mac" = yes;
 	then
 		CXXFLAGS="$CXXFLAGS -fno-inline  -fexceptions"
 	fi
 else
-	CXXFLAGS="$CXXFLAGS -DDRAWING -DBAMG_LONG_LONG  -DNCHECKPTR"
+	CXXFLAGS="$CXXFLAGS -DBAMG_LONG_LONG  -DNCHECKPTR"
 	if test "$ff_mac" = yes;
 	then
 		CXXFLAGS="$CXXFLAGS "
@@ -1195,7 +1195,7 @@ if test "$ff_mkl_libpath" != "not" -a -z "$ff_mkl_flags" ; then
           ff_mkl_lapack="-L$ff_mkl_root/lib/$ff_mkl_arch -lmkl_rt -lmkl_sequential -lmkl_core -liomp5 -lpthread"
 	else
 	  ff_mkl_blas="-L$ff_mkl_root/lib/$ff_mkl_arch -lmkl_${ff_mkl_cc}${ff_mkl_lp} -lmkl_lapack -lmkl_intel${ff_mkl_lp} -lmkl_intel_thread -lmkl_sequential -lmkl_core -lguide -lm -lpthread"
-	  ff_mkl_lapack="-L$ff_mkl_root/lib/$ff_mkl_arch -llibmkl_lapack"
+	  ff_mkl_lapack="-L$ff_mkl_root/lib/$ff_mkl_arch -lmkl_lapack"
 	fi
 
         ff_mkl_scalapack="-L$ff_mkl_root/lib/$ff_mkl_arch -lmkl_blacs${ff_mkl_mpi}${ff_mkl_lp} -lmkl_scalapack${ff_mkl_lp} "
@@ -1632,7 +1632,7 @@ AC_SUBST(UMFPACKLIBS,$ff_umfpack_libs)
 
 # Checking for some functions that may not appear everywhere
 # ----------------------------------------------------------
-
+AC_CHECK_HEADERS([unistd.h])
 # asinh acosh atanh are not in Mingw yet gettimeofday
 ff_malloc_h=""
 AC_HEADER_TIME
@@ -1958,9 +1958,9 @@ fi
 # creating all makefiles
 # ----------------------
 ff_bamgprog="bamg${EXEEXT}  cvmsh2${EXEEXT}"
-if test "$ff_x11" = yes -o  "$ff_win32" = yes   ; then
-ff_bamgprog="$ff_bamgprog drawbdmesh${EXEEXT}"
-fi
+#if test "$ff_x11" = yes -o  "$ff_win32" = yes   ; then
+#ff_bamgprog="$ff_bamgprog drawbdmesh${EXEEXT}"
+#fi
 
 AC_SUBST(CNOFLAGS,$CNOFLAGS) dnl for superludist CFLAGS without optim  ...
 AC_SUBST(FNOFLAGS,$FNOFLAGS) dnl for blacs CFLAGS without optim  ...
@@ -2078,26 +2078,27 @@ test -n "$ff_mkl_root" && ff_winc="$ff_mkl_root/include/mkl_blas.h"
 
 
 m4_map([AC_FF_WHERELIB],[ 
-	[[mumps],[-ldmumps -lzmumps  -lmumps_common  -lpord],[/usr/include/dmumps_c.h],[]],
-	[[mumps_ptscotch],[-lpord_ptscotch -lmumps_common_ptscotch -ldmumps_ptscotch -lzmumps_ptscotch -lpord_ptscotch],[/usr/include/dmumps_c.h]],
-	[[mumps_scotch],[-lpord_scotch -lmumps_common_scotch -ldmumps_scotch -lzmumps_scotch -lpord_scotch],[/usr/include/dmumps_c.h]],
+	[[mumps],[-ldmumps -lzmumps  -lmumps_common  -lpord],[dmumps_c.h],[]],
+	[[mumps_ptscotch],[-lpord_ptscotch -lmumps_common_ptscotch -ldmumps_ptscotch -lzmumps_ptscotch -lpord_ptscotch],[dmumps_c.h]],
+	[[mumps_scotch],[-lpord_scotch -lmumps_common_scotch -ldmumps_scotch -lzmumps_scotch -lpord_scotch],[dmumps_c.h]],
 	[[hypre],[-lHYPRE]],
 	[[fftw3],[-lfftw3],[/usr/include/fftw3.h],[]],
-	[[superlu_dist],[-lsuperlu-dist],[/usr/include/superlu-dist/superlu_defs.h],[]],
-	[[superlu],[-lsuperlu],[/usr/include/superlu/slu_ddefs.h],[]],
-	[[Superlu4],[-lsuperlu4],[/usr/include/superlu4/slu_ddefs.h],[]],
+	[[superlu_dist],[-lsuperlu-dist],[superlu-dist/superlu_defs.h],[]],
+	[[superlu],[-lsuperlu],[superlu/slu_ddefs.h],[]],
+	[[Superlu4],[-lsuperlu4],[superlu4/slu_ddefs.h],[]],
         [[blacs],[ -lblacsCinit$ff_with_mpi	-lblacsF77init$ff_with_mpi	-lblacs$ff_with_mpi],[]],
         [[scalapack],[-lscalapack$ff_with_mpi],[]],
         [[scotch],[-lscotch -lscotcherr],[]],
         [[ptscotch],[-lptscotch -lptscotcherr],[]],
-	[[metis],[-lscotch -lmetis],[/usr/include/metis/metis.h],[]],
+	[[metis],[-lscotch -lmetis],[metis/metis.h],[]],
+	[[metis],[-lscotch -lmetis],[metis.h],[]],
 	[[parmetis],[-lptscotch -lparmetis],[],[]],
-	[[freeyams],[-lfreeyams],[/usr/include/freeyamslib.h],[]],
-	[[mmg3d],[-lmmg3d],[/usr/include/libmmg3d.h],[]],
+	[[freeyams],[-lfreeyams],[freeyamslib.h],[]],
+	[[mmg3d],[-lmmg3d],[libmmg3d.h],[]],
 	[[mshmet],[-lmshmet],[],[]],
-	[[gsl],[-lgsl -lgslcblas -lm],[/usr/include/gsl/gsl_sf.h],[]],
+	[[gsl],[-lgsl -lgslcblas -lm],[gsl/gsl_sf.h],[]],
 	[[parms],[-lparms -litsol -llapack -lblas -lm],[],[]],
-	[[tetgen],[-ltet],[/usr/include/tetgen.h],[]],
+	[[tetgen],[-ltet],[tetgen.h],[]],
     ]
     )
 
