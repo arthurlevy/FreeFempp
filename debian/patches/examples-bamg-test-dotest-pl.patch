@@ -1,8 +1,6 @@
 Fix location of perl executable
-Index: freefem++-3.13.1/examples-bamg/test/dotest.pl
-===================================================================
---- freefem++-3.13.1.orig/examples-bamg/test/dotest.pl	2011-06-13 16:40:47.000000000 +0300
-+++ freefem++-3.13.1/examples-bamg/test/dotest.pl	2011-06-13 16:41:17.000000000 +0300
+--- a/examples-bamg/test/dotest.pl
++++ b/examples-bamg/test/dotest.pl
 @@ -1,4 +1,4 @@
 -#!/usr/local/bin/perl
 +#!/usr/bin/perl
