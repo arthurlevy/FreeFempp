@@ -249,7 +249,7 @@ class basicForEachType : public CodeAlloc {
      const char * name() const  { return this  ?  ktype->name() :"NULL" ;}
      virtual bool CastingFrom(const basicForEachType * t) const ;
      //  modif FH -----  A TESTER  // 
-     virtual bool SametypeRight(const basicForEachType * t) const {return  this == t || t == un_ptr_type;}
+     virtual bool SametypeRight(const basicForEachType * t) const {return  (this == t) || (t == un_ptr_type) || (t == type_C_F0);}
 //     virtual Type_Expr init(const Type_Expr & te) const { return Type_Expr(0,0);}
      virtual int TYPEOFID() const  {return 0;}
 //     bool SametypeLeft(const basicForEachType * t) const {return  t == this;}
@@ -274,7 +274,9 @@ class basicForEachType : public CodeAlloc {
                             const E_F1_funcT_Type * p=0,basicForEachType *rr=0,
                             Function1 iv=0,Function1 id=0) ;*/
 
-public:    
+public:
+    static  const  basicForEachType * type_C_F0; //  for any type un formal operation .... FH add 09/2012
+    
     const basicForEachType * un_ptr_type;  // type of right exp
    private:
  //   map<aType,CastFunc> mapofcast;
@@ -350,6 +352,7 @@ class E_F0 :public CodeAlloc
     virtual size_t nbitem() const {return 1;}
     virtual bool EvaluableWithOutStack() const {return false;} // 
     virtual bool MeshIndependent() const {return true;} // 
+    virtual bool Zero() const {return false;} //
     virtual E_F0 * right_E_F0() const { return 0;}
     virtual bool ReadOnly() const { return true;} // the expression do not change the memory     
     virtual ~E_F0() {}
@@ -632,6 +635,7 @@ class basicAC_F0;
 	  int  TYPEOFID() const { return r ? r->TYPEOFID(): 0;}
 	  int  nbitem() const { return f ? f->nbitem() : 0;}
 	  bool EvaluableWithOutStack() const { return f && f->EvaluableWithOutStack();}
+          bool Zero() const { return !f || f->Zero();}
 	  Expression Destroy() {  return r->Destroy(*this);}
 	  operator const Polymorphic * () const {return  dynamic_cast<const Polymorphic *>(f);}
 	  bool operator==(const C_F0 & a) const {return f==a.f && r == a.r;}
@@ -1232,7 +1236,8 @@ template<class R> class EConstant:public E_F0
   AnyType operator()(Stack ) const { /*cout << " ()" << v << endl*/;return SetAny<R>(v);}
   EConstant(const R & o):v(o) { /*cout << "New constant " << o << endl;*/}
   bool EvaluableWithOutStack() const {return true;} //   
-  operator aType () const { return atype<R>();} 
+  operator aType () const { return atype<R>();}
+     bool Zero()const  { return v == R();}
   int compare (const E_F0 *t) const { 
         int rr;
         const  EConstant * tt=dynamic_cast<const EConstant *>(t);
@@ -2763,6 +2768,8 @@ template<class T>
 inline C_F0 operator *(const C_F0 &a,const C_F0 &b)
 {    
   return a==*pOne ? b : ( b ==*pOne ? a : C_F0(TheOperators,"*",a,b)) ;}
+inline C_F0 operator+(const C_F0 &a,const C_F0 &b){ return C_F0(TheOperators,"+",a,b);}
+inline C_F0 operator-(const C_F0 &a,const C_F0 &b){ return C_F0(TheOperators,"-",a,b);}
   
 inline C_F0 &operator +=(C_F0 &a,const C_F0 &b)
 {  
@@ -2797,7 +2804,8 @@ class  OneOpCast: public OneOperator {
 // 
 inline  bool  basicForEachType::CastingFrom(aType t) const  {
      throwassert(this && t);
-     if ( t == this) return true; 
+     if ( t == this) return true;
+     else if( t ==  type_C_F0 ) return true; // FH do work .... 09 / 2012 (use of ellispe ...)
      return casting->FindSameR(ArrayOfaType(t,false));
   }
 
@@ -3036,7 +3044,7 @@ inline    int E_F0::find(const MapOfE_F0 & m)  {  //  exp
      if( (verbosity / 100)% 10 == 1) 
        cout << "  --  insert opt " << n << " " << *this << endl;     
        n += sizeof(AnyType);         
-       l.push_back(make_pair<Expression,int>(opt,rr)); 
+       l.push_back(make_pair<Expression,int>((Expression)opt,(int)rr)); 
        m.insert(p); 
        return rr;
      }
