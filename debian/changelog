@@ -1,4 +1,4 @@
-freefem++ (3.20-1) unstable; urgency=low
+freefem++ (3.20-1) experimental; urgency=low
 
   * New upstream release.
   * Add libnlopt-dev and coinor-libipopt-dev to build-deps.

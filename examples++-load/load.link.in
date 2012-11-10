@@ -197,7 +197,7 @@ case "$WIN32$uu" in
         FLAGS=' '
         LIBS="'$b/libff.dll' $LIBS $DLL"
         SUF=dll;;
-    FreeBSD|NetBSD|GNU/kFreeBSD|GNU)
+    FreeBSD|NetBSD)
 	SHARED="-shared" 
 	FLAGS='-fPIC';;
 	# 64 bit Linux needs -fPIC (ALH)
