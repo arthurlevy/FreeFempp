@@ -1,3 +1,4 @@
+configure.patch
 src-Graphics-sansgraph-cpp.patch
 src-Graphics-xglrgraf-cpp.patch
 examples++-load-Makefile.patch
