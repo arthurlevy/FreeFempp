@@ -58,8 +58,9 @@ override_dh_auto_configure:
 	dh_auto_build
 
 override_dh_auto_install:
-	mv debian/freefem++/usr/bin/bamg debian/freefem++/usr/bin/ffbamg
 	dh_auto_install
+	mv debian/tmp/usr/bin/bamg debian/tmp/usr/bin/ffbamg
+
 
 override_dh_auto_test:
 	echo "do not run tests"
