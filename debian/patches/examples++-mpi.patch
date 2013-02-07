@@ -1,0 +1,15 @@
+Index: freefem++-3.20/examples++-mpi/hips_FreeFem.cpp
+===================================================================
+--- freefem++-3.20.orig/examples++-mpi/hips_FreeFem.cpp	2013-01-10 09:31:07.000000000 +0100
++++ freefem++-3.20/examples++-mpi/hips_FreeFem.cpp	2013-01-10 17:17:03.000000000 +0100
+@@ -45,8 +45,8 @@
+ #endif
+ 
+ extern "C" {
+-#include "hips.h"  
+-#include "metis.h"
++#include "hips/hips.h"  
++#include "metis/metis.h"
+ }
+ #include <stdio.h>
+ #include <stdlib.h>
