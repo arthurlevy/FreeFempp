@@ -2,10 +2,12 @@ Source: freefem++
 Section: science
 Priority: optional
 Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
-Uploaders: Christophe Trophime <christophe.trophime@grenoble.cnrs.fr>, 
+Uploaders: Christophe Trophime <christophe.trophime@lncmi.cnrs.fr>, 
  Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>
 DM-Upload-Allowed: yes
-Build-Depends: debhelper (>= 9~), autotools-dev, gawk, gfortran, 
+Build-Depends: debhelper (>= 9~), 
+ dh-autoreconf,
+ quilt, gawk, gfortran, 
  flex, bison, libxt-dev, libxext-dev, libxxf86vm-dev, libhypre-dev, 
  libxpm-dev, mpi-default-dev, libfftw3-dev, libblas-dev, libgsl0-dev,
  libarpack2-dev, libsuitesparse-dev, libsuperlu3-dev, imagemagick, 
@@ -14,6 +16,9 @@ Build-Depends: debhelper (>= 9~), autotools-dev, gawk, gfortran,
  libmumps-dev, libblacs-mpi-dev, libscalapack-mpi-dev, libgmm++-dev, 
  libscotch-dev, ghostscript, libptscotch-dev, libmumps-scotch-dev,
  libmumps-seq-dev, libnlopt-dev, coinor-libipopt-dev
+# libtet1.4-dev,
+# libmmg3dlib4.0-4.0-dev, freeyams, mshmet, mshint,
+# libparms2-dev, libhips-dev, libitsol-dev
 Standards-Version: 3.9.3
 Homepage: http://www.freefem.org/ff++/
 Vcs-Git: git://git.debian.org/debian-science/packages/freefempp.git
