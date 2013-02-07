@@ -1,0 +1,72 @@
+Index: freefem++-3.20/configure.ac
+===================================================================
+--- freefem++-3.20.orig/configure.ac	2012-10-18 13:07:39.000000000 +0200
++++ freefem++-3.20/configure.ac	2013-01-20 19:06:33.072259323 +0100
+@@ -41,6 +41,7 @@
+ ]) dnl 
+ m4_define([AC_FF_WHERELIB],
+     [  	if test -z "$ff_where_lib_conf_$1" ; then
++	 dnl AC_MSG_NOTICE([AC_FF_WHERELIB check $1 $2 $3 $4])
+         AC_MSG_CHECKING(check $1)
+ 	ff_save_libs=$LIBS
+ 	LIBS="$LIBS $2 $4"
+@@ -49,6 +50,7 @@
+ 	    echo "$1 LD $2"  >>$ff_where_lib_conf
+ 	    ff_WHERE_INC=`AS_DIRNAME(["$3"])`
+ 	    if test -n "$ff_WHERE_INC" -a  "$ff_WHERE_INC" != '.'   ; then
++		dnl AC_MSG_NOTICE([AC_FF_WHERELIB $1 INCLUDE -I$ff_WHERE_INC])
+ 		echo "$1 INCLUDE -I$ff_WHERE_INC"  >>$ff_where_lib_conf
+ 	    fi 
+ 	fi
+@@ -56,6 +58,8 @@
+ 
+         ff_where_lib_conf_$1=1
+ 	LIBS=$ff_save_libs
++	dnl else
++	dnl    AC_MSG_NOTICE([AC_FF_WHERELIB nocheck $1 $2 $3 $4])
+ 	fi	
+     ])dnl end m4_define AC_FF_WHERELIB
+ 
+@@ -2076,8 +2080,16 @@
+ test -n "$ff_mkl_scalapack" && ff_scalapack="$ff_mkl_scalapack"
+ test -n "$ff_mkl_root" && ff_winc="$ff_mkl_root/include/mkl_blas.h"
+ 
+-
++# For ipot
++AC_CHECK_HEADERS(cstddef,
++  [AC_DEFINE(HAVE_CSTDDEF, 1, cstddef exists)],
++  [])
++AC_CHECK_HEADERS(stddef.h,
++  [AC_DEFINE(HAVE_STDDEF_H, 1, stddef.h exists)],
++  [])
++  
+ m4_map([AC_FF_WHERELIB],[ 
++	[[mumps-seq],[-ldmumps_seq -lzmumps_seq  -lmumps_common_seq  -lpord_seq],[dmumps_c.h],[]],
+ 	[[mumps],[-ldmumps -lzmumps  -lmumps_common  -lpord],[dmumps_c.h],[]],
+ 	[[mumps_ptscotch],[-lpord_ptscotch -lmumps_common_ptscotch -ldmumps_ptscotch -lzmumps_ptscotch -lpord_ptscotch],[dmumps_c.h]],
+ 	[[mumps_scotch],[-lpord_scotch -lmumps_common_scotch -ldmumps_scotch -lzmumps_scotch -lpord_scotch],[dmumps_c.h]],
+@@ -2088,17 +2100,21 @@
+ 	[[Superlu4],[-lsuperlu4],[superlu4/slu_ddefs.h],[]],
+         [[blacs],[ -lblacsCinit$ff_with_mpi	-lblacsF77init$ff_with_mpi	-lblacs$ff_with_mpi],[]],
+         [[scalapack],[-lscalapack$ff_with_mpi],[]],
+-        [[scotch],[-lscotch -lscotcherr],[]],
++        [[scotch],[-lscotch -lscotcherr],[scotch/scotch.h],[]],
+         [[ptscotch],[-lptscotch -lptscotcherr],[]],
+ 	[[metis],[-lscotch -lmetis],[metis/metis.h],[]],
+ 	[[metis],[-lscotch -lmetis],[metis.h],[]],
+ 	[[parmetis],[-lptscotch -lparmetis],[],[]],
+ 	[[freeyams],[-lfreeyams],[freeyamslib.h],[]],
+-	[[mmg3d],[-lmmg3d],[libmmg3d.h],[]],
++	[[mmg3d],[-lmmg3dlib4.0],[libmmg3d.h],[]],
+ 	[[mshmet],[-lmshmet],[],[]],
+ 	[[gsl],[-lgsl -lgslcblas -lm],[gsl/gsl_sf.h],[]],
+-	[[parms],[-lparms -litsol -llapack -lblas -lm],[],[]],
++	[[parms],[-lparms2 -litsol -llapack -lblas -lm],[],[]],
+ 	[[tetgen],[-ltet],[tetgen.h],[]],
++	[[hips],[-lhips],[hips/hips.h],[]],
++	[[nlopt],[-lnlopt],[nlopt.h],[]],
++	[[Ipopt],[-lipopt -ldmumps -lblas -lm -ldl],[coin/IpIpoptApplication.hpp],[]],
++	[[gmm],[],[gmm/gmm.h],[]],
+     ]
+     )
+ 
