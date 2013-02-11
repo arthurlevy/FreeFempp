@@ -7,18 +7,25 @@ Uploaders: Christophe Trophime <christophe.trophime@lncmi.cnrs.fr>,
 DM-Upload-Allowed: yes
 Build-Depends: debhelper (>= 9~), 
  dh-autoreconf,
- quilt, gawk, gfortran, 
- flex, bison, libxt-dev, libxext-dev, libxxf86vm-dev, libhypre-dev, 
- libxpm-dev, mpi-default-dev, libfftw3-dev, libblas-dev, libgsl0-dev,
- libarpack2-dev, libsuitesparse-dev, libsuperlu3-dev, imagemagick, 
- libfltk1.3-dev | libfltk-dev, freeglut3-dev, texlive, texlive-extra-utils, 
- texlive-latex-extra, texlive-font-utils, libmumps-ptscotch-dev,
- libmumps-dev, libblacs-mpi-dev, libscalapack-mpi-dev, libgmm++-dev, 
- libscotch-dev, ghostscript, libptscotch-dev, libmumps-scotch-dev,
- libmumps-seq-dev, libnlopt-dev, coinor-libipopt-dev
+ quilt, gawk, gfortran, mpi-default-dev,
+ flex, bison, libxt-dev, libxext-dev, libxxf86vm-dev, 
+ libxpm-dev, 
+ libfltk1.3-dev | libfltk-dev, freeglut3-dev, ghostscript, imagemagick,
+ texlive, texlive-extra-utils, texlive-latex-extra, texlive-font-utils, 
+ libfftw3-dev, libblas-dev, libgsl0-dev,
+ libhypre-dev, 
+ libarpack2-dev, libsuitesparse-dev,
+ libmumps-ptscotch-dev, libmumps-dev, libblacs-mpi-dev, libscalapack-mpi-dev,
+ libscotch-dev, libptscotch-dev, libmumps-scotch-dev,
+ libscotchmetis-dev, libscotchparmetis-dev,
+ libmumps-seq-dev, libnlopt-dev, coinor-libipopt-dev,
+ libgmm++-dev
 # libtet1.4-dev,
 # libmmg3dlib4.0-4.0-dev, freeyams, mshmet, mshint,
-# libparms2-dev, libhips-dev, libitsol-dev
+# libparms2-dev, libitsol-dev,
+# libhips-dev, libpastix-dev,
+# libsuperlu-dist-dev
+## libsuperlu4-dev 
 Standards-Version: 3.9.3
 Homepage: http://www.freefem.org/ff++/
 Vcs-Git: git://git.debian.org/debian-science/packages/freefempp.git
