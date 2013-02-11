@@ -1,2 +1,5 @@
-debian/tmp/usr/lib/ff++/3.*/lib/* /usr/lib/freefem++/
-debian/tmp/usr/lib/ff++/3.*/etc/freefem++.pref /etc/
+debian/tmp/usr/lib/ff++/3.*/lib/* usr/lib/freefem++/
+debian/tmp/usr/lib/ff++/3.*/etc/freefem++.pref etc/
+debian/tmp/usr/lib/ff++/3.*/idp/* usr/share/freefem++/idp/
+
+#debian/libfreefem++.lintian-overrides usr/share/lintian/overrides/libfreefem++

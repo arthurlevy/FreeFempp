@@ -1,4 +1,6 @@
 debian/tmp/usr/share/freefem++/freefem++doc.pdf usr/share/doc/freefem++-doc/
 debian/tmp/usr/share/freefem++/3.*/examples* usr/share/doc/freefem++/examples/
 examples-bamg usr/share/doc/freefem++/examples/
+examples++-load/*.cpp usr/share/doc/freefem++/plugins/
+examples++-load/*.hpp usr/share/doc/freefem++/plugins/
 debian/folder/freefem++-doc /usr/share/doc-base/

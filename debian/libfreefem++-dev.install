@@ -1,1 +1,3 @@
-debian/tmp/usr/lib/ff++/3.*/include/* /usr/include/freefem++/
+debian/tmp/usr/lib/ff++/3.*/include/* usr/include/freefem++/
+src/libMesh/libMesh.a usr/lib/freefem++/
+examples++-load/WHERE_LIBRARY-config usr/include/freefem++/
