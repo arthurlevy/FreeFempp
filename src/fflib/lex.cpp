@@ -265,7 +265,10 @@ int mylex::basescan()
 	      ccc= source().peek(); 
               switch (cc) {
               case 'n': buf[i]='\n';break;
+              case 'r': buf[i]='\r';break;
               case 'f': buf[i]='\f';break;
+              case 't': buf[i]='\t';break;
+              case 'a': buf[i]='\a';break;
               case 10:
               case 13:
 		cc='\n';
@@ -702,9 +705,10 @@ void  mylex::xxxx::open(mylex *lex,const char * ff)
 
     lgerror("lex: Error input openning file ");};
 }
-void  mylex::xxxx::readin(mylex *lex,const string & s,const string *name)//,int nbparam,int bstackparam) 
+void  mylex::xxxx::readin(mylex *lex,const string & s,const string *name, int macroargs)//,int nbparam,int bstackparam)
 {
   filename=name;
+  macroarg=macroargs;
   l=0;
   nf=f= new istringstream(s.c_str()); 
   
@@ -716,7 +720,7 @@ void  mylex::xxxx::readin(mylex *lex,const string & s,const string *name)//,int 
 void mylex::xxxx::close() 
 { 
   if( nf)  delete nf;
-  if (filename) delete filename;
+  if (filename && (macroarg==0) ) delete filename;
   
 }
 void mylex::input(const char *  filename) 

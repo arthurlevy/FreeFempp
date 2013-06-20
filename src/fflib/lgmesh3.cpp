@@ -203,8 +203,8 @@ bool BuildPeriodic(
 		    double y0 = Pmin.y;
 		    if (verbosity > 2)
 			cout << "  --Update: periodic " << Pmin << " " << Pmax << " " << " h=" << hmn 
-			<< " ,  coef = "<< coef << endl;
-		    ffassert(coef>1e-10 && (Pmax-Pmin).norme2()*coef < 1.e7 );
+			<< " ,  coef = "<< coef << " / " << (Pmax-Pmin).norme2()*coef*coef << endl;
+		    ffassert(coef>1e-10 && (Pmax-Pmin).norme2()*coef*coef < 1.e14 ); // correct  FH mars 2013 
 		    
 		    //  map construction ----
 		    for (int i1=0;i1<n1;i1++)
@@ -1225,13 +1225,15 @@ AnyType pf3r2R(Stack s,const AnyType &a)
   RdHat PHat;
   bool outside=false;
   bool qnu=true;
-  if ( mp.Th3 == &Th && mp.T) 
+  if ( mp.Th3 && mp.Th3->elements == Th.elements && mp.T)
    {
      qnu=false;
      K=mp.T3;
      PHat=mp.PHat;
    }
-  else if ( mp.other.Th3 == & Th && mp.other.P.x == mp.P.x && mp.other.P.y == mp.P.y && mp.other.P.z == mp.P.z   )
+  else if ( mp.other.Th3 
+            && (mp.other.Th3->elements ==  Th.elements)
+            && (mp.other.P.x == mp.P.x) && (mp.other.P.y == mp.P.y) && (mp.other.P.z == mp.P.z)   )
     {
       K=mp.other.T3;
       PHat=mp.other.PHat;
@@ -1250,9 +1252,11 @@ AnyType pf3r2R(Stack s,const AnyType &a)
 	cout << "  ---  " << qnu << " P=  " << mp.P << " out=" << mp.outside <<  " out=" << outside << " K(PHat) == P =  " <<  (*K)(PHat) << " PHat = " << PHat << endl;
     }
   const FElement KK(Vh[Th(K)]);
-  if (outside && KK.tfe->discontinue) 
-    return   SetAny<R>(0.0); 
-#ifndef NDEBUG 
+  if (outside && KK.tfe->discontinue)
+  {   if(verbosity>=10000) cout << " outside f() = 0. " << KK.tfe->discontinue << "\n";
+    return   SetAny<R>(0.0);
+  }
+#ifndef NDEBUG
   if (!outside) 
     {
       if ( Norme2_2( (*K)(PHat) - mp.P ) > 1e-12 )

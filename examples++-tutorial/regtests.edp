@@ -362,7 +362,7 @@ verbosity=verbosityy;
 		
 	
 	include "NSUzawaCahouetChabart.edp";
-	real TESTNSUzawaCahouetChabart=u1[]'*u1[];
+	real TESTNSUzawaCahouetChabart=u1[].linfty;
 		cout<<"NSUzawaCahouetChabart reference value = "<<REFNSUzawaCahouetChabart
 				<<" test value ="<<TESTNSUzawaCahouetChabart<<endl;
 			assert(TESTNSUzawaCahouetChabart<REFNSUzawaCahouetChabart*(1+1e-2));

@@ -526,12 +526,18 @@ bool SetDefaultSolver()
     if(verbosity>1)
 	cout << " SetDefault sparse solver to UMFPACK" << endl;
     DefSparseSolver<double>::solver  =BuildSolverUMFPack;
-    DefSparseSolver<Complex>::solver =BuildSolverUMFPack;    
+    DefSparseSolver<Complex>::solver =BuildSolverUMFPack;
+    DefSparseSolverSym<double>::solver  =BuildSolverGMRES<double>;
+    DefSparseSolverSym<Complex>::solver =BuildSolverGMRES<Complex>;
+    
 #else
     if(verbosity>1)
 	cout << " SetDefault sparse solver to GMRES (no UMFPACK)" << endl;
     DefSparseSolver<double>::solver  =BuildSolverGMRES<double>;
-    DefSparseSolver<Complex>::solver =BuildSolverGMRES<Complex>;    
+    DefSparseSolver<Complex>::solver =BuildSolverGMRES<Complex>;
+    DefSparseSolverSym<double>::solver  =BuildSolverGMRES<double>;
+    DefSparseSolverSym<Complex>::solver =BuildSolverGMRES<Complex>;
+    
 #endif
     return true;
 
@@ -1580,7 +1586,7 @@ class OneBinaryOperatorA_inv : public OneOperator { public:
           bool bb=p->EvaluableWithOutStack();
           cout << bb << " " <<  * p <<  endl;
           CompileError(" A^p, The p must be a constant == -1, sorry");}
-       long pv = GetAny<long>((*p)(0));
+       long pv = GetAny<long>((*p)(NullStack));
         if (pv !=-1)   
          { char buf[100];
            sprintf(buf," A^%ld, The pow must be  == -1, sorry",pv);
@@ -2094,7 +2100,7 @@ template<typename R>  BlockMatrix<R>::BlockMatrix(const basicAC_F0 & args)
 	    aType rij = c_Mij.left();
 	    if ( rij == atype<long>() &&  eij->EvaluableWithOutStack() )
 	    {
-		long contm = GetAny<long>((*eij)(0));
+		long contm = GetAny<long>((*eij)(NullStack));
 		/*  prev  version
 		if(contm !=0) 
 		CompileError(" Block matrix , Just 0 matrix");
@@ -2568,7 +2574,9 @@ TheOperators->Add("+",
  Add<Matrice_Creuse<R> *>("n",".",new OneOperator1<long,Matrice_Creuse<R> *>(get_mat_n<R>) );
  Add<Matrice_Creuse<R> *>("m",".",new OneOperator1<long,Matrice_Creuse<R> *>(get_mat_m<R>) );
  Add<Matrice_Creuse<R> *>("nbcoef",".",new OneOperator1<long,Matrice_Creuse<R> *>(get_mat_nbcoef<R>) );
- 
+ Add<Matrice_Creuse<R> *>("nnz",".",new OneOperator1<long,Matrice_Creuse<R> *>(get_mat_nbcoef<R>) );
+ Add<Matrice_Creuse<R> *>("size",".",new OneOperator1<long,Matrice_Creuse<R> *>(get_mat_nbcoef<R>) );
+    
  
  Add<Matrice_Creuse<R> *>("diag",".",new OneOperator1<TheDiagMat<R> ,Matrice_Creuse<R> *>(thediag<R>) );
  Add<Matrice_Creuse<R> *>("coef",".",new OneOperator1<TheCoefMat<R> ,Matrice_Creuse<R> *>(thecoef<R>) );
@@ -2667,6 +2675,27 @@ class PrintErrorCompileIM :  public E_F0info { public:
 
 };
 
+//  the 2 default sparse solver double and complex
+DefSparseSolver<double>::SparseMatSolver SparseMatSolver_R ; ;
+DefSparseSolver<Complex>::SparseMatSolver SparseMatSolver_C;
+DefSparseSolverSym<double>::SparseMatSolver SparseMatSolverSym_R ; ;
+DefSparseSolverSym<Complex>::SparseMatSolver SparseMatSolverSym_C;
+// the default probleme solver 
+TypeSolveMat::TSolveMat  TypeSolveMatdefaultvalue=TypeSolveMat::defaultvalue;
+
+bool SetDefault()
+{
+    if(verbosity>1)
+	cout << " SetDefault sparse to default" << endl;
+    DefSparseSolver<double>::solver =SparseMatSolver_R;
+    DefSparseSolver<Complex>::solver =SparseMatSolver_C;
+    DefSparseSolverSym<double>::solver =SparseMatSolverSym_R;
+    DefSparseSolverSym<Complex>::solver =SparseMatSolverSym_C;
+    TypeSolveMat::defaultvalue =TypeSolveMat::SparseSolver;
+    return  true;
+}
+
+
 bool SparseDefault()
 {
     return TypeSolveMat::SparseSolver== TypeSolveMat::defaultvalue;
@@ -2678,6 +2707,11 @@ bool Have_UMFPACK() { return Have_UMFPACK_;}
 void  init_lgmat() 
 
 {
+  SparseMatSolver_R= DefSparseSolver<double>::solver;
+  SparseMatSolver_C= DefSparseSolver<Complex>::solver;
+  SparseMatSolverSym_R= DefSparseSolverSym<double>::solver;
+  SparseMatSolverSym_C= DefSparseSolverSym<Complex>::solver;
+
   
   Dcl_Type<const  MatrixInterpolation<pfes>::Op *>(); 
   Dcl_Type<const  MatrixInterpolation<pfes3>::Op *>(); 
@@ -2702,6 +2736,7 @@ void  init_lgmat()
   Global.Add("defaulttoGMRES","(",new OneOperator0<bool>(SetGMRES));
   Global.Add("defaulttoCG","(",new OneOperator0<bool>(SetCG));
   Global.New("havesparsesolver",CVariable<bool>(SparseDefault));
+  Global.Add("defaultsolver","(",new OneOperator0<bool>(SetDefault));
   
   Dcl_Type< Resize<Matrice_Creuse<double> > > ();
   
@@ -2713,7 +2748,7 @@ void  init_lgmat()
  Add<Resize<Matrice_Creuse<Complex> > >("(","",new OneOperator3_<Matrice_Creuse<Complex>  *,Resize<Matrice_Creuse<Complex>  > , long, long  >(resize2));   
  
  
- Global.Add("defaultsolver","(",new OneOperator0<bool>(SetDefaultSolver));
+ //Global.Add("defaultsolver","(",new OneOperator0<bool>(SetDefaultSolver));
  
  // pour compatibiliter 
  
@@ -2746,4 +2781,4 @@ void  init_lgmat()
  init_UMFPack_solver();
 }
 
-
+int Data_Sparse_Solver_version() { return VDATASPARSESOLVER;}

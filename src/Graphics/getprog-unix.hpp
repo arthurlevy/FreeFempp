@@ -11,6 +11,7 @@ extern FILE *ThePlotStream; //  Add for new plot. FH oct 2008
 extern const char *  prognamearg;
 extern const char *  edpfilenamearg;
 extern bool  waitatend;
+extern bool  consoleatend;
 extern bool echo_edp;
 extern bool 	  NoGraphicWindow;
 
@@ -52,6 +53,7 @@ char * Shell_Space(const char * s)
 int getprog(char* fn,int argc, char **argv)
 {
   waitatend=true;  // attent 
+  consoleatend=false;  // bug with redirection FH 
   int ret=0;
   *fn='\0';
 #ifdef WIN32
@@ -76,6 +78,7 @@ int getprog(char* fn,int argc, char **argv)
       if( pm )
         noffglut = ((strlen(prog)- (pm-prog)) < lsuffix+5);
       else   noffglut==  false;
+      if(noffglut) { consoleatend=false;  waitatend=false;} 
       //      cout << " noffglut= " << noffglut << endl;
       //  suffix ++-glx.exe -> no ffglut
       // pm = 0= > pas de moins -> freefem++ -> ffglut
@@ -102,6 +105,7 @@ int getprog(char* fn,int argc, char **argv)
 	}
       else if  (strcmp(argv[i],"-nw")==0 ) 
 	{
+	  consoleatend=false;
 	  noffglut=true;
 	  NoGraphicWindow=true; 
 	}
@@ -114,6 +118,10 @@ int getprog(char* fn,int argc, char **argv)
 	  echo_edp=false;
       else if  (strcmp(argv[i],"-nowait")==0 ) 
 	waitatend=false;
+      else if  (strcmp(argv[i],"-nc")==0 ) 
+	consoleatend=false;
+      else if  (strcmp(argv[i],"-log")==0 ) 
+	consoleatend=true;
       else if  (strcmp(argv[i],"-wait")==0 ) 
 	  waitatend=true;
       else if(strcmp(argv[i],"-fglut")==0 && i+1 < argc)
