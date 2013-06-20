@@ -9,6 +9,5 @@ CXXFLAGS = -g  -m64 -fPIC -g  -DBAMG_LONG_LONG -DCHECK_KN -fno-inline  -fexcepti
 CFLAGS = -g  -m64 -fPIC -g -fPIC
 FCFLAGS = -g -O2 -fPIC
 FFMETIS_CFLAGS = 
-X_CFLAGS = 
 WGET = wget --no-check-certificate
 WIN32DLLTARGET = 

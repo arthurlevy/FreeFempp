@@ -26,7 +26,7 @@ int[int] ll=[3,2,5,1];
 //       4   step 
 //       5   up wall 
 func zoom=[[2.5,0],[10,H]];
-mesh Th=square(6,22,[x*22,y*H],label=ll);
+mesh Th=square(22,6,[x*22,y*H],label=ll);
 Th=trunc(Th, (x>l) | (y >0.5),label=4); 
 func meshsize= 2*max(0.05,max(max(x-l,0.0)/19./5.,max(l-x,0.0)/3./8. ));
 func uin=(H-y)*(y-0.5)/square((H-0.5)/2.);
@@ -151,7 +151,7 @@ for(int krey=0;krey<Reynold.n;++krey)
     real rp = (rp1+rp2)/2;
     real rppaper =  krey < 2 ? reattachP(krey,cas) : rp; 
     real err= abs(rppaper - rp)/rp;
-    if( err>0.3 ) nerr++;//  
+    if( err>0.5 ) nerr++;//  
     cout << "\n\n\n";
     cout << "H= " << H << " Re " << re << " Reattach point " << rp << " paper=" << rppaper << " err "<< err 
          << "  psi max = " << psi[].max <<endl; 

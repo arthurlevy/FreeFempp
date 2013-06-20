@@ -42,6 +42,7 @@ EXTRA_DIST= \
 ./mumps-seq/Makefile-mumps-4.10.0.inc \
 ./mumps-seq/Makefile \
 ./mumps/Makefile-mumps-4.10.0.inc \
+./mumps/MUMPS_4.10.0.patch \
 ./parmetis/Makefile-parmetis.in \
 ./parmetis/ParMetis-3.1.1-ok/stdheaders.h \
 ./parmetis/makefile \
@@ -77,8 +78,8 @@ ipopt/Makefile	\
 ipopt/Makefile.inc.in \
 ipopt/patch-IpBlas 
 
-
-MPI_SOFT=blacs parmetis  scalapack scotch superludist mumps pastix  hips parms 
+# blacs is include in  scalapack 2.0.2 
+MPI_SOFT= parmetis  scalapack scotch superludist mumps pastix  hips parms 
 LIST_SOFT=tetgen superlu fftw metis mshmet yams mmg3d gmm  nlopt mumps-seq ipopt 
 all-recursive: bin lib include pkg
 
@@ -116,9 +117,12 @@ tag-compile-pkg: bin lib include pkg FORCE
 	touch tag-compile-pkg
 FORCE:
 
-re-install: 
+re-install:
+	-rm -rf	 include lib bin 
+	mkdir   include lib bin 	 
 	$(MAKE) compile-pkg DIRTARGET=install
 WHERE:
+	-rm -rf  lib/WHERE.*
 	$(MAKE) compile-pkg DIRTARGET=WHERE
 
 clean-local:

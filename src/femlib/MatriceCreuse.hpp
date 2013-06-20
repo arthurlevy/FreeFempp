@@ -822,13 +822,13 @@ plusAx operator*(const KN_<R> &  x) const {return plusAx(this,x);}
 };
 
 struct TypeSolveMat {
-    enum TSolveMat { NONESQUARE=0, LU=1, CROUT=2, CHOLESKY=3, GC = 4 , GMRES = 5, SparseSolver=6 };
+    enum TSolveMat { NONESQUARE=0, LU=1, CROUT=2, CHOLESKY=3, GC = 4 , GMRES = 5, SparseSolver=6, SparseSolverSym=7 };
     TSolveMat t;
     bool sym;
     bool profile;
     TypeSolveMat(TSolveMat tt=LU) :t(tt),
-    sym(t == CROUT || t ==CHOLESKY  ||  t==GC ),
-    profile(t != GC && t != GMRES && t != NONESQUARE && t != SparseSolver ) {}
+    sym(t == CROUT || t ==CHOLESKY  ||  t==GC || t==SparseSolverSym ),
+    profile(t == CROUT || t ==CHOLESKY  || t ==LU ) {}
     bool operator==(const TypeSolveMat & a) const { return t == a.t;}                               
     bool operator!=(const TypeSolveMat & a) const { return t != a.t;}
     static TSolveMat defaultvalue;
@@ -837,8 +837,10 @@ struct TypeSolveMat {
 // add FH , JM  avril 2009 
 template<class K,class V> class MyMap;
 class String; 
-typedef void *    pcommworld; // to get the pointeur to the comm word ... in mpi 
-
+typedef void *    pcommworld; // to get the pointeur to the comm word ... in mpi
+//  to build 
+#define VDATASPARSESOLVER  1
+int Data_Sparse_Solver_version() ; //{ return VDATASPARSESOLVER;}
 struct Data_Sparse_Solver {
   bool initmat;
   TypeSolveMat* typemat;
@@ -863,6 +865,7 @@ struct Data_Sparse_Solver {
   KN<double> scale_c; 
   string sparams;  
   pcommworld commworld;  // pointeur sur le commworld
+    int master; //  master rank in comm add FH 02/2013 for MUMPS ... => VDATASPARSESOLVER exist 
  /*   
   int *param_int;
   double *param_double;
@@ -909,8 +912,10 @@ struct Data_Sparse_Solver {
     file_param_perm_c(0),
      */
     //sparams, 
-    commworld(0)
+    commworld(0),
+    master(0)
     {}
+    
 private:
     Data_Sparse_Solver(const Data_Sparse_Solver& ); // pas de copie 
 };
@@ -943,6 +948,25 @@ template<class R> struct DefSparseSolver {
       ret =(solver)(ARG_SPARSE_SOLVER(A));
     return ret;	
   }
+};
+
+// add Dec 2012 F.H. for optimisation .. 
+template<class R> struct DefSparseSolverSym {
+    typedef typename MatriceMorse<R>::VirtualSolver *
+    (*SparseMatSolver)(DCL_ARG_SPARSE_SOLVER(R,A) );
+    
+    static SparseMatSolver solver;
+    
+    static  typename MatriceMorse<R>::VirtualSolver *
+    
+    Build( DCL_ARG_SPARSE_SOLVER(R,A) )
+    
+    {
+        typename MatriceMorse<R>::VirtualSolver *ret=0;
+        if(solver)
+            ret =(solver)(ARG_SPARSE_SOLVER(A));
+        return ret;	
+    }
 };
 
 // End Sep 2007 for generic Space solver

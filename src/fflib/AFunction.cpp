@@ -95,7 +95,7 @@ template<class A,class B>  A Build(B b) {  return A(b);}
   
 
 
-long Exit(long i) {throw(ErrorExec("Exit",i));return 0;}
+long Exit(long i) {throw(ErrorExit("Exit",i));return 0;}
 bool Assert(bool b) {if (!b) throw(ErrorExec("exec assert",1));return true;}
   
 inline void MyAssert(int i,char * ex,char * file,long line)
@@ -488,7 +488,7 @@ struct  MIMul {
       {
         if (mia && a->EvaluableWithOutStack() )
           {
-            A va = GetAny<A>((*a)(0));
+            A va = GetAny<A>((*a)(NullStack));
            // cout << " va = " << va << endl;
             if ( va == A() )
              { 
@@ -498,7 +498,7 @@ struct  MIMul {
           }
         if (mib && b->EvaluableWithOutStack() )
           {
-            B vb = GetAny<B>((*b)(0));
+            B vb = GetAny<B>((*b)(NullStack));
             // cout << " vb = " << vb << endl;
             if ( vb == B() ) 
             { //cout << " vb = " << vb << endl;
@@ -858,6 +858,8 @@ istream *Getline(istream * f, string ** s)
 {
     if( *s==0) *s=new string;
     getline(*f,**s);
+    size_t l = (**s).length();
+    if( l > 0 && ((**s)[l-1]=='\r')) (**s).resize(l-1); //
        return f;    
 }
 // Fin Add ne marche pas ....
@@ -1440,7 +1442,8 @@ void Init_map_type()
      //     Global.Add("log10","(",new OneOperator1_<Complex>(log10));
      //     Global.Add("tan","(",new OneOperator1_<Complex>(tan));
      Global.Add("exp","(",new OneOperator1_<Complex>(exp));
-     Global.Add("pow","(",new OneOperator2_<Complex,Complex>(pow));
+     //Complex (* powcc  )( const  Complex &, const Complex &) =pow;
+     Global.Add("pow","(",new OneOperator2_<Complex,Complex>(pow ));
      Global.Add("sqrt","(",new OneOperator1_<Complex>(sqrt,0));
      Global.Add("conj","(",new OneOperator1_<Complex>(conj,0));
      Global.Add("conj","(",new OneOperator1_<double>(conj,1));
@@ -1554,7 +1557,7 @@ C_F0  opVI::code2(const basicAC_F0 &args) const
 	bool bb=p->EvaluableWithOutStack();
 	//cout << bb << " " <<  * p <<  endl;
 	CompileError(" [...][p], The p must be a constant , sorry");}
-        long pv = GetAny<long>((*p)(0));
+        long pv = GetAny<long>((*p)(NullStack));
     bool ta =args[0].left()==atype<TransE_Array>();
     const TransE_Array * tea=0;
     const E_Array * ea=0;
@@ -1563,7 +1566,13 @@ C_F0  opVI::code2(const basicAC_F0 &args) const
     assert( ea || tea );
     const E_Array & a=  ta ? *tea->v : *ea;
    // cout << " pv =" << pv << " size = "<< a.size() << endl;
-    ffassert(pv >=0 && pv <a.size());
+    if(!(pv >=0 && pv <a.size()))
+    {
+      cerr << "\n\nerror [ ... ][" << pv <<" ] " << " the  size of [ ...]  is "<< a.size() << endl;
+      lgerror(" bound of  [ .., .. , ..][ . ] operation  ");
+    }
+    
+    //ffassert(pv >=0 && pv <a.size());
     return (* a.v)[pv];
 }
 

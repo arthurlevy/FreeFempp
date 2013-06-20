@@ -189,6 +189,9 @@ int IsoLineK(R2 *P,double *f,R2 *Q,int *i0,int *i1,double eps)
     // remark, the left of the line is upper .
     return 0;
 }
+
+
+
 int LineBorder(R2 *P,double *f,long close,R2 *Q,int *i1,int *i2,double eps)
 {
     int np=0;
@@ -200,17 +203,19 @@ int LineBorder(R2 *P,double *f,long close,R2 *Q,int *i1,int *i2,double eps)
             i1[np]=i2[np]=0,np++;
             
 	}
-        if(f[1]>-eps)
-	{
-            Q[np]=P[1];
-            i1[np]=i2[np]=1,np++;
-	}
         
         if (f[0]*f[1] <= - eps*eps)
 	{
             Q[np]= (P[0]*(f[1]) -  P[1]*(f[0]) ) /(f[1]-f[0]);
             i1[np]=0,i2[np]=1,np++;
 	}
+        
+        if(f[1]>-eps)
+	{
+            Q[np]=P[1];
+            i1[np]=i2[np]=1,np++;
+	}
+        
     }
     else
     {
@@ -262,6 +267,48 @@ struct R2_I2 {
         else return L.count(k0);
     }
 };
+// Absact mesh for data on grid .... FH ..
+int Th_Grid(const KNM_<double> *g, int k,int ii)
+{
+    int N = g->N()-1;
+    int kq= k/2; // number of the quad
+    int k0 = k%2; // up or down
+    //  (0,0),(1,0),(1,1) Qd <=> (ii !=0,  ii==2)
+    //  (0,0),(1,1),(0,1) Q2  <=> (ii%2, ii != 0
+    int I =  kq%N + ( k0 ?  (ii%2)  : (ii !=0) ) ;
+    int J =  kq/N + ( k0 ?  (ii!=0) : (ii ==2) );
+
+   return J*(N+1)+I;
+}
+R2  V_Grid(const KNM_<double> *g, int k) 
+{
+  int i = k % g->N() , j = k / g->N() ; 
+  return R2( i,j);
+}
+int  EA_Grid(const KNM_<double> *g, int k,int & e) 
+{
+  int N = g->N()-1;
+  int kq= k/2; // number of the quad
+  int k0 = k%2; // up or down
+  bool intern = k0  ? (e==0)  : (e==2);
+  if(intern) {e = 2-e; return 2*kq+ 1-k0;}
+  ffassert(0);
+  return 0;
+}
+
+struct SMesh {
+  const Mesh *pTh;
+  const KNM_<double> *g;
+  int nv,nt, neb; 
+  int operator()(int k,int i) const  { return pTh ? (*pTh)(k,i) : Th_Grid(g,k,i);  }
+  R2  operator()(int i) const  { return pTh ? (*pTh)(i) : V_Grid(g,i);  }
+  int ElementAdj(int k,int &e) { return pTh ? pTh->ElementAdj(k,e) : EA_Grid(g,k,e);  }
+  SMesh(Mesh *PTh) : pTh(PTh),g(0)   , nv(pTh->nv), nt(pTh->nt),neb(pTh->neb) {}
+  SMesh(KNM_<double> *gg): pTh(0),g(gg)   ,
+			   nv(gg->N()*gg->M()),
+			   nt((gg->N()-1) *(gg->M()-1)*2),
+			   neb( ( gg->N()+gg->M()-2 )*2 ) {}
+};
 
 AnyType ISOLINE_P1_Op::operator()(Stack stack)  const
 {
@@ -279,7 +326,7 @@ AnyType ISOLINE_P1_Op::operator()(Stack stack)  const
     ffassert( (pxx || pyy) ==  !pxy ) ;
     Mesh * pTh= GetAny<Mesh *>((*eTh)(stack));
     ffassert(pTh);
-    Mesh &Th=*pTh;
+    SMesh Th(pTh);
     int nbv=Th.nv; // nombre de sommet
     int nbt=Th.nt; // nombre de triangles
     int nbe=Th.neb; // nombre d'aretes fontiere
@@ -295,23 +342,26 @@ AnyType ISOLINE_P1_Op::operator()(Stack stack)  const
     string * file = arg(6,stack,(string*) 0);
     vector< R2_I2 >  P;
     multimap<int,int> L;
-    
+    if(verbosity>= 1000) debug =verbosity/1000;
+    else debug = 0; 
     map<pair<int,int>, int> FP;
     const   double unset = -1e-100;
     KN<double> tff(nbv, unset);
     
     // loop over triangle
+    if(pTh)
     for (int it=0;it<Th.nt;++it)
     {
         for( int iv=0; iv<3; ++iv)
 	{
             int i=Th(it,iv);
             if(tff[i]==unset){
-                mp->setP(&Th,it,iv);
+                mp->setP(pTh,it,iv);
                 tff[i]=GetAny<double>((*eff)(stack))-isovalue;
             }
 	}
     }
+    else ffassert(0); 
     if(close<0)
     {
         tff=-tff;
@@ -374,7 +424,7 @@ AnyType ISOLINE_P1_Op::operator()(Stack stack)  const
         if(debug) cout<< " Close path " << endl;
         for (int k=0;k<Th.nt;++k)
 	{
-            Triangle &K=Th[k];
+	  // Triangle &K=Th[k];
             for(int e=0;e<3;++e)
 	    {
                 int ee,kk=Th.ElementAdj(k,ee=e);
@@ -463,7 +513,7 @@ AnyType ISOLINE_P1_Op::operator()(Stack stack)  const
              starting.push_back(i);
     while(1)
     {
-        ffassert(kkk++ < 10);
+        ffassert(kkk++ < 100000);
         int kk=0,k=0;
         for(int i=0;i<np;++i) //  correction FH 18/9/2012 ....
         {
@@ -740,6 +790,27 @@ R3  * Curve(Stack stack,const KNM_<double> &b,const  long &li0,const  long & li1
     //mp.P.y=Q.y; // get the current y value
     return pQ; 
 }
+double mesure(Stack stack,const KNM_<double> &b,const KN_<long> &be)
+{
+    double mes =0;
+    int nbc2 = be.N();
+    for (int k=0; k <nbc2 ;)
+    {
+        int i0= be[k++];
+        int i1= be[k++];
+         R2 A(b(0,i0),b(1,i0));
+        double mk=0;
+        for(int i=i0+1; i< i1; ++i)
+        {
+          R2 B(b(0,i-1),b(1,i-1));
+          R2 C(b(0,i),b(1,i));
+            mk += det(A,B,C);
+        }
+        if( verbosity>9) cout << " mesure: composante " << k/2 << "  mesure  " << mk/2. << endl;
+        mes += mk;
+    }
+    return mes/2.;
+}
 
 R3   * Curve(Stack stack,const KNM_<double> &b,const double & ss)
 {
@@ -755,8 +826,12 @@ void finit()
     
     Global.Add("isoline","(",new ISOLINE_P1);
     Global.Add("isoline","(",new ISOLINE_P1(1));
+    
     Global.Add("Curve","(",new OneOperator2s_<R3*,KNM_<double>,double>(Curve));
     Global.Add("Curve","(",new OneOperator4s_<R3*,KNM_<double>,long,long,double>(Curve));
+    
+    Global.Add("Area","(",new OneOperator2s_<double ,KNM_<double>,KN_<long> >(mesure));
+    
 }
 
 LOADFUNC(finit);  //  une variable globale qui serat construite  au chargement dynamique    

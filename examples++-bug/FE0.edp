@@ -1,0 +1,25 @@
+{//  example with no mesh .. 
+mesh Th,Th1; //  no mesh
+
+fespace Vh(Th,P2); 
+Vh u,v; // ok 
+varf a(u,v) = int2d(Th1)(u*v) + int2d(Th)(v) +on(1,u=1);
+matrix A=a(Vh,Vh); 
+real[int] b=a(0,Vh);
+problem PPP(u,v) = int2d(Th)(u*v) + int2d(Th)(v) +on(1,u=1); 
+Th=square(1,1);
+u=x;
+}
+
+{
+load "msh3"
+mesh3 Th; //  no mesh
+fespace Vh(Th,P2); 
+Vh u,v; // ok 
+varf a(u,v) = int2d(Th)(u*v) + int2d(Th)(v) +on(1,u=1);
+matrix A=a(Vh,Vh); 
+real[int] b=a(0,Vh);
+problem PPP(u,v) = int2d(Th)(u*v) + int2d(Th)(v) +on(1,u=1); 
+Th=buildlayers(square(2,2),3);
+u=x;
+}

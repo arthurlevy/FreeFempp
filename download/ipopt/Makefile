@@ -33,6 +33,7 @@ $(SRCDIR)/FAIT: $(SRCDIR)/tag-tar
 	  CXX='$(CXX)' CXXFLAGS='$(CXXFLAGS) -I$(INCMUMPS)' \
 	  CC='$(CC)' CFLAGS='$(CFLAGS) -I$(INCMUMPS)' \
 	  F77='$(FC)' FFLAGS='$(FCFLAGS)' \
+	  CXXCPP='$(CXXCPP)'  CPP='$(CXXCPP)' \
 	 --with-blas='$(LIBBLAS)' --with-lapack='$(LIBLAPACK)' --prefix='$(DOWNLOADFF)'
 	touch $(SRCDIR)/FAIT	
 install: $(SRCDIR)/FAIT
@@ -41,8 +42,8 @@ install: $(SRCDIR)/FAIT
 WHERE: 
 	if [ -f $(SRCDIR)/FAIT  ] ;then \
 	$(MAKE)  -C  $(SRCDIR) install ; \
-	echo Ipopt LD -L@DIR@/lib   -lipopt   >$(SRCDIR)/$(INSTALL)/lib/WHERE.Ipopt;\
-	echo Ipopt INCLUDE -I@DIR@/include/coin  >> $(SRCDIR)/$(INSTALL)/lib/WHERE.Ipopt ;\
+	echo Ipopt LD -L@DIR@/lib   -lipopt   >../lib/WHERE.Ipopt;\
+	echo Ipopt INCLUDE -I@DIR@/include/coin  >> ../lib/WHERE.Ipopt ;\
 	fi
 
 Makefile.inc:
@@ -53,7 +54,6 @@ $(SRCDIR)/FAIRE:
 	touch $(SRCDIR)/FAIRE
 
 
-$(SRCDIR)/$(INSTALL): $(SRCDIR)/tag-tar
 
 $(SRCDIR)/tag-tar:$(PACKAGE) $(FHSL) 
 	tar xvzf $(PACKAGE)
@@ -65,10 +65,10 @@ $(PACKAGE):
 	cd `dirname $@`; $(WGET)   $(URL)/`basename $(PACKAGE)`
 clean-local:
 	rm -rf  $(SRCDIR)  *~ Makefile.inc
-
-clean: clean-local
 	-rm -rf ../include/coin
 	-rm ../lib/libipopt* ../lib/liblcoinhsl* 
 
+clean: clean-local
 
-.PHONY:$(SRCDIR)/$(INSTALL)
+
+.PHONY:..
