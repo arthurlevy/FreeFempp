@@ -1,3 +1,32 @@
+freefem++ (3.23-1) unstable; urgency=low
+
+  [ Dimitrios Eftaxiopoulos ]
+  * Update examples++-load-Makefile.patch, remove examples-load-WHERE-LIBRARY.patch
+  * Change upload distribution to experimental
+
+  [ Christophe Trophime ]
+  * update C. Trophime email
+  * add support for nlopt, ipopt - simplify debian/rules
+  * upload CT changes to 3.20
+  * add patch for configure
+  * add patch for examples++-mpi
+  * fix bamg install
+  * add corrected scripts to build plugins
+  * add patch for properly build examples++-load
+  * add lintian overrides for libfreefem++
+  * add some missing files
+  * update patches
+  *  update rules
+  * reorder BuildDepends - comment out unsupported libs
+
+  [ Dimitrios Eftaxiopoulos ]
+  * Removed files indicating the conflicts of merge
+  * Update repack.sh script and clean 3.23 version from Mac files
+  * Imported Upstream version 3.23
+  * Confirm deletion of files
+
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Fri, 21 Jun 2013 00:23:30 +0300
+
 freefem++ (3.20-1) experimental; urgency=low
 
   * New upstream release.
