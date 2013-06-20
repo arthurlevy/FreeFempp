@@ -1,7 +1,7 @@
 Index: freefem++-3.20/configure.ac
 ===================================================================
 --- freefem++-3.20.orig/configure.ac	2012-10-18 13:07:39.000000000 +0200
-+++ freefem++-3.20/configure.ac	2013-01-20 19:06:33.072259323 +0100
++++ freefem++-3.20/configure.ac	2013-02-08 10:47:34.000000000 +0100
 @@ -41,6 +41,7 @@
  ]) dnl 
  m4_define([AC_FF_WHERELIB],
@@ -27,11 +27,10 @@ Index: freefem++-3.20/configure.ac
  	fi	
      ])dnl end m4_define AC_FF_WHERELIB
  
-@@ -2076,8 +2080,16 @@
+@@ -2076,29 +2080,42 @@
  test -n "$ff_mkl_scalapack" && ff_scalapack="$ff_mkl_scalapack"
  test -n "$ff_mkl_root" && ff_winc="$ff_mkl_root/include/mkl_blas.h"
  
--
 +# For ipot
 +AC_CHECK_HEADERS(cstddef,
 +  [AC_DEFINE(HAVE_CSTDDEF, 1, cstddef exists)],
@@ -39,34 +38,58 @@ Index: freefem++-3.20/configure.ac
 +AC_CHECK_HEADERS(stddef.h,
 +  [AC_DEFINE(HAVE_STDDEF_H, 1, stddef.h exists)],
 +  [])
-+  
+ 
  m4_map([AC_FF_WHERELIB],[ 
-+	[[mumps-seq],[-ldmumps_seq -lzmumps_seq  -lmumps_common_seq  -lpord_seq],[dmumps_c.h],[]],
- 	[[mumps],[-ldmumps -lzmumps  -lmumps_common  -lpord],[dmumps_c.h],[]],
- 	[[mumps_ptscotch],[-lpord_ptscotch -lmumps_common_ptscotch -ldmumps_ptscotch -lzmumps_ptscotch -lpord_ptscotch],[dmumps_c.h]],
- 	[[mumps_scotch],[-lpord_scotch -lmumps_common_scotch -ldmumps_scotch -lzmumps_scotch -lpord_scotch],[dmumps_c.h]],
-@@ -2088,17 +2100,21 @@
- 	[[Superlu4],[-lsuperlu4],[superlu4/slu_ddefs.h],[]],
+-	[[mumps],[-ldmumps -lzmumps  -lmumps_common  -lpord],[dmumps_c.h],[]],
+-	[[mumps_ptscotch],[-lpord_ptscotch -lmumps_common_ptscotch -ldmumps_ptscotch -lzmumps_ptscotch -lpord_ptscotch],[dmumps_c.h]],
+-	[[mumps_scotch],[-lpord_scotch -lmumps_common_scotch -ldmumps_scotch -lzmumps_scotch -lpord_scotch],[dmumps_c.h]],
++	[[mumps_seq],[-ldmumps_seq -lzmumps_seq  -lmumps_common_seq  -lpord_seq],[/usr/include/dmumps_c.h],[]],
++	[[mumps],[-ldmumps -lzmumps  -lmumps_common  -lpord],[/usr/include/dmumps_c.h],[]],
++	[[mumps_ptscotch],[-lpord_ptscotch -lmumps_common_ptscotch -ldmumps_ptscotch -lzmumps_ptscotch -lpord_ptscotch],[/usr/include/dmumps_c.h]],
++	[[mumps_scotch],[-lpord_scotch -lmumps_common_scotch -ldmumps_scotch -lzmumps_scotch -lpord_scotch],[/usr/include/dmumps_c.h]],
+ 	[[hypre],[-lHYPRE]],
+ 	[[fftw3],[-lfftw3],[/usr/include/fftw3.h],[]],
+-	[[superlu_dist],[-lsuperlu-dist],[superlu-dist/superlu_defs.h],[]],
+-	[[superlu],[-lsuperlu],[superlu/slu_ddefs.h],[]],
+-	[[Superlu4],[-lsuperlu4],[superlu4/slu_ddefs.h],[]],
++	[[superlu_dist],[-lsuperlu-dist],[/usr/include/superlu-dist/superlu_defs.h],[]],
++	[[superlu],[-lsuperlu],[/usr/include/superlu/slu_ddefs.h],[]],
++	[[Superlu4],[-lsuperlu4],[/usr/include/superlu4/slu_ddefs.h],[]],
          [[blacs],[ -lblacsCinit$ff_with_mpi	-lblacsF77init$ff_with_mpi	-lblacs$ff_with_mpi],[]],
          [[scalapack],[-lscalapack$ff_with_mpi],[]],
 -        [[scotch],[-lscotch -lscotcherr],[]],
-+        [[scotch],[-lscotch -lscotcherr],[scotch/scotch.h],[]],
++        [[scotch],[-lscotch -lscotcherr],[/usr/include/scotch/scotch.h],[]],
          [[ptscotch],[-lptscotch -lptscotcherr],[]],
- 	[[metis],[-lscotch -lmetis],[metis/metis.h],[]],
- 	[[metis],[-lscotch -lmetis],[metis.h],[]],
+-	[[metis],[-lscotch -lmetis],[metis/metis.h],[]],
+-	[[metis],[-lscotch -lmetis],[metis.h],[]],
++	[[metis],[-lscotch -lmetis],[/usr/include/metis/metis.h],[]],
  	[[parmetis],[-lptscotch -lparmetis],[],[]],
- 	[[freeyams],[-lfreeyams],[freeyamslib.h],[]],
+-	[[freeyams],[-lfreeyams],[freeyamslib.h],[]],
 -	[[mmg3d],[-lmmg3d],[libmmg3d.h],[]],
-+	[[mmg3d],[-lmmg3dlib4.0],[libmmg3d.h],[]],
++	[[freeyams],[-lfreeyams],[/usr/include/freeyamslib.h],[]],
++	[[mmg3d_v4],[-lmmg3dlib4.0],[/usr/include/libmmg3d.h],[]],
  	[[mshmet],[-lmshmet],[],[]],
- 	[[gsl],[-lgsl -lgslcblas -lm],[gsl/gsl_sf.h],[]],
+-	[[gsl],[-lgsl -lgslcblas -lm],[gsl/gsl_sf.h],[]],
 -	[[parms],[-lparms -litsol -llapack -lblas -lm],[],[]],
-+	[[parms],[-lparms2 -litsol -llapack -lblas -lm],[],[]],
- 	[[tetgen],[-ltet],[tetgen.h],[]],
-+	[[hips],[-lhips],[hips/hips.h],[]],
-+	[[nlopt],[-lnlopt],[nlopt.h],[]],
-+	[[Ipopt],[-lipopt -ldmumps -lblas -lm -ldl],[coin/IpIpoptApplication.hpp],[]],
-+	[[gmm],[],[gmm/gmm.h],[]],
+-	[[tetgen],[-ltet],[tetgen.h],[]],
++	[[gsl],[-lgsl -lgslcblas -lm],[/usr/include/gsl/gsl_sf.h],[]],
++	[[parms],[-lparms2 -litsol -llapack -lblas -lm -lmpi_f77],[/usr/include/libparms2/psparslib.h],[]],
++	[[double_pastix],[-lpastix -lgfortran -lm -lrt -L/usr/lib -lscotch -lscotcherrexit -lpthread],[],[]],
++	[[complex_pastix],[-lpastix -lgfortran -lm -lrt -L/usr/lib -lscotch -lscotcherrexit -lpthread],[],[]],
++	[[tetgen],[-ltet],[/usr/include/tetgen.h],[]],
++	[[hips],[-lhips],[/usr/include/hips/hips.h],[]],
++	[[nlopt],[-lnlopt],[/usr/include/nlopt.h],[]],
++	[[Ipopt],[-lipopt -ldmumps -lblas -lm -ldl],[/usr/include/coin/IpIpoptApplication.hpp],[]],
++	[[gmm],[-lm],[/usr/include/gmm/gmm.h],[]],
      ]
      )
  
+@@ -2197,3 +2214,8 @@
+     AC_MSG_NOTICE([     *********************************************** ])
+ fi
+ 
++AC_MSG_NOTICE([Compilation options: ])
++AC_MSG_NOTICE([CPPFLAGS=$CPPFLAGS])
++AC_MSG_NOTICE([CFLAGS=$CFLAGS])
++AC_MSG_NOTICE([CXXFLAGS=$CXXFLAGS])
++AC_MSG_NOTICE([LDFLAGS=$LDFLAGS])

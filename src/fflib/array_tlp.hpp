@@ -537,6 +537,9 @@ template<class K> long get_n(KNM<K> * p){ return p->N();}
 template<class K> long get_m(KNM<K> * p){ return p->M();}
 template<class K> K get_max(KN<K> * p){ return p->max();}
 template<class K> K get_min(KN<K> * p){ return p->min();}
+template<class K> long get_imax(KN<K> * p){ long  i =0; for(long k=1;k< p->N(); ++k) if(  (*p)[k]>(*p)[i] ) i=k;  return i ;}
+template<class K> long get_imin(KN<K> * p){ long  i =0; for(long k=1;k< p->N(); ++k) if(  (*p)[k]<(*p)[i] ) i=k;  return i ;}
+
 template<class K> K get_sum(KN<K> * p){ return p->sum();}
 template<class K> double get_l2(KN<K> * p){ return p->l2();}
 template<class K> double get_l1(KN<K> * p){ return p->l1();}
@@ -631,6 +634,15 @@ AnyType UnRefpKN(Stack,const AnyType &a) {
     KK_ a_(*PGetAny<KK >(a));
     return  SetAny<KK_ >(a_);}
 
+template<class A> inline AnyType DestroyKN(Stack,const AnyType &x){
+    KN<A> * a=PGetAny<KN<A> >(x);
+    SHOWVERB(cout << "DESTROY " <<typeid(A).name() << " " << a <<  endl); 
+    for(int i=0;i<a->N(); ++i)
+        (*a)[i].destroy(); 
+    a->destroy(); 
+    return  Nothing;
+}
+
 template<class K>
 void ArrayDCL()
 {
@@ -646,8 +658,8 @@ void ArrayDCL()
 
   //  Dcl_Type<KNM<K> *>(0,::Destroy<KNM<K> > ,::ClearReturnpKK<K,KNM<K> >);
     Dcl_TypeandPtr_<KNM_<K> ,KNM<K>*  > (0,0,0,::Destroy<KNM<K> >, ::ClearReturnKK_<K,KNM<K>,KNM_<K> >,::ClearReturnpKK<K,KNM<K> >);
-    Dcl_Type<  KN<KNM<K> >* >();
-    Dcl_Type<  KN<KN<K> >* >();
+    Dcl_Type<  KN<KNM<K> >* >(0,::DestroyKN<KNM<K> >,::ClearReturnpKK<KNM<K>,KN<KNM<K> > >);
+    Dcl_Type<  KN<KN<K> >* >(0,::DestroyKN<KN<K> >,::ClearReturnpKK<KN<K>,KN<KN<K> > >);
     
     Dcl_Type< outProduct_KN_<K>* >();
     Dcl_Type< Transpose<KN_<K> > > ();
@@ -955,6 +967,7 @@ void ArrayOperator()
      Add<KN<K> *>("sum",".",new OneOperator1<K,KN<K> *>(get_sum));
      Add<KN<K> *>("min",".",new OneOperator1<K,KN<K> *>(get_min));
      Add<KN<K> *>("max",".",new OneOperator1<K,KN<K> *>(get_max));
+
      Add<KN<K> *>("l2",".",new OneOperator1<double,KN<K> *>(get_l2));
      Add<KN<K> *>("l1",".",new OneOperator1<double,KN<K> *>(get_l1));
      Add<KN<K> *>("linfty",".",new OneOperator1<double,KN<K> *>(get_linfty));

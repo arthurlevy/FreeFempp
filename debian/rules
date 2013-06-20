@@ -10,12 +10,20 @@
 export DH_VERBOSE=1
 export DH_OPTIONS=-v
 
+export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
 
 
 %:
 	dh $@ --with autoreconf
 
 export OMPI_MCA_plm_rsh_agent=/bin/false                #workaround to start MPI-applications in chroot
+
+# to avoid lintian warnings
+CPPFLAGS:=$(shell dpkg-buildflags --get CPPFLAGS)
+CFLAGS:=$(shell dpkg-buildflags --get CFLAGS)
+CXXFLAGS:=$(shell dpkg-buildflags --get CXXFLAGS)
+LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
 	
 override_dh_auto_clean:	
 	dh_auto_clean
@@ -43,6 +51,11 @@ override_dh_auto_clean:
 	rm -f examples++-load/freefem++.pref examples++-mpi/freefem++.pref
 	rm -f examples++-mpi/MPICG.o examples++-mpi/MPICG.so
 	rm -f src/mpi/config.log src/mpi/ff-mpirun src/medit/compil.date
+#
+# To rebuild
+	find . -name \*.o | xargs --no-run-if-empty rm
+	find . -name \*.so | xargs --no-run-if-empty rm
+	
 
 override_dh_autoreconf_clean:
 	dh_autoreconf_clean
@@ -53,13 +66,27 @@ override_dh_autoreconf:
 	dh_autoreconf --as-needed
 
 override_dh_auto_configure:
-	dh_auto_configure -- CFLAGS=-lm
+	dh_auto_configure -- \
+	   CPPFLAGS=$(CPPFLAGS) \
+	   CFLAGS="$(CFLAGS) -lm" \
+	   CXXFLAGS="$(CXXFLAGS)" \
+	   LDFLAGS="$(LDFLAGS)" \
+	   CXX=mpic++
 	cp -f examples++-load/WHERE_LIBRARY-config debian
 	dh_auto_build
 
 override_dh_auto_install:
-	mv debian/freefem++/usr/bin/bamg debian/freefem++/usr/bin/ffbamg
 	dh_auto_install
+	mv debian/tmp/usr/bin/bamg debian/tmp/usr/bin/ffbamg
+#
+# Install modified script to create plugins	
+	cp examples++-load/WHERE_LIBRARY-config examples++-load/WHERE_LIBRARY
+	cp -f debian/ff-c++ debian/tmp/usr/bin
+	cp -f debian/ff-get-dep debian/tmp/usr/bin
+#
+# Fix lintian warnings
+	chmod ugo-x debian/tmp/usr/lib/ff++/3.*/idp/*.idp
+
 
 override_dh_auto_test:
 	echo "do not run tests"

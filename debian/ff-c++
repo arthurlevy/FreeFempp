@@ -1,0 +1,168 @@
+#!/bin/sh
+# Create a loadable object from a C++ function defined in a .cpp file
+# $Id$
+thecommand="$0"
+dircommand=`dirname "$0"`
+
+FFVERSION='3.20'
+FFCXXFLAGS='-g  -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -DNDEBUG -O3 -mmmx -msse -msse2 -DBAMG_LONG_LONG  -DNCHECKPTR -fPIC -D_FORTIFY_SOURCE=2 '
+FFFFLAGS='-g  -DNDEBUG -O3 -mmmx -msse -msse2 -fPIC'
+FFFLIBS='/usr/lib/gcc/x86_64-linux-gnu/4.7/libgfortran.so'
+INCFF='-I/usr/include/freefem++/'
+if [ -z "$CXX" ] ; then CXX='mpic++' ; fi
+if [ -z "$MPICXX" ] ; then MPICXX="/usr/bin/mpic++" ; fi
+if [ -z "$MPI_LIB" ] ; then MPI_LIB="-pthread -L/usr/lib/openmpi/lib -lmpi_cxx -lmpi -lopen-rte -lopen-pal -ldl -Wl,--export-dynamic -lnsl -lutil -lm -ldl " ; fi
+if [ -z "$F77" ] ; then F77="gfortran" ; fi
+
+do="yes"
+DEBUG=""
+CONLY="false"
+uu=`uname -s` 
+INC=""
+LIBS=""
+DLL=""
+bin="."
+out=""
+files=""
+fileso=""
+OTHER="";
+WIN32="";
+
+autodep=""
+withmpi=""
+args=""
+
+while [ $# -ne 0 ]  ; do
+    argsp=$args
+    args="$args '$1'"
+    case "$1" in
+	-[h?]*) echo usage $0 "[-n] [-g] [-win32] [-l libfile] [-I includedir]  files"
+	    echo "    -auto :  build automaticaly the dependance (in test FH) "
+	    echo "    -n  :  do nothing just print"
+	    echo "    -g  :  compile with -g option"
+	    echo "    -c  : compile only"
+	    echo "    -mpi:  with  mpi"
+	    echo "    -nompi:  without   $MPI_LIB links "
+	    echo "    -O*  :  compile with -O* option"
+	    echo "    -cygwin: compile for cygwin/win32 OS (Window XP, ...)"
+	    echo "    -win32:  compile for win32 OS (Window XP, ...) default under cygwin"
+	    echo "    -l files  add files to the ld process (link)"
+	    echo "    -I dir  add dir in include seach dir for compilation"
+	    echo "    -b dir  to change the default install  dir " 
+	    echo "    -dll file  add  dll and this file copie in the install dir"
+	    echo "    -o outputfile without suffix"
+	    echo "    file.{cpp,cp,cxx,c,f,F}"
+	    exit 0;
+	    ;;
+	F77=*) F77=`echo $1|sed 's/[A-Z0-9]*=//'` ;;
+	CXX=*) CXX=`echo $1|sed 's/[A-Z0-9]*=//'` ;;
+	MPICXX=*) MPICXX=`echo $1|sed 's/[A-Z0-9]*=//'`;withmpi=yes ;;
+	F77=*) F77=`echo $1|sed 's/[A-Z0-9]*=//'` ;;
+	CXXFLAGS=*) CXXFLAGS=`echo $1|sed 's/[A-Z0-9]*=//'` ;;
+	FFLAGS=*) FFLAGS=`echo $1|sed 's/[A-Z0-9]*=//'` ;;
+	MPI_LIB=*) MPI_LIB=`echo $1|sed 's/[A-Z0-9]*=//'` ;;
+	-auto) autodep=yes;args=$argsp;;
+	-mpi) withmpi=yes;;
+	-nompi) MPI_LIB='';withmpi='';;
+	-n)  do="no";;
+	-g)  DEBUG="$DEBUG $1";;
+	-c)  CONLY=yes;;
+	-O*) DEBUG="$DEBUG $1";;
+	-cygwin)  onwin32=1; uu="cygwin-version";; 
+	-win32)   onwin32=1; uu="win32";; 
+	-b)     bin=$2  ; shift;;
+	-I*)    INC="$INC '$1'";;
+	-D*)    INC="$INC '$1'";;
+	-dll)   DLL="$DLL '$2'";shift;;
+	-[Ll]*)    LIBS="$LIBS $1" ;;
+	*.a)     LIBS="$LIBS $1" ;;
+	*.so)    LIBS="$LIBS $1" ;;
+	*.dll)   if [ -f "$1" ] ; then  LIBS="$LIBS '$1'"  
+	    elif [ -f "$bin/$1" ] ; then  LIBS="$LIBS '$bin/$1'"
+	    else
+	      echo " erreur file not found $1" ;
+	      exit 1;
+	    fi;;
+	-Wl*)    LIBS="$LIBS $1" ;;
+	*.cpp) files="$files '$1'";  o=`basename "$1" .cpp` ; fileso="$fileso '$o.o'"; args=$argsp;; 
+	*.cp)  files="$files '$1'";  o=`basename "$1" .cp`   ; fileso="$fileso '$o.o'"; args=$argsp;; 
+	*.cxx) files="$files '$1'";  o=`basename "$1" .cxx` ; fileso="$fileso '$o.o'"; args=$argsp;;
+	*.c)   files="$files '$1'";  o=`basename "$1" .c` ; fileso="$fileso '$o.o'"; args=$argsp;;  
+	*.f)   ffiles="$ffiles '$1'";  o=`basename "$1" .f` ; fileso="$fileso '$o.o'";; 
+	*.F)   ffiles="$ffiles '$1'";  o=`basename "$1" .F` ; fileso="$fileso '$o.o'";; 
+	*.o)   fileso="$fileso '$1'"; o=`basename "$1" .o` ;; 
+	-o)    out="$2"; shift;;
+	*) OTHER="$OTHER $1";;
+    esac
+    shift
+done
+if [ -n "$autodep"  ] ; then
+#    echo "$thecommand" $args  `eval "'$dircommand/ff-get-dep'" -ff $files`
+    argsdep=`eval "'$dircommand/ff-get-dep'" -ff $files`
+    
+     error=`echo "$argsdep"| grep ERROR`
+     if [ -n "$error" ] ; then
+	 echo " ERROR in  auto dependance seach.  sorry : $error "
+	 exit 0;
+     fi
+    echo eval "$thecommand" $args  $argsdep
+    eval "$thecommand" $args  $argsdep
+    exit 0;
+fi
+
+if [  -n "$onwin32" -a ! -f "$bin/libff.dll"  ] ; then 
+    echo " Error the file libff.dll  must be exist in '$bin' the install directory," 
+    echo " to link on windows OS "
+    echo " Use the parameter -b to set the correct install directory " 
+    exit 1;
+fi
+
+if [ -z "$out" ] ; then  out=$o  ; fi;
+# Default compiler
+if [ -z "$CXX"  ];then  CXX=g++ ; fi
+if [ -n "$withmpi" ]; then  CXX=$MPICXX;fi
+
+test "$withmpi" = "yes" && WMPI_LIB="$MPI_LIB"
+
+INC="$INCFF $INC"  
+SUF=so
+FLAGS='-fPIC'
+SHARED="-shared "
+
+
+#FLAGS="$FLAGS $DEBUG $FFCXXFLAGS"
+#  change F. H Version 3.17 
+FLAGS="$FLAGS $DEBUG"
+
+if [ -n "$ffiles$files$fileso" ] ; then
+    if [ "$files" ] ;then 
+	echo $CXX -c $FLAGS $CXXFLAGS $FFCXXFLAGS $INC $PIC $files
+	if [  $do = yes ] ; then 
+	    eval $CXX -c $INC $FLAGS $CXXFLAGS $FFCXXFLAGS  $PIC  $files
+	    ret=$?; if [ $ret -ne 0 ] ; then exit $ret ;fi
+	fi
+    fi
+    if [ "$ffiles" ] ;then 
+	echo $F77 -c $FLAGS $FFLAGS $FFFFLAGS $INC $PIC $ffiles
+	LIBS="$FFFLIBS $LIBS"
+	if [  $do = yes ] ; then 
+	    eval $F77 -c $INC $FFLAGS $FLAGS $FFFFLAGS $PIC  $ffiles
+	    ret=$?; if [ $ret -ne 0 ] ; then exit $ret ;fi
+	fi
+    fi
+    if [ "$CONLY" != yes ]; then
+	echo $CXX $SHARED $FLAGS $CXXFLAGS $FFCXXFLAGS $fileso -o $out.$SUF $LIBS $DLL $OTHER $WMPI_LIB
+	if [  $do = yes ] ; then 
+	   eval $CXX $SHARED $FLAGS $CXXFLAGS $FFCXXFLAGS $fileso -o $out.$SUF $LIBS $DLL $OTHER $WMPI_LIB
+	    ret=$?; if [ $ret -ne 0 ] ; then exit $ret ;fi
+	fi
+	if [  "$bin" != "." ]; then
+	    echo cp $out.$SUF  $bin
+	    test $do = yes &&   cp $out.$SUF  "$bin"
+	fi
+	if [ -n "$DLL" ] ; then
+	    echo cp $DLL $bin
+	    test $do = yes &&   cp $DLL "$bin"
+	fi
+    fi
+fi

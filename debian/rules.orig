@@ -1,0 +1,118 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# This file was originally written by Joey Hess and Craig Small.
+# As a special exception, when this file is copied by dh-make into a
+# dh-make output file, you may use that output file without restriction.
+# This special exception was added by Craig Small in version 0.37 of dh-make.
+
+# Uncomment this to turn on verbose mode.
+export DH_VERBOSE=1
+export DH_OPTIONS=-v
+
+<<<<<<< HEAD
+=======
+export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+>>>>>>> experimental
+
+
+%:
+	dh $@ --with autoreconf
+
+export OMPI_MCA_plm_rsh_agent=/bin/false                #workaround to start MPI-applications in chroot
+<<<<<<< HEAD
+=======
+
+# to avoid lintian warnings
+CPPFLAGS:=$(shell dpkg-buildflags --get CPPFLAGS)
+CFLAGS:=$(shell dpkg-buildflags --get CFLAGS)
+CXXFLAGS:=$(shell dpkg-buildflags --get CXXFLAGS)
+LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
+>>>>>>> experimental
+	
+override_dh_auto_clean:	
+	dh_auto_clean
+	rm -f download/parms/config.log download/hypre/config.log 
+	rm -f download/pastix/config.log download/parmetis/config.log
+	rm -f download/scotch/config.log download/superludist/config.log
+	rm -f download/blacs/config.log download/scalapack/config.log
+	rm -f download/hips/config.log download/metis/config.log
+	rm -f download/mumps/config.log
+	rm -f examples++-load/config.log src/mpi/config.log
+	rm -rf DOC/cpfigs 
+	rm -f DOC/addfe.aux 
+	rm -f DOC/freefem++doc.aux DOC/freefem++doc.idx
+	rm -f DOC/freefem++doc.ilg DOC/freefem++doc.ind DOC/freefem++doc.log
+	rm -f DOC/freefem++doc.out DOC/freefem++doc.pdf DOC/freefem++doc.pdfsync 
+	rm -f DOC/freefem++doc.toc
+	rm -f config-version.h config_LIB_INFO configure.param
+# 	rm -f download/blacs/Bmake.inc 
+	rm -f download/fftw/cxxflags
+	rm -f download/gmm/cxxflags download/metis/Makefile.in
+	rm -f download/pastix/config-complex.in 
+#       rm -f download/pastix/config.in
+	rm -f download/tetgen/cxxflags examples++-3d/freefem++.pref
+	rm -f examples++-load/WHERE_LIBRARY-config 
+	rm -f examples++-load/freefem++.pref examples++-mpi/freefem++.pref
+	rm -f examples++-mpi/MPICG.o examples++-mpi/MPICG.so
+	rm -f src/mpi/config.log src/mpi/ff-mpirun src/medit/compil.date
+#
+# To rebuild
+	find . -name \*.o | xargs --no-run-if-empty rm
+	find . -name \*.so | xargs --no-run-if-empty rm
+	
+
+override_dh_autoreconf_clean:
+	dh_autoreconf_clean
+	dh_quilt_unpatch
+
+override_dh_autoreconf:
+	dh_quilt_patch
+	dh_autoreconf --as-needed
+
+<<<<<<< HEAD
+override_dh_autoreconf_clean:
+	dh_autoreconf_clean
+	dh_quilt_unpatch
+
+override_dh_autoreconf:
+	dh_quilt_patch
+	dh_autoreconf --as-needed
+
+override_dh_auto_configure:
+	dh_auto_configure -- CFLAGS=-lm
+	cp -f examples++-load/WHERE_LIBRARY-config debian
+	dh_auto_build
+
+override_dh_auto_install:
+	mv debian/freefem++/usr/bin/bamg debian/freefem++/usr/bin/ffbamg
+	dh_auto_install
+=======
+override_dh_auto_configure:
+	dh_auto_configure -- \
+	   CPPFLAGS=$(CPPFLAGS) \
+	   CFLAGS="$(CFLAGS) -lm" \
+	   CXXFLAGS="$(CXXFLAGS)" \
+	   LDFLAGS="$(LDFLAGS)" \
+	   CXX=mpic++
+	cp -f examples++-load/WHERE_LIBRARY-config debian
+	dh_auto_build
+
+override_dh_auto_install:
+	dh_auto_install
+	mv debian/tmp/usr/bin/bamg debian/tmp/usr/bin/ffbamg
+#
+# Install modified script to create plugins	
+	cp examples++-load/WHERE_LIBRARY-config examples++-load/WHERE_LIBRARY
+	cp -f debian/ff-c++ debian/tmp/usr/bin
+	cp -f debian/ff-get-dep debian/tmp/usr/bin
+#
+# Fix lintian warnings
+	chmod ugo-x debian/tmp/usr/lib/ff++/3.*/idp/*.idp
+
+>>>>>>> experimental
+
+override_dh_auto_test:
+	echo "do not run tests"
+	#dh_auto_test

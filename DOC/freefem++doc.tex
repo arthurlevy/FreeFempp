@@ -10,7 +10,7 @@
 
 \newtheorem{remark}{Remark}
 
-\def\VERSION{3.19}
+\def\VERSION{3.20}
 \def\key#1{\emph{#1}\index{#1}}
 \def\vec#1{\mbox{\boldmath $#1$}}
 \def\C{\mathbb{C}}
@@ -284,7 +284,8 @@ or go to the end of the page to get the full list of downloads.
 Mac OS X and some Linux systems.
 %"\texttt{FreeFem++}" at \url{http://www.freefem.org}.
 \end{remark}
-Install by double click on the appropriate file.
+Install by double click on the appropriate file, under linux and MacOS the
+install file are respectively in directory  \texttt{/usr/local/bin},  \texttt{/usr/local/share/freefem++},  \texttt{/usr/local/lib/ff++}
 
 
 \paragraph{Windows binaries install}
@@ -8507,8 +8508,8 @@ and $U_{h},V_{h} \in R_{h}$
 The functions $U_{h},V_{h}$ have three components so we have
 $$U_{h}=\vectthree{Uxh}{Uyh}{Uzh}  \quad \mbox{and}\quad V_{h}=\vectthree{Vxh}{Vyh}{Vzh}$$
 
-\begin{note}\label{note-p3d} ONe problem of the periodic boundary condition is the mesh mus be the same
-au equivalence face, the BuildLayer mesh generatio split  quadralateral  faces with the diagonal
+\begin{note}\label{note-p3d} One hard  problem of the periodic boundary condition is the mesh must be the same
+au equivalence face, the BuildLayer mesh generator split each  quadrilateral  faces with the diagonal
 passing through vertex with maximal number, so to be sure to have the same mesh one both face periodic
 the 2d numbering in corresponding edges must be compatible (for example the same variation).
 By Default, the numbering of square vertex are correct. 
@@ -8519,7 +8520,7 @@ To change the mesh numbering you can used the \texttt{change} function like:
 { // for cleanning  memory..
 @int[@int] old2new(0:Th.nv-1);// array set on 0, 1, .., nv-1
 @fespace Vh2(Th,P1);
-@Vh2 sorder=x+y; // choose ordering  increasing on 4 square borders with x or y\index{sort}
+@Vh2 sorder=x+y; // choose an ordering  increasing on 4 square borders with x or y\index{sort}
 @sort(sorder[],old2new); // build the inverse permutation 
 @int[@int]  new2old=old2new^-1;   // inverse the permutation 
 Th= @change(Th,renumv=new2old);\index{change}
@@ -9457,8 +9458,67 @@ where * stands for the name of quadrature formula or the order of the Gauss form
  By default,  we use the formula which is exact for polynomials of degree $5$ on triangles or edges (in bold in three tables)\index{quadrature:default}.
 \end{note}
 
-%\newpage
+This possible to add an own quadrature formulae with using plugin \texttt{"qf11to25"} on segment  , triangle or Tetrahedron.
+The quadrature formulae  in $D$ dimension is a bidimentional  array of size $N_q\times (D+1)$ 
+such that the $D+1$ value of on row $i=0,...,N_p-1$  are $w^i,\hat{x}^i_1,...,\hat{x}^i_D$ where
 
+$w^i$ is the weight of the quadrature point, and $1-\sum_{k=1}^D \hat{x}^i_k ,\hat{x}^i_1,...,\hat{x}^i_D$
+is the barycentric coordinate the quadrature point.
+  
+\bFF
+// just for test ... (version 3.19-1) 
+load "qf11to25" // load plugin                   
+     
+  // Quadrature on segment \hfilll
+    @real[int,int] qq1=[ 
+                      [0.5,0],
+                      [0.5,1]];
+
+  @QF1 qf1(1,qq1);// def of quadrature formulae qf1 on segment 
+  // remark:\hfilll
+  //  1 is the order of the quadrature  exact for polynome of degree < 1) 
+ 
+  // Quadrature on triangle \hfilll
+  @real[int,int] qq2=[
+                     [1./3,0,0],
+                     [1./3.,1,0],
+                     [1./3.,0,1]];
+                     
+  @QF2 qf2(1,qq2);// def of quadrature formulae qf2 on triangle 
+  // remark:\hfilll
+  //  1 is the order of the quadrature  exact for polynome of degree < 1) 
+  // so must have $ \Longrightarrow \sum w^i  = 1 $\hfilll
+  
+   // Quadrature on Tetrahedron   \hfilll
+  @real[int,int] qq3=[
+     [1./4,0,0,0],
+     [1./4.,1,0,0],
+     [1./4.,0,1,0],
+     [1./4.,0,0,1]];
+     
+  @QF3 qf3(1,qq3);// def of quadrature formulae qf3 on get. 
+  // remark:\hfilll
+  //  1 is the order of the quadrature  exact for polynome of degree < 1) 
+
+
+  // verification in 1d end 2d.. 
+  @real I1 = int1d(Th,qfe=qf1)(x^2) ;
+  @real I1l = int1d(Th,qfe=qf1pElump)(x^2) ;
+
+  @real I2 = int2d(Th,qft=qf2)(x^2) ;
+  @real I2l = int2d(Th,qft=qf1pTlump)(x^2) ;
+
+  @cout << I1 << " == " << I1l << endl; 
+  @cout << I2 << " == " << I2l << endl; 
+  @assert( abs(I1-I1l) < 1e-10);
+  @assert( abs(I2-I2l) < 1e-10);
+\eFF
+%\newpage
+the output is
+\bFF
+1.67 == 1.67
+0.335 == 0.335
+\eFF
 
 \subsection{Variational Form, Sparse Matrix, PDE Data Vector}
   \index{varf}\index{array}
