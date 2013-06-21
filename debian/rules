@@ -15,7 +15,7 @@ export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
 
 
 %:
-	dh $@ --with autoreconf
+	dh $@ --with autoreconf --parallel
 
 export OMPI_MCA_plm_rsh_agent=/bin/false                #workaround to start MPI-applications in chroot
 
@@ -24,7 +24,7 @@ CPPFLAGS:=$(shell dpkg-buildflags --get CPPFLAGS)
 CFLAGS:=$(shell dpkg-buildflags --get CFLAGS)
 CXXFLAGS:=$(shell dpkg-buildflags --get CXXFLAGS)
 LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
-	
+
 override_dh_auto_clean:	
 	dh_auto_clean
 	rm -f download/parms/config.log download/hypre/config.log 
@@ -55,7 +55,6 @@ override_dh_auto_clean:
 # To rebuild
 	find . -name \*.o | xargs --no-run-if-empty rm
 	find . -name \*.so | xargs --no-run-if-empty rm
-	
 
 override_dh_autoreconf_clean:
 	dh_autoreconf_clean
@@ -88,6 +87,6 @@ override_dh_auto_install:
 	chmod ugo-x debian/tmp/usr/lib/ff++/3.*/idp/*.idp
 
 
-override_dh_auto_test:
-	echo "do not run tests"
-	#dh_auto_test
+# override_dh_auto_test:
+# 	echo "do not run tests"
+# 	#dh_auto_test
