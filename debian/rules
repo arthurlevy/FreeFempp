@@ -87,6 +87,6 @@ override_dh_auto_install:
 	chmod ugo-x debian/tmp/usr/lib/ff++/3.*/idp/*.idp
 
 
-# override_dh_auto_test:
-# 	echo "do not run tests"
-# 	#dh_auto_test
+override_dh_auto_test:
+	echo "do not run tests"
+	#dh_auto_test
