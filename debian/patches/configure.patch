@@ -1,3 +1,4 @@
+Fix compilation issues related to libraries and flags
 Index: freefem++-3.20/configure.ac
 ===================================================================
 --- freefem++-3.20.orig/configure.ac	2012-10-18 13:07:39.000000000 +0200

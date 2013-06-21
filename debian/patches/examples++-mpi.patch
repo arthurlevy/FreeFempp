@@ -1,3 +1,4 @@
+Correct location of pastix, hips and metis header files
 Index: freefem++-3.20/examples++-mpi/hips_FreeFem.cpp
 ===================================================================
 --- freefem++-3.20.orig/examples++-mpi/hips_FreeFem.cpp	2013-02-08 15:07:48.000000000 +0100

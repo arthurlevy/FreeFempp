@@ -1,3 +1,4 @@
+Add ability to compile freefem++ with Ipopt, freeyams, mmg3d_v4, mshmet, mumps_seq and superlu4
 Index: freefem++-3.20/examples++-load/ff-Ipopt.cpp
 ===================================================================
 --- freefem++-3.20.orig/examples++-load/ff-Ipopt.cpp	2013-02-08 15:07:48.000000000 +0100
