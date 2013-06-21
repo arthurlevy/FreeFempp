@@ -1,0 +1,47 @@
+abs_top_builddir = /home/eftaxiop/Αρχεία/Γενικά/Λογισμικό/freefem++/Δημιουργία_πακέτου_για_το_Debian_Linux/freefem++
+WGET=wget --no-check-certificate
+include $(abs_top_builddir)/download/headers-sparsesolver.inc
+# path for this directory 
+PARMS_ROOT	= $(abs_top_builddir)/download/parms/pARMS_2.2
+
+# name used for architecture 
+ARCH	=	LINUX   
+DARCH 	=	-D$(ARCH)
+
+# variable to declare optimization level
+# use '-g' to create libparms for debugging purposes
+DBG     =      -O3
+
+# to make pARMS name compatible with other linear algebra software
+# such as PETSc, assign DCHNAME as: DCHNAME = -DPETSC
+DCHNAME = 
+
+# archive command
+AR	= ar #ar
+ARFLAGS	= rv #cr
+#====================================================================
+
+#====================================================================
+# Options for a generic LINUX configuration 
+#################################
+ CC	=	/usr/bin/mpicc
+ CFLAGS	= $(DBG) $(DARCH) $(DCHNAME)  -g  -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -Wall -pedantic -lm -DNDEBUG -O3 -mmmx -msse -msse2 -fPIC
+ INCLUDE_METIS =     #-I
+ METIS_HOME  =       #-L/Users/morice/work/ParMetis-3.1.1/ -lparmetis -lmetis 
+
+# fortran compiler / linker 
+ FC	=	/usr/bin/mpif90
+ FFLAGS	= $(DBG)  $(DARCH)  -g  -DNDEBUG -O3 -mmmx -msse -msse2 -fPIC
+#
+# the directory of MPI library. for example -L/usr/local/mpich/lib
+ LFLAGS_MPI 	= $(FFMPIINCLUDE) 
+# the mpi library
+ LIBS_MPI	= $(FFMPILIB)
+# the directory of BLAS
+ LFLAGS_BLAS	= $(FFBLASINCLUDE)
+# the BLAS library
+ LIBS_BLAS	= $(FFBLASLIB) -lpthread  
+#LINKER
+ LINKER	=	$(FC)
+#LINK OPTION
+ LINK_OPT	=   #-nofor_main pour ifort compiler

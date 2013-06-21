@@ -1,8 +1,7 @@
 freefem++ (3.23-1) unstable; urgency=low
 
   [ Dimitrios Eftaxiopoulos ]
-  * Update examples++-load-Makefile.patch, remove examples-load-WHERE-LIBRARY.patch
-  * Change upload distribution to experimental
+  * Imported Upstream version 3.23
 
   [ Christophe Trophime ]
   * update C. Trophime email
@@ -16,14 +15,8 @@ freefem++ (3.23-1) unstable; urgency=low
   * add lintian overrides for libfreefem++
   * add some missing files
   * update patches
-  *  update rules
+  * update rules
   * reorder BuildDepends - comment out unsupported libs
-
-  [ Dimitrios Eftaxiopoulos ]
-  * Removed files indicating the conflicts of merge
-  * Update repack.sh script and clean 3.23 version from Mac files
-  * Imported Upstream version 3.23
-  * Confirm deletion of files
 
  -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Fri, 21 Jun 2013 00:23:30 +0300
 
