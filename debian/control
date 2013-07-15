@@ -4,11 +4,10 @@ Priority: optional
 Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
 Uploaders: Christophe Trophime <christophe.trophime@lncmi.cnrs.fr>, 
  Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>
-Build-Depends: debhelper (>= 9~), 
- dh-autoreconf,
+Build-Depends: debhelper (>= 9~), dh-autoreconf,
  quilt, gawk, gfortran, mpi-default-dev,
  flex, bison, libxt-dev, libxext-dev, libxxf86vm-dev, 
- libxpm-dev, 
+ libxpm-dev, libmetis-edf-dev,
  libfltk1.3-dev | libfltk-dev, freeglut3-dev, ghostscript, imagemagick,
  texlive, texlive-extra-utils, texlive-latex-extra, texlive-font-utils, 
  libfftw3-dev, libblas-dev, libgsl0-dev,

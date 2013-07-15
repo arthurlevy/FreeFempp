@@ -2,6 +2,20 @@ freefem++ (3.23-1) unstable; urgency=low
 
   [ Dimitrios Eftaxiopoulos ]
   * Imported Upstream version 3.23
+  * Add libmetis-edf-dev to Build-Depends in debian/control
+  * Change installation directory of header-like *.idp files
+    from /usr/lib/freefem++ to /usr/include/freefem++, in order
+    to fix a lintian warning
+  * Update patch to examples++-load/Makefile.am in order to enable
+    functioning of load *.so and include *.idp commands in *.edp
+    scripts
+  * Delete patches to src/Graphics/sansgraph.cpp and
+    src/Graphics/xglrgraph.cpp because they are not needed any more
+  * Fix lintian warning about missing LDFLAGS
+  * Override dh_auto_test in debian/rules, such that in case it is 
+    used, it completes executing all *.edp example files, regardless
+    of aborting on some of them
+  * Update debian/source/options file
 
   [ Christophe Trophime ]
   * update C. Trophime email

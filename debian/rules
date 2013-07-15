@@ -13,9 +13,11 @@ export DH_OPTIONS=-v
 # export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
 # export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
 
+LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
+
 
 %:
-	dh $@ --parallel
+	dh $@ --with autoreconf
 
 # export OMPI_MCA_plm_rsh_agent=/bin/false                #workaround to start MPI-applications in chroot
 # 
@@ -25,37 +27,47 @@ export DH_OPTIONS=-v
 # CXXFLAGS:=$(shell dpkg-buildflags --get CXXFLAGS)
 # LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
 # 
-# override_dh_auto_clean:	
-# 	dh_auto_clean
-# 	rm -f download/parms/config.log download/hypre/config.log 
-# 	rm -f download/pastix/config.log download/parmetis/config.log
-# 	rm -f download/scotch/config.log download/superludist/config.log
-# 	rm -f download/blacs/config.log download/scalapack/config.log
-# 	rm -f download/hips/config.log download/metis/config.log
-# 	rm -f download/mumps/config.log
-# 	rm -f examples++-load/config.log src/mpi/config.log
-# 	rm -rf DOC/cpfigs 
-# 	rm -f DOC/addfe.aux 
-# 	rm -f DOC/freefem++doc.aux DOC/freefem++doc.idx
-# 	rm -f DOC/freefem++doc.ilg DOC/freefem++doc.ind DOC/freefem++doc.log
-# 	rm -f DOC/freefem++doc.out DOC/freefem++doc.pdf DOC/freefem++doc.pdfsync 
-# 	rm -f DOC/freefem++doc.toc
-# 	rm -f config-version.h config_LIB_INFO configure.param
-# # 	rm -f download/blacs/Bmake.inc 
-# 	rm -f download/fftw/cxxflags
-# 	rm -f download/gmm/cxxflags download/metis/Makefile.in
-# 	rm -f download/pastix/config-complex.in 
-# #       rm -f download/pastix/config.in
-# 	rm -f download/tetgen/cxxflags examples++-3d/freefem++.pref
-# 	rm -f examples++-load/WHERE_LIBRARY-config 
-# 	rm -f examples++-load/freefem++.pref examples++-mpi/freefem++.pref
-# 	rm -f examples++-mpi/MPICG.o examples++-mpi/MPICG.so
-# 	rm -f src/mpi/config.log src/mpi/ff-mpirun src/medit/compil.date
+ override_dh_auto_clean:
+	dh_auto_clean
+	rm -f config.log
+	rm -f config-version.h config_LIB_INFO configure.param
+	rm -f download/fftw/cxxflags
+	rm -f download/hips/config.log download/ipopt/config.log
+	rm -f download/metis/config.log download/metis/Makefile.in
+	rm -f download/mumps/config.log download/mumps-seq/config.log
+	rm -f download/parmetis/config.log
+	rm -f download/parms/config.log download/parms/Makefile.in
+	rm -f download/pastix/config-complex.in download/pastix/config.log
+	rm -f download/scalapack/config.log
+	rm -f download/scotch/config.log
+	rm -f download/superludist/config.log
+	rm -f download/tetgen/cxxflags
+	cd src && rm -f medit/compil.date mpi/config.log mpi/ff-mpirun
+	cd DOC && rm -f cpfigs/*.pdf addfe.aux freefem++doc.aux \
+			freefem++doc.idx freefem++doc.ilg freefem++doc.ind \
+			freefem++doc.log freefem++doc.out \
+			freefem++doc.pdfsync freefem++doc.toc
+	cd examples++-load && rm -f *.ps *.txt *.mesh glu2D.mesh.gmsh \
+					pippo.data pippo.dx triQA.msh \
+					freefem++.pref config.log \
+					WHERE_LIBRARY-config
+	cd examples++-tutorial && rm -f A.matrix *.ps *.txt g.mesh toto.Th \
+					*.gmsh toto.am_fmt toto.dbg lestables \
+					freefem++.pref Th*.msh emptymesh-2.msh \
+					th.msh toto.msh
+	rm -f examples++/toto.txt
+	cd examples++-3d && rm -f A.txt B.txt Th.mesh Th3.mesh dd.bb dd.meshb \
+					freefem++.pref
+	cd examples++-chapt3 && rm -f J.txt Th.mesh Th.msh graph.txt *.ps
+	cd examples++-mpi && rm -f beam-deformed-mumps.mesh *.ps \
+				   freefem++.pref *.so *.o
+
 # #
 # # To rebuild
 # 	find . -name \*.o | xargs --no-run-if-empty rm
 # 	find . -name \*.so | xargs --no-run-if-empty rm
-# 
+#
+ 
 # override_dh_autoreconf_clean:
 # 	dh_autoreconf_clean
 # 	dh_quilt_unpatch
@@ -63,20 +75,19 @@ export DH_OPTIONS=-v
 # override_dh_autoreconf:
 # 	dh_quilt_patch
 # 	dh_autoreconf --as-needed
-# 
-# override_dh_auto_configure:
-# 	dh_auto_configure -- \
+
+ override_dh_auto_configure:
+	dh_auto_configure -- CC="gcc $(LDFLAGS)" CXX="g++ $(LDFLAGS)" 
 # 	   CPPFLAGS=$(CPPFLAGS) \
 # 	   CFLAGS="$(CFLAGS) -lm" \
 # 	   CXXFLAGS="$(CXXFLAGS)" \
-# 	   LDFLAGS="$(LDFLAGS)" \
 # 	   CXX=mpic++
 # 	cp -f examples++-load/WHERE_LIBRARY-config debian
 # 	dh_auto_build
-# 
-# override_dh_auto_install:
-# 	dh_auto_install
-# 	mv debian/tmp/usr/bin/bamg debian/tmp/usr/bin/ffbamg
+ 
+override_dh_auto_install:
+	dh_auto_install
+	mv debian/tmp/usr/bin/bamg debian/tmp/usr/bin/ffbamg
 # #
 # # Install modified script to create plugins	
 # 	cp examples++-load/WHERE_LIBRARY-config examples++-load/WHERE_LIBRARY
@@ -86,7 +97,6 @@ export DH_OPTIONS=-v
 # # Fix lintian warnings
 # 	chmod ugo-x debian/tmp/usr/lib/ff++/3.*/idp/*.idp
 # 
-# 
-# override_dh_auto_test:
-# 	echo "do not run tests"
-# 	#dh_auto_test
+ 
+ override_dh_auto_test:
+#	$(MAKE) $(AM_MAKEFLAGS) -i check
