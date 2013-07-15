@@ -11,14 +11,19 @@ depcomp
 download/Makefile.in
 download/arpack/Makefile.in
 download/blas/Makefile.in
+download/gmm/cxxflags
 download/umfpack/Makefile.in
 examples++-3d/Makefile.in
+examples++-3d/all.edp
 examples++-bug/Makefile.in
 examples++-chapt3/Makefile.in
 examples++-eigen/Makefile.in
+examples++-load/all.edp
 examples++-load/Makefile.in
 examples++-load/makeref.edp
 examples++-load/regtests.edp
+examples++-load/WHERE_LIBRARY
+examples++-load/WHERE_LIBRARY-download-new
 examples++-mpi/Makefile.in
 examples++-other/Makefile.in
 examples++-tutorial/Makefile.in
@@ -40,4 +45,3 @@ src/libMesh/Makefile.in
 src/medit/Makefile.in
 src/mpi/Makefile.in
 src/nw/Makefile.in
-
