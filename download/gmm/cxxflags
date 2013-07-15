@@ -1,12 +1,12 @@
-CXX = clang++ -std=c++11
-MPICXX = /Users/hecht/openmpi-1.6/bin/mpic++
+CXX = g++ -Wl,-z,relro
+MPICXX = /usr/bin/mpic++
 ac_ct_CXX = 
-CC = clang 
-MPICC = /Users/hecht/openmpi-1.6/bin/mpicc
+CC = gcc -Wl,-z,relro
+MPICC = /usr/bin/mpicc
 YACC = bison -y
-ac_ct_CC = clang 
-CXXFLAGS = -g  -m64 -fPIC -g  -DBAMG_LONG_LONG -DCHECK_KN -fno-inline  -fexceptions -fPIC
-CFLAGS = -g  -m64 -fPIC -g -fPIC
+ac_ct_CC = gcc -Wl,-z,relro
+CXXFLAGS = -g  -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -DNDEBUG -O3 -mmmx -msse -msse2 -DBAMG_LONG_LONG  -DNCHECKPTR -fPIC
+CFLAGS = -g  -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -DNDEBUG -O3 -mmmx -msse -msse2 -fPIC
 FCFLAGS = -g -O2 -fPIC
 FFMETIS_CFLAGS = 
 WGET = wget --no-check-certificate
