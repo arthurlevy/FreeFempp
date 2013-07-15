@@ -1,3 +1,4 @@
+DOC/freefem++doc.pdf
 DOC/Makefile.in
 INSTALL
 Makefile.in
@@ -33,6 +34,7 @@ src/bamglib/Makefile.in
 src/bin-win32/Makefile.in
 src/femlib/Makefile.in
 src/fflib/Makefile.in
+src/fflib/strversionnumber.cpp
 src/lglib/Makefile.in
 src/libMesh/Makefile.in
 src/medit/Makefile.in
