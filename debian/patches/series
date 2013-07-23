@@ -1,3 +1,6 @@
+configure.patch
+examples++-load.patch
 examples++-load-Makefile-am.patch
 examples++-load-load-link-in.patch
 examples-bamg-test-dotest-pl.patch
+examples++-mpi.patch
