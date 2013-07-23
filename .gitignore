@@ -41,6 +41,8 @@ src/femlib/Makefile.in
 src/fflib/Makefile.in
 src/fflib/strversionnumber.cpp
 src/lglib/Makefile.in
+src/lglib/lg.tab.cpp
+src/lglib/lg.tab.hpp
 src/libMesh/Makefile.in
 src/medit/Makefile.in
 src/mpi/Makefile.in

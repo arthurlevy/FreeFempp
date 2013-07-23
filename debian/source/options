@@ -1,1 +1,1 @@
- extend-diff-ignore = "(^|/)(examples\+\+-load/all\.edp|examples\+\+-3d/all\.edp|DOC/freefem\+\+doc\.pdf|download/gmm/cxxflags|src/fflib/strversionnumber\.cpp)$"
+ extend-diff-ignore = "(^|/)(examples\+\+-load/all\.edp|examples\+\+-3d/all\.edp|DOC/freefem\+\+doc\.pdf|download/gmm/cxxflags|src/fflib/strversionnumber\.cpp|src/lglib/lg\.tab\.cpp|src/lglib/lg\.tab\.hpp)$"

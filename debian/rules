@@ -42,7 +42,8 @@ LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
 	rm -f download/scotch/config.log
 	rm -f download/superludist/config.log
 	rm -f download/tetgen/cxxflags
-	cd src && rm -f medit/compil.date mpi/config.log mpi/ff-mpirun
+	cd src && rm -f medit/compil.date mpi/config.log mpi/ff-mpirun \
+			lglib/lg.output
 	cd DOC && rm -f cpfigs/*.pdf addfe.aux freefem++doc.aux \
 			freefem++doc.idx freefem++doc.ilg freefem++doc.ind \
 			freefem++doc.log freefem++doc.out \
