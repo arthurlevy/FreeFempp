@@ -16,6 +16,9 @@ freefem++ (3.23-1) unstable; urgency=low
     used, it completes executing all *.edp example files, regardless
     of aborting on some of them
   * Update debian/source/options file
+  * Add libmetis-dev to build-deps in d/control
+  * Remove libparmetis-dev from build deps
+  * Create symlink FreeFem++-nw --> FreeFem++ ((Closes: #701161)
 
   [ Christophe Trophime ]
   * update C. Trophime email
@@ -32,7 +35,7 @@ freefem++ (3.23-1) unstable; urgency=low
   * update rules
   * reorder BuildDepends - comment out unsupported libs
 
- -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Fri, 21 Jun 2013 00:23:30 +0300
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Sat, 31 Aug 2013 20:51:49 +0300
 
 freefem++ (3.20-1) experimental; urgency=low
 
