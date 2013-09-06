@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
 Uploaders: Christophe Trophime <christophe.trophime@lncmi.cnrs.fr>, 
  Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>
-Build-Depends: debhelper (>= 9~), dh-autoreconf, rdfind, symlinks,
+Build-Depends: debhelper (>= 9~), dh-autoreconf,
  quilt, gawk, gfortran, mpi-default-dev,
  flex, bison, libxt-dev, libxext-dev, libxxf86vm-dev, 
  libxpm-dev, libmumps-scotch-dev, libmumps-ptscotch-dev,
@@ -13,7 +13,7 @@ Build-Depends: debhelper (>= 9~), dh-autoreconf, rdfind, symlinks,
  libfftw3-dev, libblas-dev, libgsl0-dev,
  libhypre-dev, 
  libarpack2-dev, libsuitesparse-dev,
- libmumps-ptscotch-dev, libmumps-dev, libblacs-mpi-dev, libscalapack-mpi-dev,
+ libmumps-dev, libblacs-mpi-dev, libscalapack-mpi-dev,
  libscotch-dev, libptscotch-dev,
  libmetis-dev,
  libmumps-seq-dev, libnlopt-dev, coinor-libipopt-dev,
