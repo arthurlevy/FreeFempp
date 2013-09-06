@@ -1,7 +1,7 @@
-freefem++ (3.23-1) unstable; urgency=low
+freefem++ (3.25-1) unstable; urgency=low
 
   [ Dimitrios Eftaxiopoulos ]
-  * Imported Upstream version 3.23
+  * Imported Upstream version 3.25
   * Add libmetis-edf-dev to Build-Depends in debian/control
   * Change installation directory of header-like *.idp files
     from /usr/lib/freefem++ to /usr/include/freefem++, in order
@@ -35,7 +35,7 @@ freefem++ (3.23-1) unstable; urgency=low
   * update rules
   * reorder BuildDepends - comment out unsupported libs
 
- -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Sat, 31 Aug 2013 20:51:49 +0300
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Fri, 06 Sep 2013 18:00:05 +0300
 
 freefem++ (3.20-1) experimental; urgency=low
 
