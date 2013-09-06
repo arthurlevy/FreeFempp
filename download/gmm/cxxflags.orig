@@ -1,0 +1,21 @@
+<<<<<<< HEAD
+CXX = g++ -Wl,-z,relro
+MPICXX = /usr/bin/mpic++
+ac_ct_CXX = 
+CC = gcc -Wl,-z,relro
+MPICC = /usr/bin/mpicc
+=======
+CXX = clang++ -std=c++11
+MPICXX = 
+ac_ct_CXX = 
+CC = clang 
+MPICC = 
+>>>>>>> upstream/3.25
+YACC = bison -y
+ac_ct_CC = gcc -Wl,-z,relro
+CXXFLAGS = -g  -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -DNDEBUG -O3 -mmmx -msse -msse2 -DBAMG_LONG_LONG  -DNCHECKPTR -fPIC
+CFLAGS = -g  -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -DNDEBUG -O3 -mmmx -msse -msse2 -fPIC
+FCFLAGS = -g -O2 -fPIC
+FFMETIS_CFLAGS = 
+WGET = wget --no-check-certificate
+WIN32DLLTARGET = 

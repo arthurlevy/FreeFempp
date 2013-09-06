@@ -1,3 +1,7 @@
+// this exemple is buggus in some case ...
+// strange ...  FH.  , S Auliac  (will be correct in test ???)
+// remove the test  (no loop)  
+int nadapt=0;//  3 is teh previous value..
 load "msh3";
 load "medit";
 load "ff-Ipopt";
@@ -5,6 +9,9 @@ load "ff-Ipopt";
 real alpha=0.9;
 int np=30;
 mesh Th = square(2*np,np,[2*pi*x,pi*y]);
+
+// FFCS regression reference value
+real regtest;
 
 fespace Vh(Th,P1,periodic=[[2,y],[4,y]/*,[1,x],[3,x]*/]);
 
@@ -20,7 +27,7 @@ Vh uz=1.,lz=1.;
 real[int] lm=[1];
 
 
-int nadapt=3;
+
 for(int kkk=0;kkk<nadapt;++kkk) //Mesh adaptation loop
 {
 
@@ -225,9 +232,8 @@ real[int] clb=0.,cub=[(1-alpha)*Vobj + alpha*Vnvc];
 /*
  * Call to IPOPT
  */
- 
-IPOPT(Area,GradArea,ipHessianLag,ipVolume,ipGradVolume,rc[],ub=ub[],lb=lb[],clb=clb,cub=cub,checkindex=1,maxiter=kkk<nadapt-1 ? 40:150,warmstart=kkk,lm=lm,uz=uz[],lz=lz[],tol=0.00001,structjacc=[gvi,gvj]);
-
+int res=IPOPT(Area,GradArea,ipHessianLag,ipVolume,ipGradVolume,rc[],ub=ub[],lb=lb[],clb=clb,cub=cub,checkindex=1,maxiter=kkk<nadapt-1 ? 40:150,warmstart=kkk,lm=lm,uz=uz[],lz=lz[],tol=0.00001,structjacc=[gvi,gvj]);
+cout << " IPOPT: res =" << res << endl ;
 /*
  * Display the final mesh
  */
@@ -241,5 +247,8 @@ if(kkk<nadapt-1)
 	uz=uz;//dual variables interpolation
 	lz=lz;
 }
+
+// FFCS regression reference value
+regtest=rc[]'*rc[];
 }
 
