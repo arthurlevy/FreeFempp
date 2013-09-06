@@ -1,8 +1,8 @@
 CXX = clang++ -std=c++11
-MPICXX = /Users/hecht/openmpi-1.6/bin/mpic++
+MPICXX = 
 ac_ct_CXX = 
 CC = clang 
-MPICC = /Users/hecht/openmpi-1.6/bin/mpicc
+MPICC = 
 YACC = bison -y
 ac_ct_CC = clang 
 CXXFLAGS = -g  -m64 -fPIC -g  -DBAMG_LONG_LONG -DCHECK_KN -fno-inline  -fexceptions -fPIC

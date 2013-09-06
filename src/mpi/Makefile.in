@@ -18,7 +18,8 @@
 # ----------------------------------
 # $Id$
 # change FH mars 2010 for sgi mpiu .... 
-#CXX=@MPICXX@
+
+# FFCS - we need to call MPICXX directly because Windows options are too different to be detailed to the FF configuration script.
 
 
 VPATH = @srcdir@
@@ -63,7 +64,8 @@ DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/mkinstalldirs $(top_srcdir)/depcomp
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/acmacros.m4 \
-	$(top_srcdir)/acoptim.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/acoptim.m4 $(top_srcdir)/acmpi.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
@@ -73,7 +75,7 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_FreeFem___mpi_OBJECTS = sansrgraph.$(OBJEXT) mymain.$(OBJEXT) \
-	parallelempi.$(OBJEXT) lg.tab.$(OBJEXT)
+	parallelempi.$(OBJEXT) lg.tab.$(OBJEXT) ffapi.$(OBJEXT)
 FreeFem___mpi_OBJECTS = $(am_FreeFem___mpi_OBJECTS)
 FreeFem___mpi_LDADD = $(LDADD)
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
@@ -184,7 +186,7 @@ CFLAGS = @CFLAGS@
 CFLAGSF77 = @CFLAGSF77@
 CNOFLAGS = @CNOFLAGS@
 CPPFLAGS = @CPPFLAGS@
-CXX = @CXX@
+CXX = @MPICXX@
 CXXCPP = @CXXCPP@
 CXXDEPMODE = @CXXDEPMODE@
 CXXFLAGS = @CXXFLAGS@
@@ -205,11 +207,47 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EIGENOBJ = @EIGENOBJ@
+ENABLE_FFCS = @ENABLE_FFCS@
 EPSTOPDF = @EPSTOPDF@
 EXEEXT = @EXEEXT@
 F77 = @F77@
 FC = @FC@
 FCFLAGS = @FCFLAGS@
+FFCS_COMPILE_fflapack = @FFCS_COMPILE_fflapack@
+FFCS_COMPILE_gsl = @FFCS_COMPILE_gsl@
+FFCS_COMPILE_hips = @FFCS_COMPILE_hips@
+FFCS_COMPILE_hypre = @FFCS_COMPILE_hypre@
+FFCS_COMPILE_ipopt = @FFCS_COMPILE_ipopt@
+FFCS_COMPILE_lapack = @FFCS_COMPILE_lapack@
+FFCS_COMPILE_mmg3d = @FFCS_COMPILE_mmg3d@
+FFCS_COMPILE_mshmet = @FFCS_COMPILE_mshmet@
+FFCS_COMPILE_mumps = @FFCS_COMPILE_mumps@
+FFCS_COMPILE_mumps_seq = @FFCS_COMPILE_mumps_seq@
+FFCS_COMPILE_pardiso = @FFCS_COMPILE_pardiso@
+FFCS_COMPILE_parms = @FFCS_COMPILE_parms@
+FFCS_COMPILE_pastix = @FFCS_COMPILE_pastix@
+FFCS_COMPILE_pipe = @FFCS_COMPILE_pipe@
+FFCS_COMPILE_scotch = @FFCS_COMPILE_scotch@
+FFCS_COMPILE_superludist = @FFCS_COMPILE_superludist@
+FFCS_COMPILE_yams = @FFCS_COMPILE_yams@
+FFCS_DYLIB_fflapack = @FFCS_DYLIB_fflapack@
+FFCS_DYLIB_gsl = @FFCS_DYLIB_gsl@
+FFCS_DYLIB_hips = @FFCS_DYLIB_hips@
+FFCS_DYLIB_hypre = @FFCS_DYLIB_hypre@
+FFCS_DYLIB_ipopt = @FFCS_DYLIB_ipopt@
+FFCS_DYLIB_lapack = @FFCS_DYLIB_lapack@
+FFCS_DYLIB_mmg3d = @FFCS_DYLIB_mmg3d@
+FFCS_DYLIB_mshmet = @FFCS_DYLIB_mshmet@
+FFCS_DYLIB_mumps = @FFCS_DYLIB_mumps@
+FFCS_DYLIB_mumps_seq = @FFCS_DYLIB_mumps_seq@
+FFCS_DYLIB_pardiso = @FFCS_DYLIB_pardiso@
+FFCS_DYLIB_parms = @FFCS_DYLIB_parms@
+FFCS_DYLIB_pastix = @FFCS_DYLIB_pastix@
+FFCS_DYLIB_pipe = @FFCS_DYLIB_pipe@
+FFCS_DYLIB_scotch = @FFCS_DYLIB_scotch@
+FFCS_DYLIB_superludist = @FFCS_DYLIB_superludist@
+FFCS_DYLIB_yams = @FFCS_DYLIB_yams@
+FFCS_MAKEFLAGS = @FFCS_MAKEFLAGS@
 FFGLUTNAME = @FFGLUTNAME@
 FFGLUTPROG = @FFGLUTPROG@
 FFLAGS = @FFLAGS@
@@ -385,8 +423,10 @@ bin_PROGRAMS = $(MPIPROG)
 bin_SCRIPTS = $(MPISCRIPT)
 EXTRA_SCRIPTS = ff-mpirun
 EXTRA_DIST = ff-mpirun.in
-FreeFem___mpi_SOURCES = ../Graphics/sansrgraph.cpp ../lglib/mymain.cpp   parallelempi.cpp	\
-../lglib/lg.tab.cpp
+
+# FFCS: visualization stream redirection
+FreeFem___mpi_SOURCES = ../Graphics/sansrgraph.cpp ../lglib/mymain.cpp parallelempi.cpp ../lglib/lg.tab.cpp	\
+	../fflib/ffapi.cpp
 
 FreeFem___mpi_DEPENDENCIES = ../fflib/libff.a
 LDADD = ../fflib/libff.a @UMFPACKLIBS@ @ARPACKLIBS@ @BLASLIBS@ @MPI_LIB@
@@ -513,6 +553,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ffapi.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/lg.tab.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mymain.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/parallelempi.Po@am__quote@
@@ -573,6 +614,20 @@ lg.tab.obj: ../lglib/lg.tab.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../lglib/lg.tab.cpp' object='lg.tab.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o lg.tab.obj `if test -f '../lglib/lg.tab.cpp'; then $(CYGPATH_W) '../lglib/lg.tab.cpp'; else $(CYGPATH_W) '$(srcdir)/../lglib/lg.tab.cpp'; fi`
+
+ffapi.o: ../fflib/ffapi.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ffapi.o -MD -MP -MF $(DEPDIR)/ffapi.Tpo -c -o ffapi.o `test -f '../fflib/ffapi.cpp' || echo '$(srcdir)/'`../fflib/ffapi.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/ffapi.Tpo $(DEPDIR)/ffapi.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../fflib/ffapi.cpp' object='ffapi.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ffapi.o `test -f '../fflib/ffapi.cpp' || echo '$(srcdir)/'`../fflib/ffapi.cpp
+
+ffapi.obj: ../fflib/ffapi.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ffapi.obj -MD -MP -MF $(DEPDIR)/ffapi.Tpo -c -o ffapi.obj `if test -f '../fflib/ffapi.cpp'; then $(CYGPATH_W) '../fflib/ffapi.cpp'; else $(CYGPATH_W) '$(srcdir)/../fflib/ffapi.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/ffapi.Tpo $(DEPDIR)/ffapi.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../fflib/ffapi.cpp' object='ffapi.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ffapi.obj `if test -f '../fflib/ffapi.cpp'; then $(CYGPATH_W) '../fflib/ffapi.cpp'; else $(CYGPATH_W) '$(srcdir)/../fflib/ffapi.cpp'; fi`
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique

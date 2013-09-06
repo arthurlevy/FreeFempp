@@ -56,7 +56,8 @@ DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/mkinstalldirs $(top_srcdir)/test-driver
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/acmacros.m4 \
-	$(top_srcdir)/acoptim.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/acoptim.m4 $(top_srcdir)/acmpi.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
@@ -329,11 +330,47 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EIGENOBJ = @EIGENOBJ@
+ENABLE_FFCS = @ENABLE_FFCS@
 EPSTOPDF = @EPSTOPDF@
 EXEEXT = @EXEEXT@
 F77 = @F77@
 FC = @FC@
 FCFLAGS = @FCFLAGS@
+FFCS_COMPILE_fflapack = @FFCS_COMPILE_fflapack@
+FFCS_COMPILE_gsl = @FFCS_COMPILE_gsl@
+FFCS_COMPILE_hips = @FFCS_COMPILE_hips@
+FFCS_COMPILE_hypre = @FFCS_COMPILE_hypre@
+FFCS_COMPILE_ipopt = @FFCS_COMPILE_ipopt@
+FFCS_COMPILE_lapack = @FFCS_COMPILE_lapack@
+FFCS_COMPILE_mmg3d = @FFCS_COMPILE_mmg3d@
+FFCS_COMPILE_mshmet = @FFCS_COMPILE_mshmet@
+FFCS_COMPILE_mumps = @FFCS_COMPILE_mumps@
+FFCS_COMPILE_mumps_seq = @FFCS_COMPILE_mumps_seq@
+FFCS_COMPILE_pardiso = @FFCS_COMPILE_pardiso@
+FFCS_COMPILE_parms = @FFCS_COMPILE_parms@
+FFCS_COMPILE_pastix = @FFCS_COMPILE_pastix@
+FFCS_COMPILE_pipe = @FFCS_COMPILE_pipe@
+FFCS_COMPILE_scotch = @FFCS_COMPILE_scotch@
+FFCS_COMPILE_superludist = @FFCS_COMPILE_superludist@
+FFCS_COMPILE_yams = @FFCS_COMPILE_yams@
+FFCS_DYLIB_fflapack = @FFCS_DYLIB_fflapack@
+FFCS_DYLIB_gsl = @FFCS_DYLIB_gsl@
+FFCS_DYLIB_hips = @FFCS_DYLIB_hips@
+FFCS_DYLIB_hypre = @FFCS_DYLIB_hypre@
+FFCS_DYLIB_ipopt = @FFCS_DYLIB_ipopt@
+FFCS_DYLIB_lapack = @FFCS_DYLIB_lapack@
+FFCS_DYLIB_mmg3d = @FFCS_DYLIB_mmg3d@
+FFCS_DYLIB_mshmet = @FFCS_DYLIB_mshmet@
+FFCS_DYLIB_mumps = @FFCS_DYLIB_mumps@
+FFCS_DYLIB_mumps_seq = @FFCS_DYLIB_mumps_seq@
+FFCS_DYLIB_pardiso = @FFCS_DYLIB_pardiso@
+FFCS_DYLIB_parms = @FFCS_DYLIB_parms@
+FFCS_DYLIB_pastix = @FFCS_DYLIB_pastix@
+FFCS_DYLIB_pipe = @FFCS_DYLIB_pipe@
+FFCS_DYLIB_scotch = @FFCS_DYLIB_scotch@
+FFCS_DYLIB_superludist = @FFCS_DYLIB_superludist@
+FFCS_DYLIB_yams = @FFCS_DYLIB_yams@
+FFCS_MAKEFLAGS = @FFCS_MAKEFLAGS@
 FFGLUTNAME = @FFGLUTNAME@
 FFGLUTPROG = @FFGLUTPROG@
 FFLAGS = @FFLAGS@
@@ -500,7 +537,8 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-TESTS = 3d-Leman.edp ArrayFE-3d.edp EqPoisson.edp Lac.edp Laplace-Adapt-3d.edp Laplace-Adapt-aniso-3d.edp Laplace3d.edp LaplaceRT-3d.edp NSI3d-carac.edp NSI3d.edp Period-Poisson-cube-ballon.edp Poisson-cube-ballon.edp Poisson.edp Poisson3d.edp Stokes.edp TruncLac.edp all.edp beam-3d.edp cone.edp convect-3d.edp cube-period.edp cylinder-3d.edp cylinder.edp fallingspheres.edp first.edp meditddm.edp p.edp periodic-3d.edp pyramide.edp  refinesphere.edp  schwarz-nm-3d.edp sphere2.edp sphere6.edp tetgencube.edp tetgenholeregion.edp
+TESTS = 3d-Leman.edp ArrayFE-3d.edp EqPoisson.edp Lac.edp Laplace-Adapt-3d.edp Laplace-Adapt-aniso-3d.edp Laplace3d.edp LaplaceRT-3d.edp NSI3d-carac.edp NSI3d.edp Period-Poisson-cube-ballon.edp Poisson-cube-ballon.edp Poisson.edp Poisson3d.edp Stokes.edp TruncLac.edp  beam-3d.edp cone.edp convect-3d.edp cube-period.edp cylinder-3d.edp cylinder.edp fallingspheres.edp first.edp meditddm.edp p.edp periodic-3d.edp pyramide.edp  refinesphere.edp  schwarz-nm-3d.edp sphere2.edp sphere6.edp tetgencube.edp tetgenholeregion.edp
+XFAIL_TESTS = Laplace-Adapt-aniso-3d.edp fallingspheres.edp Laplace-Adapt-3d.edp Period-Poisson-cube-ballon.edp Poisson-cube-ballon.edp cylinder.edp refinesphere.edp tetgencube.edp tetgenholeregion.edp Poisson3d.edp
 LOG_DRIVER = $(SHELL) $(top_srcdir)/test-driver-ff
 TESTS_ENVIRONMENT = TEST_FFPP=$(TEST_FFPP) FLAGS_FFPP=-nw
 LIST_IDP = MeshSurface.idp cube.idp
@@ -797,13 +835,6 @@ Stokes.edp.log: Stokes.edp
 TruncLac.edp.log: TruncLac.edp
 	@p='TruncLac.edp'; \
 	b='TruncLac.edp'; \
-	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
-	--log-file $$b.log --trs-file $$b.trs \
-	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
-	"$$tst" $(AM_TESTS_FD_REDIRECT)
-all.edp.log: all.edp
-	@p='all.edp'; \
-	b='all.edp'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
@@ -1115,10 +1146,11 @@ Ref: makeref.edp freefem++.pref
 
 makeref.edp: regtests.m4 ../regtests.m4
 	m4 regtests.m4 > makeref.edp
+
 freefem++.pref:
 	echo loadpath = \"../examples++-load/\" >freefem++.pref
 	echo loadpath += \"./\" >>freefem++.pref
-
+3d-Leman.edp:freefem++.pref
 install-exec-local:: 
 	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/idp
 	$(INSTALL)  -m 555  $(LIST_IDP)  $(DESTDIR)$(ff_prefix_dir)/idp

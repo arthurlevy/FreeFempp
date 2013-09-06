@@ -19,6 +19,7 @@ using namespace std;
 #include <list>
 #include <map>
 #include <utility>
+#include <unistd.h>
 
 #include "rgraph.hpp"
 #include "fem.hpp"
@@ -42,6 +43,7 @@ using namespace std;
 
 int debug=1;
 int casemouse=0,keyact=0;
+double gwait=0;//  no wait in second
 #include "ffglut.hpp"
 
 #include "ffthreads.hpp"
@@ -136,7 +138,7 @@ int   ReadOnePlot(FILE *fp)
       assert(nextPlot==0);
       nextPlot = new ThePlot(f,currentPlot,++kread);
 	if(debug>1)	
-      cout << " next is build " << nextPlot<< " wait :" << nextPlot->wait << " -> " << kread <<  endl;
+      cout << " next is build " << nextPlot<< " wait :" << nextPlot->wait << " -> " << kread <<  " gwait = " << gwait << endl;
       assert(nextPlot);
       err=0;
     }
@@ -172,6 +174,9 @@ int SendForNextPlot()
   // every 25/ second..  = 1000/25 = 40 ms
   if(NoMorePlot)
     {
+    if(gwait )
+        {usleep((useconds_t)(1e6*gwait)); Fin(0); }
+
     if((debug > 1)) cout << " send signal For Next plot, skip: No More Plot !  " << endl;
     return 0;
     }
@@ -1111,12 +1116,12 @@ void OneWindow::add(ThePlot *p)
 
 void OneWindow::DefaultView(int state)
 {
-  if(debug>1)  cout << "DefaultView " << state << " " <<keepPV << endl;
+  if(debug>1)  cout << "DefaultView " << state << " " <<keepPV << " theplot " << theplot << endl;
   if(keepPV)
    {
       if(state==0 && init) return;
   }
-  else if(state==2) rapz=-1;
+  else /*if(state==2)*/ rapz0=-1;
     
   if(theplot)
     {
@@ -2470,12 +2475,14 @@ void Display(void)
 	  
       }
 
-    if(!win->theplot || !win->theplot->wait)
+    if(!win->theplot || !win->theplot->wait || gwait )
       SendForNextPlot();
+
     if(!NoMorePlotTilte  &&NoMorePlot)
       {
 	NoMorePlotTilte=true;
 	glutSetWindowTitle("FreeFem++ / Program ended; enter ESC to exit)");
+//          if(gwait) {usleep((useconds_t)(1e6*gwait)); Fin(0); }
       }
 }
 
@@ -2773,13 +2780,17 @@ THREADFUNC(ThreadRead,fd)
 {   
   int err=0;
   assert(nextPlot==0);
-  //  MutexNextPlot.WAIT(); 
+  //  MutexNextPlot.WAIT();
+  if(gwait) usleep((useconds_t) (gwait*1.e6) );
   err=ReadOnePlot((FILE*)fd);
   // MutexNextPlot.Free(); 
   if(debug>1)
     cout << " We Read a plot  : " << kread << " " << nextPlot << " " << err << endl;
   if(err<0)
-    NoMorePlot=true; 
+  {
+    NoMorePlot=true;
+
+   }
   Thread::Exit();
 }
 
@@ -2832,9 +2843,56 @@ static  bool TryNewPlot( void )
         LauchNextRead();
         ret=true;
     }
+    if(gwait &&  NoMorePlot )
+    {usleep((useconds_t)(1e6*gwait)); Fin(0); }
+    
     return ret;    
 }
+const char * Index(const char * p, const char c)
+{
+    int k=0;
+    while(k++<1000000)
+        if(!*p) return 0;
+        else if(  *p==c) return p;
+        else ++p;
+    return 0; 
+}
+const char * rIndex(const char * p, const char c)
+{
+    int k=0;
+    const char *pp=0;
+    while(k++<1000000)
+        if(!*p) break;
+        else if(  *p==c) pp= p;
+        else ++p;
+    return pp; 
+}
+void 	SetDefWin(const char *p,int & iii0,int & jjj0,int & Width,int &Height)
+{
+  // syntax 
+  //   1024x1024+100+100
+  // or
+  //  1024x1024 
+  const char  *bx = p;
+  const char *by = Index(p,'x');
+  const char *ox = Index(p,'+');
+  const char *oy = rIndex(p,'+');
+  if(by ==0) return;
+  Width= atoi(bx);
+  Height= atoi(by+1);
+  if(ox && (ox != oy))
+    {
+      iii0= atoi(ox+1);
+      jjj0=atoi(oy+1);
+    }
+  if(debug>1)
+    cout << "  position = "<< Width << "x" << Height << "+"<< iii0 << "+" << jjj0 << endl;
+  assert(Width >0 &&  Width < 3000);
+  assert(Height >0 &&  Height < 3000);
+  assert(iii0 >0 &&  iii0 < 3000);
+  assert(jjj0 >0 &&  jjj0 < 3000);
 
+}
 int main(int argc,  char** argv)
 {
     glutInit(&argc, argv);
@@ -2845,23 +2903,56 @@ int main(int argc,  char** argv)
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH | GLUT_STEREO);
     else  
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH );
-
-    if(argc>2) {
-      if( strcmp(argv[1],"-nv")==0) debug=0;
-      if( strcmp(argv[1],"-v")==0) debug=2,verbosity=2;
-      if( strcmp(argv[1],"-vv")==0) debug=5,verbosity=2;
-      if( strcmp(argv[1],"-vvv")==0) debug=10, verbosity=1000;
-    }
-    if(debug>1)		
-    cout <<  " mode read = " << MODE_READ_BINARY << endl;
-    datafile =0;;
-    if(argc>1 && *argv[argc-1] != '-' ) 
-     {	
+     int i1=1;
+     int Height = 512,Width = 512*3/2, iii0=100,jjj0=100;
+     string titre = "W0/FreeFem++: type return key to proceed (or ? for help on other)";
+     int eerr=0; 
+    if(argc>1) 
+      {
+	if( (i1 < argc) &&strcmp(argv[i1],"-?")==0) i1++,eerr=-1; 
+	if (i1 < argc)
+	  {
+	    if( strcmp(argv[i1],"-nv")==0) i1++,debug=0;
+	    else if( strcmp(argv[i1],"-v")==0) i1++,debug=2,verbosity=2;
+	    else if( strcmp(argv[i1],"-vv")==0) i1++,debug=5,verbosity=2;
+	    else if( strcmp(argv[i1],"-vvv")==0) i1++,debug=10, verbosity=1000;
+	  }
+	  if( (i1+1 < argc) && (strcmp(argv[i1],"-wait")==0)) { i1++; gwait=atof(argv[i1++]); }
+	  if( (i1+1 < argc) && (strcmp(argv[i1],"-g")==0)) { 
+	    i1++; 
+	    SetDefWin(argv[i1++], iii0,jjj0,Width,Height);
+	  }
+	  if( (i1+1 < argc) && (strcmp(argv[i1],"-t")==0)) { 
+	    i1++; 
+	    titre = argv[i1++];
+	  }
+	  if( (i1 -  argc > 1) )
+	    { 
+	      eerr = 1;
+	      cout << " error ming args " << i1 -  argc  << endl; 
+	    }
+      }
+    datafile =0;
+    cout << (argc>i1) << eerr << endl; 
+    if(argc>i1 && (eerr==0))// && *argv[argc-1] != '-' )
+      {	
 	datafile=fopen(argv[argc-1], "r");
 	if(debug >1)
-	cout << " fopen :" << argv[argc-1] << " " <<datafile << endl;
-     }
-
+		cout << " fopen :" << argv[argc-1] << " " <<datafile << endl;
+	if(datafile==0)
+	  eerr=100;
+	
+      }
+    if(eerr)
+      {
+	cerr << " Erreur ffglut  [-nv|-v|-vv|-vvv] [-wait 0.5] [-g 512x300+10+10] [-t title] [file]" << endl; 
+	cerr << " err number " << eerr << endl; 
+	abort();
+      }
+    
+    
+    if(debug>1)		
+    cout <<  " mode read = " << MODE_READ_BINARY << endl;
     if(datafile==0)
 	datafile=stdin;
     if ( !datafile){
@@ -2882,13 +2973,10 @@ int main(int argc,  char** argv)
     cout << "on a lue le premier plot next plot: " << nextPlot << endl;
 
 
-    int Height = 512;
-    int Width = 512*3/2; 
     
     glutInitWindowSize(Width , Height);
-    glutInitWindowPosition(100, 100);
+    glutInitWindowPosition(iii0,jjj0);
 
-    string titre = "W0/FreeFem++: type return key to proceed (or ? for help on other)";
     int iw0=glutCreateWindow(titre.c_str());
     //glutPushWindow();
    // if (fullscreen)

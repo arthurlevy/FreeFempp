@@ -61,7 +61,8 @@ DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/mkinstalldirs $(top_srcdir)/depcomp
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/acmacros.m4 \
-	$(top_srcdir)/acoptim.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/acoptim.m4 $(top_srcdir)/acmpi.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
@@ -71,17 +72,18 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_FreeFem___OBJECTS = sansrgraph.$(OBJEXT) \
-	parallelempi-empty.$(OBJEXT)
+	parallelempi-empty.$(OBJEXT) ffapi.$(OBJEXT)
 FreeFem___OBJECTS = $(am_FreeFem___OBJECTS)
 FreeFem___LDADD = $(LDADD)
 am_FreeFem___nw_OBJECTS = sansrgraph.$(OBJEXT) \
-	parallelempi-empty.$(OBJEXT)
+	parallelempi-empty.$(OBJEXT) ffapi.$(OBJEXT)
 FreeFem___nw_OBJECTS = $(am_FreeFem___nw_OBJECTS)
 FreeFem___nw_LDADD = $(LDADD)
 am_ffglut_OBJECTS = ffglut.$(OBJEXT) gggg.$(OBJEXT) \
 	ffthreads.$(OBJEXT) fem.$(OBJEXT) Mesh3dn.$(OBJEXT) \
 	Mesh2dn.$(OBJEXT) Mesh1dn.$(OBJEXT) GQuadTree.$(OBJEXT) \
-	FQuadTree.$(OBJEXT) Drawing.$(OBJEXT) mshptg.$(OBJEXT)
+	FQuadTree.$(OBJEXT) Drawing.$(OBJEXT) mshptg.$(OBJEXT) \
+	ffapi.$(OBJEXT)
 ffglut_OBJECTS = $(am_ffglut_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
@@ -198,11 +200,47 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EIGENOBJ = @EIGENOBJ@
+ENABLE_FFCS = @ENABLE_FFCS@
 EPSTOPDF = @EPSTOPDF@
 EXEEXT = @EXEEXT@
 F77 = @F77@
 FC = @FC@
 FCFLAGS = @FCFLAGS@
+FFCS_COMPILE_fflapack = @FFCS_COMPILE_fflapack@
+FFCS_COMPILE_gsl = @FFCS_COMPILE_gsl@
+FFCS_COMPILE_hips = @FFCS_COMPILE_hips@
+FFCS_COMPILE_hypre = @FFCS_COMPILE_hypre@
+FFCS_COMPILE_ipopt = @FFCS_COMPILE_ipopt@
+FFCS_COMPILE_lapack = @FFCS_COMPILE_lapack@
+FFCS_COMPILE_mmg3d = @FFCS_COMPILE_mmg3d@
+FFCS_COMPILE_mshmet = @FFCS_COMPILE_mshmet@
+FFCS_COMPILE_mumps = @FFCS_COMPILE_mumps@
+FFCS_COMPILE_mumps_seq = @FFCS_COMPILE_mumps_seq@
+FFCS_COMPILE_pardiso = @FFCS_COMPILE_pardiso@
+FFCS_COMPILE_parms = @FFCS_COMPILE_parms@
+FFCS_COMPILE_pastix = @FFCS_COMPILE_pastix@
+FFCS_COMPILE_pipe = @FFCS_COMPILE_pipe@
+FFCS_COMPILE_scotch = @FFCS_COMPILE_scotch@
+FFCS_COMPILE_superludist = @FFCS_COMPILE_superludist@
+FFCS_COMPILE_yams = @FFCS_COMPILE_yams@
+FFCS_DYLIB_fflapack = @FFCS_DYLIB_fflapack@
+FFCS_DYLIB_gsl = @FFCS_DYLIB_gsl@
+FFCS_DYLIB_hips = @FFCS_DYLIB_hips@
+FFCS_DYLIB_hypre = @FFCS_DYLIB_hypre@
+FFCS_DYLIB_ipopt = @FFCS_DYLIB_ipopt@
+FFCS_DYLIB_lapack = @FFCS_DYLIB_lapack@
+FFCS_DYLIB_mmg3d = @FFCS_DYLIB_mmg3d@
+FFCS_DYLIB_mshmet = @FFCS_DYLIB_mshmet@
+FFCS_DYLIB_mumps = @FFCS_DYLIB_mumps@
+FFCS_DYLIB_mumps_seq = @FFCS_DYLIB_mumps_seq@
+FFCS_DYLIB_pardiso = @FFCS_DYLIB_pardiso@
+FFCS_DYLIB_parms = @FFCS_DYLIB_parms@
+FFCS_DYLIB_pastix = @FFCS_DYLIB_pastix@
+FFCS_DYLIB_pipe = @FFCS_DYLIB_pipe@
+FFCS_DYLIB_scotch = @FFCS_DYLIB_scotch@
+FFCS_DYLIB_superludist = @FFCS_DYLIB_superludist@
+FFCS_DYLIB_yams = @FFCS_DYLIB_yams@
+FFCS_MAKEFLAGS = @FFCS_MAKEFLAGS@
 FFGLUTNAME = @FFGLUTNAME@
 FFGLUTPROG = @FFGLUTPROG@
 FFLAGS = @FFLAGS@
@@ -372,15 +410,17 @@ top_srcdir = @top_srcdir@
 
 # To create statically linked executables (see configure.ac)
 CXXLD = $(STATICTOOL) $(CXX)
+
+# FFCS:visualization stream redirection
 ffglut_SOURCES = ../Graphics/ffglut.cpp ../Graphics/gggg.cpp ../Graphics/ffthreads.cpp \
 ../Graphics/ffthreads.hpp \
 ../femlib/fem.cpp ../femlib/Mesh3dn.cpp ../femlib/Mesh2dn.cpp  ../femlib/Mesh1dn.cpp ../femlib/GQuadTree.cpp  ../femlib/FQuadTree.cpp \
-../femlib/Drawing.cpp ../femlib/mshptg.cpp  
+../femlib/Drawing.cpp ../femlib/mshptg.cpp ../fflib/ffapi.cpp
 
 ffglut_DEPENDENCIES = ../libMesh/libMesh.a
 ffglut_LDADD = ../libMesh/libMesh.a @LIBSGLUT@ @LIBSPTHREAD@ 
-FreeFem___nw_SOURCES = ../Graphics/sansrgraph.cpp ../mpi/parallelempi-empty.cpp
-FreeFem___SOURCES = ../Graphics/sansrgraph.cpp  ../mpi/parallelempi-empty.cpp 
+FreeFem___nw_SOURCES = ../Graphics/sansrgraph.cpp ../mpi/parallelempi-empty.cpp ../fflib/ffapi.cpp
+FreeFem___SOURCES = ../Graphics/sansrgraph.cpp  ../mpi/parallelempi-empty.cpp ../fflib/ffapi.cpp
 FreeFem___nw_DEPENDENCIES = ../fflib/libff.a ../lglib/liblg.a
 FreeFem___DEPENDENCIES = ../fflib/libff.a ../lglib/liblg.a
 LDADD = ../lglib/liblg.a ../fflib/libff.a @UMFPACKLIBS@ @ARPACKLIBS@ @BLASLIBS@
@@ -484,6 +524,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Mesh2dn.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Mesh3dn.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fem.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ffapi.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ffglut.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ffthreads.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gggg.Po@am__quote@
@@ -532,6 +573,20 @@ parallelempi-empty.obj: ../mpi/parallelempi-empty.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../mpi/parallelempi-empty.cpp' object='parallelempi-empty.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o parallelempi-empty.obj `if test -f '../mpi/parallelempi-empty.cpp'; then $(CYGPATH_W) '../mpi/parallelempi-empty.cpp'; else $(CYGPATH_W) '$(srcdir)/../mpi/parallelempi-empty.cpp'; fi`
+
+ffapi.o: ../fflib/ffapi.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ffapi.o -MD -MP -MF $(DEPDIR)/ffapi.Tpo -c -o ffapi.o `test -f '../fflib/ffapi.cpp' || echo '$(srcdir)/'`../fflib/ffapi.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/ffapi.Tpo $(DEPDIR)/ffapi.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../fflib/ffapi.cpp' object='ffapi.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ffapi.o `test -f '../fflib/ffapi.cpp' || echo '$(srcdir)/'`../fflib/ffapi.cpp
+
+ffapi.obj: ../fflib/ffapi.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ffapi.obj -MD -MP -MF $(DEPDIR)/ffapi.Tpo -c -o ffapi.obj `if test -f '../fflib/ffapi.cpp'; then $(CYGPATH_W) '../fflib/ffapi.cpp'; else $(CYGPATH_W) '$(srcdir)/../fflib/ffapi.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/ffapi.Tpo $(DEPDIR)/ffapi.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../fflib/ffapi.cpp' object='ffapi.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ffapi.obj `if test -f '../fflib/ffapi.cpp'; then $(CYGPATH_W) '../fflib/ffapi.cpp'; else $(CYGPATH_W) '$(srcdir)/../fflib/ffapi.cpp'; fi`
 
 ffglut.o: ../Graphics/ffglut.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ffglut.o -MD -MP -MF $(DEPDIR)/ffglut.Tpo -c -o ffglut.o `test -f '../Graphics/ffglut.cpp' || echo '$(srcdir)/'`../Graphics/ffglut.cpp

@@ -54,7 +54,8 @@ DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/mkinstalldirs
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/acmacros.m4 \
-	$(top_srcdir)/acoptim.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/acoptim.m4 $(top_srcdir)/acmpi.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
@@ -124,11 +125,47 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EIGENOBJ = @EIGENOBJ@
+ENABLE_FFCS = @ENABLE_FFCS@
 EPSTOPDF = @EPSTOPDF@
 EXEEXT = @EXEEXT@
 F77 = @F77@
 FC = @FC@
 FCFLAGS = @FCFLAGS@
+FFCS_COMPILE_fflapack = @FFCS_COMPILE_fflapack@
+FFCS_COMPILE_gsl = @FFCS_COMPILE_gsl@
+FFCS_COMPILE_hips = @FFCS_COMPILE_hips@
+FFCS_COMPILE_hypre = @FFCS_COMPILE_hypre@
+FFCS_COMPILE_ipopt = @FFCS_COMPILE_ipopt@
+FFCS_COMPILE_lapack = @FFCS_COMPILE_lapack@
+FFCS_COMPILE_mmg3d = @FFCS_COMPILE_mmg3d@
+FFCS_COMPILE_mshmet = @FFCS_COMPILE_mshmet@
+FFCS_COMPILE_mumps = @FFCS_COMPILE_mumps@
+FFCS_COMPILE_mumps_seq = @FFCS_COMPILE_mumps_seq@
+FFCS_COMPILE_pardiso = @FFCS_COMPILE_pardiso@
+FFCS_COMPILE_parms = @FFCS_COMPILE_parms@
+FFCS_COMPILE_pastix = @FFCS_COMPILE_pastix@
+FFCS_COMPILE_pipe = @FFCS_COMPILE_pipe@
+FFCS_COMPILE_scotch = @FFCS_COMPILE_scotch@
+FFCS_COMPILE_superludist = @FFCS_COMPILE_superludist@
+FFCS_COMPILE_yams = @FFCS_COMPILE_yams@
+FFCS_DYLIB_fflapack = @FFCS_DYLIB_fflapack@
+FFCS_DYLIB_gsl = @FFCS_DYLIB_gsl@
+FFCS_DYLIB_hips = @FFCS_DYLIB_hips@
+FFCS_DYLIB_hypre = @FFCS_DYLIB_hypre@
+FFCS_DYLIB_ipopt = @FFCS_DYLIB_ipopt@
+FFCS_DYLIB_lapack = @FFCS_DYLIB_lapack@
+FFCS_DYLIB_mmg3d = @FFCS_DYLIB_mmg3d@
+FFCS_DYLIB_mshmet = @FFCS_DYLIB_mshmet@
+FFCS_DYLIB_mumps = @FFCS_DYLIB_mumps@
+FFCS_DYLIB_mumps_seq = @FFCS_DYLIB_mumps_seq@
+FFCS_DYLIB_pardiso = @FFCS_DYLIB_pardiso@
+FFCS_DYLIB_parms = @FFCS_DYLIB_parms@
+FFCS_DYLIB_pastix = @FFCS_DYLIB_pastix@
+FFCS_DYLIB_pipe = @FFCS_DYLIB_pipe@
+FFCS_DYLIB_scotch = @FFCS_DYLIB_scotch@
+FFCS_DYLIB_superludist = @FFCS_DYLIB_superludist@
+FFCS_DYLIB_yams = @FFCS_DYLIB_yams@
+FFCS_MAKEFLAGS = @FFCS_MAKEFLAGS@
 FFGLUTNAME = @FFGLUTNAME@
 FFGLUTPROG = @FFGLUTPROG@
 FFLAGS = @FFLAGS@
@@ -406,7 +443,7 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-am
 
-clean-am: clean-generic mostlyclean-am
+clean-am: clean-generic clean-local mostlyclean-am
 
 distclean: distclean-am
 	-rm -f Makefile
@@ -472,17 +509,24 @@ uninstall-am:
 
 .MAKE: install-am install-strip
 
-.PHONY: all all-am check check-am clean clean-generic cscopelist-am \
-	ctags-am distclean distclean-generic distdir dvi dvi-am html \
-	html-am info info-am install install-am install-data \
-	install-data-am install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am install-info \
-	install-info-am install-man install-pdf install-pdf-am \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
+.PHONY: all all-am check check-am clean clean-generic clean-local \
+	cscopelist-am ctags-am distclean distclean-generic distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-dvi install-dvi-am \
+	install-exec install-exec-am install-html install-html-am \
+	install-info install-info-am install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
 	pdf-am ps ps-am tags-am uninstall uninstall-am
 
+
+# FFCS: no compilation here, so the tags file must be built by hand
+tags:TAGS
+TAGS:
+	etags *.?pp
+clean-local::
+	-rm TAGS
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

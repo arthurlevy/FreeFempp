@@ -54,7 +54,8 @@ DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/mkinstalldirs $(top_srcdir)/test-driver
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/acmacros.m4 \
-	$(top_srcdir)/acoptim.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/acoptim.m4 $(top_srcdir)/acmpi.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
@@ -327,11 +328,47 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EIGENOBJ = @EIGENOBJ@
+ENABLE_FFCS = @ENABLE_FFCS@
 EPSTOPDF = @EPSTOPDF@
 EXEEXT = @EXEEXT@
 F77 = @F77@
 FC = @FC@
 FCFLAGS = @FCFLAGS@
+FFCS_COMPILE_fflapack = @FFCS_COMPILE_fflapack@
+FFCS_COMPILE_gsl = @FFCS_COMPILE_gsl@
+FFCS_COMPILE_hips = @FFCS_COMPILE_hips@
+FFCS_COMPILE_hypre = @FFCS_COMPILE_hypre@
+FFCS_COMPILE_ipopt = @FFCS_COMPILE_ipopt@
+FFCS_COMPILE_lapack = @FFCS_COMPILE_lapack@
+FFCS_COMPILE_mmg3d = @FFCS_COMPILE_mmg3d@
+FFCS_COMPILE_mshmet = @FFCS_COMPILE_mshmet@
+FFCS_COMPILE_mumps = @FFCS_COMPILE_mumps@
+FFCS_COMPILE_mumps_seq = @FFCS_COMPILE_mumps_seq@
+FFCS_COMPILE_pardiso = @FFCS_COMPILE_pardiso@
+FFCS_COMPILE_parms = @FFCS_COMPILE_parms@
+FFCS_COMPILE_pastix = @FFCS_COMPILE_pastix@
+FFCS_COMPILE_pipe = @FFCS_COMPILE_pipe@
+FFCS_COMPILE_scotch = @FFCS_COMPILE_scotch@
+FFCS_COMPILE_superludist = @FFCS_COMPILE_superludist@
+FFCS_COMPILE_yams = @FFCS_COMPILE_yams@
+FFCS_DYLIB_fflapack = @FFCS_DYLIB_fflapack@
+FFCS_DYLIB_gsl = @FFCS_DYLIB_gsl@
+FFCS_DYLIB_hips = @FFCS_DYLIB_hips@
+FFCS_DYLIB_hypre = @FFCS_DYLIB_hypre@
+FFCS_DYLIB_ipopt = @FFCS_DYLIB_ipopt@
+FFCS_DYLIB_lapack = @FFCS_DYLIB_lapack@
+FFCS_DYLIB_mmg3d = @FFCS_DYLIB_mmg3d@
+FFCS_DYLIB_mshmet = @FFCS_DYLIB_mshmet@
+FFCS_DYLIB_mumps = @FFCS_DYLIB_mumps@
+FFCS_DYLIB_mumps_seq = @FFCS_DYLIB_mumps_seq@
+FFCS_DYLIB_pardiso = @FFCS_DYLIB_pardiso@
+FFCS_DYLIB_parms = @FFCS_DYLIB_parms@
+FFCS_DYLIB_pastix = @FFCS_DYLIB_pastix@
+FFCS_DYLIB_pipe = @FFCS_DYLIB_pipe@
+FFCS_DYLIB_scotch = @FFCS_DYLIB_scotch@
+FFCS_DYLIB_superludist = @FFCS_DYLIB_superludist@
+FFCS_DYLIB_yams = @FFCS_DYLIB_yams@
+FFCS_MAKEFLAGS = @FFCS_MAKEFLAGS@
 FFGLUTNAME = @FFGLUTNAME@
 FFGLUTPROG = @FFGLUTPROG@
 FFLAGS = @FFLAGS@
@@ -501,8 +538,9 @@ top_srcdir = @top_srcdir@
 
 # $Id$
 TESTS = DDM-Schwarz-Lame-2d.edp DDM-Schwarz-Lame-3d.edp DDM-Schwarz-Lap-2dd.edp DDM-Schwarz-Lap-3d.edp DDM-Schwarz-Stokes-2d.edp LaplaceRT-3d-matrix-mumps.edp MPICGLap.edp MPIGMRES2D.edp MPIGMRES3D.edp MUMPS.edp NSI3d-carac-mumps.edp NSI3d-carac.edp Stokes-v1-matrix-mumps.edp Stokes-v1-matrix-superludist.edp Stokes-v2-matrix-mumps.edp Stokes-v3-matrix-mumps.edp VG.edp beam-3d-matrix-superludist.edp cavityNewtow-MUMPS.edp chaleur3D-hips.edp chaleur3D-mumps.edp chaleur3D-superludist.edp cmaes-mpi-VarIneq.edp essai.edp  mortar-DN-4-mpi.edp testsolver_MUMPS.edp testsolver_SuperLU_DIST.edp testsolver_pastix.edp
+XFAIL_TESTS = $(TESTS)
 LOG_DRIVER = $(SHELL) $(top_srcdir)/test-driver-ff
-TESTS_ENVIRONMENT = TEST_FFPP=$(TEST_FFPPMPI) FLAGS_FFPP="-np 4" SKIP=$(SKIP_TESTS_MPI)
+TESTS_ENVIRONMENT = TEST_FFPP=$(TEST_FFPPMPI) FLAGS_FFPP="-np 4 -nw" SKIP=$(SKIP_TESTS_MPI)
 LIST_IDP = AddLayer2d.idp		DDM-Schwarz-macro.idp	MPIGMRESmacro.idp	getARGV.idp \
 AddLayer3d.idp		DDM-funcs-v2.idp	MPIplot.idp		mortar-msh.idp Heat3d.idp
 
@@ -525,12 +563,12 @@ ffmumps_fileparam.txt		ffpastix_iparm_dparm.txt	ffsuperlu_dist_fileparam.txt \
 MUMPS.cpp   \
 MUMPS.edp  dmatrix.hpp              
 
-LIST_COMPILE = MUMPS_FreeFem.$(DYLIB_SUFFIX) hips_FreeFem.$(DYLIB_SUFFIX) \
- interfacepastix.$(DYLIB_SUFFIX) \
-complex_SuperLU_DIST_FreeFem.$(DYLIB_SUFFIX) real_SuperLU_DIST_FreeFem.$(DYLIB_SUFFIX) \
-complex_pastix_FreeFem.$(DYLIB_SUFFIX) real_pastix_FreeFem.$(DYLIB_SUFFIX) \
-dSuperLU_DIST.$(DYLIB_SUFFIX) MPICG.$(DYLIB_SUFFIX) parms_FreeFem.$(DYLIB_SUFFIX) \
-mpi-cmaes.$(DYLIB_SUFFIX) MUMPS.$(DYLIB_SUFFIX)  
+
+# FFCS - list modified to disable some downloaded tools depending on the platform (see
+# [[file:../../../configure.ac::tools_problems_all_platforms]] for reasons why some tools may be
+# deactivated).
+LIST_COMPILE = @FFCS_DYLIB_mumps@ @FFCS_DYLIB_hips@ @FFCS_DYLIB_superludist@ @FFCS_DYLIB_pastix@ MPICG.$(DYLIB_SUFFIX)	\
+@FFCS_DYLIB_parms@ mpi-cmaes.$(DYLIB_SUFFIX)
 
 all: all-am
 
@@ -995,7 +1033,7 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-am
 
-clean-am: clean-generic mostlyclean-am
+clean-am: clean-generic clean-local mostlyclean-am
 
 distclean: distclean-am
 	-rm -f Makefile
@@ -1062,7 +1100,7 @@ uninstall-am:
 .MAKE: check-am install-am install-strip
 
 .PHONY: all all-am all-local check check-TESTS check-am clean \
-	clean-generic cscopelist-am ctags-am distclean \
+	clean-generic clean-local cscopelist-am ctags-am distclean \
 	distclean-generic distdir dvi dvi-am html html-am info info-am \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-exec-local \
@@ -1074,11 +1112,23 @@ uninstall-am:
 	tags-am uninstall uninstall-am
 
 
-all-local:$(LIST_COMPILE) freefem++.pref
-	echo "finish compile load mpi solver !"
+# FFCS - do not set loadpath to be able to run an external version of FF on the examples in this directory with
+# [[../../mkffref]]
+
+@FFCS_MPIOK_TRUE@all-local:$(LIST_COMPILE)
+@FFCS_MPIOK_TRUE@	@echo Warning missing mpi plugin: `for i in $(LIST_COMPILE); do if test ! -s $i ; then j=1; echo "$i," ;fi; done`
+@FFCS_MPIOK_TRUE@	echo "finish compile load mpi solver !"
+@FFCS_MPIOK_FALSE@all-local:
 
 .cpp.$(DYLIB_SUFFIX): ../examples++-load/ff-c++ ../examples++-load/WHERE_LIBRARY-download
-	- ../examples++-load/ff-c++ -auto  $< 
+#	FFCS needs an error exit code to make sure that all libraries are correctly compiled
+#
+#	FFCS on Windows inserts all MPI options (include, lib, ...) in the $MPICXX compiler script, instead of "$CXX $MPI_xxx",
+#	but it needs '-mpi' to do that
+#
+###	-../examples++-load/ff-c++ -auto  $< 
+	../examples++-load/ff-c++ -auto -mpi $<
+
 install-exec-local:: 
 	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/lib
 	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/include
@@ -1087,9 +1137,16 @@ install-exec-local::
 	 if [ -f $$i ] ; then 	$(INSTALL)  -m 555 $$i $(DESTDIR)$(ff_prefix_dir)/lib; fi; done
 	$(INSTALL)  -m 555  $(LIST_IDP)  $(DESTDIR)$(ff_prefix_dir)/idp
 
-freefem++.pref:
+freefem++.pref:Makefile
 	echo loadpath = \"../examples++-load/\" >freefem++.pref
+	echo includepath = \"../examples++-3d/\" >>freefem++.pref
+	echo includepath += \"../examples++-tutorial/\" >>freefem++.pref
 	echo loadpath += \"./\" >>freefem++.pref
+
+# FFCS - cleaning is useful sometimes
+clean-local::
+	-rm *.$(DYLIB_SUFFIX)
+	-rm *.$(OBJEXT)
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
