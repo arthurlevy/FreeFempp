@@ -1,5 +1,0 @@
-# Automatically generated
-# duptype id depth size device inode priority name
-DUPTYPE_FIRST_OCCURRENCE 1 0 57622268 2053 12593098 1 debian/tmp/usr/bin/FreeFem++
-DUPTYPE_WITHIN_SAME_TREE -1 0 57622268 2053 12593099 1 debian/tmp/usr/bin/FreeFem++-nw
-# end of file
