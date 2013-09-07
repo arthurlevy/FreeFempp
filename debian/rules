@@ -17,7 +17,7 @@ LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
 
 
 %:
-	dh $@ --with autoreconf
+	dh $@ --with autoreconf --parallel
 
 # export OMPI_MCA_plm_rsh_agent=/bin/false                #workaround to start MPI-applications in chroot
 # 
