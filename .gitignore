@@ -24,6 +24,7 @@ download/Makefile.in
 download/arpack/Makefile.in
 download/blas/Makefile.in
 download/gmm/cxxflags
+download/nlopt/config.log
 download/umfpack/Makefile.in
 examples++-3d/Makefile.in
 examples++-3d/all.edp
@@ -37,6 +38,7 @@ examples++-load/all.edp
 examples++-load/Makefile.in.orig
 examples++-load/Makefile.in
 examples++-load/makeref.edp
+examples++-load/Missing-plugins-so.log
 examples++-load/regtests.edp
 examples++-load/WHERE_LIBRARY
 examples++-load/WHERE_LIBRARY-download-new
