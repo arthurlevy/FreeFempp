@@ -50,3 +50,61 @@ ERROR-missing-lib:metis
 ERROR-missing-lib:scotch 
  -- parms_FreeFem.cpp -I/usr/lib/openmpi/include -I/usr/lib/openmpi/include/openmpi -I/usr/lib/openmpi/include -I/usr/lib/openmpi/include/openmpi -DAdd_  ERROR-missing-lib:metis
 ERROR-missing-lib:parms 
+ -- hips_FreeFem.cpp  ERROR-missing-lib:hips
+ERROR-missing-lib:metis 
+ -- complex_SuperLU_DIST_FreeFem.cpp -DAdd_  ERROR-missing-lib:superlu_dist
+-lblas ERROR-missing-lib:parmetis 
+ -- real_SuperLU_DIST_FreeFem.cpp -DAdd_  ERROR-missing-lib:superlu_dist
+-lblas ERROR-missing-lib:parmetis
+ERROR-missing-lib:metis 
+ -- interfacepastix.cpp -DAdd_  ERROR-missing-lib:double_pastix
+-lblas ERROR-missing-lib:parmetis
+ERROR-missing-lib:metis
+ERROR-missing-lib:scotch 
+ -- dSuperLU_DIST.cpp -DAdd_  ERROR-missing-lib:metis
+ERROR-missing-lib:superlu_dist
+ERROR-missing-lib:parmetis 
+ -- complex_pastix_FreeFem.cpp -DAdd_  ERROR-missing-lib:complex_pastix
+-lblas ERROR-missing-lib:parmetis
+ERROR-missing-lib:metis
+ERROR-missing-lib:scotch 
+ -- MUMPS_FreeFem.cpp -DAdd_  -ldmumps -lzmumps -lmumps_common -lpord ERROR-missing-lib:parmetis
+-lptscotch -lptscotcherr -lscalapack-openmpi -lblas ERROR-missing-lib:mpifc 
+ -- MUMPS.cpp -DAdd_  -ldmumps -lzmumps -lmumps_common -lpord ERROR-missing-lib:parmetis
+-lptscotch -lptscotcherr -lscalapack-openmpi -lblas ERROR-missing-lib:mpifc 
+ -- real_pastix_FreeFem.cpp -DAdd_  ERROR-missing-lib:double_pastix
+-lblas ERROR-missing-lib:parmetis
+ERROR-missing-lib:metis
+ERROR-missing-lib:scotch 
+ -- parms_FreeFem.cpp -DAdd_  ERROR-missing-lib:metis
+ERROR-missing-lib:parms
+-lblas ERROR-missing-lib:mpifc 
+ -- hips_FreeFem.cpp  ERROR-missing-lib:hips
+ERROR-missing-lib:metis 
+ -- real_SuperLU_DIST_FreeFem.cpp -DAdd_  ERROR-missing-lib:superlu_dist
+-lblas ERROR-missing-lib:parmetis
+ERROR-missing-lib:metis 
+ -- complex_SuperLU_DIST_FreeFem.cpp -DAdd_  ERROR-missing-lib:superlu_dist
+-lblas ERROR-missing-lib:parmetis 
+ -- dSuperLU_DIST.cpp -DAdd_  ERROR-missing-lib:metis
+ERROR-missing-lib:superlu_dist
+ERROR-missing-lib:parmetis 
+ -- interfacepastix.cpp -DAdd_  ERROR-missing-lib:double_pastix
+-lblas ERROR-missing-lib:parmetis
+ERROR-missing-lib:metis
+ERROR-missing-lib:scotch 
+ -- MUMPS_FreeFem.cpp -DAdd_  -ldmumps -lzmumps -lmumps_common -lpord ERROR-missing-lib:parmetis
+-lptscotch -lptscotcherr -lscalapack-openmpi -lblas ERROR-missing-lib:mpifc 
+ -- complex_pastix_FreeFem.cpp -DAdd_  ERROR-missing-lib:complex_pastix
+-lblas ERROR-missing-lib:parmetis
+ERROR-missing-lib:metis
+ERROR-missing-lib:scotch 
+ -- MUMPS.cpp -DAdd_  -ldmumps -lzmumps -lmumps_common -lpord ERROR-missing-lib:parmetis
+-lptscotch -lptscotcherr -lscalapack-openmpi -lblas ERROR-missing-lib:mpifc 
+ -- real_pastix_FreeFem.cpp -DAdd_  ERROR-missing-lib:double_pastix
+-lblas ERROR-missing-lib:parmetis
+ERROR-missing-lib:metis
+ERROR-missing-lib:scotch 
+ -- parms_FreeFem.cpp -DAdd_  ERROR-missing-lib:metis
+ERROR-missing-lib:parms
+-lblas ERROR-missing-lib:mpifc 

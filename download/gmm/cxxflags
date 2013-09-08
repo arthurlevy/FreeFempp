@@ -1,5 +1,5 @@
 CXX = g++ -Wl,-z,relro
-MPICXX = /usr/bin/mpic++
+MPICXX = mpic++ -Wl,-z,relro
 ac_ct_CXX = 
 CC = gcc -Wl,-z,relro
 MPICC = /usr/bin/mpicc
