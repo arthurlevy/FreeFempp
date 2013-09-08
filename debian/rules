@@ -19,7 +19,7 @@ LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
 %:
 	dh $@ --with autoreconf --parallel
 
-# export OMPI_MCA_plm_rsh_agent=/bin/false                #workaround to start MPI-applications in chroot
+export OMPI_MCA_plm_rsh_agent=/bin/false                #workaround to start MPI-applications in chroot
 # 
 # # to avoid lintian warnings
 # CPPFLAGS:=$(shell dpkg-buildflags --get CPPFLAGS)
@@ -69,13 +69,13 @@ LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
 # 	find . -name \*.so | xargs --no-run-if-empty rm
 #
  
-# override_dh_autoreconf_clean:
-# 	dh_autoreconf_clean
-# 	dh_quilt_unpatch
-# 
-# override_dh_autoreconf:
-# 	dh_quilt_patch
-# 	dh_autoreconf --as-needed
+override_dh_autoreconf_clean:
+	dh_autoreconf_clean
+	dh_quilt_unpatch
+
+override_dh_autoreconf:
+	dh_quilt_patch
+	dh_autoreconf --as-needed
 
  override_dh_auto_configure:
 	dh_auto_configure -- CC="gcc $(LDFLAGS)" CXX="g++ $(LDFLAGS)" MPICXX="mpic++ $(LDFLAGS)"

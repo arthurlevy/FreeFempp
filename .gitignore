@@ -32,8 +32,10 @@ examples++-3d/all.edp
 examples++-bug/Makefile.in.orig
 examples++-chapt3/Makefile.in.orig
 examples++-eigen/Makefile.in.orig
+examples++-eigen/freefem++.pref
 examples++-bug/Makefile.in
 examples++-chapt3/Makefile.in
+examples++-chapt3/freefem++.pref
 examples++-eigen/Makefile.in
 examples++-load/all.edp
 examples++-load/Makefile.in.orig
@@ -46,12 +48,13 @@ examples++-load/WHERE_LIBRARY-download-new
 examples++-mpi/Makefile.in.orig
 examples++-other/Makefile.in.orig
 examples++-tutorial/Makefile.in.orig
-examples++/Makefile.in.orig
 examples++-mpi/Makefile.in
 examples++-mpi/Missing-plugins-so.log
 examples++-other/Makefile.in
 examples++-tutorial/Makefile.in
 examples++/Makefile.in
+examples++/Makefile.in.orig
+examples++/freefem++.pref
 install-sh
 missing
 mkinstalldirs
