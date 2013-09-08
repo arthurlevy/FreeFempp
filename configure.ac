@@ -1902,7 +1902,7 @@ m4_map([AC_FF_WHERELIB],[
 	[[Superlu4],[-lsuperlu4],[superlu4/slu_ddefs.h],[]],
         [[blacs],[ -lblacsCinit$ff_with_mpi	-lblacsF77init$ff_with_mpi	-lblacs$ff_with_mpi],[]],
         [[scalapack],[-lscalapack$ff_with_mpi],[]],
-        [[scotch],[-lscotch -lscotcherr],[]],
+        [[scotch],[-lscotch -lscotcherr],[/usr/include/scotch/scotch.h],[]],
         [[ptscotch],[-lptscotch -lptscotcherr],[]],
 	[[metis],[-lscotch -lmetis],[metis/metis.h],[]],
 	[[metis],[-lscotch -lmetis],[metis.h],[]],
