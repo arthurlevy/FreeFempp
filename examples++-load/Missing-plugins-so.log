@@ -1,5 +1,6 @@
- -- tetgen.cpp  ERROR-missing-lib:tetgen 
  -- metis.cpp  ERROR-missing-lib:metis 
+ -- tetgen.cpp  ERROR-missing-lib:tetgen 
+ -- SuperLu.cpp  ERROR-missing-lib:superlu 
  -- ilut.cpp  ERROR-missing-lib:gmm 
  -- freeyams.cpp -I/home/eftaxiop/Αρχεία/Γενικά/Λογισμικό/freefem++/Δημιουργία_πακέτου_για_το_Debian_Linux/freefem++/download/include/libMesh  ERROR-missing-lib:freeyams 
  -- mmg3d-v4.0.cpp  ERROR-missing-lib:mmg3d-v4 
