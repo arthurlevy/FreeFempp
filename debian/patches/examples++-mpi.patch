@@ -1,0 +1,36 @@
+Correct location of pastix, hips and metis header files
+--- a/examples++-mpi/hips_FreeFem.cpp
++++ b/examples++-mpi/hips_FreeFem.cpp
+@@ -45,8 +45,8 @@
+ #endif
+ 
+ extern "C" {
+-#include "hips.h"  
+-#include "metis.h"
++#include "hips/hips.h"
++#include "metis/metis.h"
+ }
+ #include <stdio.h>
+ #include <stdlib.h>
+--- a/examples++-mpi/complex_pastix_FreeFem.cpp
++++ b/examples++-mpi/complex_pastix_FreeFem.cpp
+@@ -55,7 +55,7 @@
+ #include <sys/time.h>
+ 
+ 
+-#include "pastix_long_complex.h"
++#include "pastix/pastix_long_complex.h"
+ 
+ #undef memFree_null
+ #define memFree_null(x) {if (x ==NULL) {fprintf(stdout,"%s:%d freeing NULL\n",__FILE__,__LINE__);} free(x); x=NULL;}
+--- a/examples++-mpi/real_pastix_FreeFem.cpp
++++ b/examples++-mpi/real_pastix_FreeFem.cpp
+@@ -76,7 +76,7 @@
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
+-#include "pastix.h"
++#include "pastix/pastix.h"
+ //#include "cscd_utils.h"
+ #ifdef __cplusplus
+ }
