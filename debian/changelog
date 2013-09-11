@@ -1,8 +1,7 @@
 freefem++ (3.25-1) unstable; urgency=low
 
   [ Dimitrios Eftaxiopoulos ]
-  * Imported Upstream version 3.25
-  * Add libmetis-edf-dev to Build-Depends in debian/control
+  * Imported Upstream version 3.25 (Closes: #701161 #706714)
   * Change installation directory of header-like *.idp files
     from /usr/lib/freefem++ to /usr/include/freefem++, in order
     to fix a lintian warning
@@ -15,10 +14,11 @@ freefem++ (3.25-1) unstable; urgency=low
   * Override dh_auto_test in debian/rules, such that in case it is 
     used, it completes executing all *.edp example files, regardless
     of aborting on some of them
-  * Update debian/source/options file
   * Add libmetis-dev to build-deps in d/control
   * Remove libparmetis-dev from build deps
-  * Create symlink FreeFem++-nw --> FreeFem++ ((Closes: #701161)
+  * Add --parallel option to dh $@ in debian/rules
+  * Add hardening compilation flags to mpic++
+  * Allow testing of compiling and running the example files after build
 
   [ Christophe Trophime ]
   * update C. Trophime email
@@ -35,7 +35,7 @@ freefem++ (3.25-1) unstable; urgency=low
   * update rules
   * reorder BuildDepends - comment out unsupported libs
 
- -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Fri, 06 Sep 2013 18:00:05 +0300
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Thu, 12 Sep 2013 00:02:58 +0300
 
 freefem++ (3.20-1) experimental; urgency=low
 
