@@ -51,7 +51,7 @@ export OMPI_MCA_plm_rsh_agent=/bin/false                #workaround to start MPI
 	cd examples++-load && rm -f *.ps *.txt *.mesh glu2D.mesh.gmsh \
 					pippo.data pippo.dx triQA.msh \
 					freefem++.pref config.log \
-					WHERE_LIBRARY-config
+					WHERE_LIBRARY-config ipopt.out
 	cd examples++-tutorial && rm -f A.matrix *.ps *.txt g.mesh toto.Th \
 					*.gmsh toto.am_fmt toto.dbg lestables \
 					freefem++.pref Th*.msh emptymesh-2.msh \
@@ -103,4 +103,4 @@ override_dh_auto_install:
 # 
  
  override_dh_auto_test:
-#	$(MAKE) $(AM_MAKEFLAGS) -i check
+	$(MAKE) $(AM_MAKEFLAGS) -i check
