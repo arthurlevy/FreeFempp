@@ -44,7 +44,7 @@ ff-get-dep.in ff-pkg-download.in load.link.in  include.tar.gz \
  MUMPS_seq.cpp \
  ff-Ipopt.cpp \
  scotch.cpp    shell.cpp \
- pipe.cpp  \
+ pipe.cpp pstream.h  \
  symmetrizeCSR.cpp \
  dmatrix.hpp PARDISO.cpp             \
  ch.pts  
@@ -67,15 +67,15 @@ LIST_COMPILE=myfunction.$(DYLIB_SUFFIX)  BernadiRaugel.$(DYLIB_SUFFIX) \
 	splitedges.$(DYLIB_SUFFIX) Element_Mixte.$(DYLIB_SUFFIX) \
 	myfunction2.$(DYLIB_SUFFIX) \
 	MetricPk.$(DYLIB_SUFFIX) FreeFemQA.$(DYLIB_SUFFIX) shell.$(DYLIB_SUFFIX) \
-	@FFCS_DYLIB_pipe@ symmetrizeCSR.$(DYLIB_SUFFIX) 
+	@TOOL_DYLIB_pipe@ symmetrizeCSR.$(DYLIB_SUFFIX) 
 
 # FFCS - some libraries are skipped because the corresponding tool is deactivated.
 
-LIST_COMPILE_PKG=tetgen.$(DYLIB_SUFFIX) SuperLu.$(DYLIB_SUFFIX) dfft.$(DYLIB_SUFFIX) metis.$(DYLIB_SUFFIX)		\
-	UMFPACK64.$(DYLIB_SUFFIX) NewSolver.$(DYLIB_SUFFIX) @FFCS_DYLIB_lapack@ @FFCS_DYLIB_fflapack@			\
-	ffnewuoa.$(DYLIB_SUFFIX) ilut.$(DYLIB_SUFFIX) @FFCS_DYLIB_yams@ @FFCS_DYLIB_mmg3d@ @FFCS_DYLIB_mshmet@		\
-	@FFCS_DYLIB_gsl@ @FFCS_DYLIB_mumps_seq@ @FFCS_DYLIB_ipopt@ ff-NLopt.$(DYLIB_SUFFIX) ff-cmaes.$(DYLIB_SUFFIX)	\
-	@FFCS_DYLIB_scotch@ @FFCS_DYLIB_pardiso@
+LIST_COMPILE_PKG=tetgen.$(DYLIB_SUFFIX) @TOOL_DYLIB_superlu@ dfft.$(DYLIB_SUFFIX) @TOOL_DYLIB_metis@		\
+	@TOOL_DYLIB_umfpack@ NewSolver.$(DYLIB_SUFFIX) @TOOL_DYLIB_lapack@ @TOOL_DYLIB_fflapack@		\
+	ffnewuoa.$(DYLIB_SUFFIX) ilut.$(DYLIB_SUFFIX) @TOOL_DYLIB_yams@ @TOOL_DYLIB_mmg3d@ @TOOL_DYLIB_mshmet@	\
+	@TOOL_DYLIB_gsl@ @TOOL_DYLIB_mumps_seq@ @TOOL_DYLIB_ipopt@ @TOOL_DYLIB_nlopt@ ff-cmaes.$(DYLIB_SUFFIX)	\
+	@TOOL_DYLIB_scotch@ @TOOL_DYLIB_pardiso@
 
 bin_PROGRAMS=
 
@@ -93,8 +93,8 @@ load_compile: ff-c++ WHERE_LIBRARY-download include.done freefem++.pref
 .cpp.$(DYLIB_SUFFIX): ff-c++
 	 ./ff-c++ -auto $< 
 
-# FFCS - 26/10/11 - Unpacking include.tar.gz is very often buggy under Cygwin (softlinks are randomly replaced with empty files
-# without any access right). So just replace the whole thing with a plain copy.
+# FFCS - 26/10/11 - Unpacking include.tar.gz is very often buggy under Cygwin (softlinks are randomly replaced with
+# empty files without any access right). So just replace the whole thing with a plain copy.
 
 if ENABLE_FFCS
 allheaders=../src/fflib/AddNewFE.h ../src/fflib/AFunction_ext.hpp ../src/fflib/AFunction.hpp ../src/fflib/AnyType.hpp	\
@@ -133,8 +133,11 @@ include.done: include.tar.gz
 	gunzip -c include.tar.gz| tar xvf -
 	-rm -f include/._*
 	touch $@
-#	-cp -rf ../download/include/* include/.
 endif
+
+clean-local::
+	-rm -r include
+	-rm include.done
 
 Ref: makeref.edp
 	../src/nw/FreeFem++-nw makeref.edp
@@ -165,7 +168,7 @@ regtests.edp: regtests.m4 ../regtests.m4
 
 $(LIST_COMPILE):ff-c++ include.done
 
-clean-local:
+clean-local::
 	-rm *.o *.$(DYLIB_SUFFIX) load.link WHERE_LIBRARY-download ff-get-dep ff-c++ ff-pkg-download \
 	  $(LIST_COMPILE) $(LIST_COMPILE_PKG)  regtests.edp makeref.edp
 	-rm -rf include include.done
@@ -191,18 +194,23 @@ WHERE_LIBRARY:
 FORCE: ;
 freefem++.pref:
 	echo loadpath = \"./\" >freefem++.pref
-install-exec-local:: load_compile
+install-exec-local:: load_compile WHERE_LIBRARY
 	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/lib
 	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/include
 	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/etc
 	$(INSTALL_DATA)  clapack.h ppmimg.h  bmo.hpp msh3.hpp pcm.hpp  include/*   $(DESTDIR)$(ff_prefix_dir)/include
 	$(INSTALL)  -m 555 $(LIST_COMPILE) $(DESTDIR)$(ff_prefix_dir)/lib
+	$(INSTALL)  -m 555 WHERE_LIBRARY-config WHERE_LIBRARY  $(DESTDIR)$(ff_prefix_dir)/lib
+	for i in  WHERE_LIBRARY-config WHERE_LIBRARY WHERE_LIBRARY-download; do \
+	  sed <$$i >$(DESTDIR)$(ff_prefix_dir)/lib/$$i 's#$(abs_top_builddir)/download#$(ff_prefix_dir)#' ;\
+	 done
 	echo loadpath += \"./\"  >$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
 	echo loadpath += \"$(ff_prefix_dir)/lib\"  >>$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
 	echo includepath += \"$(ff_prefix_dir)/idp\"  >>$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
 	$(INSTALL_SCRIPT) ff-c++  $(DESTDIR)${bindir}
 	$(INSTALL_SCRIPT) ff-pkg-download  $(DESTDIR)${bindir}
 	$(INSTALL_SCRIPT) ff-get-dep  $(DESTDIR)${bindir}
+##	$(DESTDIR)${bindir}/ff-pkg-download $(DESTDIR) >$(DESTDIR)$(ff_prefix_dir)/lib/WHERE_LIBRARY-download
 	-for i in $(LIST_COMPILE_PKG); do \
 	 if [ -f $$i ] ; then 	$(INSTALL)  -m 555 $$i $(DESTDIR)$(ff_prefix_dir)/lib; fi; done
 

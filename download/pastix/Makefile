@@ -1,3 +1,26 @@
+# ======================================================================
+# Laboratoire Jacques-Louis Lions
+# Université Pierre et Marie Curie-Paris6, UMR 7598, Paris, F-75005 France
+# http://www.ljll.math.upmc.fr/lehyaric
+# ======================================================================
+# This file is part of Freefem++
+# 
+# Freefem++ is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as
+# published by the Free Software Foundation; either version 2.1 of
+# the License, or (at your option) any later version.
+# 
+# Freefem++ is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+# 
+# You should have received a copy of the GNU Lesser General Public
+# License along with Freefem++; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+# ======================================================================
+# headeralh default=0 freefem make multipleauthors start=19/03/10 upmc
+
 # Downloading and compiling extra libraries
 # -----------------------------------------
 
@@ -6,12 +29,11 @@ include config.in
 all-local: pastix
 
 # Downloading and compiling pastix
-# http://gforge.inria.fr/frs/download.php/21873/
 # ------------------------------
 DIRPKG   = ../pkg
 SRCDIR   = pastix_release_$(VERSION)
 PACKAGE1 = $(DIRPKG)/pastix_release_$(VERSION).tar.bz2
-SERVER   = http://gforge.inria.fr/frs/download.php/21873/
+SERVER   = https://gforge.inria.fr/frs/download.php/21873/
 INSTALL  = ../..
 VERSION  = 2200
 
@@ -81,7 +103,9 @@ $(SRCDIR)/FAIT: $(SRCDIR)
 	mkdir -p $(SRCDIR)/$(INSTALL)/lib/pastix/double
 	cp $(SRCDIR)/install/*.a $(SRCDIR)/$(INSTALL)/lib/pastix/double/
 	cd $(SRCDIR)/src/ &&  $(MAKE) clean 
-	#complex version
+#
+# complex version
+#
 	cp config-complex.in $(SRCDIR)/src/config.in	
 #
 #	FFCS - 16/1/13 - this crashes in parallel
@@ -123,7 +147,13 @@ $(SRCDIR)/FAIT: $(SRCDIR)
 
 $(SRCDIR): $(PACKAGE1)
 	tar xvfj $(PACKAGE1)
-	#cd $(SRCDIR)/src/; patch -p1 < ../../pastix_release_2200-gen.patch
+#
+# 31/7/13 - ALH - patch from Fred to avoid picking up a locally installed version of Umfpack when FF compiles its own on
+# Slackware64-14.0. For more information see FFCS comments from Fred on
+# [[http://www.ljll.math.upmc.fr//~lehyaric/ffcs/news/20130528-1139.php]] (dated 30/7/13)
+#
+	patch -p0 < all_macros.diff
+#
 	cd $(SRCDIR)/src/blend/src/; patch -p2 < ../../../../pastix_release_2200-blend.patch
 	touch $(SRCDIR)
 
@@ -132,8 +162,8 @@ $(PACKAGE1):
 #
 # FFCS - 23/4/13 - --no-check-certificate always required here, even
 # if [[file:../../configure.ac::no-check-certificate]] decides otherwise.
-#
-	cd $(DIRPKG);$(WGET) --no-check-certificate $(SERVER)/`basename $(PACKAGE1)`
+# FH remove no-check-certificate , in wget command ..
+	cd $(DIRPKG);$(WGET) $(SERVER)/`basename $(PACKAGE1)`
 
 # FFCS: avoid loops when SRCDIR does not exist
 clean-local:
@@ -152,6 +182,12 @@ clean: clean-local
 #
 	-rm config.in config-complex.in config.log
 	-rm config.log
-	-rm $(PACKAGE1)
+#	-rm $(PACKAGE1)
 
 .PHONY:$(SRCDIR)/$(INSTALL)
+
+# Local Variables:
+# mode:makefile
+# ispell-local-dictionary:"british"
+# coding:utf-8
+# End:

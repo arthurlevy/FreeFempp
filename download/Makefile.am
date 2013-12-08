@@ -17,8 +17,7 @@ EXTRA_DIST= \
 ./f2c/tt.f \
 ./fftw/Makefile \
 ./fftw/Makefile.am \
-./fltk/Makefile.am \
-./fltk/Makefile.in \
+./fftw/Makefile.in \
 ./gmm/Makefile \
 ./gmm/cxxflags \
 ./headers-sparsesolver.inc \
@@ -47,7 +46,6 @@ EXTRA_DIST= \
 ./mumps/Makefile-mumps-4.10.0.inc \
 ./mumps/MUMPS_4.10.0.patch \
 ./parmetis/Makefile-parmetis.in \
-./parmetis/ParMetis-3.1.1-ok/stdheaders.h \
 ./parmetis/makefile \
 ./parmetis/parmetis-3.1.1.patch \
 ./parms/Makefile \
@@ -56,8 +54,8 @@ EXTRA_DIST= \
 ./pastix/config-pastix-complex.in \
 ./pastix/config-pastix-real.in \
 ./pastix/pastix_release_2200-blend.patch \
-./pastix/pastix_release_2200-gen.patch \
 ./pastix/patch-pastix_long_complex.h \
+./pastix//all_macros.diff \
 ./scalapack/Makefile \
 ./scalapack/SLmake-scalapack.inc \
 ./scotch/Makefile \
@@ -89,12 +87,14 @@ ipopt/patch-IpBlas
 
 # FFCS: See [[file:../../../configure.ac::tools_problems_all_platforms]] for reasons why some tools may be deactivated
 
-# <<no_more_blacs>> blacs is include in  scalapack 2.0.2 
+# <<no_more_blacs>> blacs is included in scalapack 2.0.2
 
-MPI_SOFT=parmetis scalapack  @FFCS_COMPILE_superludist@ @FFCS_COMPILE_mumps@	\
-	@FFCS_COMPILE_pastix@  @FFCS_COMPILE_hips@ @FFCS_COMPILE_parms@
-LIST_SOFT=tetgen superlu fftw metis @FFCS_COMPILE_scotch@ @FFCS_COMPILE_mshmet@ @FFCS_COMPILE_yams@ @FFCS_COMPILE_mmg3d@ gmm nlopt	\
-	@FFCS_COMPILE_mumps_seq@ @FFCS_COMPILE_ipopt@
+MPI_SOFT=@TOOL_COMPILE_parmetis@ scalapack @TOOL_COMPILE_superludist@ @TOOL_COMPILE_mumps@ @TOOL_COMPILE_pastix@	\
+	@TOOL_COMPILE_hips@ @TOOL_COMPILE_parms@
+
+LIST_SOFT=tetgen @TOOL_COMPILE_superlu@ fftw @TOOL_COMPILE_metis@ @TOOL_COMPILE_scotch@ @TOOL_COMPILE_mshmet@ @TOOL_COMPILE_yams@	\
+	@TOOL_COMPILE_mmg3d@ gmm @TOOL_COMPILE_nlopt@ @TOOL_COMPILE_mumps_seq@ @TOOL_COMPILE_ipopt@
+
 all-recursive: bin lib include pkg
 
 lib: 
@@ -148,6 +148,13 @@ re-install:
 	$(MAKE) compile-pkg DIRTARGET=install
 WHERE:
 	$(MAKE) compile-pkg DIRTARGET=WHERE
+install-exec-local:	
+	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/lib
+	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/bin
+	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/include
+	cp -rp lib $(DESTDIR)$(ff_prefix_dir)
+	cp -rp include  $(DESTDIR)$(ff_prefix_dir)
+	cp -rp bin  $(DESTDIR)$(ff_prefix_dir)
 
 clean-local:
 	-rm -rf	 tag-* include lib bin 

@@ -1073,7 +1073,7 @@ bool BuildPeriodic(
                     {
                      if (verbosity >50)
                       cout << xx << " " << i0 << " " << ie << endl;
-                     im=m.insert(make_pair<int,int2>(i0,i2)).first;
+                     im=m.insert(pair<int,int2>(i0,i2)).first;
                     }
                    else {
                      if (verbosity >50)
@@ -2678,20 +2678,25 @@ struct set_eqvect_fl: public binary_function<KN<K>*,const  FormLinear *,KN<K>*> 
 
  CDomainOfIntegration::typeofkind kind = di->kind;
  set<int> setoflab;
- bool all=true; 
- if(dim==2)
- if (verbosity>3) 
-   if (CDomainOfIntegration::int1d==kind) cout << "  -- boundary int border ( nQP: "<< FIE.n << ") levelset: "<< di->islevelset() << " ,"  ;
-   else  if (CDomainOfIntegration::intalledges==kind) cout << "  -- boundary int all edges ( nQP: "<< FIE.n << "),"  ;
-   else  if (CDomainOfIntegration::intallVFedges==kind) cout << "  -- boundary int all VF edges nQP: ("<< FIE.n << ")," ;
-   else cout << "  --  int    (nQP: "<< FIT.n << " ) in "  ;
- else if(dim==3)
-   if (verbosity>3) 
-     if (CDomainOfIntegration::int2d==kind) cout << "  -- boundary int border ( nQP: "<< FIT.n << ") ,"  ;
-     else  if (CDomainOfIntegration::intalledges==kind) cout << "  -- boundary int all faces ( nQP: "<< FIT.n << "),"  ;
-     else  if (CDomainOfIntegration::intallVFedges==kind) cout << "  -- boundary int all VF face nQP: ("<< FIT.n << ")," ;
-     else cout << "  --  int    (nQP: "<< FIV.n << " ) in "  ;
-
+ bool all=true;
+      
+  if (verbosity>3)
+  {
+      if(dim==2)
+      {
+          if (CDomainOfIntegration::int1d==kind) cout << "  -- boundary int border ( nQP: "<< FIE.n << ") levelset: "<< di->islevelset() << " ,"  ;
+          else  if (CDomainOfIntegration::intalledges==kind) cout << "  -- boundary int all edges ( nQP: "<< FIE.n << "),"  ;
+          else  if (CDomainOfIntegration::intallVFedges==kind) cout << "  -- boundary int all VF edges nQP: ("<< FIE.n << ")," ;
+          else cout << "  --  int    (nQP: "<< FIT.n << " ) in "  ;
+      }
+      else if(dim==3)
+      {
+          if (CDomainOfIntegration::int2d==kind) cout << "  -- boundary int border ( nQP: "<< FIT.n << ") ,"  ;
+          else  if (CDomainOfIntegration::intalledges==kind) cout << "  -- boundary int all faces ( nQP: "<< FIT.n << "),"  ;
+          else  if (CDomainOfIntegration::intallVFedges==kind) cout << "  -- boundary int all VF face nQP: ("<< FIT.n << ")," ;
+          else cout << "  --  int    (nQP: "<< FIV.n << " ) in "  ;
+      }
+  }
  /*
    if ( verbosity>3) 
    if (kind==CDomainOfIntegration::int1d) cout << "  -- boundary int border " ;
@@ -2880,9 +2885,10 @@ struct set_eqvect_fl: public binary_function<KN<K>*,const  FormLinear *,KN<K>*> 
      ffassert(&Th);
      
      if (verbosity >3) 
-       if (all) cout << " all " << endl ;
-       else cout << endl;
-     
+       {
+	 if (all) cout << " all " << endl ;
+	 else cout << endl;
+       }
      if (kind==CDomainOfIntegration::int2d)
        {
 	 const GQuadratureFormular<R2> & FI = FIT;
@@ -4807,10 +4813,21 @@ TheOperators->Add("^", new OneBinaryOperatorA_inv<R>());
  Add<lgBoundaryEdge>("whoinElement",".",new OneOperator1_<long,lgBoundaryEdge>(EdgeElement));
  
  
-//  new type  
+ // New FF language types. zzzfff is defined at [[file:lex.hpp::zzzfff]] as a pointer to an object of class mylex
+ // [[file:lex.hpp::class mylex]]. zzzfff->Add() is at [[file:lex.cpp::void mylex Add Key k aType t]]. The lexer will
+ // then be called from the parser via [[file:../lglib/lg.ypp::yylex]]
+
  zzzfff->Add("R3",atype<R3*>());
- zzzfff->Add("mesh",atype<pmesh*>()); // <<mesh_keyword>>
+
+ // <<mesh_keyword>> pmesh is a pointer to Mesh [[file:../femlib/fem.hpp::class Mesh]] defined at
+ // [[file:lgfem.hpp::typedef Mesh pmesh]]
+
+ zzzfff->Add("mesh",atype<pmesh*>());
+
+ // pmesh3 is a pointer to Mesh3 defined at [[file:lgfem.hpp::typedef Mesh3 pmesh3]]
+
  zzzfff->Add("mesh3",atype<pmesh3*>());
+
  zzzfff->Add("element",atype<lgElement>());
  zzzfff->Add("vertex",atype<lgVertex>());
 // zzzfff->Add("fespace",atype<pfes*>());
