@@ -14,6 +14,28 @@
 
 @SET_MAKE@
 
+# ======================================================================
+# Laboratoire Jacques-Louis Lions
+# Université Pierre et Marie Curie-Paris6, UMR 7598, Paris, F-75005 France
+# ======================================================================
+# This file is part of Freefem++
+# 
+# Freefem++ is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as
+# published by the Free Software Foundation; either version 2.1 of
+# the License, or (at your option) any later version.
+# 
+# Freefem++ is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+# 
+# You should have received a copy of the GNU Lesser General Public
+# License along with Freefem++; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+# ======================================================================
+# headeralh default=0 freefem make multipleauthors start=13/05/04 upmc
+
 VPATH = @srcdir@
 am__make_dryrun = \
   { \
@@ -133,6 +155,7 @@ CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CFLAGSF77 = @CFLAGSF77@
 CNOFLAGS = @CNOFLAGS@
+COMPILE_OPENBLAS = @COMPILE_OPENBLAS@
 CPPFLAGS = @CPPFLAGS@
 CXX = @CXX@
 CXXCPP = @CXXCPP@
@@ -145,9 +168,10 @@ DOCPDF = @DOCPDF@
 DOCPS = @DOCPS@
 DOCPSGZ = @DOCPSGZ@
 DOWNLOADCOMPILE = @DOWNLOADCOMPILE@
+DOWNLOADED_BLAS = @DOWNLOADED_BLAS@
+DOWNLOADED_BLAS_BUILT_SOURCES = @DOWNLOADED_BLAS_BUILT_SOURCES@
 DOWNLOAD_ARPACK = @DOWNLOAD_ARPACK@
-DOWNLOAD_BLAS = @DOWNLOAD_BLAS@
-DOWNLOAD_FLTK = @DOWNLOAD_FLTK@
+DOWNLOAD_FFTW = @DOWNLOAD_FFTW@
 DOWNLOAD_UMFPACK = @DOWNLOAD_UMFPACK@
 DYLIB_SUFFIX = @DYLIB_SUFFIX@
 ECHO_C = @ECHO_C@
@@ -161,41 +185,6 @@ EXEEXT = @EXEEXT@
 F77 = @F77@
 FC = @FC@
 FCFLAGS = @FCFLAGS@
-FFCS_COMPILE_fflapack = @FFCS_COMPILE_fflapack@
-FFCS_COMPILE_gsl = @FFCS_COMPILE_gsl@
-FFCS_COMPILE_hips = @FFCS_COMPILE_hips@
-FFCS_COMPILE_hypre = @FFCS_COMPILE_hypre@
-FFCS_COMPILE_ipopt = @FFCS_COMPILE_ipopt@
-FFCS_COMPILE_lapack = @FFCS_COMPILE_lapack@
-FFCS_COMPILE_mmg3d = @FFCS_COMPILE_mmg3d@
-FFCS_COMPILE_mshmet = @FFCS_COMPILE_mshmet@
-FFCS_COMPILE_mumps = @FFCS_COMPILE_mumps@
-FFCS_COMPILE_mumps_seq = @FFCS_COMPILE_mumps_seq@
-FFCS_COMPILE_pardiso = @FFCS_COMPILE_pardiso@
-FFCS_COMPILE_parms = @FFCS_COMPILE_parms@
-FFCS_COMPILE_pastix = @FFCS_COMPILE_pastix@
-FFCS_COMPILE_pipe = @FFCS_COMPILE_pipe@
-FFCS_COMPILE_scotch = @FFCS_COMPILE_scotch@
-FFCS_COMPILE_superludist = @FFCS_COMPILE_superludist@
-FFCS_COMPILE_yams = @FFCS_COMPILE_yams@
-FFCS_DYLIB_fflapack = @FFCS_DYLIB_fflapack@
-FFCS_DYLIB_gsl = @FFCS_DYLIB_gsl@
-FFCS_DYLIB_hips = @FFCS_DYLIB_hips@
-FFCS_DYLIB_hypre = @FFCS_DYLIB_hypre@
-FFCS_DYLIB_ipopt = @FFCS_DYLIB_ipopt@
-FFCS_DYLIB_lapack = @FFCS_DYLIB_lapack@
-FFCS_DYLIB_mmg3d = @FFCS_DYLIB_mmg3d@
-FFCS_DYLIB_mshmet = @FFCS_DYLIB_mshmet@
-FFCS_DYLIB_mumps = @FFCS_DYLIB_mumps@
-FFCS_DYLIB_mumps_seq = @FFCS_DYLIB_mumps_seq@
-FFCS_DYLIB_pardiso = @FFCS_DYLIB_pardiso@
-FFCS_DYLIB_parms = @FFCS_DYLIB_parms@
-FFCS_DYLIB_pastix = @FFCS_DYLIB_pastix@
-FFCS_DYLIB_pipe = @FFCS_DYLIB_pipe@
-FFCS_DYLIB_scotch = @FFCS_DYLIB_scotch@
-FFCS_DYLIB_superludist = @FFCS_DYLIB_superludist@
-FFCS_DYLIB_yams = @FFCS_DYLIB_yams@
-FFCS_MAKEFLAGS = @FFCS_MAKEFLAGS@
 FFGLUTNAME = @FFGLUTNAME@
 FFGLUTPROG = @FFGLUTPROG@
 FFLAGS = @FFLAGS@
@@ -203,20 +192,14 @@ FFMETIS_CFLAGS = @FFMETIS_CFLAGS@
 FF_LAPACKdir = @FF_LAPACKdir@
 FF_MALLOC_H = @FF_MALLOC_H@
 FF_SECOND = @FF_SECOND@
+FF_STATIC_LIB = @FF_STATIC_LIB@
 FF_UMFPACK_CONFIG = @FF_UMFPACK_CONFIG@
 FLIBS = @FLIBS@
-FLTK_CONFIG = @FLTK_CONFIG@
-FLTK_CONFIG_PARAM = @FLTK_CONFIG_PARAM@
-FLTK_VERSION = @FLTK_VERSION@
 FNOFLAGS = @FNOFLAGS@
 G2CLIB = @G2CLIB@
 GCCNOCYGWIN = @GCCNOCYGWIN@
-GENERIC_BLAS = @GENERIC_BLAS@
-GENERIC_BLAS_BUILT_SOURCES = @GENERIC_BLAS_BUILT_SOURCES@
 GREP = @GREP@
 HISTORY = @HISTORY@
-IDEPROG = @IDEPROG@
-IDE_TESTS = @IDE_TESTS@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -255,6 +238,7 @@ MPI_LIB = @MPI_LIB@
 MPI_LIBC = @MPI_LIBC@
 MPI_LIBFC = @MPI_LIBFC@
 MPI_LIB_DIRS = @MPI_LIB_DIRS@
+NO_RANGE_CHECK = @NO_RANGE_CHECK@
 OBJEXT = @OBJEXT@
 OPTIM_TYPE = @OPTIM_TYPE@
 PACKAGE = @PACKAGE@
@@ -268,6 +252,7 @@ PASTIX_HOSTARCH = @PASTIX_HOSTARCH@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 RANLIB = @RANLIB@
 RANLIN = @RANLIN@
+SCOTCH_INCLUDE = @SCOTCH_INCLUDE@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 SIZEOF_INT = @SIZEOF_INT@
@@ -282,9 +267,50 @@ STD_GRAPH_OBJ = @STD_GRAPH_OBJ@
 STD_LDFLAGS = @STD_LDFLAGS@
 STD_LIBS = @STD_LIBS@
 STRIP = @STRIP@
-TESTIDEPROG = @TESTIDEPROG@
 TEST_FFPP = @TEST_FFPP@
 TEST_FFPPMPI = @TEST_FFPPMPI@
+TOOL_COMPILE_fflapack = @TOOL_COMPILE_fflapack@
+TOOL_COMPILE_gsl = @TOOL_COMPILE_gsl@
+TOOL_COMPILE_hips = @TOOL_COMPILE_hips@
+TOOL_COMPILE_ipopt = @TOOL_COMPILE_ipopt@
+TOOL_COMPILE_lapack = @TOOL_COMPILE_lapack@
+TOOL_COMPILE_metis = @TOOL_COMPILE_metis@
+TOOL_COMPILE_mmg3d = @TOOL_COMPILE_mmg3d@
+TOOL_COMPILE_mshmet = @TOOL_COMPILE_mshmet@
+TOOL_COMPILE_mumps = @TOOL_COMPILE_mumps@
+TOOL_COMPILE_mumps_seq = @TOOL_COMPILE_mumps_seq@
+TOOL_COMPILE_nlopt = @TOOL_COMPILE_nlopt@
+TOOL_COMPILE_pardiso = @TOOL_COMPILE_pardiso@
+TOOL_COMPILE_parmetis = @TOOL_COMPILE_parmetis@
+TOOL_COMPILE_parms = @TOOL_COMPILE_parms@
+TOOL_COMPILE_pastix = @TOOL_COMPILE_pastix@
+TOOL_COMPILE_pipe = @TOOL_COMPILE_pipe@
+TOOL_COMPILE_scotch = @TOOL_COMPILE_scotch@
+TOOL_COMPILE_superlu = @TOOL_COMPILE_superlu@
+TOOL_COMPILE_superludist = @TOOL_COMPILE_superludist@
+TOOL_COMPILE_umfpack = @TOOL_COMPILE_umfpack@
+TOOL_COMPILE_yams = @TOOL_COMPILE_yams@
+TOOL_DYLIB_fflapack = @TOOL_DYLIB_fflapack@
+TOOL_DYLIB_gsl = @TOOL_DYLIB_gsl@
+TOOL_DYLIB_hips = @TOOL_DYLIB_hips@
+TOOL_DYLIB_ipopt = @TOOL_DYLIB_ipopt@
+TOOL_DYLIB_lapack = @TOOL_DYLIB_lapack@
+TOOL_DYLIB_metis = @TOOL_DYLIB_metis@
+TOOL_DYLIB_mmg3d = @TOOL_DYLIB_mmg3d@
+TOOL_DYLIB_mshmet = @TOOL_DYLIB_mshmet@
+TOOL_DYLIB_mumps = @TOOL_DYLIB_mumps@
+TOOL_DYLIB_mumps_seq = @TOOL_DYLIB_mumps_seq@
+TOOL_DYLIB_nlopt = @TOOL_DYLIB_nlopt@
+TOOL_DYLIB_pardiso = @TOOL_DYLIB_pardiso@
+TOOL_DYLIB_parmetis = @TOOL_DYLIB_parmetis@
+TOOL_DYLIB_parms = @TOOL_DYLIB_parms@
+TOOL_DYLIB_pastix = @TOOL_DYLIB_pastix@
+TOOL_DYLIB_pipe = @TOOL_DYLIB_pipe@
+TOOL_DYLIB_scotch = @TOOL_DYLIB_scotch@
+TOOL_DYLIB_superlu = @TOOL_DYLIB_superlu@
+TOOL_DYLIB_superludist = @TOOL_DYLIB_superludist@
+TOOL_DYLIB_umfpack = @TOOL_DYLIB_umfpack@
+TOOL_DYLIB_yams = @TOOL_DYLIB_yams@
 UMFPACKLIBS = @UMFPACKLIBS@
 VERSION = @VERSION@
 WGET = @WGET@
@@ -321,7 +347,7 @@ ff_bison = @ff_bison@
 ff_convert = @ff_convert@
 ff_curl = @ff_curl@
 ff_dvips = @ff_dvips@
-ff_fltk = @ff_fltk@
+ff_git = @ff_git@
 ff_gzip = @ff_gzip@
 ff_history = @ff_history@
 ff_latex = @ff_latex@
@@ -363,94 +389,6 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 dist_pkgdata_DATA = $(DOCPDF)
-FIGS_EPS = \
-figures/1stCOD.eps              figures/LastCOD.eps             figures/cfunc1.eps \
-figures/1stCOD2.eps             figures/LastCOD2.eps            figures/cfunc2.eps \
-figures/1stPhoto.eps            figures/LastPhoto.eps           figures/electro.eps \
-figures/1stPhoto2.eps           figures/LastPhoto2.eps          figures/electroMesh.eps \
-figures/BellInit.eps            figures/NACA0012.eps            figures/mesh_sample.eps \
-figures/BellLast.eps            figures/P0P1P2P1nc.eps          figures/naca1.eps \
-figures/Bezier.eps              figures/P1P2.eps                figures/naca2.eps \
-figures/Cardioid.eps            figures/SmileFace.eps           figures/projP0.eps \
-figures/Cassini.eps             figures/ThreePoint.eps          figures/projP1.eps \
-figures/Cycloid1.eps            figures/TouchSide.eps           figures/projP1b.eps \
-figures/Cycloid2.eps            figures/U-shape.eps             figures/projP1nc.eps \
-figures/Engine.eps              figures/V-shape.eps             figures/projP2.eps \
-figures/FreeFem++-cs.eps        figures/aTutorial.eps           figures/soapfilm.eps \
-figures/L-shape.eps             figures/adaptmesh.eps           figures/soapfilm3d.eps \
-figures/L-shape2.eps            figures/border.eps              figures/square.eps \
-figures/mach2r.eps \
-figures/buillayermesh.eps figures/layer2D.eps figures/degenerate.eps \
-figures/cube-bal-perio-medit.eps	figures/cube-bal-perio.eps \
-plots/BSth.eps                  plots/eigen12.eps               plots/onoldmesh.eps \
-plots/BSval.eps                 plots/emptymesh-1.eps           plots/perio4.eps \
-plots/FIGII1.eps                plots/emptymesh-2.eps           plots/period.eps \
-plots/FIGII2.eps                plots/emptymesh.eps             plots/potential.eps \
-plots/FIGII3.eps                plots/err02.eps                 plots/potheat.eps \
-plots/FIGII4.eps                plots/fastInterpolat.eps        plots/region.eps \
-plots/FIGII5.eps                plots/firstTh.eps               plots/region_nu.eps \
-plots/FIGII6.eps                plots/firstU.eps                plots/region_u.eps \
-plots/FIGII7.eps                plots/fluidstruct1.eps          plots/rhoP2.eps \
-plots/FIGII8.eps                plots/fluidstruct2.eps          plots/rmuonde.eps \
-plots/FIGII9.eps                plots/fluidstruct3.eps          plots/schwarz-no-th.eps \
-plots/Laplace.eps               plots/gnumembrane.eps           plots/schwarz-no-u.eps \
-plots/NScahouetChabart.eps      plots/gnuplot.eps               plots/schwarz-no-u0.eps \
-plots/NSprojP.eps               plots/hat.eps                   plots/schwarz-th.eps \
-plots/NSprojTh.eps              plots/heatex.eps                plots/schwarz-u.eps \
-plots/NSprojU.eps               plots/heatexTh.eps              plots/schwarz-u0.eps \
-plots/RT0.eps                   plots/imuonde.eps               plots/secondT.eps \
-plots/ThrhoP2.eps               plots/laRTp.eps                 plots/sound.eps \
-plots/Thwithhole.eps            plots/lamedeform.eps            plots/sound0.eps \
-plots/Thwithouthole.eps         plots/lamevect.eps              plots/splitmesh.eps \
-plots/Thxy.eps                  plots/lapRTuv.eps               plots/squareb.eps \
-plots/condensor.eps             plots/likegnu.eps               plots/stokes.eps \
-plots/condensorth.eps           plots/logo.eps                  plots/tempmuonde.eps \
-plots/condersor.eps             plots/lshape.eps                plots/thermic.eps \
-plots/convectCG.eps             plots/lshapeSol.eps             plots/thermicvst.eps \
-plots/convectDG.eps             plots/medit.eps                 plots/three.eps \
-plots/csSnap.eps                plots/membrane.eps              plots/threeg.eps \
-plots/dTh.eps                   plots/membraneTh.eps            plots/trunc0.eps \
-plots/d_Thf.eps                 plots/movemesh.eps              plots/trunc6.eps \
-plots/d_u.eps                   plots/nl-elas.eps               plots/twosquare.eps \
-plots/eigen.eps                 plots/nosplitmesh.eps           plots/xyf.eps \
-plots/eigen11.eps               plots/onnewmesh.eps \
-plots/medit2.eps  		plots/threehsv.eps		plots/hsv.eps \
-plots/crimpson.eps              plots/J-bfgs.eps		plots/u-bfgs.eps \
-plots/csSnapOld.eps \
-plots/logo.eps  plots/arei-Thu.eps      plots/arei-etak.eps \
-plots/overlapTh.eps plots/us-ug.eps plots/vs-vg.eps  \
-plots/square-0.eps      plots/square-1.eps      plots/square-2.eps  \
-plots/cube.eps plots/cone.eps \
-plots/Hex-Sphere.eps plots/Cube-With-Ball.eps \
-plots/multiendborder.eps plots/multiendmesh.eps \
-plots/leman.eps 
-
-
-#  Pour la page de garde FH
-FIGS_JPG = plots/fig-alh.jpg       plots/fig-fh.jpg        plots/fig-ko.jpg        plots/fig-op.jpg  \
-figures/mi.jpg plots/LogoUPMC.jpg \
-plots/beam-3d.jpg \
-plots/logo-finance-par-anr.jpg \
-plots/VarIneqFill.jpg plots/VarIneqIso.jpg \
-plots/NSNewtonTh.jpg  plots/NSNewtonUP.jpg \
-plots/chesapeake-2.jpg \
-plots/minsurf3D.jpg \
-plots/lg.jpg 
-
-FIGS_PDF = plots/LogoCNRS.pdf    plots/LogoLJLL.pdf  plots/ffauteur.pdf  \
-plots/titre-ff.pdf   plots/BG-russe.pdf plots/sanskrit.pdf \
-plots/nlopttab.pdf
-
-EXTRA_DIST = addfe.tex docFFGUI.tex manual-full.tex freefem++doc.tex  manual.tex FF.sty FFF.sty dessin.sty pdfsync.sty styles.sty \
-$(FIGS_EPS)    $(FIGS_JPG)    $(FIGS_PDF)  
-
-CPFIGS_PDF = $(addprefix cpfigs/,$(notdir $(patsubst %.eps,%.pdf,$(FIGS_EPS)) \
-))
-
-CPFIGS_EPS = $(addprefix cpfigs/,$(notdir $(patsubst %.pdf,%.eps,$(FIGS_PDF))) \
-                                 $(notdir $(patsubst %.jpg,%.eps,$(FIGS_JPG))) \
-)
-
 all: all-am
 
 .SUFFIXES:
@@ -466,6 +404,7 @@ $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__confi
 	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu DOC/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
 	  $(AUTOMAKE) --gnu DOC/Makefile
+.PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
 	  *config.status*) \
@@ -659,44 +598,24 @@ uninstall-am: uninstall-dist_pkgdataDATA
 documentation: $(DOCPDF) 
 docps:  $(DOCPS) $(DOCPSGZ) 
 docpdf: $(DOCPDF) 
-%.dvi:%.tex cpfigs $(CPFIGS_EPS) 
-	-rm $*.dvi $*.aux $*.log \
-                $*.toc $*.ind $*.glo $*.out $*.blg $*ilg $*.idx $*.bbl $*.tmp	
-	latex $*
-	latex $*
-	makeindex $*
-	latex $*
-%.ps:%.dvi
-	dvips -u +psfonts.map -u +pdftex.map -u +Ttbbold.map -z -K $* -o $@
 
-%.pdf:%.tex  cpfigs $(CPFIGS_PDF) 
-	-rm $*.pdf $*.aux $*.log \
-                $*.toc $*.ind $*.glo $*.out $*.blg $*ilg $*.idx $*.bbl $*.tmp	
-	pdflatex $*
-	pdflatex $*
-	makeindex $*
-	pdflatex $*
-cpfigs: 
-	-mkdir cpfigs
+# ALH - 16/10/13 - split GNU make directives into a separate makefile [[file:gnu.mak]] to suppress automake warning
+# messages about non-portability
 
-%.gz:%
-	gzip -c  -9 $*  >$*.gz
+freefem++doc.pdf:
+	$(MAKE) -f gnu.mak $@ EPSTOPDF="$(EPSTOPDF)"
+freefem++doc.ps:
+	$(MAKE) -f gnu.mak $@ EPSTOPDF="$(EPSTOPDF)"
+freefem++doc.ps.gz:
+	$(MAKE) -f gnu.mak $@ EPSTOPDF="$(EPSTOPDF)"
 clean:
-	-rm *.dvi *.pdf *~ *.aux *.log *.ps *.ps.gz \
-		*.toc *.ind *.glo *.out *.blg *ilg *.idx *.bbl *.tmp
-	-rm -r cpfigs
+	$(MAKE) -f gnu.mak $@
 
-cpfigs/%.pdf:plots/%.eps
-	$(EPSTOPDF) $^ --outfile=$@
-cpfigs/%.pdf:figures/%.eps
-	$(EPSTOPDF) $^ --outfile=$@
-cpfigs/%.eps:plots/%.jpg
-	convert $^  $@
-cpfigs/%.eps:plots/%.pdf
-	pdf2ps $^  $@
-
-# do not delete the copy figure to long to created 
-.PRECIOUS: $(CPFIGS_PDF) $(CPFIGS_EPS)
+# Local Variables:
+# mode:makefile
+# ispell-local-dictionary:"british"
+# coding:utf-8
+# End:
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

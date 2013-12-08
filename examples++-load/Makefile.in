@@ -310,6 +310,7 @@ CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CFLAGSF77 = @CFLAGSF77@
 CNOFLAGS = @CNOFLAGS@
+COMPILE_OPENBLAS = @COMPILE_OPENBLAS@
 CPPFLAGS = @CPPFLAGS@
 CXX = @CXX@
 CXXCPP = @CXXCPP@
@@ -322,9 +323,10 @@ DOCPDF = @DOCPDF@
 DOCPS = @DOCPS@
 DOCPSGZ = @DOCPSGZ@
 DOWNLOADCOMPILE = @DOWNLOADCOMPILE@
+DOWNLOADED_BLAS = @DOWNLOADED_BLAS@
+DOWNLOADED_BLAS_BUILT_SOURCES = @DOWNLOADED_BLAS_BUILT_SOURCES@
 DOWNLOAD_ARPACK = @DOWNLOAD_ARPACK@
-DOWNLOAD_BLAS = @DOWNLOAD_BLAS@
-DOWNLOAD_FLTK = @DOWNLOAD_FLTK@
+DOWNLOAD_FFTW = @DOWNLOAD_FFTW@
 DOWNLOAD_UMFPACK = @DOWNLOAD_UMFPACK@
 DYLIB_SUFFIX = @DYLIB_SUFFIX@
 ECHO_C = @ECHO_C@
@@ -338,41 +340,6 @@ EXEEXT = @EXEEXT@
 F77 = @F77@
 FC = @FC@
 FCFLAGS = @FCFLAGS@
-FFCS_COMPILE_fflapack = @FFCS_COMPILE_fflapack@
-FFCS_COMPILE_gsl = @FFCS_COMPILE_gsl@
-FFCS_COMPILE_hips = @FFCS_COMPILE_hips@
-FFCS_COMPILE_hypre = @FFCS_COMPILE_hypre@
-FFCS_COMPILE_ipopt = @FFCS_COMPILE_ipopt@
-FFCS_COMPILE_lapack = @FFCS_COMPILE_lapack@
-FFCS_COMPILE_mmg3d = @FFCS_COMPILE_mmg3d@
-FFCS_COMPILE_mshmet = @FFCS_COMPILE_mshmet@
-FFCS_COMPILE_mumps = @FFCS_COMPILE_mumps@
-FFCS_COMPILE_mumps_seq = @FFCS_COMPILE_mumps_seq@
-FFCS_COMPILE_pardiso = @FFCS_COMPILE_pardiso@
-FFCS_COMPILE_parms = @FFCS_COMPILE_parms@
-FFCS_COMPILE_pastix = @FFCS_COMPILE_pastix@
-FFCS_COMPILE_pipe = @FFCS_COMPILE_pipe@
-FFCS_COMPILE_scotch = @FFCS_COMPILE_scotch@
-FFCS_COMPILE_superludist = @FFCS_COMPILE_superludist@
-FFCS_COMPILE_yams = @FFCS_COMPILE_yams@
-FFCS_DYLIB_fflapack = @FFCS_DYLIB_fflapack@
-FFCS_DYLIB_gsl = @FFCS_DYLIB_gsl@
-FFCS_DYLIB_hips = @FFCS_DYLIB_hips@
-FFCS_DYLIB_hypre = @FFCS_DYLIB_hypre@
-FFCS_DYLIB_ipopt = @FFCS_DYLIB_ipopt@
-FFCS_DYLIB_lapack = @FFCS_DYLIB_lapack@
-FFCS_DYLIB_mmg3d = @FFCS_DYLIB_mmg3d@
-FFCS_DYLIB_mshmet = @FFCS_DYLIB_mshmet@
-FFCS_DYLIB_mumps = @FFCS_DYLIB_mumps@
-FFCS_DYLIB_mumps_seq = @FFCS_DYLIB_mumps_seq@
-FFCS_DYLIB_pardiso = @FFCS_DYLIB_pardiso@
-FFCS_DYLIB_parms = @FFCS_DYLIB_parms@
-FFCS_DYLIB_pastix = @FFCS_DYLIB_pastix@
-FFCS_DYLIB_pipe = @FFCS_DYLIB_pipe@
-FFCS_DYLIB_scotch = @FFCS_DYLIB_scotch@
-FFCS_DYLIB_superludist = @FFCS_DYLIB_superludist@
-FFCS_DYLIB_yams = @FFCS_DYLIB_yams@
-FFCS_MAKEFLAGS = @FFCS_MAKEFLAGS@
 FFGLUTNAME = @FFGLUTNAME@
 FFGLUTPROG = @FFGLUTPROG@
 FFLAGS = @FFLAGS@
@@ -380,20 +347,14 @@ FFMETIS_CFLAGS = @FFMETIS_CFLAGS@
 FF_LAPACKdir = @FF_LAPACKdir@
 FF_MALLOC_H = @FF_MALLOC_H@
 FF_SECOND = @FF_SECOND@
+FF_STATIC_LIB = @FF_STATIC_LIB@
 FF_UMFPACK_CONFIG = @FF_UMFPACK_CONFIG@
 FLIBS = @FLIBS@
-FLTK_CONFIG = @FLTK_CONFIG@
-FLTK_CONFIG_PARAM = @FLTK_CONFIG_PARAM@
-FLTK_VERSION = @FLTK_VERSION@
 FNOFLAGS = @FNOFLAGS@
 G2CLIB = @G2CLIB@
 GCCNOCYGWIN = @GCCNOCYGWIN@
-GENERIC_BLAS = @GENERIC_BLAS@
-GENERIC_BLAS_BUILT_SOURCES = @GENERIC_BLAS_BUILT_SOURCES@
 GREP = @GREP@
 HISTORY = @HISTORY@
-IDEPROG = @IDEPROG@
-IDE_TESTS = @IDE_TESTS@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -432,6 +393,7 @@ MPI_LIB = @MPI_LIB@
 MPI_LIBC = @MPI_LIBC@
 MPI_LIBFC = @MPI_LIBFC@
 MPI_LIB_DIRS = @MPI_LIB_DIRS@
+NO_RANGE_CHECK = @NO_RANGE_CHECK@
 OBJEXT = @OBJEXT@
 OPTIM_TYPE = @OPTIM_TYPE@
 PACKAGE = @PACKAGE@
@@ -445,6 +407,7 @@ PASTIX_HOSTARCH = @PASTIX_HOSTARCH@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 RANLIB = @RANLIB@
 RANLIN = @RANLIN@
+SCOTCH_INCLUDE = @SCOTCH_INCLUDE@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 SIZEOF_INT = @SIZEOF_INT@
@@ -459,9 +422,50 @@ STD_GRAPH_OBJ = @STD_GRAPH_OBJ@
 STD_LDFLAGS = @STD_LDFLAGS@
 STD_LIBS = @STD_LIBS@
 STRIP = @STRIP@
-TESTIDEPROG = @TESTIDEPROG@
 TEST_FFPP = @TEST_FFPP@
 TEST_FFPPMPI = @TEST_FFPPMPI@
+TOOL_COMPILE_fflapack = @TOOL_COMPILE_fflapack@
+TOOL_COMPILE_gsl = @TOOL_COMPILE_gsl@
+TOOL_COMPILE_hips = @TOOL_COMPILE_hips@
+TOOL_COMPILE_ipopt = @TOOL_COMPILE_ipopt@
+TOOL_COMPILE_lapack = @TOOL_COMPILE_lapack@
+TOOL_COMPILE_metis = @TOOL_COMPILE_metis@
+TOOL_COMPILE_mmg3d = @TOOL_COMPILE_mmg3d@
+TOOL_COMPILE_mshmet = @TOOL_COMPILE_mshmet@
+TOOL_COMPILE_mumps = @TOOL_COMPILE_mumps@
+TOOL_COMPILE_mumps_seq = @TOOL_COMPILE_mumps_seq@
+TOOL_COMPILE_nlopt = @TOOL_COMPILE_nlopt@
+TOOL_COMPILE_pardiso = @TOOL_COMPILE_pardiso@
+TOOL_COMPILE_parmetis = @TOOL_COMPILE_parmetis@
+TOOL_COMPILE_parms = @TOOL_COMPILE_parms@
+TOOL_COMPILE_pastix = @TOOL_COMPILE_pastix@
+TOOL_COMPILE_pipe = @TOOL_COMPILE_pipe@
+TOOL_COMPILE_scotch = @TOOL_COMPILE_scotch@
+TOOL_COMPILE_superlu = @TOOL_COMPILE_superlu@
+TOOL_COMPILE_superludist = @TOOL_COMPILE_superludist@
+TOOL_COMPILE_umfpack = @TOOL_COMPILE_umfpack@
+TOOL_COMPILE_yams = @TOOL_COMPILE_yams@
+TOOL_DYLIB_fflapack = @TOOL_DYLIB_fflapack@
+TOOL_DYLIB_gsl = @TOOL_DYLIB_gsl@
+TOOL_DYLIB_hips = @TOOL_DYLIB_hips@
+TOOL_DYLIB_ipopt = @TOOL_DYLIB_ipopt@
+TOOL_DYLIB_lapack = @TOOL_DYLIB_lapack@
+TOOL_DYLIB_metis = @TOOL_DYLIB_metis@
+TOOL_DYLIB_mmg3d = @TOOL_DYLIB_mmg3d@
+TOOL_DYLIB_mshmet = @TOOL_DYLIB_mshmet@
+TOOL_DYLIB_mumps = @TOOL_DYLIB_mumps@
+TOOL_DYLIB_mumps_seq = @TOOL_DYLIB_mumps_seq@
+TOOL_DYLIB_nlopt = @TOOL_DYLIB_nlopt@
+TOOL_DYLIB_pardiso = @TOOL_DYLIB_pardiso@
+TOOL_DYLIB_parmetis = @TOOL_DYLIB_parmetis@
+TOOL_DYLIB_parms = @TOOL_DYLIB_parms@
+TOOL_DYLIB_pastix = @TOOL_DYLIB_pastix@
+TOOL_DYLIB_pipe = @TOOL_DYLIB_pipe@
+TOOL_DYLIB_scotch = @TOOL_DYLIB_scotch@
+TOOL_DYLIB_superlu = @TOOL_DYLIB_superlu@
+TOOL_DYLIB_superludist = @TOOL_DYLIB_superludist@
+TOOL_DYLIB_umfpack = @TOOL_DYLIB_umfpack@
+TOOL_DYLIB_yams = @TOOL_DYLIB_yams@
 UMFPACKLIBS = @UMFPACKLIBS@
 VERSION = @VERSION@
 WGET = @WGET@
@@ -498,7 +502,7 @@ ff_bison = @ff_bison@
 ff_convert = @ff_convert@
 ff_curl = @ff_curl@
 ff_dvips = @ff_dvips@
-ff_fltk = @ff_fltk@
+ff_git = @ff_git@
 ff_gzip = @ff_gzip@
 ff_history = @ff_history@
 ff_latex = @ff_latex@
@@ -603,7 +607,7 @@ ff-get-dep.in ff-pkg-download.in load.link.in  include.tar.gz \
  MUMPS_seq.cpp \
  ff-Ipopt.cpp \
  scotch.cpp    shell.cpp \
- pipe.cpp  \
+ pipe.cpp pstream.h  \
  symmetrizeCSR.cpp \
  dmatrix.hpp PARDISO.cpp             \
  ch.pts  
@@ -626,19 +630,19 @@ LIST_COMPILE = myfunction.$(DYLIB_SUFFIX)  BernadiRaugel.$(DYLIB_SUFFIX) \
 	splitedges.$(DYLIB_SUFFIX) Element_Mixte.$(DYLIB_SUFFIX) \
 	myfunction2.$(DYLIB_SUFFIX) \
 	MetricPk.$(DYLIB_SUFFIX) FreeFemQA.$(DYLIB_SUFFIX) shell.$(DYLIB_SUFFIX) \
-	@FFCS_DYLIB_pipe@ symmetrizeCSR.$(DYLIB_SUFFIX) 
+	@TOOL_DYLIB_pipe@ symmetrizeCSR.$(DYLIB_SUFFIX) 
 
 
 # FFCS - some libraries are skipped because the corresponding tool is deactivated.
-LIST_COMPILE_PKG = tetgen.$(DYLIB_SUFFIX) SuperLu.$(DYLIB_SUFFIX) dfft.$(DYLIB_SUFFIX) metis.$(DYLIB_SUFFIX)		\
-	UMFPACK64.$(DYLIB_SUFFIX) NewSolver.$(DYLIB_SUFFIX) @FFCS_DYLIB_lapack@ @FFCS_DYLIB_fflapack@			\
-	ffnewuoa.$(DYLIB_SUFFIX) ilut.$(DYLIB_SUFFIX) @FFCS_DYLIB_yams@ @FFCS_DYLIB_mmg3d@ @FFCS_DYLIB_mshmet@		\
-	@FFCS_DYLIB_gsl@ @FFCS_DYLIB_mumps_seq@ @FFCS_DYLIB_ipopt@ ff-NLopt.$(DYLIB_SUFFIX) ff-cmaes.$(DYLIB_SUFFIX)	\
-	@FFCS_DYLIB_scotch@ @FFCS_DYLIB_pardiso@
+LIST_COMPILE_PKG = tetgen.$(DYLIB_SUFFIX) @TOOL_DYLIB_superlu@ dfft.$(DYLIB_SUFFIX) @TOOL_DYLIB_metis@		\
+	@TOOL_DYLIB_umfpack@ NewSolver.$(DYLIB_SUFFIX) @TOOL_DYLIB_lapack@ @TOOL_DYLIB_fflapack@		\
+	ffnewuoa.$(DYLIB_SUFFIX) ilut.$(DYLIB_SUFFIX) @TOOL_DYLIB_yams@ @TOOL_DYLIB_mmg3d@ @TOOL_DYLIB_mshmet@	\
+	@TOOL_DYLIB_gsl@ @TOOL_DYLIB_mumps_seq@ @TOOL_DYLIB_ipopt@ @TOOL_DYLIB_nlopt@ ff-cmaes.$(DYLIB_SUFFIX)	\
+	@TOOL_DYLIB_scotch@ @TOOL_DYLIB_pardiso@
 
 
-# FFCS - 26/10/11 - Unpacking include.tar.gz is very often buggy under Cygwin (softlinks are randomly replaced with empty files
-# without any access right). So just replace the whole thing with a plain copy.
+# FFCS - 26/10/11 - Unpacking include.tar.gz is very often buggy under Cygwin (softlinks are randomly replaced with
+# empty files without any access right). So just replace the whole thing with a plain copy.
 @ENABLE_FFCS_TRUE@allheaders = ../src/fflib/AddNewFE.h ../src/fflib/AFunction_ext.hpp ../src/fflib/AFunction.hpp ../src/fflib/AnyType.hpp	\
 @ENABLE_FFCS_TRUE@	../src/fflib/array_init.hpp ../src/fflib/array_resize.hpp ../src/fflib/array_tlp.hpp				\
 @ENABLE_FFCS_TRUE@	../src/femlib/assertion.hpp ../src/femlib/BamgFreeFem.hpp ../src/Algo/BFGS.hpp ../src/Algo/BrentLS.hpp		\
@@ -1648,7 +1652,10 @@ load_compile: ff-c++ WHERE_LIBRARY-download include.done freefem++.pref
 @ENABLE_FFCS_FALSE@	gunzip -c include.tar.gz| tar xvf -
 @ENABLE_FFCS_FALSE@	-rm -f include/._*
 @ENABLE_FFCS_FALSE@	touch $@
-#	-cp -rf ../download/include/* include/.
+
+clean-local::
+	-rm -r include
+	-rm include.done
 
 Ref: makeref.edp
 	../src/nw/FreeFem++-nw makeref.edp
@@ -1679,7 +1686,7 @@ regtests.edp: regtests.m4 ../regtests.m4
 
 $(LIST_COMPILE):ff-c++ include.done
 
-clean-local:
+clean-local::
 	-rm *.o *.$(DYLIB_SUFFIX) load.link WHERE_LIBRARY-download ff-get-dep ff-c++ ff-pkg-download \
 	  $(LIST_COMPILE) $(LIST_COMPILE_PKG)  regtests.edp makeref.edp
 	-rm -rf include include.done
@@ -1705,12 +1712,16 @@ WHERE_LIBRARY:
 FORCE: ;
 freefem++.pref:
 	echo loadpath = \"./\" >freefem++.pref
-install-exec-local:: load_compile
+install-exec-local:: load_compile WHERE_LIBRARY
 	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/lib
 	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/include
 	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/etc
 	$(INSTALL_DATA)  clapack.h ppmimg.h  bmo.hpp msh3.hpp pcm.hpp  include/*   $(DESTDIR)$(ff_prefix_dir)/include
 	$(INSTALL)  -m 555 $(LIST_COMPILE) $(DESTDIR)$(ff_prefix_dir)/lib
+	$(INSTALL)  -m 555 WHERE_LIBRARY-config WHERE_LIBRARY  $(DESTDIR)$(ff_prefix_dir)/lib
+	for i in  WHERE_LIBRARY-config WHERE_LIBRARY WHERE_LIBRARY-download; do \
+	  sed <$$i >$(DESTDIR)$(ff_prefix_dir)/lib/$$i 's#$(abs_top_builddir)/download#$(ff_prefix_dir)#' ;\
+	 done
 	echo loadpath += \"./\"  >$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
 	echo loadpath += \"$(ff_prefix_dir)/lib\"  >>$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
 	echo includepath += \"$(ff_prefix_dir)/idp\"  >>$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref

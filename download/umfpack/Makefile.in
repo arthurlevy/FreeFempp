@@ -14,10 +14,28 @@
 
 @SET_MAKE@
 
-# Downloading and compiling extra libraries
-# -----------------------------------------
-
-# $Id$
+# Downloading and compiling extra libraries for Umfpack
+# ======================================================================
+# Laboratoire Jacques-Louis Lions
+# Université Pierre et Marie Curie-Paris6, UMR 7598, Paris, F-75005 France
+# ======================================================================
+# This file is part of Freefem++
+# 
+# Freefem++ is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as
+# published by the Free Software Foundation; either version 2.1 of
+# the License, or (at your option) any later version.
+# 
+# Freefem++ is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+# 
+# You should have received a copy of the GNU Lesser General Public
+# License along with Freefem++; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+# ======================================================================
+# headeralh brief="Downloading and compiling extra libraries for Umfpack" default=0 freefem make multipleauthors start=04/06/04 upmc
 VPATH = @srcdir@
 am__make_dryrun = \
   { \
@@ -108,6 +126,7 @@ CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CFLAGSF77 = @CFLAGSF77@
 CNOFLAGS = @CNOFLAGS@
+COMPILE_OPENBLAS = @COMPILE_OPENBLAS@
 CPPFLAGS = @CPPFLAGS@
 CXX = @CXX@
 CXXCPP = @CXXCPP@
@@ -120,9 +139,10 @@ DOCPDF = @DOCPDF@
 DOCPS = @DOCPS@
 DOCPSGZ = @DOCPSGZ@
 DOWNLOADCOMPILE = @DOWNLOADCOMPILE@
+DOWNLOADED_BLAS = @DOWNLOADED_BLAS@
+DOWNLOADED_BLAS_BUILT_SOURCES = @DOWNLOADED_BLAS_BUILT_SOURCES@
 DOWNLOAD_ARPACK = @DOWNLOAD_ARPACK@
-DOWNLOAD_BLAS = @DOWNLOAD_BLAS@
-DOWNLOAD_FLTK = @DOWNLOAD_FLTK@
+DOWNLOAD_FFTW = @DOWNLOAD_FFTW@
 DOWNLOAD_UMFPACK = @DOWNLOAD_UMFPACK@
 DYLIB_SUFFIX = @DYLIB_SUFFIX@
 ECHO_C = @ECHO_C@
@@ -136,41 +156,6 @@ EXEEXT = @EXEEXT@
 F77 = @F77@
 FC = @FC@
 FCFLAGS = @FCFLAGS@
-FFCS_COMPILE_fflapack = @FFCS_COMPILE_fflapack@
-FFCS_COMPILE_gsl = @FFCS_COMPILE_gsl@
-FFCS_COMPILE_hips = @FFCS_COMPILE_hips@
-FFCS_COMPILE_hypre = @FFCS_COMPILE_hypre@
-FFCS_COMPILE_ipopt = @FFCS_COMPILE_ipopt@
-FFCS_COMPILE_lapack = @FFCS_COMPILE_lapack@
-FFCS_COMPILE_mmg3d = @FFCS_COMPILE_mmg3d@
-FFCS_COMPILE_mshmet = @FFCS_COMPILE_mshmet@
-FFCS_COMPILE_mumps = @FFCS_COMPILE_mumps@
-FFCS_COMPILE_mumps_seq = @FFCS_COMPILE_mumps_seq@
-FFCS_COMPILE_pardiso = @FFCS_COMPILE_pardiso@
-FFCS_COMPILE_parms = @FFCS_COMPILE_parms@
-FFCS_COMPILE_pastix = @FFCS_COMPILE_pastix@
-FFCS_COMPILE_pipe = @FFCS_COMPILE_pipe@
-FFCS_COMPILE_scotch = @FFCS_COMPILE_scotch@
-FFCS_COMPILE_superludist = @FFCS_COMPILE_superludist@
-FFCS_COMPILE_yams = @FFCS_COMPILE_yams@
-FFCS_DYLIB_fflapack = @FFCS_DYLIB_fflapack@
-FFCS_DYLIB_gsl = @FFCS_DYLIB_gsl@
-FFCS_DYLIB_hips = @FFCS_DYLIB_hips@
-FFCS_DYLIB_hypre = @FFCS_DYLIB_hypre@
-FFCS_DYLIB_ipopt = @FFCS_DYLIB_ipopt@
-FFCS_DYLIB_lapack = @FFCS_DYLIB_lapack@
-FFCS_DYLIB_mmg3d = @FFCS_DYLIB_mmg3d@
-FFCS_DYLIB_mshmet = @FFCS_DYLIB_mshmet@
-FFCS_DYLIB_mumps = @FFCS_DYLIB_mumps@
-FFCS_DYLIB_mumps_seq = @FFCS_DYLIB_mumps_seq@
-FFCS_DYLIB_pardiso = @FFCS_DYLIB_pardiso@
-FFCS_DYLIB_parms = @FFCS_DYLIB_parms@
-FFCS_DYLIB_pastix = @FFCS_DYLIB_pastix@
-FFCS_DYLIB_pipe = @FFCS_DYLIB_pipe@
-FFCS_DYLIB_scotch = @FFCS_DYLIB_scotch@
-FFCS_DYLIB_superludist = @FFCS_DYLIB_superludist@
-FFCS_DYLIB_yams = @FFCS_DYLIB_yams@
-FFCS_MAKEFLAGS = @FFCS_MAKEFLAGS@
 FFGLUTNAME = @FFGLUTNAME@
 FFGLUTPROG = @FFGLUTPROG@
 FFLAGS = @FFLAGS@
@@ -178,20 +163,14 @@ FFMETIS_CFLAGS = @FFMETIS_CFLAGS@
 FF_LAPACKdir = @FF_LAPACKdir@
 FF_MALLOC_H = @FF_MALLOC_H@
 FF_SECOND = @FF_SECOND@
+FF_STATIC_LIB = @FF_STATIC_LIB@
 FF_UMFPACK_CONFIG = @FF_UMFPACK_CONFIG@
 FLIBS = @FLIBS@
-FLTK_CONFIG = @FLTK_CONFIG@
-FLTK_CONFIG_PARAM = @FLTK_CONFIG_PARAM@
-FLTK_VERSION = @FLTK_VERSION@
 FNOFLAGS = @FNOFLAGS@
 G2CLIB = @G2CLIB@
 GCCNOCYGWIN = @GCCNOCYGWIN@
-GENERIC_BLAS = @GENERIC_BLAS@
-GENERIC_BLAS_BUILT_SOURCES = @GENERIC_BLAS_BUILT_SOURCES@
 GREP = @GREP@
 HISTORY = @HISTORY@
-IDEPROG = @IDEPROG@
-IDE_TESTS = @IDE_TESTS@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -230,6 +209,7 @@ MPI_LIB = @MPI_LIB@
 MPI_LIBC = @MPI_LIBC@
 MPI_LIBFC = @MPI_LIBFC@
 MPI_LIB_DIRS = @MPI_LIB_DIRS@
+NO_RANGE_CHECK = @NO_RANGE_CHECK@
 OBJEXT = @OBJEXT@
 OPTIM_TYPE = @OPTIM_TYPE@
 PACKAGE = @PACKAGE@
@@ -243,6 +223,7 @@ PASTIX_HOSTARCH = @PASTIX_HOSTARCH@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 RANLIB = @RANLIB@
 RANLIN = @RANLIN@
+SCOTCH_INCLUDE = @SCOTCH_INCLUDE@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 SIZEOF_INT = @SIZEOF_INT@
@@ -257,9 +238,50 @@ STD_GRAPH_OBJ = @STD_GRAPH_OBJ@
 STD_LDFLAGS = @STD_LDFLAGS@
 STD_LIBS = @STD_LIBS@
 STRIP = @STRIP@
-TESTIDEPROG = @TESTIDEPROG@
 TEST_FFPP = @TEST_FFPP@
 TEST_FFPPMPI = @TEST_FFPPMPI@
+TOOL_COMPILE_fflapack = @TOOL_COMPILE_fflapack@
+TOOL_COMPILE_gsl = @TOOL_COMPILE_gsl@
+TOOL_COMPILE_hips = @TOOL_COMPILE_hips@
+TOOL_COMPILE_ipopt = @TOOL_COMPILE_ipopt@
+TOOL_COMPILE_lapack = @TOOL_COMPILE_lapack@
+TOOL_COMPILE_metis = @TOOL_COMPILE_metis@
+TOOL_COMPILE_mmg3d = @TOOL_COMPILE_mmg3d@
+TOOL_COMPILE_mshmet = @TOOL_COMPILE_mshmet@
+TOOL_COMPILE_mumps = @TOOL_COMPILE_mumps@
+TOOL_COMPILE_mumps_seq = @TOOL_COMPILE_mumps_seq@
+TOOL_COMPILE_nlopt = @TOOL_COMPILE_nlopt@
+TOOL_COMPILE_pardiso = @TOOL_COMPILE_pardiso@
+TOOL_COMPILE_parmetis = @TOOL_COMPILE_parmetis@
+TOOL_COMPILE_parms = @TOOL_COMPILE_parms@
+TOOL_COMPILE_pastix = @TOOL_COMPILE_pastix@
+TOOL_COMPILE_pipe = @TOOL_COMPILE_pipe@
+TOOL_COMPILE_scotch = @TOOL_COMPILE_scotch@
+TOOL_COMPILE_superlu = @TOOL_COMPILE_superlu@
+TOOL_COMPILE_superludist = @TOOL_COMPILE_superludist@
+TOOL_COMPILE_umfpack = @TOOL_COMPILE_umfpack@
+TOOL_COMPILE_yams = @TOOL_COMPILE_yams@
+TOOL_DYLIB_fflapack = @TOOL_DYLIB_fflapack@
+TOOL_DYLIB_gsl = @TOOL_DYLIB_gsl@
+TOOL_DYLIB_hips = @TOOL_DYLIB_hips@
+TOOL_DYLIB_ipopt = @TOOL_DYLIB_ipopt@
+TOOL_DYLIB_lapack = @TOOL_DYLIB_lapack@
+TOOL_DYLIB_metis = @TOOL_DYLIB_metis@
+TOOL_DYLIB_mmg3d = @TOOL_DYLIB_mmg3d@
+TOOL_DYLIB_mshmet = @TOOL_DYLIB_mshmet@
+TOOL_DYLIB_mumps = @TOOL_DYLIB_mumps@
+TOOL_DYLIB_mumps_seq = @TOOL_DYLIB_mumps_seq@
+TOOL_DYLIB_nlopt = @TOOL_DYLIB_nlopt@
+TOOL_DYLIB_pardiso = @TOOL_DYLIB_pardiso@
+TOOL_DYLIB_parmetis = @TOOL_DYLIB_parmetis@
+TOOL_DYLIB_parms = @TOOL_DYLIB_parms@
+TOOL_DYLIB_pastix = @TOOL_DYLIB_pastix@
+TOOL_DYLIB_pipe = @TOOL_DYLIB_pipe@
+TOOL_DYLIB_scotch = @TOOL_DYLIB_scotch@
+TOOL_DYLIB_superlu = @TOOL_DYLIB_superlu@
+TOOL_DYLIB_superludist = @TOOL_DYLIB_superludist@
+TOOL_DYLIB_umfpack = @TOOL_DYLIB_umfpack@
+TOOL_DYLIB_yams = @TOOL_DYLIB_yams@
 UMFPACKLIBS = @UMFPACKLIBS@
 VERSION = @VERSION@
 WGET = @WGET@
@@ -296,7 +318,7 @@ ff_bison = @ff_bison@
 ff_convert = @ff_convert@
 ff_curl = @ff_curl@
 ff_dvips = @ff_dvips@
-ff_fltk = @ff_fltk@
+ff_git = @ff_git@
 ff_gzip = @ff_gzip@
 ff_history = @ff_history@
 ff_latex = @ff_latex@
@@ -534,34 +556,39 @@ uninstall-am:
 	uninstall-am
 
 
+# see [[file:../../configure.ac::DOWNLOAD_UMFPACK]]
 all-local: $(DOWNLOAD_UMFPACK)
 
-#  all: umfpack cholmod
+# ALH - 4/9/13 - parallel make crashes ("pipe from processes is a directory"?). make sure that everything is run
+# sequentially
 
-umfpack:$(AMDLIB)  $(UMFPACKLIB) $(SUITESPARSECONFIGLIB)
-cholmod:$(CAMDLIB) $(COLAMDLIB)  $(AMDLIB)  $(CHOLMODLIB) $(SUITESPARSECONFIGLIB) 
+umfpack:
+	$(MAKE) MAKEFLAGS= $(AMDLIB)
+	$(MAKE) MAKEFLAGS= $(UMFPACKLIB)
+	$(MAKE) MAKEFLAGS= $(SUITESPARSECONFIGLIB)
+#
+# ALH - 19/9/13 - cholmod part built sequentially
+#
+	$(MAKE) MAKEFLAGS= $(CAMDLIB)
+	$(MAKE) MAKEFLAGS= $(COLAMDLIB)
+	$(MAKE) MAKEFLAGS= $(AMDLIB)
+	$(MAKE) MAKEFLAGS= $(CHOLMODLIB)
+	$(MAKE) MAKEFLAGS= $(SUITESPARSECONFIGLIB) 
 
-# The 'lib' goal is replaced with 'libb' to avoid problems with the
-# existing 'Lib' subdirectory on case-insensitive file systems
-# the lib depend of the Makefile to force the reconstruction 
-# if the parameter change
-
-# FFCS: SuiteSparse/*/Source are not able to compile in parallel from
-# scratch ("pipe from processes is a directory"?). But specifying
-# "make -j 1" is not enough (another error pops up). Use "$(MAKE)
-# MAKEFLAGS=" instead (using "make MAKEFLAGS=" still produces an error
-# on Cygwin).
+# FFCS: SuiteSparse/*/Source are not able to compile in parallel from scratch ("pipe from processes is a
+# directory"?). But specifying "make -j 1" is not enough (another error pops up). Use "$(MAKE) MAKEFLAGS=" instead
+# (using "make MAKEFLAGS=" still produces an error on Cygwin).
 
 $(SUITESPARSECONFIGLIB): SuiteSparse/FF 
-	cd SuiteSparse/SuiteSparse_config && make 
-	-mkdir ../include ../lib
+	cd SuiteSparse/SuiteSparse_config && $(MAKE) MAKEFLAGS=
+	mkdir -p ../include ../lib
 	cp -f SuiteSparse/SuiteSparse_config/SuiteSparse_config.h  ../include
 	cp  SuiteSparse/SuiteSparse_config/libsuitesparseconfig.a ../lib/libsuitesparseconfig.a
 	$(RANLIB) ../lib/libsuitesparseconfig.a
 
 $(UMFPACKLIB): SuiteSparse/FF 
 	cd SuiteSparse/UMFPACK/Lib && $(MAKE) MAKEFLAGS=
-	-mkdir ../include ../lib
+	mkdir -p ../include ../lib
 	cp -f  SuiteSparse/UMFPACK/Include/*.h ../include
 	cp -f SuiteSparse/SuiteSparse_config/SuiteSparse_config.h  ../include
 	cp  SuiteSparse/UMFPACK/Lib/libumfpack.a ../lib/libumfpack.a
@@ -569,33 +596,38 @@ $(UMFPACKLIB): SuiteSparse/FF
 
 $(AMDLIB): SuiteSparse/FF 
 	cd SuiteSparse/AMD/Lib && $(MAKE) MAKEFLAGS=
-	-mkdir ../include ../lib
+	mkdir -p ../include ../lib
 	cp -f  SuiteSparse/AMD/Include/*.h ../include
 	cp  SuiteSparse/AMD/Lib/libamd.a ../lib/libamd.a
 	$(RANLIB) ../lib/libamd.a
 
 $(CAMDLIB): SuiteSparse/FF 
-	cd SuiteSparse/CAMD/Lib && make 
-	-mkdir ../include ../lib
+	cd SuiteSparse/CAMD/Lib && $(MAKE) MAKEFLAGS=
+	mkdir -p ../include ../lib
 	cp -f  SuiteSparse/CAMD/Include/*.h ../include
 	cp  SuiteSparse/CAMD/Lib/libcamd.a ../lib/libcamd.a
 	$(RANLIB) ../lib/libcamd.a
 
 $(CHOLMODLIB): SuiteSparse/FF 
-	cd SuiteSparse/CHOLMOD/Lib && make 
-	-mkdir ../include ../lib
+	cd SuiteSparse/CHOLMOD/Lib && $(MAKE) MAKEFLAGS=
+	mkdir -p ../include ../lib
 	cp -f  SuiteSparse/CHOLMOD/Include/*.h ../include
 	cp  SuiteSparse/CHOLMOD/Lib/libcholmod.a ../lib/libcholmod.a
 	$(RANLIB) ../lib/libcholmod.a
+
 $(COLAMDLIB): SuiteSparse/FF 
-	cd SuiteSparse/COLAMD/Lib && make 
-	-mkdir ../include ../lib
+	cd SuiteSparse/COLAMD/Lib && $(MAKE) MAKEFLAGS=
+	mkdir -p ../include ../lib
 	cp -f  SuiteSparse/COLAMD/Include/*.h ../include
 	cp  SuiteSparse/COLAMD/Lib/libcolamd.a ../lib/libcolamd.a
 	$(RANLIB) ../lib/libcolamd.a
 
 UMFPACKv4.4:
 	tar xzf UMFPACKv4.4.tar.gz
+
+# The 'lib' goal is replaced with 'libb' to avoid problems with the existing 'Lib' subdirectory on case-insensitive file
+# systems the lib depend of the Makefile to force the reconstruction if the parameter change
+
 UMFPACKv4.4/AMD/Makefile2 UMFPACKv4.4/UMFPACK/Makefile2: UMFPACKv4.4  
 	sed 's/lib:/libb:/' < UMFPACKv4.4/UMFPACK/`basename $@ 2`  >$@
 
@@ -656,6 +688,12 @@ clean-local:
 	-rm -rf SuiteSparse
 	-rm ../pkg/SuiteSparse-*
 	-rm SuiteSparse_config.mk
+
+# Local Variables:
+# mode:makefile
+# ispell-local-dictionary:"british"
+# coding:utf-8
+# End:
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

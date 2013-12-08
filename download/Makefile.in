@@ -168,6 +168,7 @@ CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CFLAGSF77 = @CFLAGSF77@
 CNOFLAGS = @CNOFLAGS@
+COMPILE_OPENBLAS = @COMPILE_OPENBLAS@
 CPPFLAGS = @CPPFLAGS@
 CXX = @CXX@
 CXXCPP = @CXXCPP@
@@ -180,9 +181,10 @@ DOCPDF = @DOCPDF@
 DOCPS = @DOCPS@
 DOCPSGZ = @DOCPSGZ@
 DOWNLOADCOMPILE = @DOWNLOADCOMPILE@
+DOWNLOADED_BLAS = @DOWNLOADED_BLAS@
+DOWNLOADED_BLAS_BUILT_SOURCES = @DOWNLOADED_BLAS_BUILT_SOURCES@
 DOWNLOAD_ARPACK = @DOWNLOAD_ARPACK@
-DOWNLOAD_BLAS = @DOWNLOAD_BLAS@
-DOWNLOAD_FLTK = @DOWNLOAD_FLTK@
+DOWNLOAD_FFTW = @DOWNLOAD_FFTW@
 DOWNLOAD_UMFPACK = @DOWNLOAD_UMFPACK@
 DYLIB_SUFFIX = @DYLIB_SUFFIX@
 ECHO_C = @ECHO_C@
@@ -196,41 +198,6 @@ EXEEXT = @EXEEXT@
 F77 = @F77@
 FC = @FC@
 FCFLAGS = @FCFLAGS@
-FFCS_COMPILE_fflapack = @FFCS_COMPILE_fflapack@
-FFCS_COMPILE_gsl = @FFCS_COMPILE_gsl@
-FFCS_COMPILE_hips = @FFCS_COMPILE_hips@
-FFCS_COMPILE_hypre = @FFCS_COMPILE_hypre@
-FFCS_COMPILE_ipopt = @FFCS_COMPILE_ipopt@
-FFCS_COMPILE_lapack = @FFCS_COMPILE_lapack@
-FFCS_COMPILE_mmg3d = @FFCS_COMPILE_mmg3d@
-FFCS_COMPILE_mshmet = @FFCS_COMPILE_mshmet@
-FFCS_COMPILE_mumps = @FFCS_COMPILE_mumps@
-FFCS_COMPILE_mumps_seq = @FFCS_COMPILE_mumps_seq@
-FFCS_COMPILE_pardiso = @FFCS_COMPILE_pardiso@
-FFCS_COMPILE_parms = @FFCS_COMPILE_parms@
-FFCS_COMPILE_pastix = @FFCS_COMPILE_pastix@
-FFCS_COMPILE_pipe = @FFCS_COMPILE_pipe@
-FFCS_COMPILE_scotch = @FFCS_COMPILE_scotch@
-FFCS_COMPILE_superludist = @FFCS_COMPILE_superludist@
-FFCS_COMPILE_yams = @FFCS_COMPILE_yams@
-FFCS_DYLIB_fflapack = @FFCS_DYLIB_fflapack@
-FFCS_DYLIB_gsl = @FFCS_DYLIB_gsl@
-FFCS_DYLIB_hips = @FFCS_DYLIB_hips@
-FFCS_DYLIB_hypre = @FFCS_DYLIB_hypre@
-FFCS_DYLIB_ipopt = @FFCS_DYLIB_ipopt@
-FFCS_DYLIB_lapack = @FFCS_DYLIB_lapack@
-FFCS_DYLIB_mmg3d = @FFCS_DYLIB_mmg3d@
-FFCS_DYLIB_mshmet = @FFCS_DYLIB_mshmet@
-FFCS_DYLIB_mumps = @FFCS_DYLIB_mumps@
-FFCS_DYLIB_mumps_seq = @FFCS_DYLIB_mumps_seq@
-FFCS_DYLIB_pardiso = @FFCS_DYLIB_pardiso@
-FFCS_DYLIB_parms = @FFCS_DYLIB_parms@
-FFCS_DYLIB_pastix = @FFCS_DYLIB_pastix@
-FFCS_DYLIB_pipe = @FFCS_DYLIB_pipe@
-FFCS_DYLIB_scotch = @FFCS_DYLIB_scotch@
-FFCS_DYLIB_superludist = @FFCS_DYLIB_superludist@
-FFCS_DYLIB_yams = @FFCS_DYLIB_yams@
-FFCS_MAKEFLAGS = @FFCS_MAKEFLAGS@
 FFGLUTNAME = @FFGLUTNAME@
 FFGLUTPROG = @FFGLUTPROG@
 FFLAGS = @FFLAGS@
@@ -238,20 +205,14 @@ FFMETIS_CFLAGS = @FFMETIS_CFLAGS@
 FF_LAPACKdir = @FF_LAPACKdir@
 FF_MALLOC_H = @FF_MALLOC_H@
 FF_SECOND = @FF_SECOND@
+FF_STATIC_LIB = @FF_STATIC_LIB@
 FF_UMFPACK_CONFIG = @FF_UMFPACK_CONFIG@
 FLIBS = @FLIBS@
-FLTK_CONFIG = @FLTK_CONFIG@
-FLTK_CONFIG_PARAM = @FLTK_CONFIG_PARAM@
-FLTK_VERSION = @FLTK_VERSION@
 FNOFLAGS = @FNOFLAGS@
 G2CLIB = @G2CLIB@
 GCCNOCYGWIN = @GCCNOCYGWIN@
-GENERIC_BLAS = @GENERIC_BLAS@
-GENERIC_BLAS_BUILT_SOURCES = @GENERIC_BLAS_BUILT_SOURCES@
 GREP = @GREP@
 HISTORY = @HISTORY@
-IDEPROG = @IDEPROG@
-IDE_TESTS = @IDE_TESTS@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -290,6 +251,7 @@ MPI_LIB = @MPI_LIB@
 MPI_LIBC = @MPI_LIBC@
 MPI_LIBFC = @MPI_LIBFC@
 MPI_LIB_DIRS = @MPI_LIB_DIRS@
+NO_RANGE_CHECK = @NO_RANGE_CHECK@
 OBJEXT = @OBJEXT@
 OPTIM_TYPE = @OPTIM_TYPE@
 PACKAGE = @PACKAGE@
@@ -303,6 +265,7 @@ PASTIX_HOSTARCH = @PASTIX_HOSTARCH@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 RANLIB = @RANLIB@
 RANLIN = @RANLIN@
+SCOTCH_INCLUDE = @SCOTCH_INCLUDE@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 SIZEOF_INT = @SIZEOF_INT@
@@ -317,9 +280,50 @@ STD_GRAPH_OBJ = @STD_GRAPH_OBJ@
 STD_LDFLAGS = @STD_LDFLAGS@
 STD_LIBS = @STD_LIBS@
 STRIP = @STRIP@
-TESTIDEPROG = @TESTIDEPROG@
 TEST_FFPP = @TEST_FFPP@
 TEST_FFPPMPI = @TEST_FFPPMPI@
+TOOL_COMPILE_fflapack = @TOOL_COMPILE_fflapack@
+TOOL_COMPILE_gsl = @TOOL_COMPILE_gsl@
+TOOL_COMPILE_hips = @TOOL_COMPILE_hips@
+TOOL_COMPILE_ipopt = @TOOL_COMPILE_ipopt@
+TOOL_COMPILE_lapack = @TOOL_COMPILE_lapack@
+TOOL_COMPILE_metis = @TOOL_COMPILE_metis@
+TOOL_COMPILE_mmg3d = @TOOL_COMPILE_mmg3d@
+TOOL_COMPILE_mshmet = @TOOL_COMPILE_mshmet@
+TOOL_COMPILE_mumps = @TOOL_COMPILE_mumps@
+TOOL_COMPILE_mumps_seq = @TOOL_COMPILE_mumps_seq@
+TOOL_COMPILE_nlopt = @TOOL_COMPILE_nlopt@
+TOOL_COMPILE_pardiso = @TOOL_COMPILE_pardiso@
+TOOL_COMPILE_parmetis = @TOOL_COMPILE_parmetis@
+TOOL_COMPILE_parms = @TOOL_COMPILE_parms@
+TOOL_COMPILE_pastix = @TOOL_COMPILE_pastix@
+TOOL_COMPILE_pipe = @TOOL_COMPILE_pipe@
+TOOL_COMPILE_scotch = @TOOL_COMPILE_scotch@
+TOOL_COMPILE_superlu = @TOOL_COMPILE_superlu@
+TOOL_COMPILE_superludist = @TOOL_COMPILE_superludist@
+TOOL_COMPILE_umfpack = @TOOL_COMPILE_umfpack@
+TOOL_COMPILE_yams = @TOOL_COMPILE_yams@
+TOOL_DYLIB_fflapack = @TOOL_DYLIB_fflapack@
+TOOL_DYLIB_gsl = @TOOL_DYLIB_gsl@
+TOOL_DYLIB_hips = @TOOL_DYLIB_hips@
+TOOL_DYLIB_ipopt = @TOOL_DYLIB_ipopt@
+TOOL_DYLIB_lapack = @TOOL_DYLIB_lapack@
+TOOL_DYLIB_metis = @TOOL_DYLIB_metis@
+TOOL_DYLIB_mmg3d = @TOOL_DYLIB_mmg3d@
+TOOL_DYLIB_mshmet = @TOOL_DYLIB_mshmet@
+TOOL_DYLIB_mumps = @TOOL_DYLIB_mumps@
+TOOL_DYLIB_mumps_seq = @TOOL_DYLIB_mumps_seq@
+TOOL_DYLIB_nlopt = @TOOL_DYLIB_nlopt@
+TOOL_DYLIB_pardiso = @TOOL_DYLIB_pardiso@
+TOOL_DYLIB_parmetis = @TOOL_DYLIB_parmetis@
+TOOL_DYLIB_parms = @TOOL_DYLIB_parms@
+TOOL_DYLIB_pastix = @TOOL_DYLIB_pastix@
+TOOL_DYLIB_pipe = @TOOL_DYLIB_pipe@
+TOOL_DYLIB_scotch = @TOOL_DYLIB_scotch@
+TOOL_DYLIB_superlu = @TOOL_DYLIB_superlu@
+TOOL_DYLIB_superludist = @TOOL_DYLIB_superludist@
+TOOL_DYLIB_umfpack = @TOOL_DYLIB_umfpack@
+TOOL_DYLIB_yams = @TOOL_DYLIB_yams@
 UMFPACKLIBS = @UMFPACKLIBS@
 VERSION = @VERSION@
 WGET = @WGET@
@@ -356,7 +360,7 @@ ff_bison = @ff_bison@
 ff_convert = @ff_convert@
 ff_curl = @ff_curl@
 ff_dvips = @ff_dvips@
-ff_fltk = @ff_fltk@
+ff_git = @ff_git@
 ff_gzip = @ff_gzip@
 ff_history = @ff_history@
 ff_latex = @ff_latex@
@@ -411,8 +415,7 @@ EXTRA_DIST = \
 ./f2c/tt.f \
 ./fftw/Makefile \
 ./fftw/Makefile.am \
-./fltk/Makefile.am \
-./fltk/Makefile.in \
+./fftw/Makefile.in \
 ./gmm/Makefile \
 ./gmm/cxxflags \
 ./headers-sparsesolver.inc \
@@ -441,7 +444,6 @@ EXTRA_DIST = \
 ./mumps/Makefile-mumps-4.10.0.inc \
 ./mumps/MUMPS_4.10.0.patch \
 ./parmetis/Makefile-parmetis.in \
-./parmetis/ParMetis-3.1.1-ok/stdheaders.h \
 ./parmetis/makefile \
 ./parmetis/parmetis-3.1.1.patch \
 ./parms/Makefile \
@@ -450,8 +452,8 @@ EXTRA_DIST = \
 ./pastix/config-pastix-complex.in \
 ./pastix/config-pastix-real.in \
 ./pastix/pastix_release_2200-blend.patch \
-./pastix/pastix_release_2200-gen.patch \
 ./pastix/patch-pastix_long_complex.h \
+./pastix//all_macros.diff \
 ./scalapack/Makefile \
 ./scalapack/SLmake-scalapack.inc \
 ./scotch/Makefile \
@@ -484,12 +486,12 @@ ipopt/patch-IpBlas
 
 # FFCS: See [[file:../../../configure.ac::tools_problems_all_platforms]] for reasons why some tools may be deactivated
 
-# <<no_more_blacs>> blacs is include in  scalapack 2.0.2 
-MPI_SOFT = parmetis scalapack  @FFCS_COMPILE_superludist@ @FFCS_COMPILE_mumps@	\
-	@FFCS_COMPILE_pastix@  @FFCS_COMPILE_hips@ @FFCS_COMPILE_parms@
+# <<no_more_blacs>> blacs is included in scalapack 2.0.2
+MPI_SOFT = @TOOL_COMPILE_parmetis@ scalapack @TOOL_COMPILE_superludist@ @TOOL_COMPILE_mumps@ @TOOL_COMPILE_pastix@	\
+	@TOOL_COMPILE_hips@ @TOOL_COMPILE_parms@
 
-LIST_SOFT = tetgen superlu fftw metis @FFCS_COMPILE_scotch@ @FFCS_COMPILE_mshmet@ @FFCS_COMPILE_yams@ @FFCS_COMPILE_mmg3d@ gmm nlopt	\
-	@FFCS_COMPILE_mumps_seq@ @FFCS_COMPILE_ipopt@
+LIST_SOFT = tetgen @TOOL_COMPILE_superlu@ fftw @TOOL_COMPILE_metis@ @TOOL_COMPILE_scotch@ @TOOL_COMPILE_mshmet@ @TOOL_COMPILE_yams@	\
+	@TOOL_COMPILE_mmg3d@ gmm @TOOL_COMPILE_nlopt@ @TOOL_COMPILE_mumps_seq@ @TOOL_COMPILE_ipopt@
 
 all: all-recursive
 
@@ -741,7 +743,7 @@ install-dvi: install-dvi-recursive
 
 install-dvi-am:
 
-install-exec-am:
+install-exec-am: install-exec-local
 
 install-html: install-html-recursive
 
@@ -788,13 +790,14 @@ uninstall-am:
 	ctags ctags-am distclean distclean-generic distclean-tags \
 	distdir dvi dvi-am html html-am info info-am install \
 	install-am install-data install-data-am install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-info install-info-am install-man \
-	install-pdf install-pdf-am install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	installdirs-am maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-generic pdf pdf-am ps ps-am tags \
-	tags-am uninstall uninstall-am
+	install-dvi-am install-exec install-exec-am install-exec-local \
+	install-html install-html-am install-info install-info-am \
+	install-man install-pdf install-pdf-am install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs installdirs-am maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
+	pdf-am ps ps-am tags tags-am uninstall uninstall-am
+
 
 all-recursive: bin lib include pkg
 
@@ -849,6 +852,13 @@ re-install:
 	$(MAKE) compile-pkg DIRTARGET=install
 WHERE:
 	$(MAKE) compile-pkg DIRTARGET=WHERE
+install-exec-local:	
+	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/lib
+	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/bin
+	$(mkinstalldirs) -m 755 $(DESTDIR)$(ff_prefix_dir)/include
+	cp -rp lib $(DESTDIR)$(ff_prefix_dir)
+	cp -rp include  $(DESTDIR)$(ff_prefix_dir)
+	cp -rp bin  $(DESTDIR)$(ff_prefix_dir)
 
 clean-local:
 	-rm -rf	 tag-* include lib bin 

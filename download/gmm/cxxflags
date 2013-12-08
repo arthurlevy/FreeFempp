@@ -1,11 +1,11 @@
-CXX = clang++ -std=c++11
+CXX = clang++ -std=c++11 -isysroot /Applications/Xcode.app//Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
 MPICXX = 
 ac_ct_CXX = 
-CC = clang 
+CC = clang -isysroot /Applications/Xcode.app//Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
 MPICC = 
 YACC = bison -y
-ac_ct_CC = clang 
-CXXFLAGS = -g  -m64 -fPIC -g  -DBAMG_LONG_LONG -DCHECK_KN -fno-inline  -fexceptions -fPIC
+ac_ct_CC = clang -isysroot /Applications/Xcode.app//Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
+CXXFLAGS = -m64 -fPIC -g  -DBAMG_LONG_LONG -DCHECK_KN -fno-inline  -fexceptions -fPIC
 CFLAGS = -g  -m64 -fPIC -g -fPIC
 FCFLAGS = -g -O2 -fPIC
 FFMETIS_CFLAGS = 
