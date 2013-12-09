@@ -1,3 +1,9 @@
+freefem++ (3.26-2-1) UNRELEASED; urgency=medium
+
+  * Imported Upstream version 3.26-2
+
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Mon, 09 Dec 2013 00:01:05 +0200
+
 freefem++ (3.25-1) unstable; urgency=low
 
   [ Dimitrios Eftaxiopoulos ]

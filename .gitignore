@@ -45,9 +45,11 @@ examples++-load/Missing-plugins-so.log
 examples++-load/regtests.edp
 examples++-load/WHERE_LIBRARY
 examples++-load/WHERE_LIBRARY-download-new
+examples++-load/._APk-MetricPk.edp.orig
 examples++-mpi/Makefile.in.orig
 examples++-other/Makefile.in.orig
 examples++-tutorial/Makefile.in.orig
+examples++-tutorial/._array.edp.orig
 examples++-mpi/Makefile.in
 examples++-mpi/Missing-plugins-so.log
 examples++-other/Makefile.in
@@ -59,6 +61,7 @@ install-sh
 missing
 mkinstalldirs
 src/Algo/Makefile.in.orig
+src/Eigen/._eigenvalue.cpp.orig
 src/Graphics/Makefile.in.orig
 src/Makefile.in.orig
 src/bamg/Makefile.in.orig
@@ -79,8 +82,10 @@ src/Graphics/Makefile.in
 src/Makefile.in
 src/bamg/Makefile.in
 src/bamglib/Makefile.in
+src/bamglib/._Mesh2.cpp.orig
 src/bin-win32/Makefile.in
 src/femlib/Makefile.in
+src/fflib/._environment.cpp.orig
 src/fflib/Makefile.in
 src/fflib/strversionnumber.cpp
 src/lglib/Makefile.in
