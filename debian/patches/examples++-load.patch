@@ -35,8 +35,8 @@ Add ability to compile freefem++ with Ipopt, freeyams, mmg3d_v4, mshmet, mumps_s
 -//  for Super4.0 library   
 +//  for Super4.0 library
  #include "ff++.hpp"
- /*
- #include  <iostream>
+ #include "slu_ddefs.h"
+ #include "superlu_enum_consts.h"
 --- a/examples++-load/mshmet.cpp
 +++ b/examples++-load/mshmet.cpp
 @@ -8,7 +8,7 @@
@@ -68,9 +68,9 @@ Add ability to compile freefem++ with Ipopt, freeyams, mmg3d_v4, mshmet, mumps_s
  # all test can fail must but clean ????  FH... 
  XFAIL_TESTS=$(TESTS)
  
-@@ -198,8 +198,8 @@
- 	$(INSTALL_DATA)  clapack.h ppmimg.h  bmo.hpp msh3.hpp pcm.hpp  include/*   $(DESTDIR)$(ff_prefix_dir)/include
- 	$(INSTALL)  -m 555 $(LIST_COMPILE) $(DESTDIR)$(ff_prefix_dir)/lib
+@@ -205,8 +205,8 @@
+ 	  sed <$$i >$(DESTDIR)$(ff_prefix_dir)/lib/$$i 's#$(abs_top_builddir)/download#$(ff_prefix_dir)#' ;\
+ 	 done
  	echo loadpath += \"./\"  >$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
 -	echo loadpath += \"$(ff_prefix_dir)/lib\"  >>$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
 -	echo includepath += \"$(ff_prefix_dir)/idp\"  >>$(DESTDIR)$(ff_prefix_dir)/etc/freefem++.pref
