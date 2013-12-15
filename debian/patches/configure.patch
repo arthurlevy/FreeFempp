@@ -1,0 +1,12 @@
+Fix compilation issues related to libraries and flags
+--- a/configure.ac
++++ b/configure.ac
+@@ -1744,7 +1744,7 @@
+ 	[[Superlu4],[-lsuperlu4],[/usr/include/superlu4/superlu_enum_consts.h],[]],
+         [[blacs],[ -lblacsCinit$ff_with_mpi	-lblacsF77init$ff_with_mpi	-lblacs$ff_with_mpi],[]],
+         [[scalapack],[-lscalapack$ff_with_mpi],[]],
+-        [[scotch],[-lscotch -lscotcherr],[]],
++        [[scotch],[-lscotch -lscotcherr],[/usr/include/scotch/scotch.h][]],
+         [[ptscotch],[-lptscotch -lptscotcherr],[]],
+ 	[[metis],[-lscotch -lmetis],[/usr/include/metis/metis.h],[]],
+ 	[[metis],[-lscotch -lmetis],[metis.h],[]],

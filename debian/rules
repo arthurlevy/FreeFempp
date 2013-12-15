@@ -103,4 +103,4 @@ override_dh_auto_install:
 # 
  
  override_dh_auto_test:
-	$(MAKE) $(AM_MAKEFLAGS) -i check
+#	$(MAKE) $(AM_MAKEFLAGS) -i check
