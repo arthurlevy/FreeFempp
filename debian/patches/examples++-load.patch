@@ -79,3 +79,14 @@ Add ability to compile freefem++ with Ipopt, freeyams, mmg3d_v4, mshmet, mumps_s
  	$(INSTALL_SCRIPT) ff-c++  $(DESTDIR)${bindir}
  	$(INSTALL_SCRIPT) ff-pkg-download  $(DESTDIR)${bindir}
  	$(INSTALL_SCRIPT) ff-get-dep  $(DESTDIR)${bindir}
+--- a/examples++-load/load.link.in
++++ b/examples++-load/load.link.in
+@@ -216,7 +216,7 @@
+         LIBS="'$b/libff.dll' $LIBS $DLL"
+ #        SUF=dll
+ 	;;
+-    FreeBSD|NetBSD)
++    kfreebsd-i386|kfreebsd-amd64|hurd-i386)
+ 	SHARED="-shared" 
+ 	FLAGS='-fPIC';;
+ 	# 64 bit Linux needs -fPIC (ALH)
