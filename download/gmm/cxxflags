@@ -1,12 +1,12 @@
-CXX = g++ -Wl,-z,relro
-MPICXX = mpic++ -Wl,-z,relro
+CXX = clang++ -std=c++11 -isysroot /Applications/Xcode.app//Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
+MPICXX = 
 ac_ct_CXX = 
-CC = gcc -Wl,-z,relro
-MPICC = /usr/bin/mpicc
+CC = clang -isysroot /Applications/Xcode.app//Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
+MPICC = 
 YACC = bison -y
-ac_ct_CC = gcc -Wl,-z,relro
-CXXFLAGS = -g  -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -DNDEBUG -O3 -mmmx -msse -msse2 -DBAMG_LONG_LONG  -DNCHECKPTR -fPIC
-CFLAGS = -g  -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -DNDEBUG -O3 -mmmx -msse -msse2 -fPIC
+ac_ct_CC = clang -isysroot /Applications/Xcode.app//Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
+CXXFLAGS = -m64 -fPIC -g  -DBAMG_LONG_LONG -DCHECK_KN -fno-inline  -fexceptions -fPIC
+CFLAGS = -g  -m64 -fPIC -g -fPIC
 FCFLAGS = -g -O2 -fPIC
 FFMETIS_CFLAGS = 
 WGET = wget --no-check-certificate

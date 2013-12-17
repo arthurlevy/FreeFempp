@@ -89,8 +89,8 @@ override_dh_autoreconf:
 override_dh_auto_install:
 	dh_auto_install
 	mv debian/tmp/usr/bin/bamg debian/tmp/usr/bin/ffbamg
-# 	rdfind -outputname debian/results.txt -makesymlinks true debian/tmp/usr/bin/
-# 	symlinks -r -s -c debian/tmp/usr/bin/
+	rdfind -outputname debian/results.txt -makesymlinks true debian/tmp/usr/bin/
+	symlinks -r -s -c debian/tmp/usr/bin/
 
 # #
 # # Install modified script to create plugins	
