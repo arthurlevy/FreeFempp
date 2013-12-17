@@ -26,10 +26,10 @@ Build-Depends: debhelper (>= 9~), dh-autoreconf,
 # libhips-dev, libpastix-dev,
 # libsuperlu-dist-dev
 ## libsuperlu4-dev 
-Standards-Version: 3.9.4
+Standards-Version: 3.9.5
 Homepage: http://www.freefem.org/ff++/
 Vcs-Git: git://anonscm.debian.org/debian-science/packages/freefempp.git
-Vcs-Browser: http://anonscm.debian.org/?p=debian-science/packages/freefempp.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=debian-science/packages/freefempp.git
 
 Package: freefem++
 Architecture: any
