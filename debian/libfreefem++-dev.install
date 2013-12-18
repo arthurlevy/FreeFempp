@@ -1,3 +1,3 @@
 debian/tmp/usr/lib/ff++/3.*/include/* usr/include/freefem++/
-examples++-load/WHERE_LIBRARY-config usr/include/freefem++/
+debian/tmp/usr/lib/ff++/3.*/lib/*WHERE* usr/include/freefem++/
 debian/tmp/usr/lib/ff++/3.*/idp/* usr/include/freefem++/idp/
