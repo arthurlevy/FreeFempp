@@ -1,6 +1,12 @@
-freefem++ (3.26-2-1) UNRELEASED; urgency=medium
+freefem++ (3.26-2-1) unstable; urgency=low
 
-  * Imported Upstream version 3.26-2
+  * Imported Upstream version 3.26-2 (Closes: #706714)
+  * Disable make check execution in d/rules (Closes: #730739)
+  * Correct architecture names for hurd and kfreebsd (Closes: #730738)
+  * Make libmesh.a install only in libfreefem++ binary
+  * Fix duplication of executables (Closes: #701161)
+  * Update standards version
+  * Set installation dir of WHERE* scripts to /usr/include/freefem++
 
  -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Mon, 09 Dec 2013 00:01:05 +0200
 
