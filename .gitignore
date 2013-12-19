@@ -21,8 +21,6 @@ download/arpack/Makefile.in
 download/arpack/Makefile.in.orig
 download/blas/Makefile.in
 download/blas/Makefile.in.orig
-download/fftw/Makefile
-download/gmm/cxxflags
 download/gmm/cxxflags.orig
 download/nlopt/config.log
 download/pkg/
@@ -73,7 +71,6 @@ src/bin-win32/Makefile.in.orig
 src/femlib/Makefile.in.orig
 src/fflib/Makefile.in
 src/fflib/Makefile.in.orig
-src/fflib/strversionnumber.cpp
 src/fflib/strversionnumber.cpp.orig
 src/fflib/._environment.cpp.orig
 src/lglib/Makefile.in.orig
