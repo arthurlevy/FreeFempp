@@ -5,7 +5,7 @@ Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.
 Uploaders: Christophe Trophime <christophe.trophime@lncmi.cnrs.fr>, 
  Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>
 Build-Depends: debhelper (>= 9~), dh-autoreconf,
- quilt, gawk, gfortran,
+ quilt, gawk, gfortran, rdfind, symlinks,
  flex, bison, libxt-dev, libxext-dev, libxxf86vm-dev, 
  libxpm-dev, libmumps-scotch-dev, libmumps-ptscotch-dev,
  libfltk1.3-dev | libfltk-dev, freeglut3-dev, ghostscript, imagemagick,
