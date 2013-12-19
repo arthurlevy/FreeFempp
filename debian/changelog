@@ -1,4 +1,4 @@
-freefem++ (3.26-2-1) unstable; urgency=low
+freefem++ (3.26-2-2) unstable; urgency=low
 
   * Imported Upstream version 3.26-2 (Closes: #706714)
   * Disable make check execution in d/rules (Closes: #730739)
@@ -7,8 +7,9 @@ freefem++ (3.26-2-1) unstable; urgency=low
   * Fix duplication of executables (Closes: #701161)
   * Update standards version
   * Set installation dir of WHERE* scripts to /usr/include/freefem++
+  * Add rdfind and symlinks to build deps in d/control
 
- -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Mon, 09 Dec 2013 00:01:05 +0200
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Thu, 19 Dec 2013 22:38:49 +0200
 
 freefem++ (3.25-1) unstable; urgency=low
 
