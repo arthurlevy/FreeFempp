@@ -1,4 +1,4 @@
-freefem++ (3.26-2-2) unstable; urgency=low
+freefem++ (3.26-2-1) unstable; urgency=low
 
   * Imported Upstream version 3.26-2 (Closes: #706714)
   * Disable make check execution in d/rules (Closes: #730739)
