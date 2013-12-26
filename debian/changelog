@@ -1,3 +1,10 @@
+freefem++ (3.26-2-2) unstable; urgency=medium
+
+  [ Dimitrios Eftaxiopoulos ]
+  * Enable build with metis
+
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Thu, 26 Dec 2013 16:13:46 +0200
+
 freefem++ (3.26-2-1) unstable; urgency=low
 
   * Imported Upstream version 3.26-2 (Closes: #706714)
