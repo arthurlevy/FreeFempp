@@ -10,7 +10,7 @@
 # number in debian/changelog.
 
 
-AC_INIT(FreeFem++,3.26-2,hecht@ann.jussieu.fr,freefem++)
+AC_INIT(FreeFem++,3.27,hecht@ann.jussieu.fr,freefem++)
 dnl : ${CFLAGS=""}
 dnl : ${CXXFLAGS=""}
 dnl : ${FCFLAGS=""}
@@ -1030,7 +1030,7 @@ then
 	AC_MSG_RESULT([git not found])
     else
 	ff_download_blas=openblas
-	ff_blas_libs="-L${curdir}/download/blas/OpenBLAS -lopenblas"
+	ff_blas_libs="-L${curdir}/download/blas/OpenBLAS -lopenblas $ff_pthread"
 	ff_blas_inc="-I${curdir}/download/blas/CBLAS/src"
 
         # skip generic blas compilation and activate OpenBLAS (see [[file:download/blas/Makefile.am::OpenBLAS]])
@@ -1760,10 +1760,10 @@ m4_map([AC_FF_WHERELIB],[
 
 # FFCS - 27/10/11 - Some extra conditionals for things that do not work on certain systems (eg MPI libraries under
 # Windows)
-#  remove gsl if not find ... FK
-
-if test  "$ff_where_lib_conf_gsl" == 1  -a -z "$enable_gsl" ; then enable_gsl=no; fi;
-if test  "$ff_where_lib_conf_mkl" == 1  -a -z "$enable_mkl" ; then enable_pardiso=no; fi;
+#  remove gsl if not find ... FH
+# correction FH .. 18/12/2013. 
+if test  "$ff_where_lib_conf_gsl" == 1  -a  "$enable_gsl"!="no" ; then enable_gsl=yes; fi;
+if test  "$ff_where_lib_conf_mkl" == 1  -a  "$enable_mkl"!=no ; then enable_pardiso=yes; fi;
 TOOL_DISABLE(gsl,"gsl.$DYLIB_SUFFIX NewSolver.$DYLIB_SUFFIX")
 TOOL_DISABLE(pardiso,PARDISO.$DYLIB_SUFFIX)
 
