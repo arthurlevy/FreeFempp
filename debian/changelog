@@ -1,3 +1,9 @@
+freefem++ (3.27-1) UNRELEASED; urgency=medium
+
+  * Imported Upstream version 3.27
+
+ -- Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>  Mon, 03 Mar 2014 13:31:46 +0200
+
 freefem++ (3.26-2-3) unstable; urgency=low
 
   * Change package urgency from medium to low
