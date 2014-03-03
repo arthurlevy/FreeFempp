@@ -4,13 +4,13 @@ Priority: optional
 Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
 Uploaders: Christophe Trophime <christophe.trophime@lncmi.cnrs.fr>, 
  Dimitrios Eftaxiopoulos <eftaxi12@otenet.gr>
-Build-Depends: debhelper (>= 9~), dh-autoreconf,
+Build-Depends: debhelper (>= 9~), dh-autoreconf, libsuperlu-dev,
  quilt, gawk, gfortran, rdfind, symlinks,
  flex, bison, libxt-dev, libxext-dev, libxxf86vm-dev, 
  libxpm-dev, libmumps-scotch-dev, libmumps-ptscotch-dev,
  libfltk1.3-dev | libfltk-dev, freeglut3-dev, ghostscript, imagemagick,
  texlive, texlive-extra-utils, texlive-latex-extra, texlive-font-utils, 
- libfftw3-dev, libblas-dev, libgsl0-dev,
+ libfftw3-dev, libgsl0-dev,
  libhypre-dev, 
  libarpack2-dev, libsuitesparse-dev,
  libmumps-dev, libblacs-mpi-dev, libscalapack-mpi-dev,
@@ -25,7 +25,6 @@ Build-Depends: debhelper (>= 9~), dh-autoreconf,
 # libparms2-dev, libitsol-dev,
 # libhips-dev, libpastix-dev,
 # libsuperlu-dist-dev
-## libsuperlu4-dev 
 Standards-Version: 3.9.5
 Homepage: http://www.freefem.org/ff++/
 Vcs-Git: git://anonscm.debian.org/debian-science/packages/freefempp.git
