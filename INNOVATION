@@ -1,5 +1,25 @@
+version 3.27 
+   correct bug in dusplay of P1b finite element in 3d 
+     error in SplitMesh<R3>  function  (Thank to O. Pironneau) 
+   add  AddLayers(Th,suppi[],sizeoverlaps,unssd[]);
+   add  tool to trunc to get element numbering for Thn to Tho 
+     int[int] In2o(1),Io2n(1); 
+     Tho =  trunc(Tho, x<0, new2old=In2o, old2new=Io2n);
+   add restrict function for get dof numbering old to new
+     fespace Vnh(Thn,Pk), Voh(Tho,Pk);
+     int[int] n2o=restrict(Vnh,Voh,n2ok);     
+   correct mistake in gsl interface random number (9/1/14)
+   missing all ramdow distribution ..
+   add interface  with gsl random number generation in test .. 
+   correct pb of compilation under window (mingw32/msys) 
+version 3.26-3  09/12/2013 
+   correct problem with openblas need pthread lib 
+01/12/13
+    install dowload lib 
+    update lapack interface in examples.
     add WHERE_LIBRARY-file in install 
-    change the order of seach lib with   WHERE_LIBRARY-download WHERE_LIBRARY-config        WHERE_LIBRARY
+    change the order of seach lib with   WHERE_LIBRARY-download 
+       WHERE_LIBRARY-config        WHERE_LIBRARY
     remove all relative in WHERE_LIBRARY-config
     correct of superlu compile problem
 13/11/203  Pass to version 3.26 ...
